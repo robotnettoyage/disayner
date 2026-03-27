@@ -4,132 +4,104 @@ const steps = [
     number: "01",
     title: "Découverte & Stratégie",
     description: "On analyse votre marché, vos concurrents, vos objectifs. On définit la stratégie avant de toucher au design.",
-    icon: "compass",
-    detail: "Audit digital · Analyse concurrentielle · Définition des objectifs · Arborescence",
+    tags: ["Audit digital", "Analyse concurrentielle", "Objectifs", "Arborescence"],
+    iconPath: `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>`,
   },
   {
     number: "02",
     title: "Conception & Design",
-    description: "Architecture, wireframes, direction artistique. Chaque page est pensée pour convertir.",
-    icon: "layout",
-    detail: "Wireframes · Moodboard · UI Design · Prototypage interactif",
+    description: "Architecture, wireframes, direction artistique. Chaque page est pensée pour convertir et pour refléter votre marque.",
+    tags: ["Wireframes", "Moodboard", "UI Design", "Prototypage"],
+    iconPath: `<path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>`,
   },
   {
     number: "03",
     title: "Développement & SEO",
-    description: "Code propre, performance optimale, SEO intégré nativement. Pas de compromis technique.",
-    icon: "code",
-    detail: "Développement · Intégration SEO · Tests · Optimisation Lighthouse",
+    description: "Code propre, performance optimale, SEO intégré nativement dès la première ligne. Pas de compromis technique.",
+    tags: ["Développement", "SEO on-page", "Tests", "Lighthouse 95+"],
+    iconPath: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
   },
   {
     number: "04",
     title: "Lancement & Croissance",
-    description: "Mise en ligne, tracking, optimisations continues. Votre site est un actif vivant.",
-    icon: "rocket",
-    detail: "Mise en ligne · Analytics · Suivi SEO · Maintenance",
+    description: "Mise en ligne, tracking, optimisations continues. Votre site est un actif vivant qui progresse avec vous.",
+    tags: ["Mise en ligne", "Analytics", "Suivi SEO", "Maintenance"],
+    iconPath: `<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>`,
   },
 ];
-
-const icons: Record<string, string> = {
-  compass: `<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>`,
-  layout:  `<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>`,
-  code:    `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
-  rocket:  `<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>`,
-};
 ---
 
 <section class="method-section" id="methode" aria-label="Notre méthode de travail">
+  <!-- Header -->
   <div class="method-header">
-    <div class="method-header-inner">
-      <p class="section-label">Notre méthode</p>
-      <h2>Un process éprouvé<br /><em class="font-serif">pour des résultats.</em></h2>
-      <p class="method-sub">Pas d'improvisation. Chaque projet suit une méthodologie rigoureuse qui garantit qualité et efficacité.</p>
-    </div>
+    <p class="section-label">Notre méthode</p>
+    <h2>Un process éprouvé<br /><em class="font-serif">pour des résultats.</em></h2>
+    <p class="method-sub">Pas d'improvisation. Chaque projet suit une méthodologie rigoureuse qui garantit qualité et efficacité.</p>
   </div>
 
-  <!-- Desktop: stacking cards (pinned scroll) -->
-  <div class="method-pin-outer" aria-hidden="true">
-    <div class="method-pin-container" id="methodPinContainer">
-      {steps.map((step, i) => (
-        <div
-          class={`method-card-stack ${i === 0 ? "card-visible" : ""} ${i % 2 === 1 ? "card-alt" : ""}`}
-          data-index={i}
-          style={`z-index: ${i + 1};`}
-          aria-hidden="true"
-        >
-          <div class="method-stack-inner">
-            <div class="stack-watermark">{step.number}</div>
-            <div class="stack-content">
-              <div class="stack-icon-wrapper">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[step.icon]}></svg>
-              </div>
-              <div class="stack-text">
-                <span class="stack-step-num">{step.number} / 04</span>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-                <div class="stack-tags">
-                  {step.detail.split(" · ").map((tag) => (
-                    <span class="stack-tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
+  <!-- Timeline -->
+  <div class="timeline-wrapper">
+    <div class="timeline-line" aria-hidden="true"></div>
 
-  <!-- Mobile/fallback: vertical steps -->
-  <div class="method-steps-vertical">
-    {steps.map((step) => (
-      <article class="method-step" aria-label={`Étape ${step.number} : ${step.title}`}>
-        <div class="step-number-wrapper" aria-hidden="true">
-          <span class="step-number-bg">{step.number}</span>
+    {steps.map((step, i) => (
+      <div class={`timeline-item ${i % 2 === 0 ? "item-left" : "item-right"}`} data-aos>
+        <!-- Dot on the line -->
+        <div class="timeline-dot" aria-hidden="true">
+          <div class="dot-inner"></div>
         </div>
-        <div class="step-body">
-          <div class="step-icon-wrapper">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[step.icon]}></svg>
+
+        <!-- Card -->
+        <article class="method-card" aria-label={`Étape ${step.number} : ${step.title}`}>
+          <!-- Watermark number -->
+          <span class="card-watermark" aria-hidden="true">{step.number}</span>
+
+          <!-- Icon -->
+          <div class="card-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+              set:html={step.iconPath} />
           </div>
-          <div>
-            <h3 class="step-title">{step.title}</h3>
-            <p class="step-desc">{step.description}</p>
-            <div class="step-tags">
-              {step.detail.split(" · ").map((tag) => (
-                <span class="step-tag">{tag}</span>
-              ))}
-            </div>
+
+          <!-- Step counter -->
+          <span class="card-step-label">{step.number} / 04</span>
+
+          <!-- Content -->
+          <h3 class="card-title">{step.title}</h3>
+          <p class="card-desc">{step.description}</p>
+
+          <!-- Tags -->
+          <div class="card-tags">
+            {step.tags.map((tag) => (
+              <span class="card-tag">{tag}</span>
+            ))}
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     ))}
   </div>
 </section>
 
 <style>
   .method-section {
-    padding: 7rem 0;
+    padding: 7rem 2rem;
     background: var(--color-background);
-    overflow: hidden;
   }
 
-  /* Header */
+  /* ── Header ─────────────────────────────────────────────────────────────── */
   .method-header {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    margin-bottom: 5rem;
+    max-width: 580px;
+    margin: 0 auto 5rem;
+    text-align: center;
   }
-
-  .method-header-inner { max-width: 580px; }
 
   .section-label {
     font-size: 0.6875rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-accent);
     margin-bottom: 1rem;
+    display: block;
   }
 
   .method-header h2 {
@@ -143,6 +115,7 @@ const icons: Record<string, string> = {
 
   .method-header em {
     font-style: italic;
+    font-family: var(--font-serif);
     color: var(--color-accent);
   }
 
@@ -152,316 +125,236 @@ const icons: Record<string, string> = {
     line-height: 1.65;
   }
 
-  /* ── Desktop stacking cards ── */
-  .method-pin-outer {
-    display: block;
-  }
-
-  .method-pin-container {
+  /* ── Timeline ────────────────────────────────────────────────────────────── */
+  .timeline-wrapper {
     position: relative;
-    max-width: 1400px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 2rem;
-    height: 440px;
   }
 
-  .method-card-stack {
+  /* Center vertical line */
+  .timeline-line {
     position: absolute;
-    left: 2rem;
-    right: 2rem;
+    left: 50%;
     top: 0;
-    border-radius: 20px;
-    border: 1px solid var(--color-border);
-    background: #fff;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(60px) scale(0.97);
-    transition: none;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-    border-left: 3px solid transparent;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+    transform: translateX(-50%);
+    border-radius: 1px;
   }
 
-  .method-card-stack.card-alt {
-    background: var(--color-accent-soft);
-  }
-
-  .method-card-stack.card-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    border-left-color: var(--color-accent);
-  }
-
-  .method-stack-inner {
+  /* Timeline items */
+  .timeline-item {
     position: relative;
-    padding: 3rem 3.5rem;
-    min-height: 380px;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
-  .stack-watermark {
+  .timeline-item.item-left {
+    justify-content: flex-start;
+    transform: translateX(-32px);
+  }
+
+  .timeline-item.item-right {
+    justify-content: flex-end;
+    transform: translateX(32px);
+  }
+
+  .timeline-item.aos-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .timeline-item:last-child { margin-bottom: 0; }
+
+  /* Dot */
+  .timeline-dot {
     position: absolute;
-    right: -1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: clamp(8rem, 18vw, 14rem);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-background);
+    border: 2px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: border-color 0.4s ease, background 0.4s ease;
+  }
+
+  .dot-inner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    transition: background 0.4s ease;
+  }
+
+  .timeline-item.aos-visible .timeline-dot {
+    border-color: var(--color-accent);
+  }
+
+  .timeline-item.aos-visible .dot-inner {
+    background: var(--color-accent);
+  }
+
+  /* Cards */
+  .method-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 2.25rem 2.5rem;
+    width: calc(50% - 3rem);
+    overflow: hidden;
+    transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.3s ease;
+    cursor: default;
+  }
+
+  .method-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+    transform: translateY(-4px);
+    border-color: rgba(37, 99, 235, 0.3);
+  }
+
+  /* Alternating backgrounds */
+  .item-right .method-card {
+    background: var(--color-surface);
+  }
+
+  /* Watermark */
+  .card-watermark {
+    position: absolute;
+    top: -0.5rem;
+    right: 1.25rem;
+    font-size: clamp(4rem, 8vw, 6rem);
     font-weight: 800;
-    color: var(--color-border);
+    color: var(--color-accent);
+    opacity: 0.07;
     line-height: 1;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.04em;
     pointer-events: none;
     user-select: none;
   }
 
-  .stack-content {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 2rem;
-    align-items: start;
-    width: 100%;
-    max-width: 700px;
-  }
-
-  .stack-icon-wrapper {
-    width: 64px;
-    height: 64px;
+  /* Icon */
+  .card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
     background: var(--color-accent-soft);
-    border-radius: 16px;
+    color: var(--color-accent);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-accent);
-    flex-shrink: 0;
-    margin-top: 0.5rem;
+    margin-bottom: 1rem;
   }
 
-  .stack-step-num {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--color-accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
+  /* Step counter */
+  .card-step-label {
     display: block;
-  }
-
-  .stack-text h3 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    letter-spacing: -0.03em;
-    line-height: 1.2;
-    margin-bottom: 0.875rem;
-  }
-
-  .stack-text p {
-    font-size: 1.0625rem;
-    color: var(--color-text-secondary);
-    line-height: 1.65;
-    max-width: 480px;
-  }
-
-  .stack-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-
-  .stack-tag {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    padding: 0.3rem 0.75rem;
-    background: rgba(37,99,235,0.08);
-    color: var(--color-accent);
-    border-radius: 100px;
-    letter-spacing: 0.01em;
-    border: 1px solid rgba(37,99,235,0.15);
-  }
-
-  .card-alt .stack-tag {
-    background: rgba(37,99,235,0.12);
-  }
-
-  /* ── Mobile vertical steps ── */
-  .method-steps-vertical {
-    display: none;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .method-step {
-    padding: 2.5rem 0;
-    border-bottom: 1px solid var(--color-border);
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .method-step:last-child { border-bottom: none; }
-
-  .step-number-wrapper { overflow: hidden; }
-
-  .step-number-bg {
     font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--color-accent);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-  }
-
-  .step-body {
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
-  }
-
-  .step-icon-wrapper {
-    width: 44px;
-    height: 44px;
-    background: var(--color-accent-soft);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: var(--color-accent);
-    flex-shrink: 0;
+    margin-bottom: 0.625rem;
   }
 
-  .step-title {
+  /* Title */
+  .card-title {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-text-primary);
     letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
   }
 
-  .step-desc {
+  /* Desc */
+  .card-desc {
     font-size: 0.9375rem;
     color: var(--color-text-secondary);
-    line-height: 1.65;
-    margin-bottom: 0.5rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
   }
 
-  .step-tags {
+  /* Tags */
+  .card-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin-top: 0.75rem;
   }
 
-  .step-tag {
+  .card-tag {
     font-size: 0.6875rem;
     font-weight: 600;
-    padding: 0.25rem 0.625rem;
-    background: var(--color-accent-soft);
+    padding: 0.3rem 0.75rem;
+    background: rgba(37, 99, 235, 0.07);
     color: var(--color-accent);
     border-radius: 100px;
-    border: 1px solid rgba(37,99,235,0.15);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    letter-spacing: 0.01em;
   }
 
-  /* Responsive: show vertical on mobile */
-  @media (max-width: 900px) {
-    .method-pin-outer { display: none; }
-    .method-steps-vertical { display: flex; }
+  /* ── Mobile ──────────────────────────────────────────────────────────────── */
+  @media (max-width: 860px) {
+    .method-section { padding: 4rem 1.25rem; }
+
+    .timeline-line {
+      left: 20px;
+      transform: none;
+    }
+
+    .timeline-item {
+      justify-content: flex-end !important;
+      transform: translateX(24px) !important;
+      padding-left: 3rem;
+    }
+
+    .timeline-item.aos-visible {
+      transform: translateX(0) !important;
+    }
+
+    .timeline-dot {
+      left: 20px;
+      transform: translateX(-50%);
+    }
+
+    .method-card {
+      width: 100%;
+    }
+
+    .method-header { margin-bottom: 3rem; }
   }
 
   @media (max-width: 480px) {
-    .method-section { padding: 4rem 0; }
-    .method-header  { padding: 0 1.25rem; margin-bottom: 3rem; }
-    .method-steps-vertical { padding: 0 1.25rem; }
+    .method-card { padding: 1.5rem; }
+    .card-watermark { font-size: 3.5rem; }
   }
 </style>
 
 <script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
+  // IntersectionObserver — no GSAP dependency, 100% reliable
+  const items = document.querySelectorAll(".timeline-item");
 
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const isMobile = window.matchMedia("(max-width: 900px)").matches;
-
-  // Header animation
-  gsap.from(".method-header", {
-    y: 40,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power2.out",
-    scrollTrigger: { trigger: ".method-section", start: "top 75%" },
-  });
-
-  if (!isMobile && !prefersReduced) {
-    const cards = Array.from(document.querySelectorAll<HTMLElement>(".method-card-stack"));
-    const container = document.getElementById("methodPinContainer");
-
-    if (container && cards.length > 0) {
-
-    // Initial setup: all cards invisible except first
-    cards.forEach((card, i) => {
-      if (i === 0) {
-        gsap.set(card, { opacity: 1, y: 0, scale: 1 });
-      } else {
-        gsap.set(card, { opacity: 0, y: 60, scale: 0.97 });
-      }
-    });
-
-    // Create a pinned scroll sequence
-    const totalScroll = (cards.length - 1) * 500; // pixels
-
-    // Pin the container
-    ScrollTrigger.create({
-      trigger: ".method-pin-outer",
-      start: "top 80px",
-      end: `+=${totalScroll}`,
-      pin: true,
-      pinSpacing: true,
-    });
-
-    // Animate each card in on scroll
-    cards.forEach((card, i) => {
-      if (i === 0) return; // first card already visible
-
-      const prevCard = cards[i - 1];
-
-      ScrollTrigger.create({
-        trigger: ".method-pin-outer",
-        start: `top+=${(i - 1) * 500} 80px`,
-        end: `top+=${i * 500} 80px`,
-        scrub: 0.5,
-        onEnter() {
-          // Slide in new card
-          gsap.to(card, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" });
-          // Push previous card slightly up/back
-          gsap.to(prevCard, { y: -20, scale: 0.98, opacity: 0.6, duration: 0.5, ease: "power2.out" });
-        },
-        onLeaveBack() {
-          // Reverse
-          gsap.to(card, { opacity: 0, y: 60, scale: 0.97, duration: 0.4, ease: "power2.in" });
-          gsap.to(prevCard, { y: 0, scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" });
-        },
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("aos-visible");
+          observer.unobserve(entry.target);
+        }
       });
-    });
-    } // end if (container && cards.length > 0)
+    },
+    { threshold: 0.2, rootMargin: "0px 0px -60px 0px" }
+  );
 
-  } else if (isMobile) {
-    // Mobile: animate vertical steps
-    document.querySelectorAll(".method-step").forEach((step) => {
-      gsap.from(step, {
-        x: -30,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: step,
-          start: "top 85%",
-        },
-      });
-    });
-  }
+  items.forEach((el) => observer.observe(el));
 </script>

@@ -9,7 +9,7 @@ const metrics = [
 
 <section class="metrics-section" id="chiffres" aria-label="Nos chiffres clés">
   <div class="metrics-inner">
-    <div class="metrics-header will-animate">
+    <div class="metrics-header section-header-anim">
       <p class="section-label">En chiffres</p>
       <h2>Des résultats <em class="font-serif">mesurables</em></h2>
     </div>
@@ -179,18 +179,6 @@ const metrics = [
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
-
-  // Header animation
-  gsap.from(".metrics-header", {
-    y: 40,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".metrics-section",
-      start: "top 75%",
-    },
-  });
 
   // Counter animation
   const counters = document.querySelectorAll<HTMLElement>(".metric-number");

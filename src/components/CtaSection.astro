@@ -10,7 +10,7 @@
   <div class="cta-inner">
     <p class="cta-tag">Parlons de votre projet</p>
 
-    <h2 class="cta-title will-animate">
+    <h2 class="cta-title">
       Prêt à créer un site
       <span class="cta-highlight">
         qui vous ressemble&nbsp;?
@@ -230,31 +230,6 @@
   gsap.registerPlugin(ScrollTrigger);
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Title reveal
-  gsap.from(".cta-title", {
-    y: 50,
-    opacity: 0,
-    duration: 0.9,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: ".cta-section",
-      start: "top 70%",
-    },
-  });
-
-  // Stagger content
-  gsap.from([".cta-tag", ".cta-sub", ".cta-actions", ".cta-reassurance"], {
-    y: 30,
-    opacity: 0,
-    duration: 0.7,
-    stagger: 0.1,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".cta-section",
-      start: "top 65%",
-    },
-  });
 
   // SVG underline animation
   if (!prefersReduced) {

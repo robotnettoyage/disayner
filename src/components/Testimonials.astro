@@ -23,7 +23,7 @@ const testimonials = [
 
 <section class="testimonials-section" id="temoignages" aria-label="Témoignages clients">
   <div class="testimonials-inner">
-    <div class="testimonials-header will-animate">
+    <div class="testimonials-header section-header-anim">
       <p class="section-label">Témoignages</p>
       <h2>Ce que disent<br /><em class="font-serif">nos clients.</em></h2>
     </div>
@@ -328,17 +328,6 @@ const testimonials = [
 
 <script>
   import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Header animation
-  gsap.from(".testimonials-header", {
-    y: 40,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power2.out",
-    scrollTrigger: { trigger: ".testimonials-section", start: "top 75%" },
-  });
 
   // Carousel logic
   const slides = Array.from(document.querySelectorAll<HTMLElement>(".testimonial-slide"));

@@ -34,8 +34,8 @@ const projects = [
 ---
 
 <section class="projects-section" id="realisations" aria-label="Nos réalisations">
-  <div class="projects-header will-animate">
-    <div class="projects-header-inner">
+  <div class="projects-header">
+    <div class="projects-header-inner section-header-anim">
       <p class="section-label">Réalisations</p>
       <h2>Quelques projets<br /><em class="font-serif">dont nous sommes fiers.</em></h2>
     </div>
@@ -399,15 +399,6 @@ const projects = [
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
-
-  // Header
-  gsap.from(".projects-header", {
-    y: 40,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power2.out",
-    scrollTrigger: { trigger: ".projects-section", start: "top 75%" },
-  });
 
   // Cards
   document.querySelectorAll(".project-card").forEach((card) => {

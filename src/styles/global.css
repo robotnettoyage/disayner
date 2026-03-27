@@ -56,15 +56,28 @@ body::before {
   opacity: 0.025;
 }
 
-/* ─── 7. Utilitaires GSAP ────────────────────────────────────────────────── */
+/* ─── 7. Animations CSS fiables (pas de dépendance GSAP) ────────────────── */
 .gsap-hidden {
   opacity: 0;
   visibility: hidden;
 }
 
+/* will-animate: visible par défaut, GSAP = progressive enhancement seulement */
 .will-animate {
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1;
+  transform: none;
+}
+
+/* Fade-in CSS natif pour les headers de sections */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-header-anim {
+  animation: fadeInUp 0.7s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 30%;
 }
 
 /* ─── 8. Boutons base ────────────────────────────────────────────────────── */
