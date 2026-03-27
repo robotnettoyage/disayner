@@ -1,7 +1,14 @@
 ---
+import BgWords from './BgWords.astro';
 ---
 
 <section class="services-section" id="services" aria-label="Nos services">
+  <BgWords words={[
+    { text: 'WORDPRESS', x: '60%',  y: '5%',  rot: '-8deg',  size: '6vw' },
+    { text: 'SHOPIFY',   x: '5%',   y: '70%', rot: '6deg',   size: '5vw' },
+    { text: 'SEO',       x: '-3%',  y: '35%', rot: '-15deg', size: '10vw' },
+    { text: 'CODE',      x: '70%',  y: '65%', rot: '10deg',  size: '7vw' },
+  ]} />
   <div class="services-inner">
 
     <!-- Header — visible by default, no will-animate -->

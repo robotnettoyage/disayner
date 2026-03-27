@@ -1,0 +1,51 @@
+---
+interface Word {
+  text: string;
+  x: string;
+  y: string;
+  rot: string;
+  size: string;
+}
+
+interface Props {
+  words: Word[];
+  variant?: 'dark' | 'light';
+}
+
+const { words, variant = 'dark' } = Astro.props;
+---
+
+<div class="bg-words" aria-hidden="true">
+  {words.map((word) => (
+    <span
+      class={`bg-word${variant === 'light' ? ' bg-word--light' : ''}`}
+      style={`--x:${word.x}; --y:${word.y}; --rot:${word.rot}; --size:${word.size};`}
+    >
+      {word.text}
+    </span>
+  ))}
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!prefersReduced) {
+    (gsap.utils.toArray('.bg-word') as HTMLElement[]).forEach((word) => {
+      const section = word.closest('section');
+      if (!section) return;
+      gsap.to(word, {
+        y: -60,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+    });
+  }
+</script>

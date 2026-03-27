@@ -1,4 +1,5 @@
 ---
+import BgOrbs from './BgOrbs.astro';
 const testimonials = [
   {
     quote: "Structure claire, parcours logique, très pro. Le site reflète enfin notre positionnement. On a reçu des retours très positifs de nos clients dès la semaine du lancement.",
@@ -22,6 +23,10 @@ const testimonials = [
 ---
 
 <section class="testimonials-section" id="temoignages" aria-label="Témoignages clients">
+  <BgOrbs orbs={[
+    { type: 'filled', x: '80%', y: '15%', size: '150px', dur: '10s' },
+    { type: 'ring',   x: '15%', y: '75%', size: '100px', dur: '13s' },
+  ]} />
   <div class="testimonials-inner">
     <div class="testimonials-header section-header-anim">
       <p class="section-label">Témoignages</p>
@@ -96,13 +101,17 @@ const testimonials = [
 
 <style>
   .testimonials-section {
+    position: relative;
     padding: 7rem 2rem;
     background: var(--color-surface);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
   }
 
   .testimonials-inner {
+    position: relative;
+    z-index: 1;
     max-width: 900px;
     margin: 0 auto;
     display: flex;
@@ -137,6 +146,7 @@ const testimonials = [
   /* Carousel */
   .carousel-wrapper {
     position: relative;
+    z-index: 1;
     text-align: center;
   }
 

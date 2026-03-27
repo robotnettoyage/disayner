@@ -1,0 +1,23 @@
+---
+interface Props {
+  pulseCount?: number;
+  variant?: 'default' | 'accent';
+}
+
+const { pulseCount = 7, variant = 'default' } = Astro.props;
+
+const dots = Array.from({ length: pulseCount }, (_, i) => ({
+  x: `${((15 + i * 37) % 75) + 10}%`,
+  y: `${((10 + i * 53) % 80) + 5}%`,
+  delay: `${(i * 0.7) % 4}s`,
+}));
+---
+
+<div class={`bg-dots${variant === 'accent' ? ' bg-dots--accent' : ''}`} aria-hidden="true">
+  {dots.map((dot) => (
+    <span
+      class="dot-pulse"
+      style={`--dx:${dot.x}; --dy:${dot.y}; --delay:${dot.delay};`}
+    ></span>
+  ))}
+</div>

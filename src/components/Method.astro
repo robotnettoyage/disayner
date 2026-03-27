@@ -1,4 +1,5 @@
 ---
+import BgDots from './BgDots.astro';
 const steps = [
   {
     number: "01",
@@ -32,6 +33,7 @@ const steps = [
 ---
 
 <section class="method-section" id="methode" aria-label="Notre méthode de travail">
+  <BgDots pulseCount={7} />
   <!-- Header -->
   <div class="method-header">
     <p class="section-label">Notre méthode</p>
@@ -83,12 +85,16 @@ const steps = [
 
 <style>
   .method-section {
+    position: relative;
     padding: 7rem 2rem;
     background: var(--color-background);
+    overflow: hidden;
   }
 
   /* ── Header ─────────────────────────────────────────────────────────────── */
   .method-header {
+    position: relative;
+    z-index: 1;
     max-width: 580px;
     margin: 0 auto 5rem;
     text-align: center;
@@ -128,6 +134,7 @@ const steps = [
   /* ── Timeline ────────────────────────────────────────────────────────────── */
   .timeline-wrapper {
     position: relative;
+    z-index: 1;
     max-width: 1100px;
     margin: 0 auto;
   }

@@ -1,7 +1,14 @@
 ---
+import BgWords from './BgWords.astro';
 ---
 
 <section class="hero" id="accueil" aria-label="Présentation DISAYNER">
+  <BgWords words={[
+    { text: 'DESIGN',  x: '-5%',  y: '10%', rot: '-12deg', size: '8vw' },
+    { text: 'PIXEL',   x: '65%',  y: '20%', rot: '8deg',   size: '6vw' },
+    { text: 'CRÉATIF', x: '10%',  y: '65%', rot: '-5deg',  size: '7vw' },
+    { text: 'WEB',     x: '70%',  y: '75%', rot: '14deg',  size: '9vw' },
+  ]} />
   <!-- Decorative orbs (CSS-only) -->
   <div class="hero-orbs" aria-hidden="true">
     <div class="orb orb-1"></div>

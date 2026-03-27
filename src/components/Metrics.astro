@@ -1,4 +1,5 @@
 ---
+import BgDots from './BgDots.astro';
 const metrics = [
   { value: 50,    suffix: "+",   label: "Projets livrés",          sublabel: "depuis 2021" },
   { value: 200,   suffix: "%",   label: "Trafic moyen généré",     sublabel: "sur nos projets SEO" },
@@ -8,6 +9,7 @@ const metrics = [
 ---
 
 <section class="metrics-section" id="chiffres" aria-label="Nos chiffres clés">
+  <BgDots pulseCount={5} variant="accent" />
   <div class="metrics-inner">
     <div class="metrics-header section-header-anim">
       <p class="section-label">En chiffres</p>
@@ -60,6 +62,7 @@ const metrics = [
 
   .metrics-inner {
     position: relative;
+    z-index: 1;
     max-width: 1400px;
     margin: 0 auto;
     display: flex;

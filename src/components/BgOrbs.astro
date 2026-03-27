@@ -1,0 +1,31 @@
+---
+interface Orb {
+  type: 'filled' | 'ring';
+  x: string;
+  y: string;
+  size: string;
+  dur: string;
+  delay?: string;
+}
+
+interface Props {
+  orbs: Orb[];
+  variant?: 'dark' | 'light';
+}
+
+const { orbs, variant = 'dark' } = Astro.props;
+---
+
+<div class="bg-orbs" aria-hidden="true">
+  {orbs.map((orb, i) => {
+    const orbClass = variant === 'light'
+      ? `orb orb-${orb.type}--light`
+      : `orb orb-${orb.type}`;
+    return (
+      <div
+        class={orbClass}
+        style={`--ox:${orb.x}; --oy:${orb.y}; --size:${orb.size}; --dur:${orb.dur}; --delay:${orb.delay ?? `${i * 2}s`};`}
+      ></div>
+    );
+  })}
+</div>

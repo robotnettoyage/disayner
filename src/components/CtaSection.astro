@@ -1,7 +1,19 @@
 ---
+import BgWords from './BgWords.astro';
+import BgOrbs from './BgOrbs.astro';
 ---
 
 <section class="cta-section" id="contact" aria-label="Démarrer un projet">
+  <BgWords variant="light" words={[
+    { text: 'PROJET', x: '5%',  y: '5%',  rot: '-10deg', size: '8vw' },
+    { text: 'LANCER', x: '55%', y: '10%', rot: '12deg',  size: '6vw' },
+    { text: 'CRÉER',  x: '20%', y: '72%', rot: '-6deg',  size: '9vw' },
+  ]} />
+  <BgOrbs variant="light" orbs={[
+    { type: 'filled', x: '15%', y: '15%', size: '250px', dur: '9s' },
+    { type: 'ring',   x: '80%', y: '70%', size: '200px', dur: '12s' },
+    { type: 'ring',   x: '50%', y: '40%', size: '140px', dur: '15s' },
+  ]} />
   <div class="cta-bg-shapes" aria-hidden="true">
     <div class="cta-shape cta-shape-1"></div>
     <div class="cta-shape cta-shape-2"></div>
