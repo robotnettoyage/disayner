@@ -73,6 +73,7 @@ const schemaData = {
 
     <!-- JSON-LD Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+    <slot name="head" />
   </head>
   <body>
     <slot />

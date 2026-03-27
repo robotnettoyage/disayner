@@ -1,0 +1,1682 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Testimonials from '../components/Testimonials.astro';
+import BgWords from '../components/BgWords.astro';
+import BgDots from '../components/BgDots.astro';
+
+const siteTypes = [
+  {
+    iconPath: `<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>`,
+    title: 'Site vitrine',
+    desc: "Votre carte de visite digitale. Un site élégant et performant qui présente votre activité, vos services et génère des prises de contact qualifiées.",
+    features: ['Design sur-mesure & responsive', 'Pages services, à propos, contact', 'Base SEO optimisée dès le départ', 'Formulaire de contact connecté'],
+    tags: ['WordPress', 'Webflow', 'Sur-mesure'],
+  },
+  {
+    iconPath: `<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>`,
+    title: 'E-commerce',
+    desc: "Vendez en ligne avec une boutique performante, sécurisée et pensée pour maximiser vos conversions. De la fiche produit au tunnel d'achat.",
+    features: ['Catalogue produits optimisé', "Tunnel d'achat fluide", 'Paiement sécurisé (Stripe, PayPal)', 'Gestion des stocks & commandes'],
+    tags: ['Shopify', 'WooCommerce'],
+  },
+  {
+    iconPath: `<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>`,
+    title: 'Landing page',
+    desc: "Une page unique, focalisée sur un seul objectif : convertir. Idéale pour vos campagnes publicitaires, lancements ou offres spéciales.",
+    features: ['Un seul objectif, zéro distraction', 'Optimisée pour la conversion', 'A/B testing ready', 'Intégration tracking & analytics'],
+    tags: ['Sur-mesure', 'Webflow'],
+  },
+];
+
+const differentiators = [
+  {
+    iconPath: `<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>`,
+    title: 'Design premium, pas du template',
+    desc: 'Chaque site est conçu de zéro. Pas de thème acheté, pas de copier-coller. Votre site est unique.',
+  },
+  {
+    iconPath: `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>`,
+    title: 'SEO intégré nativement',
+    desc: 'La structure, les balises, la performance — le référencement est pensé dès la conception, pas ajouté après coup.',
+  },
+  {
+    iconPath: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
+    title: 'Performance maximale',
+    desc: 'Score Lighthouse 95+. Temps de chargement optimisé, images compressées, code propre.',
+  },
+  {
+    iconPath: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>`,
+    title: 'Responsive pixel-perfect',
+    desc: 'Votre site est impeccable sur desktop, tablette et mobile. Chaque breakpoint est testé et ajusté.',
+  },
+  {
+    iconPath: `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+    title: 'Accompagnement complet',
+    desc: "De la stratégie à la mise en ligne, un seul interlocuteur qui comprend vos enjeux business.",
+  },
+];
+
+const processSteps = [
+  { num: '01', title: 'Appel découverte (offert)', desc: "30 minutes pour comprendre votre activité, vos objectifs et vos contraintes. On évalue ensemble si le projet a du sens.", duration: '30 min · Gratuit' },
+  { num: '02', title: 'Proposition & devis', desc: "On vous envoie une proposition détaillée : périmètre, planning, livrables et tarif. Tout est clair avant de commencer.", duration: '48-72h' },
+  { num: '03', title: 'Maquettes & direction artistique', desc: "Wireframes puis maquettes graphiques de votre site. Vous validez le design avant qu'on écrive la moindre ligne de code.", duration: '1-2 semaines' },
+  { num: '04', title: 'Développement & intégration', desc: "On construit votre site : intégration responsive, animations, formulaires, CMS. Chaque page est testée sur tous les devices.", duration: '2-4 semaines' },
+  { num: '05', title: 'Recette & optimisations', desc: "Phase de tests : performance, SEO, accessibilité, responsive. On corrige, on ajuste, on peaufine jusqu'à la perfection.", duration: '3-5 jours' },
+  { num: '06', title: 'Mise en ligne & formation', desc: "Votre site est en ligne. On vous forme à l'utiliser, on configure le tracking et on reste disponible pour la suite.", duration: '1-2 jours' },
+];
+
+const technologies = [
+  { letter: 'W', color: '#21759B', title: 'WordPress', desc: 'Le CMS le plus populaire au monde. Flexible, extensible, idéal pour les sites vitrines et blogs professionnels.', ideal: ['Sites vitrines', 'Blogs', 'Multilingue'] },
+  { letter: 'S', color: '#96BF48', title: 'Shopify', desc: "La plateforme e-commerce de référence. Fiable, sécurisée, avec un écosystème d'apps puissant.", ideal: ['Boutiques en ligne', 'Dropshipping', 'International'] },
+  { letter: 'W', color: '#4353FF', title: 'Webflow', desc: 'Design et développement en un. Parfait pour les sites premium qui nécessitent une liberté créative totale.', ideal: ['Sites premium', 'Landing pages', 'Animations'] },
+  { letter: 'W', color: '#7F54B3', title: 'WooCommerce', desc: "L'extension e-commerce de WordPress. Flexible et personnalisable pour les boutiques sur-mesure.", ideal: ['E-commerce WordPress', 'Produits personnalisés'] },
+  { letter: 'E', color: '#FF6900', title: 'Elementor', desc: 'Le page builder WordPress le plus puissant. Édition visuelle intuitive et contrôle total du design.', ideal: ['Sites vitrines', 'Pages complexes'] },
+  { letter: '<>', color: '#1A1A19', title: 'Sur-mesure', desc: 'Pour les projets qui nécessitent performance et flexibilité maximale. Code propre, zéro dépendance inutile.', ideal: ['Landing pages', 'Sites ultra-rapides', 'Projets spécifiques'] },
+];
+
+const includesColumns = [
+  {
+    title: 'Design & développement',
+    items: ['Design sur-mesure (pas de template)', 'Maquettes graphiques avant développement', 'Intégration responsive (mobile, tablette, desktop)', 'Animations et micro-interactions', 'Formulaire de contact fonctionnel', 'Intégration CMS (gestion autonome du contenu)'],
+  },
+  {
+    title: 'SEO & performance',
+    items: ['Structure SEO optimisée (balises, Hn, meta)', 'Performance Lighthouse 95+', 'Sitemap XML & robots.txt', 'Schema JSON-LD (données structurées)', 'Compression images & lazy loading', 'Configuration HTTPS & sécurité'],
+  },
+  {
+    title: 'Accompagnement',
+    items: ["Formation à la prise en main du site", "Documentation d'utilisation", 'Configuration Google Analytics & Search Console', '30 jours de support post-lancement', 'Hébergement conseillé et configuré', 'Nom de domaine conseillé'],
+  },
+];
+
+const projects = [
+  { client: 'Miroiterie VITOR', type: 'Site vitrine multi-pages + Google Ads', desc: "Refonte complète pour une miroiterie en Haute-Savoie : services détaillés, portfolio interactif, formulaire connecté Microsoft 365 et campagnes Google Ads optimisées.", stack: ['WordPress', 'Elementor', 'SEO'], accent: '#2563EB', bg: 'linear-gradient(135deg, #1e3a5f 0%, #2563EB 100%)' },
+  { client: 'Love at Me', type: 'SEO e-commerce multilingue', desc: "Optimisation SEO complète sur ~560 pages produits : meta content, schema JSON-LD, balises hreflang, descriptions optimisées et stratégie de maillage interne.", stack: ['Shopify', 'SEO', 'FR/EN/NL'], accent: '#7C3AED', bg: 'linear-gradient(135deg, #4c1d95 0%, #7C3AED 100%)' },
+  { client: 'JM Services', type: 'Site vitrine complet', desc: "Création d'un site multi-pages pour un paysagiste dans le Var : présentation des services, galerie filtrée par catégorie, lightbox et formulaire personnalisé.", stack: ['WordPress', 'Elementor', 'SEO'], accent: '#059669', bg: 'linear-gradient(135deg, #064e3b 0%, #059669 100%)' },
+];
+
+const faqItems = [
+  { q: "Combien coûte la création d'un site web ?", a: "Le budget dépend du type de site (vitrine, e-commerce, landing page), du nombre de pages, des fonctionnalités et du CMS choisi. Chaque projet est chiffré sur-mesure après un appel découverte gratuit. Pas de surprise : vous recevez un devis détaillé avant de vous engager.", open: true },
+  { q: "Combien de temps faut-il pour créer un site ?", a: "En moyenne, comptez 3 à 6 semaines entre le premier appel et la mise en ligne. Un site vitrine simple peut être livré en 2-3 semaines, un e-commerce en 4-8 semaines. Le planning précis est défini dans la proposition." },
+  { q: "Est-ce que je pourrai modifier mon site moi-même ?", a: "Oui. Chaque site est livré avec un CMS (WordPress, Shopify, Webflow) qui vous permet de modifier vos textes, images et contenus en autonomie. Une formation est incluse à la livraison." },
+  { q: "Est-ce que le SEO est inclus ?", a: "Oui. La base SEO est intégrée nativement : structure Hn, meta titles & descriptions, sitemap, schema JSON-LD, performance optimisée, images compressées. Pour une stratégie SEO avancée (contenus, maillage, suivi), c'est une prestation complémentaire." },
+  { q: "Sur quel CMS sera développé mon site ?", a: "On recommande le CMS le plus adapté à votre activité et vos objectifs. WordPress pour la flexibilité, Shopify pour le e-commerce, Webflow pour le design premium. On en discute ensemble lors de l'appel découverte." },
+  { q: "Faut-il que je fournisse les textes et les images ?", a: "Idéalement oui, car vous connaissez votre activité mieux que quiconque. Mais si vous n'avez pas de contenu prêt, on peut vous accompagner : rédaction web, shooting photo, banques d'images premium." },
+  { q: "Est-ce que le site sera responsive (adapté mobile) ?", a: "C'est non négociable. Chaque site est conçu mobile-first et testé sur tous les appareils. Plus de 60% du trafic web est mobile — votre site doit être impeccable partout." },
+  { q: "Que se passe-t-il après la mise en ligne ?", a: "Vous bénéficiez de 30 jours de support inclus pour les ajustements post-lancement. Ensuite, on propose des forfaits de maintenance pour les mises à jour, la sécurité et l'évolution de votre site." },
+  { q: "Je suis en dehors de la Haute-Savoie, on peut travailler ensemble ?", a: "Absolument. 100% de nos projets se font à distance. Visio, email, téléphone — on s'adapte à votre rythme. Nos clients sont partout en France et en Belgique." },
+  { q: "Est-ce que vous refaites des sites existants (refonte) ?", a: "Oui. Refonte partielle ou complète, migration de CMS, modernisation du design — on intervient sur des sites existants autant que sur des créations from scratch." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  }))
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Création de sites web",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "DISAYNER",
+    "url": "https://disayner.com",
+    "areaServed": "FR",
+    "address": { "@type": "PostalAddress", "addressRegion": "Haute-Savoie", "addressCountry": "FR" }
+  },
+  "description": "Création de sites web premium sur-mesure : sites vitrines, e-commerce, landing pages. Design unique, SEO intégré, performance optimisée.",
+  "serviceType": ["Site vitrine", "E-commerce", "Landing page", "Refonte de site web"]
+};
+---
+
+<Layout
+  title="Création de sites web sur-mesure | Sites vitrines, e-commerce & landing pages — DISAYNER"
+  description="Création de sites web premium : sites vitrines, e-commerce Shopify, landing pages. Design sur-mesure, SEO intégré, performance maximale. Devis gratuit."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S1 — HERO                                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-hero" aria-label="Création de sites web">
+      <BgWords words={[
+        { text: 'DESIGN',     x: '-4%', y: '12%', rot: '-12deg', size: '8vw' },
+        { text: 'WORDPRESS',  x: '62%', y: '5%',  rot: '8deg',   size: '5vw' },
+        { text: 'RESPONSIVE', x: '5%',  y: '72%', rot: '-5deg',  size: '6vw' },
+        { text: 'PIXEL',      x: '70%', y: '78%', rot: '14deg',  size: '7vw' },
+      ]} />
+
+      <div class="cs-hero-inner">
+        <!-- Left: Text -->
+        <div class="cs-hero-text">
+          <p class="cs-eyebrow">Création de sites web</p>
+          <h1 class="cs-hero-title">
+            Un site web conçu pour <em class="font-serif">convertir</em>,<br class="cs-br-lg" />pas juste pour exister.
+          </h1>
+          <p class="cs-hero-sub">
+            Sites vitrines, e-commerce, landing pages — chaque projet est pensé sur-mesure pour refléter votre marque et transformer vos visiteurs en clients.
+          </p>
+          <div class="cs-hero-ctas">
+            <a href="/contact" class="btn-primary">
+              Demander un devis gratuit
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/#realisations" class="btn-outline">Voir nos réalisations</a>
+          </div>
+          <div class="cs-badges" role="list" aria-label="Points forts">
+            <span class="cs-badge" role="listitem">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              +50 projets livrés
+            </span>
+            <span class="cs-badge-dot" aria-hidden="true">·</span>
+            <span class="cs-badge" role="listitem">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Score Lighthouse 95+
+            </span>
+            <span class="cs-badge-dot" aria-hidden="true">·</span>
+            <span class="cs-badge" role="listitem">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              SEO intégré
+            </span>
+            <span class="cs-badge-dot" aria-hidden="true">·</span>
+            <span class="cs-badge" role="listitem">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              100% responsive
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Browser mockup visual -->
+        <div class="cs-hero-visual" aria-hidden="true">
+          <div class="cs-browser">
+            <div class="cs-browser-chrome">
+              <span class="cs-dot" style="background:#FF5F57"></span>
+              <span class="cs-dot" style="background:#FEBC2E"></span>
+              <span class="cs-dot" style="background:#28C840"></span>
+              <div class="cs-url-bar">disayner.com</div>
+            </div>
+            <div class="cs-browser-body">
+              <!-- Fake website inside browser -->
+              <div class="cs-site-nav">
+                <div class="cs-site-logo"></div>
+                <div class="cs-site-links">
+                  <div class="cs-site-link"></div>
+                  <div class="cs-site-link"></div>
+                  <div class="cs-site-link"></div>
+                  <div class="cs-site-btn"></div>
+                </div>
+              </div>
+              <div class="cs-site-hero">
+                <div class="cs-site-eyebrow"></div>
+                <div class="cs-site-h1"></div>
+                <div class="cs-site-h1 cs-site-h1--narrow"></div>
+                <div class="cs-site-sub"></div>
+                <div class="cs-site-sub cs-site-sub--short"></div>
+                <div class="cs-site-ctarow">
+                  <div class="cs-site-cta-primary"></div>
+                  <div class="cs-site-cta-outline"></div>
+                </div>
+              </div>
+              <div class="cs-site-cards">
+                <div class="cs-site-card">
+                  <div class="cs-site-card-icon"></div>
+                  <div class="cs-site-card-line"></div>
+                  <div class="cs-site-card-line cs-site-card-line--short"></div>
+                </div>
+                <div class="cs-site-card cs-site-card--accent">
+                  <div class="cs-site-card-icon cs-site-card-icon--accent"></div>
+                  <div class="cs-site-card-line"></div>
+                  <div class="cs-site-card-line cs-site-card-line--short"></div>
+                </div>
+                <div class="cs-site-card">
+                  <div class="cs-site-card-icon"></div>
+                  <div class="cs-site-card-line"></div>
+                  <div class="cs-site-card-line cs-site-card-line--short"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Floating badge -->
+          <div class="cs-hero-badge-float">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Lighthouse<strong> 98</strong></span>
+          </div>
+          <div class="cs-hero-badge-float cs-hero-badge-float--2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>SEO <strong>optimisé</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S2 — TYPES DE SITES                                               -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-types" aria-label="Types de sites web">
+      <div class="cs-container">
+        <div class="cs-section-header section-header-anim">
+          <p class="cs-eyebrow">Nos expertises</p>
+          <h2>Un site adapté à <em class="font-serif">chaque besoin</em>.</h2>
+          <p class="cs-section-sub">Quel que soit votre projet, nous avons la solution technique et créative pour le concrétiser.</p>
+        </div>
+
+        <div class="cs-types-grid">
+          {siteTypes.map((type, i) => (
+            <article class="cs-type-card cs-fade-in" style={`transition-delay:${i * 0.1}s`} aria-label={`Type de site : ${type.title}`}>
+              <div class="cs-type-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={type.iconPath} />
+              </div>
+              <h3 class="cs-type-title">{type.title}</h3>
+              <p class="cs-type-desc">{type.desc}</p>
+              <ul class="cs-type-features" role="list">
+                {type.features.map(f => (
+                  <li class="cs-type-feature">
+                    <span class="cs-check-circle" aria-hidden="true">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <div class="cs-type-tags">
+                {type.tags.map(t => <span class="cs-tag">{t}</span>)}
+              </div>
+              <a href="/contact" class="cs-type-cta">En savoir plus →</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S3 — DIFFÉRENCIATEURS                                             -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-diff" aria-label="Pourquoi choisir Disayner">
+      <div class="cs-container cs-diff-inner">
+        <!-- Left: differentiators -->
+        <div class="cs-diff-list">
+          <div class="cs-section-header-left section-header-anim">
+            <p class="cs-eyebrow">Nos engagements</p>
+            <h2>Pourquoi choisir <em class="font-serif">Disayner</em><br />pour votre site.</h2>
+          </div>
+          <div class="cs-diff-items">
+            {differentiators.map((d, i) => (
+              <div class="cs-diff-item cs-fade-in" style={`transition-delay:${i * 0.08}s`}>
+                <div class="cs-diff-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={d.iconPath} />
+                </div>
+                <div>
+                  <strong class="cs-diff-title">{d.title}</strong>
+                  <p class="cs-diff-desc">{d.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <a href="/contact" class="btn-primary cs-diff-cta">
+            Démarrer mon projet
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Right: visual -->
+        <div class="cs-diff-visual" aria-hidden="true">
+          <div class="cs-diff-mockup">
+            <div class="cs-score-card">
+              <p class="cs-score-label">Performance</p>
+              <div class="cs-score-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(37,99,235,0.1)" stroke-width="8"/>
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="#2563EB" stroke-width="8" stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="18" transform="rotate(-90 50 50)"/>
+                </svg>
+                <span class="cs-score-val">98</span>
+              </div>
+              <div class="cs-score-checks">
+                <div class="cs-score-row"><span class="cs-score-dot cs-score-dot--green"></span><span>First Contentful Paint</span><strong>0.8s</strong></div>
+                <div class="cs-score-row"><span class="cs-score-dot cs-score-dot--green"></span><span>Largest Contentful Paint</span><strong>1.2s</strong></div>
+                <div class="cs-score-row"><span class="cs-score-dot cs-score-dot--green"></span><span>Total Blocking Time</span><strong>0ms</strong></div>
+                <div class="cs-score-row"><span class="cs-score-dot cs-score-dot--green"></span><span>Cumulative Layout Shift</span><strong>0</strong></div>
+              </div>
+            </div>
+            <div class="cs-seo-card">
+              <p class="cs-score-label">Référencement SEO</p>
+              <div class="cs-seo-bars">
+                <div class="cs-seo-row"><span>Position Google</span><div class="cs-seo-bar" style="--pct:90%"></div><strong>#1</strong></div>
+                <div class="cs-seo-row"><span>Trafic organique</span><div class="cs-seo-bar" style="--pct:75%"></div><strong>+200%</strong></div>
+                <div class="cs-seo-row"><span>Taux de conversion</span><div class="cs-seo-bar" style="--pct:60%"></div><strong>4.2%</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S4 — PROCESS                                                       -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-process" aria-label="Notre processus de création">
+      <BgDots pulseCount={6} />
+      <div class="cs-container" style="position:relative;z-index:1;">
+        <div class="cs-section-header section-header-anim">
+          <p class="cs-eyebrow">Notre méthode</p>
+          <h2>De l'idée au lancement, <em class="font-serif">étape par étape</em>.</h2>
+          <p class="cs-section-sub">Un process clair et structuré pour un résultat sans surprise.</p>
+        </div>
+
+        <div class="cs-timeline">
+          <div class="cs-timeline-line" aria-hidden="true"></div>
+          {processSteps.map((step, i) => (
+            <div class="cs-step cs-fade-in" style={`transition-delay:${i * 0.1}s`}>
+              <div class="cs-step-circle" aria-hidden="true">
+                <span>{step.num}</span>
+              </div>
+              <article class="cs-step-card">
+                <div class="cs-step-header">
+                  <h3 class="cs-step-title">{step.title}</h3>
+                  <span class="cs-step-duration">{step.duration}</span>
+                </div>
+                <p class="cs-step-desc">{step.desc}</p>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S5 — TECHNOLOGIES                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-tech" aria-label="Technologies maîtrisées">
+      <div class="cs-container">
+        <div class="cs-section-header section-header-anim">
+          <p class="cs-eyebrow">Stack technique</p>
+          <h2>Les technologies qu'on <em class="font-serif">maîtrise</em>.</h2>
+          <p class="cs-section-sub">On recommande le CMS le plus adapté à votre activité, votre budget et votre autonomie.</p>
+        </div>
+
+        <div class="cs-tech-grid">
+          {technologies.map((tech, i) => (
+            <div class="cs-tech-card cs-fade-in" style={`transition-delay:${i * 0.07}s`}>
+              <div class="cs-tech-letter" style={`background:${tech.color}18; color:${tech.color}; border-color:${tech.color}25;`} aria-hidden="true">
+                {tech.letter}
+              </div>
+              <div class="cs-tech-body">
+                <h3 class="cs-tech-title">{tech.title}</h3>
+                <p class="cs-tech-desc">{tech.desc}</p>
+                <div class="cs-tech-ideal">
+                  <span class="cs-tech-ideal-label">Idéal pour :</span>
+                  {tech.ideal.map(t => <span class="cs-tag">{t}</span>)}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S6 — CE QUI EST INCLUS                                            -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-includes" aria-label="Ce qui est inclus dans chaque projet">
+      <div class="cs-container">
+        <div class="cs-section-header section-header-anim">
+          <p class="cs-eyebrow">Livrables</p>
+          <h2>Ce qui est inclus dans <em class="font-serif">chaque projet</em>.</h2>
+        </div>
+
+        <div class="cs-includes-grid">
+          {includesColumns.map((col, i) => (
+            <div class="cs-includes-col cs-fade-in" style={`transition-delay:${i * 0.1}s`}>
+              <h3 class="cs-includes-title">{col.title}</h3>
+              <ul class="cs-includes-list" role="list">
+                {col.items.map(item => (
+                  <li class="cs-include-item">
+                    <span class="cs-check-circle" aria-hidden="true">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S7 — RÉALISATIONS                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-portfolio" aria-label="Nos réalisations">
+      <div class="cs-container">
+        <div class="cs-portfolio-header">
+          <div class="cs-section-header-left section-header-anim">
+            <p class="cs-eyebrow">Portfolio</p>
+            <h2>Des projets concrets, des <em class="font-serif">résultats réels</em>.</h2>
+          </div>
+        </div>
+
+        <div class="cs-portfolio-list">
+          {projects.map((p, i) => (
+            <article class="cs-portfolio-card cs-fade-in" style={`transition-delay:${i * 0.1}s`} aria-label={`Projet : ${p.client}`}>
+              <div class="cs-portfolio-img" style={`background:${p.bg};`} aria-hidden="true">
+                <div class="cs-portfolio-client-initial" style={`color:white; opacity:0.15; font-size:6rem; font-weight:800; letter-spacing:-0.04em;`}>
+                  {p.client.charAt(0)}
+                </div>
+              </div>
+              <div class="cs-portfolio-info">
+                <span class="cs-portfolio-badge" style={`color:${p.accent}; background:${p.accent}18; border-color:${p.accent}30;`}>{p.type}</span>
+                <h3 class="cs-portfolio-title">{p.client}</h3>
+                <p class="cs-portfolio-desc">{p.desc}</p>
+                <div class="cs-portfolio-stack">
+                  {p.stack.map(s => <span class="cs-tag">{s}</span>)}
+                </div>
+                <a href="/contact" class="cs-portfolio-cta" style={`color:${p.accent};`}>Démarrer un projet similaire →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="cs-portfolio-footer">
+          <a href="/contact" class="btn-outline">Discutons de votre projet →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S8 — TÉMOIGNAGES (shared component)                               -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <Testimonials />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S9 — FAQ                                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-faq" aria-label="Questions fréquentes sur la création de sites web">
+      <div class="cs-container cs-faq-inner">
+        <div class="cs-section-header section-header-anim">
+          <p class="cs-eyebrow">FAQ</p>
+          <h2>Vos questions sur la <em class="font-serif">création de site</em>.</h2>
+        </div>
+
+        <div class="cs-faq-list" role="list">
+          {faqItems.map((item, i) => (
+            <details class="cs-faq-item cs-fade-in" open={item.open} style={`transition-delay:${i * 0.04}s`} role="listitem">
+              <summary class="cs-faq-question">
+                <span>{item.q}</span>
+                <span class="cs-faq-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </span>
+              </summary>
+              <div class="cs-faq-answer">
+                <p>{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S10 — CTA FINAL                                                    -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-cta-section" aria-label="Démarrer votre projet">
+      <!-- Dot grid -->
+      <div class="cs-cta-dotgrid" aria-hidden="true"></div>
+      <!-- Shapes -->
+      <div class="cs-cta-shape cs-cta-shape-1" aria-hidden="true"></div>
+      <div class="cs-cta-shape cs-cta-shape-2" aria-hidden="true"></div>
+
+      <div class="cs-cta-inner">
+        <p class="cs-cta-tag">Lancez votre projet</p>
+        <h2 class="cs-cta-title">
+          Prêt à lancer<br /><em class="font-serif">votre projet&nbsp;?</em>
+        </h2>
+        <p class="cs-cta-sub">Un appel de 30 minutes pour définir vos besoins.<br />Gratuit, sans engagement.</p>
+        <div class="cs-cta-actions">
+          <a href="/contact" class="cs-btn-white">
+            Réserver un appel découverte
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="mailto:contact@disayner.com" class="cs-btn-ghost">Envoyer un message</a>
+        </div>
+        <p class="cs-cta-reassurance">Réponse sous 24h · Devis gratuit · Basé en Haute-Savoie</p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ─── Layout helpers ──────────────────────────────────────────────────── */
+  .cs-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .cs-section {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cs-eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .cs-section-header {
+    max-width: 680px;
+    margin: 0 auto 4rem;
+    text-align: center;
+  }
+
+  .cs-section-header h2,
+  .cs-section-header-left h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin-bottom: 1rem;
+  }
+
+  .cs-section-header h2 em,
+  .cs-section-header-left h2 em { font-style: italic; color: var(--color-accent); }
+
+  .cs-section-header-left { margin-bottom: 3rem; }
+
+  .cs-section-sub {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  /* Scroll-reveal */
+  .cs-fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .cs-fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Shared tag pill */
+  .cs-tag {
+    display: inline-flex;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.275rem 0.7rem;
+    background: rgba(37, 99, 235, 0.07);
+    color: var(--color-accent);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    border-radius: 100px;
+    letter-spacing: 0.01em;
+  }
+
+  /* Shared checkmark circle */
+  .cs-check-circle {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ─── S1: HERO ────────────────────────────────────────────────────────── */
+  .cs-hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 9rem 2rem 5rem;
+    overflow: hidden;
+    background: var(--color-background);
+  }
+
+  .cs-hero-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .cs-hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .cs-hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+  }
+
+  .cs-hero-title em {
+    font-style: italic;
+    color: var(--color-accent);
+    font-weight: 400;
+    font-size: 1.05em;
+    letter-spacing: -0.02em;
+  }
+
+  .cs-hero-sub {
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 540px;
+  }
+
+  .cs-hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cs-badges {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .cs-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .cs-badge svg { color: var(--color-accent); }
+
+  .cs-badge-dot {
+    color: var(--color-border);
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .cs-br-lg { display: block; }
+
+  /* Browser mockup */
+  .cs-hero-visual {
+    position: relative;
+  }
+
+  .cs-browser {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .cs-browser-chrome {
+    height: 36px;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+  }
+
+  .cs-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .cs-url-bar {
+    flex: 1;
+    height: 20px;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    margin-left: 8px;
+    font-size: 0.6875rem;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  .cs-browser-body { padding: 16px; }
+
+  /* Fake website skeleton */
+  .cs-site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cs-site-logo { width: 60px; height: 10px; background: var(--color-text-primary); border-radius: 3px; opacity: 0.15; }
+
+  .cs-site-links { display: flex; gap: 8px; align-items: center; }
+
+  .cs-site-link { width: 28px; height: 6px; background: var(--color-border); border-radius: 2px; }
+
+  .cs-site-btn { width: 48px; height: 20px; background: var(--color-accent); border-radius: 10px; opacity: 0.8; }
+
+  .cs-site-hero {
+    padding: 20px;
+    background: linear-gradient(135deg, #1e3a5f, #2563EB);
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+
+  .cs-site-eyebrow { width: 60px; height: 5px; background: rgba(255,255,255,0.4); border-radius: 2px; margin-bottom: 8px; }
+  .cs-site-h1 { width: 80%; height: 10px; background: white; border-radius: 3px; margin-bottom: 5px; opacity: 0.9; }
+  .cs-site-h1--narrow { width: 55%; }
+  .cs-site-sub { width: 90%; height: 5px; background: rgba(255,255,255,0.5); border-radius: 2px; margin-bottom: 4px; }
+  .cs-site-sub--short { width: 65%; margin-bottom: 12px; }
+  .cs-site-ctarow { display: flex; gap: 8px; }
+  .cs-site-cta-primary { width: 72px; height: 20px; background: white; border-radius: 10px; }
+  .cs-site-cta-outline { width: 64px; height: 20px; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 10px; }
+
+  .cs-site-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+  .cs-site-card {
+    padding: 10px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+  }
+
+  .cs-site-card--accent { background: rgba(37,99,235,0.05); border-color: rgba(37,99,235,0.2); }
+
+  .cs-site-card-icon { width: 20px; height: 20px; background: var(--color-border); border-radius: 4px; margin-bottom: 6px; }
+  .cs-site-card-icon--accent { background: rgba(37,99,235,0.2); }
+  .cs-site-card-line { height: 5px; background: var(--color-border); border-radius: 2px; margin-bottom: 3px; }
+  .cs-site-card-line--short { width: 60%; }
+
+  /* Floating badges */
+  .cs-hero-badge-float {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    padding: 0.4rem 0.875rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    white-space: nowrap;
+    animation: badge-float 4s ease-in-out infinite;
+  }
+
+  .cs-hero-badge-float strong { color: var(--color-text-primary); font-weight: 700; }
+  .cs-hero-badge-float:nth-child(1) { top: -16px; right: 16px; }
+  .cs-hero-badge-float--2 { bottom: -12px; left: 24px; animation-delay: 2s; }
+
+  @keyframes badge-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ─── S2: TYPES ───────────────────────────────────────────────────────── */
+  .cs-types { background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+
+  .cs-types-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .cs-type-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cs-type-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .cs-type-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.09);
+    border-color: rgba(37, 99, 235, 0.25);
+  }
+
+  .cs-type-card:hover::before { transform: scaleX(1); }
+
+  .cs-type-icon-wrap {
+    width: 56px;
+    height: 56px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .cs-type-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .cs-type-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .cs-type-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .cs-type-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  .cs-type-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .cs-type-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-top: auto;
+    transition: gap 0.2s ease;
+  }
+
+  .cs-type-cta:hover { text-decoration: underline; }
+
+  /* ─── S3: DIFFÉRENCIATEURS ────────────────────────────────────────────── */
+  .cs-diff { background: var(--color-background); }
+
+  .cs-diff-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .cs-diff-items { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 2.5rem; }
+
+  .cs-diff-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.125rem 1.25rem;
+    border-radius: 12px;
+    border-left: 3px solid transparent;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    cursor: default;
+  }
+
+  .cs-diff-item:hover {
+    background: rgba(37, 99, 235, 0.03);
+    border-left-color: var(--color-accent);
+  }
+
+  .cs-diff-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .cs-diff-title {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .cs-diff-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .cs-diff-cta { align-self: flex-start; }
+
+  /* Visual — performance cards */
+  .cs-diff-visual { position: sticky; top: 120px; }
+
+  .cs-diff-mockup { display: flex; flex-direction: column; gap: 1rem; }
+
+  .cs-score-card,
+  .cs-seo-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .cs-score-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .cs-score-ring {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+  }
+
+  .cs-score-ring svg { width: 100%; height: 100%; }
+  .cs-score-ring circle:last-child { transition: stroke-dashoffset 1s ease; }
+
+  .cs-score-val {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: -0.03em;
+  }
+
+  .cs-score-checks { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .cs-score-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .cs-score-row strong {
+    margin-left: auto;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .cs-score-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .cs-score-dot--green { background: #22c55e; }
+
+  .cs-seo-bars { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .cs-seo-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .cs-seo-row span:first-child { width: 130px; flex-shrink: 0; }
+
+  .cs-seo-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--color-border);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cs-seo-bar::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: var(--pct);
+    background: var(--color-accent);
+    border-radius: 3px;
+  }
+
+  .cs-seo-row strong {
+    width: 44px;
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    font-size: 0.8125rem;
+    text-align: right;
+  }
+
+  /* ─── S4: PROCESS ─────────────────────────────────────────────────────── */
+  .cs-process { background: var(--color-background); }
+
+  .cs-timeline {
+    position: relative;
+    max-width: 780px;
+    margin: 0 auto;
+    padding-left: 3rem;
+  }
+
+  .cs-timeline-line {
+    position: absolute;
+    left: 15px;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: var(--color-border);
+    border-radius: 1px;
+  }
+
+  .cs-step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+  }
+
+  .cs-step:last-child { margin-bottom: 0; }
+
+  .cs-step-circle {
+    position: absolute;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    z-index: 1;
+    margin-top: 4px;
+  }
+
+  .cs-step { position: relative; }
+
+  .cs-step-card {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1.375rem 1.5rem;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .cs-step-card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+    border-color: rgba(37,99,235,0.25);
+  }
+
+  .cs-step-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cs-step-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .cs-step-duration {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    background: var(--color-accent-soft);
+    border: 1px solid rgba(37,99,235,0.15);
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .cs-step-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ─── S5: TECH ────────────────────────────────────────────────────────── */
+  .cs-tech { background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+
+  .cs-tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .cs-tech-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .cs-tech-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+    border-color: rgba(37,99,235,0.25);
+  }
+
+  .cs-tech-letter {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: var(--font-sans);
+    letter-spacing: -0.02em;
+  }
+
+  .cs-tech-body { flex: 1; min-width: 0; }
+
+  .cs-tech-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+    letter-spacing: -0.01em;
+  }
+
+  .cs-tech-desc {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-tech-ideal {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .cs-tech-ideal-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-right: 0.15rem;
+  }
+
+  /* ─── S6: INCLUS ──────────────────────────────────────────────────────── */
+  .cs-includes { background: var(--color-background); }
+
+  .cs-includes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .cs-includes-col {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 2rem;
+  }
+
+  .cs-includes-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.875rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cs-includes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cs-include-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ─── S7: PORTFOLIO ───────────────────────────────────────────────────── */
+  .cs-portfolio { background: var(--color-surface); border-top: 1px solid var(--color-border); }
+
+  .cs-portfolio-header { margin-bottom: 3rem; }
+
+  .cs-portfolio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cs-portfolio-card {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .cs-portfolio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  }
+
+  .cs-portfolio-img {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cs-portfolio-info {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    justify-content: center;
+  }
+
+  .cs-portfolio-badge {
+    display: inline-flex;
+    align-self: flex-start;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    border: 1px solid;
+    letter-spacing: 0.01em;
+  }
+
+  .cs-portfolio-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .cs-portfolio-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .cs-portfolio-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+  .cs-portfolio-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 0.25rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .cs-portfolio-cta:hover { opacity: 0.7; text-decoration: underline; }
+
+  .cs-portfolio-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  /* ─── S9: FAQ ─────────────────────────────────────────────────────────── */
+  .cs-faq { background: var(--color-background); }
+
+  .cs-faq-inner { max-width: 780px; margin: 0 auto; }
+
+  .cs-faq-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+  }
+
+  .cs-faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cs-faq-item:last-child { border-bottom: none; }
+
+  .cs-faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    list-style: none;
+    transition: background 0.2s ease;
+    user-select: none;
+  }
+
+  .cs-faq-question::-webkit-details-marker { display: none; }
+
+  .cs-faq-question:hover { background: rgba(37, 99, 235, 0.03); }
+
+  .cs-faq-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background 0.2s ease;
+  }
+
+  details[open] .cs-faq-icon {
+    transform: rotate(45deg);
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .cs-faq-answer {
+    padding: 0 1.5rem 1.25rem;
+  }
+
+  .cs-faq-answer p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  /* ─── S10: CTA ────────────────────────────────────────────────────────── */
+  .cs-cta-section {
+    position: relative;
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%);
+    padding: 7rem 2rem;
+    min-height: 52vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cs-cta-dotgrid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cs-cta-shape {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cs-cta-shape-1 {
+    width: 500px;
+    height: 500px;
+    background: rgba(255,255,255,0.05);
+    top: -150px;
+    right: -100px;
+    animation: cs-float 12s ease-in-out infinite;
+  }
+
+  .cs-cta-shape-2 {
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.04);
+    bottom: -80px;
+    left: -60px;
+    animation: cs-float 15s ease-in-out infinite reverse;
+  }
+
+  @keyframes cs-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .cs-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .cs-cta-tag {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .cs-cta-title {
+    font-size: clamp(2.25rem, 5.5vw, 4rem);
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .cs-cta-title em {
+    font-style: italic;
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+
+  .cs-cta-sub {
+    font-size: 1.0625rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.65;
+  }
+
+  .cs-cta-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .cs-btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    color: var(--color-accent);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cs-btn-white:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+  }
+
+  .cs-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: rgba(255,255,255,0.9);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .cs-btn-ghost:hover {
+    border-color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-2px);
+  }
+
+  .cs-cta-reassurance {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── Responsive ──────────────────────────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .cs-types-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    .cs-types-grid { max-width: 100%; grid-template-columns: 1fr; }
+    .cs-diff-inner { grid-template-columns: 1fr; }
+    .cs-diff-visual { position: static; }
+    .cs-tech-grid { grid-template-columns: repeat(2, 1fr); }
+    .cs-includes-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 900px) {
+    .cs-section { padding: 64px 0; }
+    .cs-hero { padding: 8rem 1.5rem 4rem; }
+    .cs-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cs-hero-visual { display: none; }
+    .cs-br-lg { display: none; }
+    .cs-types-grid { grid-template-columns: 1fr; }
+    .cs-portfolio-card { grid-template-columns: 1fr; }
+    .cs-portfolio-img { min-height: 140px; }
+    .cs-diff-inner { gap: 3rem; }
+  }
+
+  @media (max-width: 640px) {
+    .cs-container { padding: 0 1.25rem; }
+    .cs-tech-grid { grid-template-columns: 1fr; }
+    .cs-hero-ctas { flex-direction: column; }
+    .cs-hero-ctas .btn-primary,
+    .cs-hero-ctas .btn-outline { justify-content: center; }
+    .cs-timeline { padding-left: 2.5rem; }
+    .cs-badges { gap: 0.35rem; }
+    .cs-badge-dot { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-fade-in { opacity: 1; transform: none; transition: none; }
+    .cs-hero-badge-float,
+    .cs-cta-shape-1, .cs-cta-shape-2 { animation: none; }
+  }
+</style>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.cs-fade-in').forEach(el => observer.observe(el));
+</script>
