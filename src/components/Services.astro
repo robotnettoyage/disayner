@@ -32,58 +32,74 @@
           <p class="card-desc">Sites vitrines, e-commerce &amp; landing pages. Chaque projet est conçu pour convertir.</p>
 
           <!-- Stacked screens visual -->
-          <div class="screens-stack" aria-hidden="true">
+          <div class="screens-stack" aria-hidden="true" style="position:relative; height:220px; margin:20px 0;">
 
-            <!-- Screen 3 (back) — Landing page -->
-            <div class="screen screen-3">
-              <div class="screen-bar"><span></span><span></span><span></span></div>
-              <div class="screen-body">
-                <div class="s-hero-gradient"><div class="s-cta-btn"></div></div>
+            <!-- Screen 3 (BACK) — Landing page -->
+            <div class="screen screen-back" style="position:absolute; width:80%; left:58%; bottom:35px; transform:translateX(-50%) scale(0.85); opacity:0.6; z-index:1; background:white; border-radius:10px; border:1px solid rgba(0,0,0,0.08); box-shadow:0 4px 15px rgba(0,0,0,0.05); overflow:hidden; transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
+              <div style="height:24px; background:#F5F5F0; border-bottom:1px solid #EEEEEA; display:flex; align-items:center; padding:0 8px; gap:4px;">
+                <span style="width:7px;height:7px;border-radius:50%;background:#FF5F57;display:block;"></span>
+                <span style="width:7px;height:7px;border-radius:50%;background:#FEBC2E;display:block;"></span>
+                <span style="width:7px;height:7px;border-radius:50%;background:#28C840;display:block;"></span>
               </div>
-            </div>
-
-            <!-- Screen 2 (middle) — E-commerce -->
-            <div class="screen screen-2">
-              <div class="screen-bar"><span></span><span></span><span></span></div>
-              <div class="screen-body">
-                <div class="s-nav"></div>
-                <div class="s-grid-products">
-                  <div class="s-product"></div>
-                  <div class="s-product"></div>
-                  <div class="s-product"></div>
-                  <div class="s-product"></div>
+              <div style="padding:8px;">
+                <div style="height:55px; background:linear-gradient(160deg,#1E3A5F,#2563EB); border-radius:5px; display:flex; align-items:center; justify-content:center;">
+                  <div style="width:45px;height:10px;background:rgba(255,255,255,0.8);border-radius:4px;"></div>
                 </div>
               </div>
             </div>
 
-            <!-- Screen 1 (front) — Showcase site -->
-            <div class="screen screen-1">
-              <div class="screen-bar">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <div class="url-bar">disayner.com</div>
+            <!-- Screen 2 (MIDDLE) — E-commerce -->
+            <div class="screen screen-mid" style="position:absolute; width:80%; left:54%; bottom:18px; transform:translateX(-50%) scale(0.92); opacity:0.8; z-index:2; background:white; border-radius:10px; border:1px solid rgba(0,0,0,0.08); box-shadow:0 4px 15px rgba(0,0,0,0.05); overflow:hidden; transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
+              <div style="height:24px; background:#F5F5F0; border-bottom:1px solid #EEEEEA; display:flex; align-items:center; padding:0 8px; gap:4px;">
+                <span style="width:7px;height:7px;border-radius:50%;background:#FF5F57;display:block;"></span>
+                <span style="width:7px;height:7px;border-radius:50%;background:#FEBC2E;display:block;"></span>
+                <span style="width:7px;height:7px;border-radius:50%;background:#28C840;display:block;"></span>
               </div>
-              <div class="screen-body">
-                <div class="s-nav-full">
-                  <div class="s-logo"></div>
-                  <div class="s-nav-links"><span></span><span></span><span></span></div>
-                </div>
-                <div class="s-hero-section">
-                  <div class="s-hero-title"></div>
-                  <div class="s-hero-subtitle"></div>
-                  <div class="s-hero-btn"></div>
-                </div>
-                <div class="s-cards-row">
-                  <div class="s-feature-card"><div class="s-icon"></div><div class="s-lines"><span></span><span></span></div></div>
-                  <div class="s-feature-card"><div class="s-icon"></div><div class="s-lines"><span></span><span></span></div></div>
-                  <div class="s-feature-card"><div class="s-icon"></div><div class="s-lines"><span></span><span></span></div></div>
+              <div style="padding:8px;">
+                <div style="height:6px;width:35%;background:#E8E8E3;border-radius:3px;margin-bottom:8px;"></div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px;">
+                  <div style="border-radius:4px;overflow:hidden;border:1px solid #F0F0EB;"><div style="height:28px;background:#EFF6FF;"></div><div style="padding:4px;"><div style="height:3px;width:60%;background:#E0E0E0;border-radius:2px;"></div></div></div>
+                  <div style="border-radius:4px;overflow:hidden;border:1px solid #F0F0EB;"><div style="height:28px;background:#FEF3E2;"></div><div style="padding:4px;"><div style="height:3px;width:50%;background:#E0E0E0;border-radius:2px;"></div></div></div>
+                  <div style="border-radius:4px;overflow:hidden;border:1px solid #F0F0EB;"><div style="height:28px;background:#F0FDF4;"></div><div style="padding:4px;"><div style="height:3px;width:55%;background:#E0E0E0;border-radius:2px;"></div></div></div>
+                  <div style="border-radius:4px;overflow:hidden;border:1px solid #F0F0EB;"><div style="height:28px;background:#FDF2F8;"></div><div style="padding:4px;"><div style="height:3px;width:45%;background:#E0E0E0;border-radius:2px;"></div></div></div>
                 </div>
               </div>
             </div>
 
-            <!-- Floating labels -->
-            <div class="screen-label label-1">Site vitrine</div>
-            <div class="screen-label label-2">E-commerce</div>
-            <div class="screen-label label-3">Landing page</div>
+            <!-- Screen 1 (FRONT) — Showcase site -->
+            <div class="screen screen-front" style="position:absolute; width:80%; left:50%; bottom:0; transform:translateX(-50%); z-index:3; background:white; border-radius:10px; border:1px solid rgba(0,0,0,0.08); box-shadow:0 6px 20px rgba(0,0,0,0.07); overflow:hidden; transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
+              <div style="height:28px; background:#F5F5F0; border-bottom:1px solid #EEEEEA; display:flex; align-items:center; padding:0 10px; gap:5px;">
+                <span style="width:8px;height:8px;border-radius:50%;background:#FF5F57;display:block;"></span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#FEBC2E;display:block;"></span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#28C840;display:block;"></span>
+                <div style="background:white;border-radius:4px;padding:2px 10px;font-size:9px;color:#999;margin-left:8px;flex:1;max-width:140px;">disayner.com</div>
+              </div>
+              <div style="padding:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                  <div style="width:18px;height:5px;background:#E0E0E0;border-radius:2px;"></div>
+                  <div style="display:flex;gap:6px;">
+                    <div style="width:14px;height:3px;background:#E8E8E3;border-radius:2px;"></div>
+                    <div style="width:14px;height:3px;background:#E8E8E3;border-radius:2px;"></div>
+                    <div style="width:14px;height:3px;background:#E8E8E3;border-radius:2px;"></div>
+                  </div>
+                </div>
+                <div style="height:40px;background:linear-gradient(135deg,#2563EB,#3B82F6);border-radius:5px;padding:8px 10px;margin-bottom:6px;">
+                  <div style="height:4px;width:55%;background:rgba(255,255,255,0.5);border-radius:2px;margin-bottom:4px;"></div>
+                  <div style="height:3px;width:35%;background:rgba(255,255,255,0.3);border-radius:2px;margin-bottom:5px;"></div>
+                  <div style="width:30px;height:8px;background:rgba(255,255,255,0.85);border-radius:3px;"></div>
+                </div>
+                <div style="display:flex;gap:4px;">
+                  <div style="flex:1;height:30px;background:#FAFAF9;border:1px solid #F0F0EB;border-radius:3px;padding:5px;"><div style="width:8px;height:8px;background:#EFF6FF;border-radius:2px;margin-bottom:3px;"></div><div style="height:2px;width:70%;background:#E8E8E3;border-radius:1px;"></div></div>
+                  <div style="flex:1;height:30px;background:#FAFAF9;border:1px solid #F0F0EB;border-radius:3px;padding:5px;"><div style="width:8px;height:8px;background:#EFF6FF;border-radius:2px;margin-bottom:3px;"></div><div style="height:2px;width:60%;background:#E8E8E3;border-radius:1px;"></div></div>
+                  <div style="flex:1;height:30px;background:#FAFAF9;border:1px solid #F0F0EB;border-radius:3px;padding:5px;"><div style="width:8px;height:8px;background:#EFF6FF;border-radius:2px;margin-bottom:3px;"></div><div style="height:2px;width:65%;background:#E8E8E3;border-radius:1px;"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating labels (visible on hover) -->
+            <span class="screen-label" style="position:absolute;bottom:-8px;left:12%;font-size:10px;font-weight:600;color:#2563EB;background:#EFF6FF;padding:3px 10px;border-radius:5px;opacity:0;transform:translateY(4px);transition:all 0.4s ease;pointer-events:none;z-index:10;">Site vitrine</span>
+            <span class="screen-label" style="position:absolute;bottom:16px;right:2%;font-size:10px;font-weight:600;color:#2563EB;background:#EFF6FF;padding:3px 10px;border-radius:5px;opacity:0;transform:translateY(4px);transition:all 0.4s ease 0.1s;pointer-events:none;z-index:10;">E-commerce</span>
+            <span class="screen-label" style="position:absolute;top:8px;right:0%;font-size:10px;font-weight:600;color:#2563EB;background:#EFF6FF;padding:3px 10px;border-radius:5px;opacity:0;transform:translateY(4px);transition:all 0.4s ease 0.2s;pointer-events:none;z-index:10;">Landing page</span>
           </div>
 
           <div class="card-tags">
@@ -114,35 +130,29 @@
 
           <!-- Chart -->
           <div class="seo-chart-container" aria-hidden="true">
-            <svg class="chart-svg" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <div class="chart-badge">+200% trafic</div>
+            <svg viewBox="0 0 280 100" class="chart-svg seo-chart-svg">
               <defs>
-                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#2563EB" stop-opacity="0.15"/>
+                <linearGradient id="seoGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2563EB" stop-opacity="0.12"/>
                   <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
                 </linearGradient>
               </defs>
-              <line x1="0" y1="30" x2="280" y2="30" stroke="#F0F0EB" stroke-width="1"/>
-              <line x1="0" y1="60" x2="280" y2="60" stroke="#F0F0EB" stroke-width="1"/>
-              <line x1="0" y1="90" x2="280" y2="90" stroke="#F0F0EB" stroke-width="1"/>
-              <path class="chart-area"
-                d="M0,100 Q40,95 70,85 T140,60 T210,30 T280,10 V120 H0 Z"
-                fill="url(#chartGrad)"/>
-              <path class="chart-line"
-                d="M0,100 Q40,95 70,85 T140,60 T210,30 T280,10"
-                fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/>
-              <circle cx="70"  cy="85"  r="4"   fill="#2563EB" class="data-dot" style="--delay:0.3s"/>
-              <circle cx="70"  cy="85"  r="2"   fill="white"   class="data-dot-inner"/>
-              <circle cx="140" cy="60"  r="4"   fill="#2563EB" class="data-dot" style="--delay:0.5s"/>
-              <circle cx="140" cy="60"  r="2"   fill="white"   class="data-dot-inner"/>
-              <circle cx="210" cy="30"  r="4"   fill="#2563EB" class="data-dot" style="--delay:0.7s"/>
-              <circle cx="210" cy="30"  r="2"   fill="white"   class="data-dot-inner"/>
-              <circle cx="280" cy="10"  r="5"   fill="#2563EB" class="data-dot pulse-dot" style="--delay:0.9s"/>
-              <circle cx="280" cy="10"  r="2.5" fill="white"   class="data-dot-inner"/>
+              <line x1="0" y1="25" x2="280" y2="25" stroke="#EEEEEA" stroke-width="0.5"/>
+              <line x1="0" y1="50" x2="280" y2="50" stroke="#EEEEEA" stroke-width="0.5"/>
+              <line x1="0" y1="75" x2="280" y2="75" stroke="#EEEEEA" stroke-width="0.5"/>
+              <path d="M0,88 C30,85 50,78 90,65 S150,40 190,28 S250,12 280,8 V100 H0 Z" fill="url(#seoGrad)"/>
+              <path d="M0,88 C30,85 50,78 90,65 S150,40 190,28 S250,12 280,8" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" class="chart-line"/>
+              <circle cx="90"  cy="65" r="4" fill="#2563EB"/>
+              <circle cx="90"  cy="65" r="2" fill="white"/>
+              <circle cx="190" cy="28" r="4" fill="#2563EB"/>
+              <circle cx="190" cy="28" r="2" fill="white"/>
+              <circle cx="280" cy="8"  r="5" fill="#2563EB" class="pulse-dot"/>
+              <circle cx="280" cy="8"  r="2.5" fill="white"/>
             </svg>
             <div class="chart-labels" aria-hidden="true">
               <span>Jan</span><span>Avr</span><span>Juil</span><span>Oct</span>
             </div>
-            <div class="chart-badge" aria-hidden="true">+200% trafic</div>
           </div>
 
           <div class="card-tags">
@@ -407,231 +417,34 @@
   .card-cta:hover { gap: 12px; }
 
   /* ── Stacked Screens (Card 1) ────────────────────────────────────────────── */
-  .screens-stack {
-    position: relative;
-    height: 240px;
-    margin: 20px 0;
-    flex: 1;
+  /* Screens use inline styles for position/opacity (avoids Astro CSS scoping issues).
+     These rules handle hover effects only. */
+
+  .service-card-main:hover .screen-front {
+    transform: translateX(-55%) rotate(-2deg) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
   }
 
-  .screen {
-    position: absolute;
-    border-radius: 12px;
-    border: 1px solid rgba(0,0,0,0.08);
-    background: white;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    overflow: hidden;
-    width: 85%;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  .service-card-main:hover .screen-mid {
+    transform: translateX(-45%) scale(0.92) translateY(-8px) !important;
+    opacity: 1 !important;
   }
 
-  .screen-bar {
-    height: 28px;
-    background: #F8F8F6;
-    border-bottom: 1px solid #EEEEEA;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-    gap: 5px;
+  .service-card-main:hover .screen-back {
+    transform: translateX(-35%) scale(0.85) rotate(2deg) translateY(-16px) !important;
+    opacity: 0.9 !important;
   }
 
-  /* Dots on screens 2 & 3 (direct children of screen-bar) */
-  .screen-bar > span {
-    width: 8px; height: 8px; border-radius: 50%; display: block; flex-shrink: 0;
+  .service-card-main:hover .screen-label {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
   }
-  .screen-bar > span:nth-child(1) { background: #FF5F57; }
-  .screen-bar > span:nth-child(2) { background: #FEBC2E; }
-  .screen-bar > span:nth-child(3) { background: #28C840; }
-
-  /* Dots on screen 1 (inside .dots wrapper) */
-  .dots { display: flex; gap: 5px; flex-shrink: 0; }
-  .dots > span {
-    width: 8px; height: 8px; border-radius: 50%; display: block; flex-shrink: 0;
-  }
-  .dots > span:nth-child(1) { background: #FF5F57; }
-  .dots > span:nth-child(2) { background: #FEBC2E; }
-  .dots > span:nth-child(3) { background: #28C840; }
-
-  .url-bar {
-    background: white;
-    border-radius: 4px;
-    padding: 2px 10px;
-    font-size: 10px;
-    color: #999;
-    margin-left: 8px;
-    border: 1px solid rgba(0,0,0,0.06);
-  }
-
-  .screen-body { padding: 10px; }
-
-  /* — Screen 1 (front) — Showcase site — */
-  .screen-1 {
-    z-index: 3;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .s-nav-full {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-
-  .s-logo { width: 20px; height: 6px; background: #E0E0E0; border-radius: 2px; }
-
-  .s-nav-links { display: flex; gap: 6px; }
-  .s-nav-links span { width: 12px; height: 3px; background: #E8E8E3; border-radius: 2px; display: block; }
-
-  .s-hero-section {
-    height: 45px;
-    background: linear-gradient(135deg, #2563EB, #3B82F6);
-    border-radius: 6px;
-    margin: 0 0 8px;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 4px;
-  }
-
-  .s-hero-title { width: 60%; height: 4px; background: rgba(255,255,255,0.5); border-radius: 2px; }
-  .s-hero-subtitle { width: 40%; height: 4px; background: rgba(255,255,255,0.35); border-radius: 2px; }
-  .s-hero-btn { width: 40px; height: 10px; background: rgba(255,255,255,0.85); border-radius: 4px; margin-top: 4px; }
-
-  .s-cards-row { display: flex; gap: 6px; }
-
-  .s-feature-card {
-    flex: 1;
-    height: 35px;
-    background: #F8F8F6;
-    border: 1px solid #F0F0EB;
-    border-radius: 4px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-
-  .s-icon { width: 8px; height: 8px; background: #EFF6FF; border-radius: 2px; flex-shrink: 0; }
-
-  .s-lines { display: flex; flex-direction: column; gap: 2px; }
-  .s-lines span { height: 2px; background: #E8E8E3; border-radius: 1px; display: block; }
-  .s-lines span:first-child { width: 80%; }
-  .s-lines span:last-child  { width: 55%; }
-
-  /* — Screen 2 (middle) — E-commerce — */
-  .screen-2 {
-    z-index: 2;
-    bottom: 20px;
-    left: 55%;
-    transform: translateX(-50%) scale(0.93);
-    opacity: 0.85;
-  }
-
-  .s-nav { height: 6px; background: #EEEEEA; border-radius: 3px; margin-bottom: 8px; }
-
-  .s-grid-products { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
-
-  .s-product {
-    height: 40px;
-    background: #FAFAF9;
-    border: 1px solid #F0F0EB;
-    border-radius: 4px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .s-product:nth-child(1)::before { content: ''; display: block; height: 25px; background: #EFF6FF; }
-  .s-product:nth-child(2)::before { content: ''; display: block; height: 25px; background: #FEF3E2; }
-  .s-product:nth-child(3)::before { content: ''; display: block; height: 25px; background: #F0FDF4; }
-  .s-product:nth-child(4)::before { content: ''; display: block; height: 25px; background: #FDF2F8; }
-
-  .s-product::after {
-    content: '';
-    display: block;
-    width: 40%;
-    height: 3px;
-    background: #E0E0E0;
-    border-radius: 1px;
-    margin: 3px 5px;
-  }
-
-  /* — Screen 3 (back) — Landing page — */
-  .screen-3 {
-    z-index: 1;
-    bottom: 40px;
-    left: 60%;
-    transform: translateX(-50%) scale(0.86);
-    opacity: 0.65;
-  }
-
-  .s-hero-gradient {
-    height: 70px;
-    background: linear-gradient(160deg, #1E3A5F, #2563EB);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .s-cta-btn {
-    width: 50px;
-    height: 12px;
-    background: rgba(255,255,255,0.85);
-    border-radius: 6px;
-  }
-
-  /* — Hover: fan out — */
-  .service-card-main:hover .screen-1 {
-    transform: translateX(-55%) rotate(-2deg);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-  }
-
-  .service-card-main:hover .screen-2 {
-    transform: translateX(-45%) scale(0.93) rotate(0deg) translateY(-10px);
-    opacity: 1;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-  }
-
-  .service-card-main:hover .screen-3 {
-    transform: translateX(-35%) scale(0.86) rotate(2deg) translateY(-20px);
-    opacity: 0.9;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-  }
-
-  /* — Floating labels — */
-  .screen-label {
-    position: absolute;
-    font-size: 11px;
-    font-weight: 600;
-    color: #2563EB;
-    background: #EFF6FF;
-    padding: 4px 10px;
-    border-radius: 6px;
-    opacity: 0;
-    transform: translateY(5px);
-    transition: all 0.4s ease;
-    pointer-events: none;
-    white-space: nowrap;
-  }
-
-  .label-1 { bottom: -16px; left: 15%; }
-  .label-2 { bottom: 10px; right: 5%; }
-  .label-3 { top: 0; right: -5%; }
-
-  .service-card-main:hover .screen-label { opacity: 1; transform: translateY(0); }
-  .service-card-main:hover .label-1 { transition-delay: 0.1s; }
-  .service-card-main:hover .label-2 { transition-delay: 0.2s; }
-  .service-card-main:hover .label-3 { transition-delay: 0.3s; }
 
   /* ── Chart (Card 2) ──────────────────────────────────────────────────────── */
   .seo-chart-container {
     background: #FAFAF9;
     border-radius: 12px;
-    padding: 20px 16px 8px;
+    padding: 16px 14px 6px;
     position: relative;
     border: 1px solid var(--color-border);
     margin: 4px 0;
@@ -639,67 +452,31 @@
 
   .chart-svg {
     width: 100%;
-    height: 80px;
     display: block;
-    overflow: visible;
   }
 
   .chart-line {
-    stroke-dasharray: 500;
-    stroke-dashoffset: 500;
-    transition: stroke-dashoffset 1.5s ease-out;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawChart 2s ease-out forwards;
+    animation-play-state: paused;
   }
 
-  .chart-area {
-    opacity: 0;
-    transition: opacity 0.6s ease 0.8s;
+  .chart-line.animate {
+    animation-play-state: running;
   }
 
-  .seo-chart-container.chart-animated .chart-line {
-    stroke-dashoffset: 0;
-  }
-
-  .seo-chart-container.chart-animated .chart-area {
-    opacity: 1;
-  }
-
-  .data-dot {
-    opacity: 0;
-    transform-origin: center;
-    transform: scale(0);
-  }
-
-  .data-dot-inner {
-    opacity: 0;
-  }
-
-  .seo-chart-container.chart-animated .data-dot {
-    animation: popIn 0.3s ease-out forwards;
-    animation-delay: var(--delay, 0s);
-  }
-
-  .seo-chart-container.chart-animated .data-dot-inner {
-    animation: popIn 0.3s ease-out forwards;
-    animation-delay: var(--delay, 0s);
-  }
-
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(0); }
-    to   { opacity: 1; transform: scale(1); }
+  @keyframes drawChart {
+    to { stroke-dashoffset: 0; }
   }
 
   .pulse-dot {
-    /* pulsing only after chart is animated */
+    animation: pulseDot 2.5s ease-in-out infinite;
   }
 
-  .seo-chart-container.chart-animated .pulse-dot {
-    animation: popIn 0.3s ease-out forwards var(--delay, 0s),
-               dotPulse 2s ease-in-out 1.5s infinite;
-  }
-
-  @keyframes dotPulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.5; }
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; r: 5; }
+    50%       { opacity: 0.6; r: 7; }
   }
 
   .chart-labels {
@@ -717,23 +494,15 @@
 
   .chart-badge {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 10px;
+    right: 10px;
     background: white;
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 12px;
+    border-radius: 7px;
+    padding: 4px 10px;
+    font-size: 11px;
     font-weight: 700;
     color: #2563EB;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    opacity: 0;
-    transform: translateY(-4px);
-    transition: opacity 0.4s ease 1.2s, transform 0.4s ease 1.2s;
-  }
-
-  .seo-chart-container.chart-animated .chart-badge {
-    opacity: 1;
-    transform: translateY(0);
   }
 
   /* ── SoRank badge ────────────────────────────────────────────────────────── */
@@ -852,24 +621,17 @@
     .card-creation { grid-row: auto; }
     .card-body { padding: 28px 24px; }
 
-    /* Screens: default to fanned-out state (no hover on mobile) */
-    .screens-stack { height: 200px; }
-    .screen-1 { transform: translateX(-55%) rotate(-2deg); }
-    .screen-2 { bottom: 12px; transform: translateX(-45%) scale(0.93) translateY(-10px); opacity: 1; }
-    .screen-3 { bottom: 24px; transform: translateX(-35%) scale(0.86) rotate(2deg) translateY(-20px); opacity: 0.9; }
-    .screen-label { opacity: 1; transform: translateY(0); }
-    .label-1 { transition-delay: 0s; }
-    .label-2 { transition-delay: 0s; }
-    .label-3 { transition-delay: 0s; }
+    /* Screens: default to fanned-out state on mobile (no hover available) */
+    .screen-front { transform: translateX(-55%) rotate(-2deg) !important; }
+    .screen-mid   { bottom: 12px !important; transform: translateX(-45%) scale(0.92) translateY(-8px) !important; opacity: 1 !important; }
+    .screen-back  { bottom: 24px !important; transform: translateX(-35%) scale(0.85) rotate(2deg) translateY(-16px) !important; opacity: 0.9 !important; }
+    .screen-label { opacity: 1 !important; transform: translateY(0) !important; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .icon-pulse { animation: none; }
-    .service-card,
-    .screen,
-    .screen-label,
-    .check-icon { transition: none; animation: none; }
-    .chart-line { transition: none; }
+    .icon-pulse, .pulse-dot, .chart-line { animation: none; }
+    .service-card, .check-icon { transition: none; }
+    .screen-front, .screen-mid, .screen-back { transition: none !important; }
   }
 </style>
 
@@ -901,34 +663,15 @@
     );
   }
 
-  // Stacked screens entrance animation
-  if (!prefersReduced) {
-    gsap.from('.screen', {
-      y: 20,
-      opacity: 0,
-      scale: 0.9,
-      stagger: 0.12,
-      duration: 0.7,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.services-grid',
-        start: 'top 80%',
+  // Animate chart line when it enters the viewport
+  const chartLine = document.querySelector('.chart-line');
+  if (chartLine) {
+    const chartObs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        chartLine.classList.add('animate');
+        chartObs.disconnect();
       }
-    });
-  }
-
-  // Animate chart when container enters viewport
-  const chartContainer = document.querySelector(".seo-chart-container");
-  if (chartContainer) {
-    const chartObserver = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          chartContainer.classList.add("chart-animated");
-          chartObserver.disconnect();
-        }
-      },
-      { threshold: 0.4 }
-    );
-    chartObserver.observe(chartContainer);
+    }, { threshold: 0.3 });
+    chartObs.observe(chartLine.closest('svg'));
   }
 </script>
