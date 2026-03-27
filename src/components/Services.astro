@@ -209,6 +209,36 @@
           <a href="#contact" class="card-cta">En savoir plus →</a>
         </div>
       </article>
+
+      <!-- ── Card 4: CTA ── -->
+      <div class="service-card service-card-cta" style="background:linear-gradient(135deg,#1D4ED8 0%,#2563EB 50%,#3B82F6 100%);border:none;border-radius:24px;padding:32px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;min-height:280px;">
+        <!-- Dot pattern overlay -->
+        <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.08) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;" aria-hidden="true"></div>
+        <!-- Decorative rings -->
+        <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;border-radius:50%;border:1px solid rgba(255,255,255,0.08);pointer-events:none;" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:100px;height:100px;border-radius:50%;border:1px solid rgba(255,255,255,0.05);pointer-events:none;" aria-hidden="true"></div>
+
+        <!-- Content -->
+        <div style="position:relative;z-index:1;">
+          <div style="width:48px;height:48px;background:rgba(255,255,255,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+
+          <h3 style="color:white;font-size:1.25rem;font-weight:700;margin-bottom:10px;line-height:1.3;">Vous ne trouvez pas ce qu'il vous faut ?</h3>
+          <p style="color:rgba(255,255,255,0.75);font-size:14px;line-height:1.6;margin-bottom:24px;">Chaque projet est unique. Discutons de vos besoins pour trouver la solution adaptée.</p>
+
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="#contact" class="cta-btn-primary">
+              Réserver un appel
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="mailto:contact@disayner.com" class="cta-btn-outline">Envoyer un message</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -281,13 +311,12 @@
   /* ── Grid ────────────────────────────────────────────────────────────────── */
   .services-grid {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
-    align-items: start;
+    align-items: stretch;
   }
 
-  .card-creation { grid-row: 1 / 3; align-self: stretch; }
+  .card-creation { /* equal cell, no row span */ }
 
   /* ── Card base ───────────────────────────────────────────────────────────── */
   .service-card {
@@ -416,6 +445,58 @@
   }
 
   .card-cta:hover { gap: 12px; }
+
+  /* ── CTA Card (Card 4) ───────────────────────────────────────────────────── */
+  .service-card-cta {
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .service-card-cta:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(37, 99, 235, 0.25);
+  }
+
+  .cta-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: white;
+    color: #2563EB;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn-primary:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .cta-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
 
   /* ── Stacked Screens (Card 1) ────────────────────────────────────────────── */
   /* Screens use inline styles for position/opacity (avoids Astro CSS scoping issues).
@@ -593,33 +674,15 @@
 
   /* ── Responsive ──────────────────────────────────────────────────────────── */
 
-  /* Tablet: card-creation full width top, SEO + Maintenance side by side below */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .services-grid {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-    }
-
-    .card-creation {
-      grid-column: 1 / 3;
-      grid-row: 1;
-    }
-
-    .card-seo    { grid-row: 2; grid-column: 1; }
-    .card-maintenance { grid-row: 2; grid-column: 2; }
-  }
-
   /* Mobile: all stacked */
   @media (max-width: 767px) {
     .services-section { padding: 4rem 1.25rem; }
 
     .services-grid {
       grid-template-columns: 1fr;
-      grid-template-rows: auto;
       gap: 16px;
     }
 
-    .card-creation { grid-row: auto; }
     .card-body { padding: 28px 24px; }
 
     /* Screens: default to fanned-out state on mobile (no hover available) */
