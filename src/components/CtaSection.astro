@@ -1,0 +1,264 @@
+---
+---
+
+<section class="cta-section" id="contact" aria-label="Démarrer un projet">
+  <div class="cta-bg-shapes" aria-hidden="true">
+    <div class="cta-shape cta-shape-1"></div>
+    <div class="cta-shape cta-shape-2"></div>
+  </div>
+
+  <div class="cta-inner">
+    <p class="cta-tag">Parlons de votre projet</p>
+
+    <h2 class="cta-title will-animate">
+      Prêt à créer un site
+      <span class="cta-highlight">
+        qui vous ressemble&nbsp;?
+        <svg class="underline-svg" viewBox="0 0 340 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+          <path
+            class="underline-path"
+            d="M2,10 C60,2 140,14 200,8 C260,2 300,12 338,6"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            fill="none"
+          />
+        </svg>
+      </span>
+    </h2>
+
+    <p class="cta-sub">
+      Un échange de 30 minutes pour comprendre votre besoin.<br class="hidden md:block" />
+      Sans engagement, sans pression.
+    </p>
+
+    <div class="cta-actions">
+      <a href="mailto:contact@disayner.com" class="btn-cta-primary">
+        Discutons de votre projet
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a href="#realisations" class="btn-cta-outline">
+        Voir nos tarifs
+      </a>
+    </div>
+
+    <p class="cta-reassurance">
+      Réponse sous 24h · 100% sur mesure · Basé en Haute-Savoie
+    </p>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    position: relative;
+    background: var(--color-accent);
+    padding: 7rem 2rem;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .cta-bg-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .cta-shape {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .cta-shape-1 {
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.05);
+    top: -150px;
+    right: -100px;
+    animation: float-slow 12s ease-in-out infinite;
+  }
+
+  .cta-shape-2 {
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.04);
+    bottom: -80px;
+    left: -50px;
+    animation: float-slow 15s ease-in-out infinite reverse;
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%       { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .cta-tag {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .cta-title {
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .cta-highlight {
+    position: relative;
+    display: inline-block;
+  }
+
+  .underline-svg {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 14px;
+    overflow: visible;
+  }
+
+  .underline-path {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+  }
+
+  .cta-sub {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    max-width: 540px;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .btn-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    color: var(--color-accent);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-cta-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-cta-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn-cta-outline:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .cta-reassurance {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 768px) {
+    .cta-section { padding: 5rem 1.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-shape-1, .cta-shape-2 { animation: none; }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Title reveal
+  gsap.from(".cta-title", {
+    y: 50,
+    opacity: 0,
+    duration: 0.9,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".cta-section",
+      start: "top 70%",
+    },
+  });
+
+  // Stagger content
+  gsap.from([".cta-tag", ".cta-sub", ".cta-actions", ".cta-reassurance"], {
+    y: 30,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".cta-section",
+      start: "top 65%",
+    },
+  });
+
+  // SVG underline animation
+  if (!prefersReduced) {
+    gsap.to(".underline-path", {
+      strokeDashoffset: 0,
+      duration: 1.2,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: ".cta-section",
+        start: "top 60%",
+      },
+    });
+  } else {
+    // Just show it immediately
+    const path = document.querySelector<SVGPathElement>(".underline-path");
+    if (path) path.style.strokeDashoffset = "0";
+  }
+</script>

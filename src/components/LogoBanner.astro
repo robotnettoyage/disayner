@@ -1,0 +1,118 @@
+---
+const clients = [
+  "VITOR",
+  "LOVE AT ME",
+  "RÉVÉLIÆNCE",
+  "JM SERVICES",
+  "GRIFFE EVENT",
+  "BOOSTHOR",
+  "CILS AND CO",
+  "FÉLIN NOIR",
+];
+---
+
+<section class="logo-banner" aria-label="Clients">
+  <div class="logo-banner-inner">
+    <p class="banner-label">Projets réalisés pour</p>
+    <div class="marquee-wrapper" aria-hidden="true">
+      <div class="marquee-track">
+        {clients.map((client) => (
+          <div class="logo-item">
+            <span>{client}</span>
+          </div>
+        ))}
+        <!-- Duplicate for seamless loop -->
+        {clients.map((client) => (
+          <div class="logo-item" aria-hidden="true">
+            <span>{client}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .logo-banner {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 3rem 0;
+    overflow: hidden;
+  }
+
+  .logo-banner-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .banner-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  .marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-background);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: border-color 0.3s ease, background 0.3s ease;
+    cursor: default;
+  }
+
+  .logo-item:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+  }
+
+  .logo-item span {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+
+  .logo-item:hover span {
+    color: var(--color-accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+</style>

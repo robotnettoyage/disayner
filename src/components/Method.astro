@@ -1,0 +1,429 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Découverte & Stratégie",
+    description: "On analyse votre marché, vos concurrents, vos objectifs. On définit la stratégie avant de toucher au design.",
+    icon: "compass",
+    detail: "Audit digital · Analyse concurrentielle · Définition des objectifs · Arborescence",
+  },
+  {
+    number: "02",
+    title: "Conception & Design",
+    description: "Architecture, wireframes, direction artistique. Chaque page est pensée pour convertir.",
+    icon: "layout",
+    detail: "Wireframes · Moodboard · UI Design · Prototypage interactif",
+  },
+  {
+    number: "03",
+    title: "Développement & SEO",
+    description: "Code propre, performance optimale, SEO intégré nativement. Pas de compromis technique.",
+    icon: "code",
+    detail: "Développement · Intégration SEO · Tests · Optimisation Lighthouse",
+  },
+  {
+    number: "04",
+    title: "Lancement & Croissance",
+    description: "Mise en ligne, tracking, optimisations continues. Votre site est un actif vivant.",
+    icon: "rocket",
+    detail: "Mise en ligne · Analytics · Suivi SEO · Maintenance",
+  },
+];
+
+const icons: Record<string, string> = {
+  compass: `<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>`,
+  layout:  `<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>`,
+  code:    `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
+  rocket:  `<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>`,
+};
+---
+
+<section class="method-section" id="methode" aria-label="Notre méthode de travail">
+  <div class="method-header will-animate">
+    <div class="method-header-inner">
+      <p class="section-label">Notre méthode</p>
+      <h2>Un process éprouvé<br /><em class="font-serif">pour des résultats.</em></h2>
+      <p class="method-sub">Pas d'improvisation. Chaque projet suit une méthodologie rigoureuse qui garantit qualité et efficacité.</p>
+    </div>
+  </div>
+
+  <!-- Desktop: stacking cards (pinned scroll) -->
+  <div class="method-pin-outer" aria-hidden="true">
+    <div class="method-pin-container" id="methodPinContainer">
+      {steps.map((step, i) => (
+        <div
+          class={`method-card-stack ${i === 0 ? "card-visible" : ""}`}
+          data-index={i}
+          style={`z-index: ${i + 1};`}
+          aria-hidden="true"
+        >
+          <div class="method-stack-inner">
+            <div class="stack-watermark">{step.number}</div>
+            <div class="stack-content">
+              <div class="stack-icon-wrapper">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[step.icon]}></svg>
+              </div>
+              <div class="stack-text">
+                <span class="stack-step-num">{step.number} / 04</span>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+                <p class="stack-detail">{step.detail}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Mobile/fallback: vertical steps -->
+  <div class="method-steps-vertical">
+    {steps.map((step) => (
+      <article class="method-step" aria-label={`Étape ${step.number} : ${step.title}`}>
+        <div class="step-number-wrapper" aria-hidden="true">
+          <span class="step-number-bg">{step.number}</span>
+        </div>
+        <div class="step-body">
+          <div class="step-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[step.icon]}></svg>
+          </div>
+          <div>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-desc">{step.description}</p>
+            <p class="step-detail">{step.detail}</p>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .method-section {
+    padding: 7rem 0;
+    background: var(--color-background);
+    overflow: hidden;
+  }
+
+  /* Header */
+  .method-header {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    margin-bottom: 5rem;
+  }
+
+  .method-header-inner { max-width: 580px; }
+
+  .section-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .method-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .method-header em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .method-sub {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ── Desktop stacking cards ── */
+  .method-pin-outer {
+    display: block;
+  }
+
+  .method-pin-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 440px;
+  }
+
+  .method-card-stack {
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    top: 0;
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    background: #fff;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(60px) scale(0.97);
+    transition: none;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  }
+
+  .method-card-stack.card-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .method-stack-inner {
+    position: relative;
+    padding: 3rem 3.5rem;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .stack-watermark {
+    position: absolute;
+    right: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(8rem, 18vw, 14rem);
+    font-weight: 800;
+    color: var(--color-border);
+    line-height: 1;
+    letter-spacing: -0.06em;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .stack-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    align-items: start;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .stack-icon-wrapper {
+    width: 64px;
+    height: 64px;
+    background: var(--color-accent-soft);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 0.5rem;
+  }
+
+  .stack-step-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .stack-text h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 0.875rem;
+  }
+
+  .stack-text p {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    max-width: 480px;
+  }
+
+  .stack-detail {
+    margin-top: 1rem !important;
+    font-size: 0.8125rem !important;
+    color: var(--color-text-secondary) !important;
+    opacity: 0.7;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Mobile vertical steps ── */
+  .method-steps-vertical {
+    display: none;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .method-step {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .method-step:last-child { border-bottom: none; }
+
+  .step-number-wrapper { overflow: hidden; }
+
+  .step-number-bg {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+
+  .step-body {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .step-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    background: var(--color-accent-soft);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-detail {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    opacity: 0.7;
+    font-weight: 500;
+  }
+
+  /* Responsive: show vertical on mobile */
+  @media (max-width: 900px) {
+    .method-pin-outer { display: none; }
+    .method-steps-vertical { display: flex; }
+  }
+
+  @media (max-width: 480px) {
+    .method-section { padding: 4rem 0; }
+    .method-header  { padding: 0 1.25rem; margin-bottom: 3rem; }
+    .method-steps-vertical { padding: 0 1.25rem; }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isMobile = window.matchMedia("(max-width: 900px)").matches;
+
+  // Header animation
+  gsap.from(".method-header", {
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.out",
+    scrollTrigger: { trigger: ".method-section", start: "top 75%" },
+  });
+
+  if (!isMobile && !prefersReduced) {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".method-card-stack"));
+    const container = document.getElementById("methodPinContainer");
+
+    if (!container || cards.length === 0) return;
+
+    // Initial setup: all cards invisible except first
+    cards.forEach((card, i) => {
+      if (i === 0) {
+        gsap.set(card, { opacity: 1, y: 0, scale: 1 });
+      } else {
+        gsap.set(card, { opacity: 0, y: 60, scale: 0.97 });
+      }
+    });
+
+    // Create a pinned scroll sequence
+    const totalScroll = (cards.length - 1) * 500; // pixels
+
+    // Pin the container
+    ScrollTrigger.create({
+      trigger: ".method-pin-outer",
+      start: "top 80px",
+      end: `+=${totalScroll}`,
+      pin: true,
+      pinSpacing: true,
+    });
+
+    // Animate each card in on scroll
+    cards.forEach((card, i) => {
+      if (i === 0) return; // first card already visible
+
+      const prevCard = cards[i - 1];
+
+      ScrollTrigger.create({
+        trigger: ".method-pin-outer",
+        start: `top+=${(i - 1) * 500} 80px`,
+        end: `top+=${i * 500} 80px`,
+        scrub: 0.5,
+        onEnter() {
+          // Slide in new card
+          gsap.to(card, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" });
+          // Push previous card slightly up/back
+          gsap.to(prevCard, { y: -20, scale: 0.98, opacity: 0.6, duration: 0.5, ease: "power2.out" });
+        },
+        onLeaveBack() {
+          // Reverse
+          gsap.to(card, { opacity: 0, y: 60, scale: 0.97, duration: 0.4, ease: "power2.in" });
+          gsap.to(prevCard, { y: 0, scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" });
+        },
+      });
+    });
+
+  } else if (isMobile) {
+    // Mobile: animate vertical steps
+    document.querySelectorAll(".method-step").forEach((step) => {
+      gsap.from(step, {
+        x: -30,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: step,
+          start: "top 85%",
+        },
+      });
+    });
+  }
+</script>

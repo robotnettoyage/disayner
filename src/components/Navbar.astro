@@ -1,0 +1,270 @@
+---
+const navLinks = [
+  { label: "Services", href: "#services" },
+  { label: "Méthode", href: "#methode" },
+  { label: "Réalisations", href: "#realisations" },
+  { label: "Blog", href: "#blog" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<header id="navbar" aria-label="Navigation principale">
+  <nav class="nav-inner">
+    <!-- Logo -->
+    <a href="/" class="nav-logo" aria-label="DISAYNER — Accueil">
+      DISAYNER
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a href={link.href} class="nav-link hover-underline">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Desktop CTA -->
+    <a href="#contact" class="btn-primary nav-cta">
+      Démarrer un projet
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+
+    <!-- Hamburger (mobile) -->
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile overlay menu -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-label="Menu navigation mobile">
+    <button class="mobile-close" aria-label="Fermer le menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <ul class="mobile-nav-links" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a href={link.href} class="mobile-nav-link">
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href="#contact" class="btn-primary mobile-cta">
+          Démarrer un projet →
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<style>
+  #navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  #navbar.nav--scrolled {
+    background: rgba(250, 250, 249, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom-color: var(--color-border);
+  }
+
+  .nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-logo {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: 0.12em;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-logo:hover { opacity: 0.7; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    margin-left: auto;
+  }
+
+  .nav-link {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    padding-bottom: 2px;
+  }
+
+  .nav-link:hover { color: var(--color-text-primary); }
+
+  .nav-cta {
+    flex-shrink: 0;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  /* Burger */
+  .burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: auto;
+  }
+
+  .burger-line {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--color-text-primary);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 2px;
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--color-background);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 2.5rem;
+    transform: translateX(100%);
+    transition: none;
+  }
+
+  .mobile-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-primary);
+    padding: 8px;
+  }
+
+  .mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .mobile-nav-link {
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-style: italic;
+    transition: color 0.2s ease;
+  }
+
+  .mobile-nav-link:hover { color: var(--color-accent); }
+
+  .mobile-cta {
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-cta   { display: none; }
+    .burger    { display: flex; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner { padding: 0 1.25rem; }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const navbar  = document.getElementById("navbar")!;
+  const burger  = document.querySelector(".burger") as HTMLButtonElement;
+  const closeBtn = document.querySelector(".mobile-close") as HTMLButtonElement;
+  const mobileMenu = document.getElementById("mobile-menu")!;
+  const mobileLinks = document.querySelectorAll(".mobile-nav-link, .mobile-cta");
+
+  // Glassmorphism on scroll
+  ScrollTrigger.create({
+    start: "top -60px",
+    onEnter: () => navbar.classList.add("nav--scrolled"),
+    onLeaveBack: () => navbar.classList.remove("nav--scrolled"),
+  });
+
+  // Mobile menu
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    burger.setAttribute("aria-expanded", "true");
+    mobileMenu.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    gsap.set(mobileMenu, { x: "100%" });
+    gsap.to(mobileMenu, { x: "0%", duration: 0.5, ease: "power3.out" });
+    gsap.from(mobileLinks, {
+      x: 50,
+      opacity: 0,
+      stagger: 0.07,
+      delay: 0.25,
+      duration: 0.5,
+      ease: "power2.out",
+    });
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    burger.setAttribute("aria-expanded", "false");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    gsap.to(mobileMenu, { x: "100%", duration: 0.4, ease: "power3.in" });
+  }
+
+  burger.addEventListener("click", () => (isOpen ? closeMenu() : openMenu()));
+  closeBtn.addEventListener("click", closeMenu);
+  mobileLinks.forEach((link) => {
+    if (link.tagName === "A") link.addEventListener("click", closeMenu);
+  });
+</script>

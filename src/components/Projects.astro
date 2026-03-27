@@ -1,0 +1,405 @@
+---
+const projects = [
+  {
+    id: 1,
+    client: "Miroiterie VITOR",
+    type: "Site vitrine multi-pages + Google Ads",
+    stack: ["WordPress", "Elementor", "SEO"],
+    description: "Refonte complète pour une miroiterie en Haute-Savoie : services détaillés, portfolio interactif, formulaire connecté Microsoft 365 et campagnes Google Ads optimisées.",
+    color: "#1A1A19",
+    accent: "#2563EB",
+    bg: "var(--color-background)",
+  },
+  {
+    id: 2,
+    client: "Love at Me",
+    type: "SEO e-commerce multilingue",
+    stack: ["Shopify", "SEO", "FR/EN/NL"],
+    description: "Optimisation SEO complète sur ~560 pages produits : meta content, schema JSON-LD, balises hreflang, descriptions produits optimisées et stratégie de maillage interne.",
+    color: "#1A1A19",
+    accent: "#7C3AED",
+    bg: "var(--color-surface)",
+  },
+  {
+    id: 3,
+    client: "JM Services",
+    type: "Site vitrine complet",
+    stack: ["WordPress", "Elementor", "SEO"],
+    description: "Création d'un site multi-pages pour un paysagiste dans le Var : présentation des services, galerie filtrée par catégorie, lightbox et formulaire de contact personnalisé.",
+    color: "#1A1A19",
+    accent: "#059669",
+    bg: "var(--color-background)",
+  },
+];
+---
+
+<section class="projects-section" id="realisations" aria-label="Nos réalisations">
+  <div class="projects-header will-animate">
+    <div class="projects-header-inner">
+      <p class="section-label">Réalisations</p>
+      <h2>Quelques projets<br /><em class="font-serif">dont nous sommes fiers.</em></h2>
+    </div>
+    <a href="#contact" class="btn-outline">Voir tous les projets</a>
+  </div>
+
+  <div class="projects-list">
+    {projects.map((project, i) => (
+      <article
+        class={`project-card ${i % 2 === 1 ? "project-card--alt" : ""}`}
+        style={`background: ${project.bg};`}
+        aria-label={`Projet : ${project.client}`}
+      >
+        <div class="project-card-inner">
+          <!-- Text side -->
+          <div class="project-text">
+            <div class="project-meta">
+              <span class="project-number">0{project.id}</span>
+              <span class="project-type-badge" style={`color: ${project.accent}; background: ${project.accent}18; border-color: ${project.accent}30;`}>
+                {project.type}
+              </span>
+            </div>
+
+            <h3 class="project-client" style={`color: ${project.color};`}>
+              {project.client}
+            </h3>
+
+            <p class="project-desc">{project.description}</p>
+
+            <div class="project-stack" aria-label="Technologies utilisées">
+              {project.stack.map((tech) => (
+                <span class="stack-tag">{tech}</span>
+              ))}
+            </div>
+
+            <a href="#contact" class="project-cta hover-underline" style={`color: ${project.accent};`}>
+              Voir le projet →
+            </a>
+          </div>
+
+          <!-- Visual side -->
+          <div class="project-visual-wrapper">
+            <div
+              class="project-visual"
+              aria-hidden="true"
+              style={`background: linear-gradient(135deg, ${project.accent}15 0%, ${project.accent}05 50%, transparent 100%); border-color: ${project.accent}20;`}
+            >
+              <!-- Browser chrome -->
+              <div class="pv-chrome">
+                <div class="pv-dots">
+                  <span class="pv-dot" style="background:#FF5F57;"></span>
+                  <span class="pv-dot" style="background:#FEBC2E;"></span>
+                  <span class="pv-dot" style="background:#28C840;"></span>
+                </div>
+                <div class="pv-url">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  <span class="pv-url-text">{project.client.toLowerCase().replace(" ", "")}.com</span>
+                </div>
+              </div>
+              <!-- Mockup content -->
+              <div class="pv-content">
+                <div class="pv-hero-block" style={`background: ${project.accent}15;`}>
+                  <div class="pv-mock-line" style={`background: ${project.accent}40; width: 65%;`}></div>
+                  <div class="pv-mock-line" style={`background: ${project.accent}30; width: 45%;`}></div>
+                  <div class="pv-mock-btn" style={`background: ${project.accent};`}></div>
+                </div>
+                <div class="pv-cards-row">
+                  <div class="pv-card-sm" style={`border-color: ${project.accent}20;`}></div>
+                  <div class="pv-card-sm" style={`border-color: ${project.accent}20;`}></div>
+                  <div class="pv-card-sm" style={`border-color: ${project.accent}20;`}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .projects-section {
+    padding: 7rem 0;
+    background: var(--color-background);
+  }
+
+  .projects-header {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .section-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .projects-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  .projects-header em {
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card {
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-top: -1px;
+  }
+
+  .project-card-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .project-card--alt .project-card-inner {
+    direction: rtl;
+  }
+
+  .project-card--alt .project-card-inner > * {
+    direction: ltr;
+  }
+
+  /* Project text */
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-number {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    font-variant-numeric: tabular-nums;
+    opacity: 0.5;
+  }
+
+  .project-type-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    border: 1px solid;
+    letter-spacing: 0.01em;
+  }
+
+  .project-client {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-desc {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .stack-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    color: var(--color-text-secondary);
+  }
+
+  .project-cta {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  /* Visual mockup */
+  .project-visual-wrapper {
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 16/10;
+  }
+
+  .project-visual {
+    width: 100%;
+    height: 100%;
+    border: 1px solid;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .project-card:hover .project-visual {
+    transform: scale(1.03);
+  }
+
+  .pv-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(4px);
+    flex-shrink: 0;
+  }
+
+  .pv-dots { display: flex; gap: 5px; }
+
+  .pv-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .pv-url {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    padding: 0.2rem 0.625rem;
+    color: var(--color-text-secondary);
+    flex: 1;
+    max-width: 200px;
+  }
+
+  .pv-url-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pv-content {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow: hidden;
+  }
+
+  .pv-hero-block {
+    border-radius: 10px;
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    min-height: 80px;
+  }
+
+  .pv-mock-line {
+    height: 10px;
+    border-radius: 4px;
+  }
+
+  .pv-mock-btn {
+    width: 70px;
+    height: 24px;
+    border-radius: 100px;
+    margin-top: 0.5rem;
+    opacity: 0.85;
+  }
+
+  .pv-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .pv-card-sm {
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid;
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  @media (max-width: 900px) {
+    .project-card-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 3rem 1.25rem;
+    }
+
+    .project-card--alt .project-card-inner {
+      direction: ltr;
+    }
+
+    .project-visual-wrapper {
+      order: -1;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Header
+  gsap.from(".projects-header", {
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.out",
+    scrollTrigger: { trigger: ".projects-section", start: "top 75%" },
+  });
+
+  // Cards
+  document.querySelectorAll(".project-card").forEach((card) => {
+    gsap.from(card, {
+      y: 60,
+      opacity: 0,
+      duration: 0.9,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",
+      },
+    });
+  });
+</script>
