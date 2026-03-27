@@ -1,9 +1,9 @@
-/* ─── 1. Tailwind v4 entry point ─────────────────────────────────────────── */
-@import "tailwindcss";
-
-/* ─── 2. Fonts ───────────────────────────────────────────────────────────── */
+/* ─── 1. Fonts (must precede all other rules) ────────────────────────────── */
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
 @import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap");
+
+/* ─── 2. Tailwind v4 entry point ─────────────────────────────────────────── */
+@import "tailwindcss";
 
 /* ─── 3. Design tokens via @theme (Tailwind v4) ──────────────────────────── */
 @theme {

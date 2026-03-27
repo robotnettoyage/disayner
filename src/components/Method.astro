@@ -363,7 +363,7 @@ const icons: Record<string, string> = {
     const cards = Array.from(document.querySelectorAll<HTMLElement>(".method-card-stack"));
     const container = document.getElementById("methodPinContainer");
 
-    if (!container || cards.length === 0) return;
+    if (container && cards.length > 0) {
 
     // Initial setup: all cards invisible except first
     cards.forEach((card, i) => {
@@ -410,6 +410,7 @@ const icons: Record<string, string> = {
         },
       });
     });
+    } // end if (container && cards.length > 0)
 
   } else if (isMobile) {
     // Mobile: animate vertical steps
