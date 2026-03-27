@@ -53,13 +53,24 @@
 <style>
   .cta-section {
     position: relative;
-    background: var(--color-accent);
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%);
     padding: 7rem 2rem;
     min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+  }
+
+  /* Dot grid texture */
+  .cta-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .cta-bg-shapes {

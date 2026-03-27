@@ -39,7 +39,7 @@ const icons: Record<string, string> = {
 ---
 
 <section class="method-section" id="methode" aria-label="Notre méthode de travail">
-  <div class="method-header will-animate">
+  <div class="method-header">
     <div class="method-header-inner">
       <p class="section-label">Notre méthode</p>
       <h2>Un process éprouvé<br /><em class="font-serif">pour des résultats.</em></h2>
@@ -52,7 +52,7 @@ const icons: Record<string, string> = {
     <div class="method-pin-container" id="methodPinContainer">
       {steps.map((step, i) => (
         <div
-          class={`method-card-stack ${i === 0 ? "card-visible" : ""}`}
+          class={`method-card-stack ${i === 0 ? "card-visible" : ""} ${i % 2 === 1 ? "card-alt" : ""}`}
           data-index={i}
           style={`z-index: ${i + 1};`}
           aria-hidden="true"
@@ -67,7 +67,11 @@ const icons: Record<string, string> = {
                 <span class="stack-step-num">{step.number} / 04</span>
                 <h3>{step.title}</h3>
                 <p>{step.description}</p>
-                <p class="stack-detail">{step.detail}</p>
+                <div class="stack-tags">
+                  {step.detail.split(" · ").map((tag) => (
+                    <span class="stack-tag">{tag}</span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -90,7 +94,11 @@ const icons: Record<string, string> = {
           <div>
             <h3 class="step-title">{step.title}</h3>
             <p class="step-desc">{step.description}</p>
-            <p class="step-detail">{step.detail}</p>
+            <div class="step-tags">
+              {step.detail.split(" · ").map((tag) => (
+                <span class="step-tag">{tag}</span>
+              ))}
+            </div>
           </div>
         </div>
       </article>
@@ -170,11 +178,17 @@ const icons: Record<string, string> = {
     transform: translateY(60px) scale(0.97);
     transition: none;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    border-left: 3px solid transparent;
+  }
+
+  .method-card-stack.card-alt {
+    background: var(--color-accent-soft);
   }
 
   .method-card-stack.card-visible {
     opacity: 1;
     transform: translateY(0) scale(1);
+    border-left-color: var(--color-accent);
   }
 
   .method-stack-inner {
@@ -250,13 +264,26 @@ const icons: Record<string, string> = {
     max-width: 480px;
   }
 
-  .stack-detail {
-    margin-top: 1rem !important;
-    font-size: 0.8125rem !important;
-    color: var(--color-text-secondary) !important;
-    opacity: 0.7;
-    font-weight: 500;
-    letter-spacing: 0.02em;
+  .stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .stack-tag {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    background: rgba(37,99,235,0.08);
+    color: var(--color-accent);
+    border-radius: 100px;
+    letter-spacing: 0.01em;
+    border: 1px solid rgba(37,99,235,0.15);
+  }
+
+  .card-alt .stack-tag {
+    background: rgba(37,99,235,0.12);
   }
 
   /* ── Mobile vertical steps ── */
@@ -322,11 +349,21 @@ const icons: Record<string, string> = {
     margin-bottom: 0.5rem;
   }
 
-  .step-detail {
-    font-size: 0.8125rem;
-    color: var(--color-text-secondary);
-    opacity: 0.7;
-    font-weight: 500;
+  .step-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+
+  .step-tag {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.25rem 0.625rem;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border-radius: 100px;
+    border: 1px solid rgba(37,99,235,0.15);
   }
 
   /* Responsive: show vertical on mobile */

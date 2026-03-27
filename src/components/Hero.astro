@@ -47,14 +47,22 @@
 
     <!-- Social proof -->
     <div class="hero-proof gsap-hidden">
-      <div class="proof-avatars" aria-hidden="true">
-        <div class="avatar">C</div>
-        <div class="avatar">M</div>
-        <div class="avatar">S</div>
+      <div class="proof-stats">
+        <div class="proof-stat">
+          <span class="proof-num">+50</span>
+          <span class="proof-lbl">projets livrés</span>
+        </div>
+        <div class="proof-divider" aria-hidden="true"></div>
+        <div class="proof-stat">
+          <span class="proof-num">95+</span>
+          <span class="proof-lbl">Lighthouse score</span>
+        </div>
+        <div class="proof-divider" aria-hidden="true"></div>
+        <div class="proof-stat">
+          <span class="proof-num">4.9<span style="font-size:0.6em;opacity:0.6">/5</span></span>
+          <span class="proof-lbl">satisfaction</span>
+        </div>
       </div>
-      <p class="proof-text">
-        <strong>+50 projets</strong> livrés · Score Lighthouse <strong>95+</strong>
-      </p>
     </div>
   </div>
 
@@ -74,7 +82,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8rem 2rem 5rem;
+    padding: 8rem 2rem 7rem;
     overflow: hidden;
   }
 
@@ -224,66 +232,72 @@
   .hero-proof {
     display: flex;
     align-items: center;
-    gap: 0.875rem;
   }
 
-  .proof-avatars {
-    display: flex;
-    gap: -4px;
-  }
-
-  .avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 700;
+  .proof-stats {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border: 2px solid var(--color-background);
-    margin-left: -6px;
-    flex-shrink: 0;
+    gap: 1.5rem;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    padding: 0.625rem 1.5rem;
   }
 
-  .avatar:first-child { margin-left: 0; }
+  .proof-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+  }
 
-  .proof-text {
-    font-size: 0.875rem;
+  .proof-num {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .proof-lbl {
+    font-size: 0.6875rem;
     color: var(--color-text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
   }
 
-  .proof-text strong {
-    color: var(--color-text-primary);
-    font-weight: 700;
+  .proof-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--color-border);
+    flex-shrink: 0;
   }
 
   /* Scroll indicator */
   .scroll-indicator {
     position: absolute;
-    bottom: 2.5rem;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    z-index: 1;
+    z-index: 2;
   }
 
   .scroll-label {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--color-text-secondary);
   }
 
   .scroll-line {
-    width: 1.5px;
-    height: 48px;
+    width: 1px;
+    height: 40px;
     background: var(--color-border);
     border-radius: 1px;
     overflow: hidden;
@@ -295,21 +309,26 @@
     height: 50%;
     background: var(--color-accent);
     border-radius: 1px;
-    animation: scroll-thumb 2s ease-in-out infinite;
+    animation: scroll-thumb 1.8s ease-in-out infinite;
   }
 
   @keyframes scroll-thumb {
-    0%   { transform: translateY(-100%); opacity: 1; }
+    0%   { transform: translateY(-100%); opacity: 0; }
+    10%  { opacity: 1; }
     50%  { transform: translateY(100%);  opacity: 1; }
-    51%  { transform: translateY(100%);  opacity: 0; }
-    52%  { transform: translateY(-100%); opacity: 0; }
-    100% { transform: translateY(-100%); opacity: 1; }
+    60%  { transform: translateY(100%);  opacity: 0; }
+    61%  { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(-100%); opacity: 0; }
   }
 
   @media (max-width: 768px) {
     .hero {
-      padding: 6rem 1.25rem 4rem;
+      padding: 6rem 1.25rem 5rem;
       align-items: center;
+    }
+
+    .hero-content {
+      padding-bottom: 1rem;
     }
 
     .scroll-indicator { display: none; }

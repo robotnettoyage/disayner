@@ -37,12 +37,31 @@ const metrics = [
 
 <style>
   .metrics-section {
-    padding: 6rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
+    position: relative;
+    padding: 7rem 2rem;
+    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-accent-soft) 50%, var(--color-surface) 100%);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  /* Decorative background circle */
+  .metrics-section::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+    top: -100px;
+    right: 8%;
+    pointer-events: none;
+    border-radius: 50%;
   }
 
   .metrics-inner {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 4rem;
@@ -71,6 +90,7 @@ const metrics = [
 
   .metrics-header em {
     font-style: italic;
+    font-family: var(--font-serif);
     color: var(--color-accent);
   }
 
@@ -78,12 +98,22 @@ const metrics = [
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    overflow: hidden;
   }
 
   .metric-item {
-    padding: 2.5rem 2rem;
+    padding: 3rem 2rem;
     text-align: center;
     border-right: 1px solid var(--color-border);
+    transition: background 0.3s ease;
+  }
+
+  .metric-item:hover {
+    background: rgba(37,99,235,0.03);
   }
 
   .metric-item:last-child {
@@ -97,28 +127,33 @@ const metrics = [
   .metric-number {
     font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 800;
-    color: var(--color-text-primary);
+    color: var(--color-accent);
     letter-spacing: -0.04em;
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
 
   .metric-label {
-    font-size: 0.9375rem;
-    font-weight: 600;
+    font-size: 0.8125rem;
+    font-weight: 700;
     color: var(--color-text-primary);
-    margin-bottom: 0.25rem;
-    letter-spacing: -0.01em;
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   .metric-sublabel {
     font-size: 0.8125rem;
     color: var(--color-text-secondary);
+    font-style: italic;
   }
 
   @media (max-width: 900px) {
+    .metrics-section { padding: 5rem 1.5rem; }
+
     .metrics-grid {
       grid-template-columns: repeat(2, 1fr);
+      border-radius: 16px;
     }
 
     .metric-item:nth-child(2) { border-right: none; }
@@ -129,18 +164,14 @@ const metrics = [
   }
 
   @media (max-width: 480px) {
-    .metrics-grid {
-      grid-template-columns: 1fr;
-    }
+    .metrics-grid { grid-template-columns: 1fr; }
 
     .metric-item {
       border-right: none;
       border-bottom: 1px solid var(--color-border);
     }
 
-    .metric-item:last-child {
-      border-bottom: none;
-    }
+    .metric-item:last-child { border-bottom: none; }
   }
 </style>
 

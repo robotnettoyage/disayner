@@ -41,6 +41,11 @@ const testimonials = [
             aria-roledescription="slide"
             aria-label={`Témoignage ${i + 1} sur ${testimonials.length}`}
           >
+            <div class="testimonial-stars" aria-label="5 étoiles sur 5">
+              {[1,2,3,4,5].map(() => (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
+            </div>
             <blockquote class="testimonial-quote">
               <p>{t.quote}</p>
             </blockquote>
@@ -55,28 +60,33 @@ const testimonials = [
         ))}
       </div>
 
-      <!-- Navigation dots -->
-      <nav class="carousel-nav" aria-label="Navigation témoignages">
-        {testimonials.map((_, i) => (
-          <button
-            class={`carousel-dot ${i === 0 ? "dot-active" : ""}`}
-            aria-label={`Aller au témoignage ${i + 1}`}
-            aria-current={i === 0 ? "true" : "false"}
-            data-index={i}
-          ></button>
-        ))}
-      </nav>
+      <!-- Progress bar -->
+      <div class="carousel-progress" aria-hidden="true">
+        <div class="carousel-progress-bar"></div>
+      </div>
 
-      <!-- Arrow navigation -->
-      <div class="carousel-arrows">
+      <!-- Navigation row -->
+      <div class="carousel-controls">
         <button class="carousel-arrow arrow-prev" aria-label="Témoignage précédent">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M19 12H5M12 5l-7 7 7 7"/>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6"/>
           </svg>
         </button>
+
+        <nav class="carousel-nav" aria-label="Navigation témoignages">
+          {testimonials.map((_, i) => (
+            <button
+              class={`carousel-dot ${i === 0 ? "dot-active" : ""}`}
+              aria-label={`Aller au témoignage ${i + 1}`}
+              aria-current={i === 0 ? "true" : "false"}
+              data-index={i}
+            ></button>
+          ))}
+        </nav>
+
         <button class="carousel-arrow arrow-next" aria-label="Témoignage suivant">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
           </svg>
         </button>
       </div>
@@ -227,12 +237,47 @@ const testimonials = [
     color: var(--color-text-secondary);
   }
 
-  /* Navigation */
+  /* Stars */
+  .testimonial-stars {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Progress bar */
+  .carousel-progress {
+    width: 100%;
+    max-width: 480px;
+    margin: 2rem auto 0;
+    height: 2px;
+    background: var(--color-border);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  .carousel-progress-bar {
+    height: 100%;
+    background: var(--color-accent);
+    border-radius: 1px;
+    width: 0%;
+    transition: none;
+  }
+
+  /* Controls row */
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Navigation dots */
   .carousel-nav {
     display: flex;
-    justify-content: center;
+    align-items: center;
     gap: 0.5rem;
-    margin-top: 2.5rem;
   }
 
   .carousel-dot {
@@ -243,20 +288,13 @@ const testimonials = [
     border: none;
     cursor: pointer;
     padding: 0;
-    transition: background 0.3s ease, transform 0.3s ease, width 0.3s ease;
+    transition: background 0.3s ease, width 0.3s ease;
   }
 
   .carousel-dot.dot-active {
     background: var(--color-accent);
-    width: 24px;
+    width: 22px;
     border-radius: 4px;
-  }
-
-  .carousel-arrows {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
   }
 
   .carousel-arrow {
@@ -270,18 +308,21 @@ const testimonials = [
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
   }
 
   .carousel-arrow:hover {
+    background: var(--color-accent);
     border-color: var(--color-accent);
-    color: var(--color-accent);
+    color: #fff;
     transform: scale(1.05);
   }
 
   @media (max-width: 768px) {
     .testimonials-section { padding: 4rem 1.25rem; }
     .guillemets { font-size: 6rem; }
+    .carousel-controls { gap: 1rem; }
   }
 </style>
 
@@ -307,6 +348,20 @@ const testimonials = [
 
   let current = 0;
   let autoplayTimer: ReturnType<typeof setInterval>;
+  const AUTOPLAY_MS = 6000;
+  const progressBar = document.querySelector<HTMLElement>(".carousel-progress-bar");
+  let progressAnim: ReturnType<typeof gsap.to> | null = null;
+
+  function animateProgress() {
+    if (!progressBar) return;
+    if (progressAnim) progressAnim.kill();
+    gsap.set(progressBar, { width: "0%" });
+    progressAnim = gsap.to(progressBar, {
+      width: "100%",
+      duration: AUTOPLAY_MS / 1000,
+      ease: "none",
+    });
+  }
 
   function goTo(index: number) {
     const prev = slides[current];
@@ -316,17 +371,15 @@ const testimonials = [
     const next = slides[current];
     const nextDot = dots[current];
 
-    // Update dots
     prevDot.classList.remove("dot-active");
     prevDot.setAttribute("aria-current", "false");
     nextDot.classList.add("dot-active");
     nextDot.setAttribute("aria-current", "true");
 
-    // GSAP crossfade
     gsap.to(prev, {
       opacity: 0,
-      y: -16,
-      duration: 0.35,
+      y: -14,
+      duration: 0.32,
       ease: "power2.in",
       onComplete: () => {
         prev.classList.remove("slide-active");
@@ -336,17 +389,20 @@ const testimonials = [
         next.classList.add("slide-active");
         next.setAttribute("aria-hidden", "false");
         next.style.position = "relative";
-        gsap.fromTo(
-          next,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
+        gsap.fromTo(next,
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 0.42, ease: "power2.out" }
         );
       },
     });
   }
 
   function startAutoplay() {
-    autoplayTimer = setInterval(() => goTo(current + 1), 5000);
+    animateProgress();
+    autoplayTimer = setInterval(() => {
+      goTo(current + 1);
+      animateProgress();
+    }, AUTOPLAY_MS);
   }
 
   function resetAutoplay() {
@@ -361,10 +417,14 @@ const testimonials = [
   prevBtn?.addEventListener("click", () => { goTo(current - 1); resetAutoplay(); });
   nextBtn?.addEventListener("click", () => { goTo(current + 1); resetAutoplay(); });
 
-  // Pause on hover
   const carouselWrapper = document.querySelector(".carousel-wrapper");
-  carouselWrapper?.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
-  carouselWrapper?.addEventListener("mouseleave", startAutoplay);
+  carouselWrapper?.addEventListener("mouseenter", () => {
+    clearInterval(autoplayTimer);
+    if (progressAnim) progressAnim.pause();
+  });
+  carouselWrapper?.addEventListener("mouseleave", () => {
+    resetAutoplay();
+  });
 
   startAutoplay();
 </script>
