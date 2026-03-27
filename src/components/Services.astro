@@ -14,42 +14,55 @@
     <div class="services-grid">
 
       <!-- ── Card 1: Création web ── -->
-      <article class="service-card card-creation" aria-label="Service : Création de sites web">
-        <div class="card-accent-strip" aria-hidden="true"></div>
-
-        <!-- Browser mockup -->
-        <div class="browser-mockup" aria-hidden="true">
-          <div class="browser-bar">
-            <div class="browser-dots">
-              <span class="b-dot" style="background:#FF5F57"></span>
-              <span class="b-dot" style="background:#FEBC2E"></span>
-              <span class="b-dot" style="background:#28C840"></span>
-            </div>
-            <div class="browser-url-bar"></div>
-          </div>
-          <div class="browser-body">
-            <div class="mock-hero-banner"></div>
-            <div class="mock-lines">
-              <div class="mock-line" style="width:90%"></div>
-              <div class="mock-line" style="width:70%"></div>
-              <div class="mock-line" style="width:80%"></div>
-            </div>
-            <div class="mock-cards-row">
-              <div class="mock-mini-card"></div>
-              <div class="mock-mini-card"></div>
-            </div>
-          </div>
-        </div>
-
+      <article class="service-card card-creation service-card-main" aria-label="Service : Création de sites web">
         <div class="card-body">
-          <div class="card-icon-wrap" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="m9 9 3 3-3 3"/><path d="M13 15h3"/>
-            </svg>
+
+          <!-- Icon + eyebrow -->
+          <div class="card-icon-row">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="m9 9 3 3-3 3"/><path d="M13 15h3"/>
+              </svg>
+            </div>
+            <span class="card-eyebrow">Service principal</span>
           </div>
+
           <h3>Création de sites web</h3>
-          <p class="card-desc">Du concept à la mise en ligne, chaque pixel est pensé pour convertir. Sites vitrines, e-commerce et landing pages sur-mesure.</p>
+          <p class="card-desc">Sites vitrines, e-commerce &amp; landing pages sur-mesure. Du design à la mise en ligne, chaque pixel est pensé pour convertir.</p>
+
+          <!-- Browser mockup (inside card body, between desc and tags) -->
+          <div class="browser-mockup" aria-hidden="true">
+            <div class="browser-bar">
+              <div class="browser-dots">
+                <span class="b-dot" style="background:#FF5F57"></span>
+                <span class="b-dot" style="background:#FEBC2E"></span>
+                <span class="b-dot" style="background:#28C840"></span>
+              </div>
+              <div class="browser-url-bar">
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                disayner.com
+              </div>
+            </div>
+            <div class="browser-body">
+              <div class="mock-nav" aria-hidden="true">
+                <span class="mock-nav-link"></span>
+                <span class="mock-nav-link"></span>
+                <span class="mock-nav-link"></span>
+              </div>
+              <div class="mock-hero-banner">
+                <div class="mock-text-line" style="--tw: 75%"></div>
+                <div class="mock-text-line" style="--tw: 55%"></div>
+                <div class="mock-cta-btn"></div>
+              </div>
+              <div class="mock-cards-row">
+                <div class="mock-mini-card"></div>
+                <div class="mock-mini-card"></div>
+                <div class="mock-mini-card"></div>
+              </div>
+            </div>
+          </div>
+
           <div class="card-tags">
             <span class="tag">WordPress</span>
             <span class="tag">Shopify</span>
@@ -61,41 +74,10 @@
       </article>
 
       <!-- ── Card 2: SEO ── -->
-      <article class="service-card card-seo" aria-label="Service : Référencement SEO">
-        <div class="card-accent-strip" aria-hidden="true"></div>
-
+      <article class="service-card card-seo service-card-small" aria-label="Service : Référencement SEO">
         <div class="card-body">
-          <!-- Chart -->
-          <div class="seo-chart-wrap" aria-hidden="true">
-            <svg class="chart-svg" viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#2563EB" stop-opacity="0.15"/>
-                  <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <!-- Area fill -->
-              <path class="chart-area"
-                d="M0,75 C30,68 60,55 90,42 C120,30 150,18 200,8 L200,90 L0,90 Z"
-                fill="url(#areaGrad)" opacity="0"/>
-              <!-- Main line -->
-              <path class="chart-line"
-                d="M0,75 C30,68 60,55 90,42 C120,30 150,18 200,8"
-                fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/>
-              <!-- Data points -->
-              <circle class="chart-dot" cx="0"   cy="75" r="4" fill="#2563EB"/>
-              <circle class="chart-dot" cx="0"   cy="75" r="2" fill="white"/>
-              <circle class="chart-dot" cx="90"  cy="42" r="4" fill="#2563EB"/>
-              <circle class="chart-dot" cx="90"  cy="42" r="2" fill="white"/>
-              <circle class="chart-dot" cx="200" cy="8"  r="4" fill="#2563EB"/>
-              <circle class="chart-dot" cx="200" cy="8"  r="2" fill="white"/>
-            </svg>
-            <div class="chart-x-labels" aria-hidden="true">
-              <span>Jan</span><span>Avr</span><span>Juil</span><span>Oct</span>
-            </div>
-          </div>
 
-          <!-- Badge -->
+          <!-- Badge first -->
           <div class="sorank-badge">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
@@ -104,28 +86,56 @@
             En partenariat avec SoRank
           </div>
 
-          <div class="card-icon-wrap" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-            </svg>
-          </div>
           <h3>Référencement SEO</h3>
-          <p class="card-desc">Visibilité qui progresse mois après mois. Stratégie SEO, contenus optimisés, résultats mesurables.</p>
+          <p class="card-desc">Stratégie de visibilité, contenus optimisés et résultats mesurables sur Google.</p>
+
+          <!-- Chart -->
+          <div class="seo-chart-container" aria-hidden="true">
+            <svg class="chart-svg" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2563EB" stop-opacity="0.15"/>
+                  <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <line x1="0" y1="30" x2="280" y2="30" stroke="#F0F0EB" stroke-width="1"/>
+              <line x1="0" y1="60" x2="280" y2="60" stroke="#F0F0EB" stroke-width="1"/>
+              <line x1="0" y1="90" x2="280" y2="90" stroke="#F0F0EB" stroke-width="1"/>
+              <path class="chart-area"
+                d="M0,100 Q40,95 70,85 T140,60 T210,30 T280,10 V120 H0 Z"
+                fill="url(#chartGrad)"/>
+              <path class="chart-line"
+                d="M0,100 Q40,95 70,85 T140,60 T210,30 T280,10"
+                fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="70"  cy="85"  r="4"   fill="#2563EB" class="data-dot" style="--delay:0.3s"/>
+              <circle cx="70"  cy="85"  r="2"   fill="white"   class="data-dot-inner"/>
+              <circle cx="140" cy="60"  r="4"   fill="#2563EB" class="data-dot" style="--delay:0.5s"/>
+              <circle cx="140" cy="60"  r="2"   fill="white"   class="data-dot-inner"/>
+              <circle cx="210" cy="30"  r="4"   fill="#2563EB" class="data-dot" style="--delay:0.7s"/>
+              <circle cx="210" cy="30"  r="2"   fill="white"   class="data-dot-inner"/>
+              <circle cx="280" cy="10"  r="5"   fill="#2563EB" class="data-dot pulse-dot" style="--delay:0.9s"/>
+              <circle cx="280" cy="10"  r="2.5" fill="white"   class="data-dot-inner"/>
+            </svg>
+            <div class="chart-labels" aria-hidden="true">
+              <span>Jan</span><span>Avr</span><span>Juil</span><span>Oct</span>
+            </div>
+            <div class="chart-badge" aria-hidden="true">+200% trafic</div>
+          </div>
+
           <div class="card-tags">
             <span class="tag">Audit</span>
             <span class="tag">Contenus</span>
             <span class="tag">Technique</span>
-            <span class="tag">Suivi mensuel</span>
+            <span class="tag">Suivi</span>
           </div>
           <a href="#contact" class="card-cta">En savoir plus →</a>
         </div>
       </article>
 
       <!-- ── Card 3: Maintenance ── -->
-      <article class="service-card card-maintenance" aria-label="Service : Maintenance web">
-        <div class="card-accent-strip" aria-hidden="true"></div>
-
+      <article class="service-card card-maintenance service-card-small" aria-label="Service : Maintenance web">
         <div class="card-body">
+
           <div class="shield-wrap icon-pulse" aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -134,25 +144,31 @@
           </div>
 
           <h3>Maintenance web</h3>
-          <p class="card-desc">Sécurité, mises à jour et monitoring en continu. Votre site reste performant, sans que vous ayez à vous en préoccuper.</p>
+          <p class="card-desc">Votre site reste rapide, sécurisé et à jour. Zéro stress.</p>
 
-          <!-- Feature rows -->
+          <!-- Feature rows with checkmark circles -->
           <div class="feature-rows">
             <div class="feature-row">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              <span>Mises à jour de sécurité automatiques</span>
+              <div class="check-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span>Mises à jour de sécurité</span>
             </div>
             <div class="feature-row">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              <span>Monitoring de performance 24/7</span>
+              <div class="check-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span>Monitoring 24/7</span>
             </div>
             <div class="feature-row">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <div class="check-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
               <span>Sauvegardes quotidiennes</span>
             </div>
           </div>
 
-          <div class="card-tags" style="margin-top:1rem">
+          <div class="card-tags">
             <span class="tag">Sécurité</span>
             <span class="tag">Updates</span>
             <span class="tag">Monitoring</span>
@@ -168,6 +184,20 @@
   .services-section {
     padding: 7rem 2rem;
     background: var(--color-background);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services-section::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.03), transparent 70%);
+    top: -100px;
+    left: -100px;
+    pointer-events: none;
+    border-radius: 50%;
   }
 
   .services-inner {
@@ -176,6 +206,8 @@
     display: flex;
     flex-direction: column;
     gap: 4rem;
+    position: relative;
+    z-index: 1;
   }
 
   /* ── Header ──────────────────────────────────────────────────────────────── */
@@ -216,9 +248,9 @@
   /* ── Grid ────────────────────────────────────────────────────────────────── */
   .services-grid {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    grid-template-rows: auto auto;
-    gap: 1.25rem;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
   }
 
   .card-creation { grid-row: 1 / 3; }
@@ -226,47 +258,73 @@
   /* ── Card base ───────────────────────────────────────────────────────────── */
   .service-card {
     background: #fff;
-    border: 1px solid var(--color-border);
-    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 24px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
     transition: box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 border-color 0.3s ease;
     cursor: default;
   }
 
-  .service-card:hover {
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-    transform: translateY(-8px);
-    border-color: rgba(37,99,235,0.35);
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2563EB, #60A5FA);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
   }
 
-  /* Accent gradient strip at top */
-  .card-accent-strip {
-    height: 3px;
-    background: linear-gradient(90deg, #2563EB, #3B82F6, #93C5FD);
-    flex-shrink: 0;
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(37, 99, 235, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
+    border-color: rgba(37, 99, 235, 0.15);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
   }
 
   .card-body {
-    padding: 2rem 2rem 1.75rem;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     gap: 0.875rem;
     flex: 1;
   }
 
-  /* ── Icon ────────────────────────────────────────────────────────────────── */
+  /* ── Icon row + eyebrow ──────────────────────────────────────────────────── */
+  .card-icon-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .card-icon-wrap {
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
     background: var(--color-accent-soft);
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .card-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--color-accent);
   }
 
@@ -294,160 +352,279 @@
   }
 
   .tag {
-    font-size: 0.6875rem;
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
     font-weight: 500;
-    padding: 0.3rem 0.75rem;
-    background: var(--color-surface);
-    color: var(--color-text-secondary);
+    padding: 6px 14px;
+    background: #F5F5F0;
+    color: #6B6B67;
     border-radius: 100px;
-    border: 1px solid var(--color-border);
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .service-card:hover .tag {
+    background: #EFF6FF;
+    color: #2563EB;
   }
 
   .card-cta {
-    font-size: 0.875rem;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
     color: var(--color-accent);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
-    position: relative;
+    gap: 8px;
     align-self: flex-start;
-    padding-bottom: 1px;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease;
+    margin-top: auto;
+    transition: gap 0.3s ease;
   }
 
-  .card-cta:hover { border-bottom-color: var(--color-accent); }
+  .card-cta:hover { gap: 12px; }
 
   /* ── Browser mockup (Card 1) ─────────────────────────────────────────────── */
   .browser-mockup {
-    border-bottom: 1px solid var(--color-border);
-    border-radius: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
     overflow: hidden;
     flex-shrink: 0;
-    transition: transform 0.6s ease;
+    margin: 4px 0;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .service-card:hover .browser-mockup {
-    transform: perspective(800px) rotateY(1.5deg) rotateX(-0.8deg);
+    transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
   }
 
   .browser-bar {
-    height: 32px;
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
+    height: 36px;
+    background: #F5F5F0;
+    border-bottom: 1px solid #E8E8E3;
+    border-radius: 12px 12px 0 0;
     display: flex;
     align-items: center;
-    padding: 0 0.875rem;
-    gap: 0.625rem;
+    padding: 0 12px;
+    gap: 0;
   }
 
   .browser-dots {
     display: flex;
-    gap: 5px;
+    gap: 6px;
     flex-shrink: 0;
+    margin-right: 8px;
   }
 
   .b-dot {
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     display: block;
   }
 
   .browser-url-bar {
     flex: 1;
-    max-width: 60%;
-    height: 16px;
-    background: rgba(255,255,255,0.9);
-    border-radius: 4px;
-    border: 1px solid var(--color-border);
+    max-width: 200px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 10px;
+    color: #6B6B67;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgba(0,0,0,0.06);
   }
 
   .browser-body {
-    padding: 1rem;
-    background: var(--color-background);
+    padding: 10px;
+    background: #FAFAF9;
     display: flex;
     flex-direction: column;
-    gap: 0.625rem;
+    gap: 8px;
+  }
+
+  .mock-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    height: 6px;
+    background: #F0F0EB;
+    border-radius: 3px;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  .mock-nav-link {
+    width: 20px;
+    height: 3px;
+    background: #D8D8D4;
+    border-radius: 2px;
   }
 
   .mock-hero-banner {
-    height: 52px;
     background: linear-gradient(135deg, #2563EB, #3B82F6);
     border-radius: 6px;
-  }
-
-  .mock-lines {
+    padding: 10px 12px 12px;
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 5px;
   }
 
-  .mock-line {
-    height: 6px;
-    background: var(--color-border);
+  .mock-text-line {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 3px;
+    width: var(--tw, 70%);
+  }
+
+  /* On hover, text lines animate width from 0 */
+  .service-card:hover .mock-text-line {
+    animation: typeIn 0.5s ease-out forwards;
+  }
+
+  .service-card:hover .mock-text-line:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  @keyframes typeIn {
+    from { width: 0; }
+    to   { width: var(--tw, 70%); }
+  }
+
+  .mock-cta-btn {
+    width: 44px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 100px;
+    margin-top: 4px;
   }
 
   .mock-cards-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
   }
 
   .mock-mini-card {
-    height: 40px;
-    background: var(--color-surface);
-    border-radius: 6px;
-    border: 1px solid var(--color-border);
+    height: 35px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+    border: 1px solid #F0F0EB;
+    transition: transform 0.3s ease;
   }
 
+  .service-card:hover .mock-mini-card:nth-child(1) { transform: translateY(-3px); transition-delay: 0s; }
+  .service-card:hover .mock-mini-card:nth-child(2) { transform: translateY(-3px); transition-delay: 0.08s; }
+  .service-card:hover .mock-mini-card:nth-child(3) { transform: translateY(-3px); transition-delay: 0.16s; }
+
   /* ── Chart (Card 2) ──────────────────────────────────────────────────────── */
-  .seo-chart-wrap {
-    background: var(--color-surface);
+  .seo-chart-container {
+    background: #FAFAF9;
     border-radius: 12px;
-    padding: 1.125rem 1rem 0.5rem;
+    padding: 20px 16px 8px;
+    position: relative;
     border: 1px solid var(--color-border);
+    margin: 4px 0;
   }
 
   .chart-svg {
     width: 100%;
-    height: 70px;
+    height: 80px;
     display: block;
     overflow: visible;
   }
 
   .chart-line {
-    stroke-dasharray: 350;
-    stroke-dashoffset: 350;
-    transition: stroke-dashoffset 1.4s ease-out;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    transition: stroke-dashoffset 1.5s ease-out;
   }
 
   .chart-area {
-    transition: opacity 0.5s ease 0.6s;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.8s;
   }
 
-  .seo-chart-wrap.chart-animated .chart-line {
+  .seo-chart-container.chart-animated .chart-line {
     stroke-dashoffset: 0;
   }
 
-  .seo-chart-wrap.chart-animated .chart-area {
+  .seo-chart-container.chart-animated .chart-area {
     opacity: 1;
   }
 
-  .chart-x-labels {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.375rem 0.25rem 0;
+  .data-dot {
+    opacity: 0;
+    transform-origin: center;
+    transform: scale(0);
   }
 
-  .chart-x-labels span {
-    font-size: 0.625rem;
+  .data-dot-inner {
+    opacity: 0;
+  }
+
+  .seo-chart-container.chart-animated .data-dot {
+    animation: popIn 0.3s ease-out forwards;
+    animation-delay: var(--delay, 0s);
+  }
+
+  .seo-chart-container.chart-animated .data-dot-inner {
+    animation: popIn 0.3s ease-out forwards;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .pulse-dot {
+    /* pulsing only after chart is animated */
+  }
+
+  .seo-chart-container.chart-animated .pulse-dot {
+    animation: popIn 0.3s ease-out forwards var(--delay, 0s),
+               dotPulse 2s ease-in-out 1.5s infinite;
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.5; }
+  }
+
+  .chart-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 2px 0;
+  }
+
+  .chart-labels span {
+    font-size: 10px;
     color: var(--color-text-secondary);
     font-weight: 600;
     letter-spacing: 0.04em;
+  }
+
+  .chart-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2563EB;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.4s ease 1.2s, transform 0.4s ease 1.2s;
+  }
+
+  .seo-chart-container.chart-animated .chart-badge {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* ── SoRank badge ────────────────────────────────────────────────────────── */
@@ -481,8 +658,8 @@
   }
 
   @keyframes pulse-soft {
-    0%, 100% { transform: scale(1); }
-    50%       { transform: scale(1.06); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.1); }
+    50%       { box-shadow: 0 0 0 12px rgba(37, 99, 235, 0); }
   }
 
   .check-path {
@@ -506,30 +683,73 @@
   .feature-row {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
-    font-size: 0.8125rem;
+    gap: 10px;
+    font-size: 13px;
     color: var(--color-text-secondary);
     line-height: 1.4;
   }
 
-  .feature-row svg { flex-shrink: 0; }
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    background: #EFF6FF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transform: scale(1);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .service-card:hover .feature-row:nth-child(1) .check-icon { animation: checkPop 0.3s ease-out forwards; animation-delay: 0s; }
+  .service-card:hover .feature-row:nth-child(2) .check-icon { animation: checkPop 0.3s ease-out forwards; animation-delay: 0.12s; }
+  .service-card:hover .feature-row:nth-child(3) .check-icon { animation: checkPop 0.3s ease-out forwards; animation-delay: 0.24s; }
+
+  @keyframes checkPop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.25); background: #DBEAFE; }
+    100% { transform: scale(1); background: #EFF6FF; }
+  }
 
   /* ── Responsive ──────────────────────────────────────────────────────────── */
-  @media (max-width: 960px) {
+
+  /* Tablet: card-creation full width top, SEO + Maintenance side by side below */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .services-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+
+    .card-creation {
+      grid-column: 1 / 3;
+      grid-row: 1;
+    }
+
+    .card-seo    { grid-row: 2; grid-column: 1; }
+    .card-maintenance { grid-row: 2; grid-column: 2; }
+  }
+
+  /* Mobile: all stacked */
+  @media (max-width: 767px) {
+    .services-section { padding: 4rem 1.25rem; }
+
     .services-grid {
       grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 16px;
     }
 
     .card-creation { grid-row: auto; }
-  }
-
-  @media (max-width: 480px) {
-    .services-section { padding: 4rem 1.25rem; }
-    .card-body { padding: 1.5rem 1.25rem; }
+    .card-body { padding: 28px 24px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .icon-pulse, .service-card { animation: none; transition: none; }
+    .icon-pulse { animation: none; }
+    .service-card,
+    .mock-mini-card,
+    .check-icon { transition: none; animation: none; }
+    .chart-line { transition: none; }
   }
 </style>
 
@@ -540,30 +760,39 @@
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Stagger cards in on scroll
+  // Card 1 enters first
   if (!prefersReduced) {
-    gsap.from(".service-card", {
-      y: 50,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.15,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".services-grid", start: "top 80%" },
-    });
+    gsap.fromTo(".service-card-main",
+      { y: 40, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+        scrollTrigger: { trigger: ".services-grid", start: "top 80%" },
+      }
+    );
+
+    // Cards 2 and 3 staggered, 0.2s after card 1
+    gsap.fromTo(".service-card-small",
+      { y: 40, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+        stagger: 0.15, delay: 0.2,
+        scrollTrigger: { trigger: ".services-grid", start: "top 80%" },
+      }
+    );
   }
 
-  // Animate chart line when card enters viewport
-  const chartWrap = document.querySelector(".seo-chart-wrap");
-  if (chartWrap) {
+  // Animate chart when container enters viewport
+  const chartContainer = document.querySelector(".seo-chart-container");
+  if (chartContainer) {
     const chartObserver = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          chartWrap.classList.add("chart-animated");
+          chartContainer.classList.add("chart-animated");
           chartObserver.disconnect();
         }
       },
       { threshold: 0.4 }
     );
-    chartObserver.observe(chartWrap);
+    chartObserver.observe(chartContainer);
   }
 </script>
