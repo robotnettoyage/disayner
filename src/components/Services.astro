@@ -29,38 +29,61 @@
           </div>
 
           <h3>Création de sites web</h3>
-          <p class="card-desc">Sites vitrines, e-commerce &amp; landing pages sur-mesure. Du design à la mise en ligne, chaque pixel est pensé pour convertir.</p>
+          <p class="card-desc">Sites vitrines, e-commerce &amp; landing pages. Chaque projet est conçu pour convertir.</p>
 
-          <!-- Browser mockup (inside card body, between desc and tags) -->
-          <div class="browser-mockup" aria-hidden="true">
-            <div class="browser-bar">
-              <div class="browser-dots">
-                <span class="b-dot" style="background:#FF5F57"></span>
-                <span class="b-dot" style="background:#FEBC2E"></span>
-                <span class="b-dot" style="background:#28C840"></span>
-              </div>
-              <div class="browser-url-bar">
-                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                disayner.com
+          <!-- Stacked screens visual -->
+          <div class="screens-stack" aria-hidden="true">
+
+            <!-- Screen 3 (back) — Landing page -->
+            <div class="screen screen-3">
+              <div class="screen-bar"><span></span><span></span><span></span></div>
+              <div class="screen-body">
+                <div class="s-hero-gradient"><div class="s-cta-btn"></div></div>
               </div>
             </div>
-            <div class="browser-body">
-              <div class="mock-nav" aria-hidden="true">
-                <span class="mock-nav-link"></span>
-                <span class="mock-nav-link"></span>
-                <span class="mock-nav-link"></span>
-              </div>
-              <div class="mock-hero-banner">
-                <div class="mock-text-line" style="--tw: 75%"></div>
-                <div class="mock-text-line" style="--tw: 55%"></div>
-                <div class="mock-cta-btn"></div>
-              </div>
-              <div class="mock-cards-row">
-                <div class="mock-mini-card"></div>
-                <div class="mock-mini-card"></div>
-                <div class="mock-mini-card"></div>
+
+            <!-- Screen 2 (middle) — E-commerce -->
+            <div class="screen screen-2">
+              <div class="screen-bar"><span></span><span></span><span></span></div>
+              <div class="screen-body">
+                <div class="s-nav"></div>
+                <div class="s-grid-products">
+                  <div class="s-product"></div>
+                  <div class="s-product"></div>
+                  <div class="s-product"></div>
+                  <div class="s-product"></div>
+                </div>
               </div>
             </div>
+
+            <!-- Screen 1 (front) — Showcase site -->
+            <div class="screen screen-1">
+              <div class="screen-bar">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <div class="url-bar">disayner.com</div>
+              </div>
+              <div class="screen-body">
+                <div class="s-nav-full">
+                  <div class="s-logo"></div>
+                  <div class="s-nav-links"><span></span><span></span><span></span></div>
+                </div>
+                <div class="s-hero-section">
+                  <div class="s-hero-title"></div>
+                  <div class="s-hero-subtitle"></div>
+                  <div class="s-hero-btn"></div>
+                </div>
+                <div class="s-cards-row">
+                  <div class="s-feature-card"><div class="s-icon"></div><div class="s-lines"><span></span><span></span></div></div>
+                  <div class="s-feature-card"><div class="s-icon"></div><div class="s-lines"><span></span><span></span></div></div>
+                  <div class="s-feature-card"><div class="s-icon"></div><div class="s-lines"><span></span><span></span></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating labels -->
+            <div class="screen-label label-1">Site vitrine</div>
+            <div class="screen-label label-2">E-commerce</div>
+            <div class="screen-label label-3">Landing page</div>
           </div>
 
           <div class="card-tags">
@@ -383,140 +406,226 @@
 
   .card-cta:hover { gap: 12px; }
 
-  /* ── Browser mockup (Card 1) ─────────────────────────────────────────────── */
-  .browser-mockup {
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    overflow: hidden;
-    flex-shrink: 0;
-    margin: 4px 0;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .service-card:hover .browser-mockup {
-    transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
-  }
-
-  .browser-bar {
-    height: 36px;
-    background: #F5F5F0;
-    border-bottom: 1px solid #E8E8E3;
-    border-radius: 12px 12px 0 0;
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
-    gap: 0;
-  }
-
-  .browser-dots {
-    display: flex;
-    gap: 6px;
-    flex-shrink: 0;
-    margin-right: 8px;
-  }
-
-  .b-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: block;
-  }
-
-  .browser-url-bar {
+  /* ── Stacked Screens (Card 1) ────────────────────────────────────────────── */
+  .screens-stack {
+    position: relative;
+    height: 240px;
+    margin: 20px 0;
     flex: 1;
-    max-width: 200px;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 10px;
-    color: #6B6B67;
+  }
+
+  .screen {
+    position: absolute;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+    width: 85%;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .screen-bar {
+    height: 28px;
+    background: #F8F8F6;
+    border-bottom: 1px solid #EEEEEA;
     display: flex;
     align-items: center;
+    padding: 0 10px;
     gap: 5px;
+  }
+
+  /* Dots on screens 2 & 3 (direct children of screen-bar) */
+  .screen-bar > span {
+    width: 8px; height: 8px; border-radius: 50%; display: block; flex-shrink: 0;
+  }
+  .screen-bar > span:nth-child(1) { background: #FF5F57; }
+  .screen-bar > span:nth-child(2) { background: #FEBC2E; }
+  .screen-bar > span:nth-child(3) { background: #28C840; }
+
+  /* Dots on screen 1 (inside .dots wrapper) */
+  .dots { display: flex; gap: 5px; flex-shrink: 0; }
+  .dots > span {
+    width: 8px; height: 8px; border-radius: 50%; display: block; flex-shrink: 0;
+  }
+  .dots > span:nth-child(1) { background: #FF5F57; }
+  .dots > span:nth-child(2) { background: #FEBC2E; }
+  .dots > span:nth-child(3) { background: #28C840; }
+
+  .url-bar {
+    background: white;
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-size: 10px;
+    color: #999;
+    margin-left: 8px;
     border: 1px solid rgba(0,0,0,0.06);
   }
 
-  .browser-body {
-    padding: 10px;
-    background: #FAFAF9;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  .screen-body { padding: 10px; }
+
+  /* — Screen 1 (front) — Showcase site — */
+  .screen-1 {
+    z-index: 3;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .mock-nav {
+  .s-nav-full {
     display: flex;
-    justify-content: flex-end;
-    gap: 6px;
-    height: 6px;
-    background: #F0F0EB;
-    border-radius: 3px;
     align-items: center;
-    padding: 0 8px;
+    justify-content: space-between;
+    margin-bottom: 8px;
   }
 
-  .mock-nav-link {
-    width: 20px;
-    height: 3px;
-    background: #D8D8D4;
-    border-radius: 2px;
-  }
+  .s-logo { width: 20px; height: 6px; background: #E0E0E0; border-radius: 2px; }
 
-  .mock-hero-banner {
+  .s-nav-links { display: flex; gap: 6px; }
+  .s-nav-links span { width: 12px; height: 3px; background: #E8E8E3; border-radius: 2px; display: block; }
+
+  .s-hero-section {
+    height: 45px;
     background: linear-gradient(135deg, #2563EB, #3B82F6);
     border-radius: 6px;
-    padding: 10px 12px 12px;
+    margin: 0 0 8px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    justify-content: center;
+    gap: 4px;
   }
 
-  .mock-text-line {
-    height: 5px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 3px;
-    width: var(--tw, 70%);
-  }
+  .s-hero-title { width: 60%; height: 4px; background: rgba(255,255,255,0.5); border-radius: 2px; }
+  .s-hero-subtitle { width: 40%; height: 4px; background: rgba(255,255,255,0.35); border-radius: 2px; }
+  .s-hero-btn { width: 40px; height: 10px; background: rgba(255,255,255,0.85); border-radius: 4px; margin-top: 4px; }
 
-  /* On hover, text lines animate width from 0 */
-  .service-card:hover .mock-text-line {
-    animation: typeIn 0.5s ease-out forwards;
-  }
+  .s-cards-row { display: flex; gap: 6px; }
 
-  .service-card:hover .mock-text-line:nth-child(2) {
-    animation-delay: 0.15s;
-  }
-
-  @keyframes typeIn {
-    from { width: 0; }
-    to   { width: var(--tw, 70%); }
-  }
-
-  .mock-cta-btn {
-    width: 44px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 100px;
-    margin-top: 4px;
-  }
-
-  .mock-cards-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 6px;
-  }
-
-  .mock-mini-card {
+  .s-feature-card {
+    flex: 1;
     height: 35px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 4px;
+    background: #F8F8F6;
     border: 1px solid #F0F0EB;
-    transition: transform 0.3s ease;
+    border-radius: 4px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
   }
 
-  .service-card:hover .mock-mini-card:nth-child(1) { transform: translateY(-3px); transition-delay: 0s; }
-  .service-card:hover .mock-mini-card:nth-child(2) { transform: translateY(-3px); transition-delay: 0.08s; }
-  .service-card:hover .mock-mini-card:nth-child(3) { transform: translateY(-3px); transition-delay: 0.16s; }
+  .s-icon { width: 8px; height: 8px; background: #EFF6FF; border-radius: 2px; flex-shrink: 0; }
+
+  .s-lines { display: flex; flex-direction: column; gap: 2px; }
+  .s-lines span { height: 2px; background: #E8E8E3; border-radius: 1px; display: block; }
+  .s-lines span:first-child { width: 80%; }
+  .s-lines span:last-child  { width: 55%; }
+
+  /* — Screen 2 (middle) — E-commerce — */
+  .screen-2 {
+    z-index: 2;
+    bottom: 20px;
+    left: 55%;
+    transform: translateX(-50%) scale(0.93);
+    opacity: 0.85;
+  }
+
+  .s-nav { height: 6px; background: #EEEEEA; border-radius: 3px; margin-bottom: 8px; }
+
+  .s-grid-products { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+
+  .s-product {
+    height: 40px;
+    background: #FAFAF9;
+    border: 1px solid #F0F0EB;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .s-product:nth-child(1)::before { content: ''; display: block; height: 25px; background: #EFF6FF; }
+  .s-product:nth-child(2)::before { content: ''; display: block; height: 25px; background: #FEF3E2; }
+  .s-product:nth-child(3)::before { content: ''; display: block; height: 25px; background: #F0FDF4; }
+  .s-product:nth-child(4)::before { content: ''; display: block; height: 25px; background: #FDF2F8; }
+
+  .s-product::after {
+    content: '';
+    display: block;
+    width: 40%;
+    height: 3px;
+    background: #E0E0E0;
+    border-radius: 1px;
+    margin: 3px 5px;
+  }
+
+  /* — Screen 3 (back) — Landing page — */
+  .screen-3 {
+    z-index: 1;
+    bottom: 40px;
+    left: 60%;
+    transform: translateX(-50%) scale(0.86);
+    opacity: 0.65;
+  }
+
+  .s-hero-gradient {
+    height: 70px;
+    background: linear-gradient(160deg, #1E3A5F, #2563EB);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .s-cta-btn {
+    width: 50px;
+    height: 12px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 6px;
+  }
+
+  /* — Hover: fan out — */
+  .service-card-main:hover .screen-1 {
+    transform: translateX(-55%) rotate(-2deg);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  }
+
+  .service-card-main:hover .screen-2 {
+    transform: translateX(-45%) scale(0.93) rotate(0deg) translateY(-10px);
+    opacity: 1;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+
+  .service-card-main:hover .screen-3 {
+    transform: translateX(-35%) scale(0.86) rotate(2deg) translateY(-20px);
+    opacity: 0.9;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  }
+
+  /* — Floating labels — */
+  .screen-label {
+    position: absolute;
+    font-size: 11px;
+    font-weight: 600;
+    color: #2563EB;
+    background: #EFF6FF;
+    padding: 4px 10px;
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .label-1 { bottom: -16px; left: 15%; }
+  .label-2 { bottom: 10px; right: 5%; }
+  .label-3 { top: 0; right: -5%; }
+
+  .service-card-main:hover .screen-label { opacity: 1; transform: translateY(0); }
+  .service-card-main:hover .label-1 { transition-delay: 0.1s; }
+  .service-card-main:hover .label-2 { transition-delay: 0.2s; }
+  .service-card-main:hover .label-3 { transition-delay: 0.3s; }
 
   /* ── Chart (Card 2) ──────────────────────────────────────────────────────── */
   .seo-chart-container {
@@ -742,12 +851,23 @@
 
     .card-creation { grid-row: auto; }
     .card-body { padding: 28px 24px; }
+
+    /* Screens: default to fanned-out state (no hover on mobile) */
+    .screens-stack { height: 200px; }
+    .screen-1 { transform: translateX(-55%) rotate(-2deg); }
+    .screen-2 { bottom: 12px; transform: translateX(-45%) scale(0.93) translateY(-10px); opacity: 1; }
+    .screen-3 { bottom: 24px; transform: translateX(-35%) scale(0.86) rotate(2deg) translateY(-20px); opacity: 0.9; }
+    .screen-label { opacity: 1; transform: translateY(0); }
+    .label-1 { transition-delay: 0s; }
+    .label-2 { transition-delay: 0s; }
+    .label-3 { transition-delay: 0s; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .icon-pulse { animation: none; }
     .service-card,
-    .mock-mini-card,
+    .screen,
+    .screen-label,
     .check-icon { transition: none; animation: none; }
     .chart-line { transition: none; }
   }
@@ -779,6 +899,22 @@
         scrollTrigger: { trigger: ".services-grid", start: "top 80%" },
       }
     );
+  }
+
+  // Stacked screens entrance animation
+  if (!prefersReduced) {
+    gsap.from('.screen', {
+      y: 20,
+      opacity: 0,
+      scale: 0.9,
+      stagger: 0.12,
+      duration: 0.7,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.services-grid',
+        start: 'top 80%',
+      }
+    });
   }
 
   // Animate chart when container enters viewport
