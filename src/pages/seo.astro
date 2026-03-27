@@ -1,0 +1,1764 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Testimonials from '../components/Testimonials.astro';
+import BgWords from '../components/BgWords.astro';
+import BgOrbs from '../components/BgOrbs.astro';
+import BgDots from '../components/BgDots.astro';
+
+const seoServices = [
+  {
+    iconPath: `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>`,
+    title: 'Audit SEO complet',
+    desc: "Analyse approfondie de votre site : technique, contenu, structure, backlinks, concurrence. Un état des lieux précis avec des recommandations priorisées.",
+    deliverables: ['Rapport détaillé', 'Quick wins', "Plan d'action"],
+  },
+  {
+    iconPath: `<path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>`,
+    title: 'Optimisation technique',
+    desc: "Vitesse de chargement, indexation, balisage, Core Web Vitals, sitemap, robots.txt, schema JSON-LD. On rend votre site techniquement irréprochable.",
+    deliverables: ['Performance', 'Indexation', 'Données structurées'],
+  },
+  {
+    iconPath: `<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>`,
+    title: 'Stratégie de contenus',
+    desc: "Recherche de mots-clés, plan éditorial, rédaction optimisée, maillage interne. Des contenus qui se positionnent et qui convertissent.",
+    deliverables: ['Mots-clés', 'Plan éditorial', 'Rédaction SEO'],
+  },
+  {
+    iconPath: `<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>`,
+    title: 'SEO local',
+    desc: "Google Business Profile, cohérence NAP, pages zones géographiques, avis clients. Indispensable si votre activité dépend d'une zone de chalandise.",
+    deliverables: ['Google Business', 'Pages locales', 'Citations'],
+  },
+  {
+    iconPath: `<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>`,
+    title: 'Netlinking & autorité',
+    desc: "Acquisition de backlinks de qualité, analyse du profil de liens, détection de liens toxiques. On renforce l'autorité de votre domaine.",
+    deliverables: ['Backlinks', 'Domain Authority', 'Désaveu'],
+    isNew: false,
+  },
+  {
+    iconPath: `<path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/>`,
+    title: 'GEO — Visibilité IA',
+    desc: "Optimisation pour les moteurs de recherche IA : ChatGPT, Perplexity, Google AI Mode. Positionnez votre marque dans les réponses générées par l'IA.",
+    deliverables: ['AI citations', 'Autorité topique', 'Suivi GEO'],
+    isNew: true,
+  },
+];
+
+const soRankFeatures = [
+  {
+    iconPath: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
+    title: 'Audits automatisés & priorisés',
+    desc: "Chaque recommandation est transformée en tâche actionnable, classée par impact.",
+  },
+  {
+    iconPath: `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>`,
+    title: 'Tracking Google + IA',
+    desc: "Suivez vos positions sur Google ET votre visibilité sur ChatGPT, Perplexity, Google AI Mode.",
+  },
+  {
+    iconPath: `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
+    title: 'Analyse concurrentielle temps réel',
+    desc: "Alertes automatiques quand vos concurrents publient du contenu ou gagnent des backlinks.",
+  },
+  {
+    iconPath: `<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/>`,
+    title: 'Génération de contenus SEO',
+    desc: "Articles optimisés pour Google et les moteurs IA, générés et publiables directement.",
+  },
+  {
+    iconPath: `<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/>`,
+    title: 'Rapports clients white-label',
+    desc: "Des rapports clairs et professionnels envoyés automatiquement chaque mois.",
+  },
+];
+
+const processSteps = [
+  { num: '01', title: 'Audit & diagnostic', desc: "On passe votre site au crible : technique, contenu, concurrence, backlinks. On identifie les freins et les opportunités.", livrable: "Rapport d'audit complet + recommandations priorisées", duration: '3-5 jours' },
+  { num: '02', title: 'Stratégie & plan d\'action', desc: "On définit les objectifs, les mots-clés cibles, le calendrier éditorial et les KPIs. Tout est cadré avant d'agir.", livrable: 'Plan SEO 6-12 mois + tableau de bord', duration: '1 semaine' },
+  { num: '03', title: 'Optimisations techniques', desc: "On corrige les problèmes techniques : vitesse, indexation, balisage, structure Hn, schema JSON-LD, maillage interne.", livrable: 'Site techniquement optimisé + checklist validée', duration: '1-2 semaines' },
+  { num: '04', title: 'Contenus & netlinking', desc: "On crée et optimise les contenus, on met en place la stratégie de liens. Chaque action est mesurée.", livrable: 'Contenus publiés + backlinks acquis', duration: 'En continu' },
+  { num: '05', title: 'Suivi & reporting', desc: "Chaque mois : rapport de performance, analyse des évolutions, ajustements stratégiques. Vous avez une visibilité totale.", livrable: 'Rapport mensuel + call de suivi', duration: 'Mensuel' },
+];
+
+const caseStudies = [
+  { client: 'Love at Me', type: 'E-commerce Shopify', desc: "SEO multilingue sur ~560 pages. Optimisation meta, JSON-LD, hreflang.", result: '+180% de trafic organique en 4 mois', accent: '#7C3AED' },
+  { client: 'Miroiterie VITOR', type: 'WordPress · Artisan local', desc: "SEO local + Google Ads. Structure, contenus, Google Business Profile.", result: '1ère page Google sur les mots-clés cibles en 3 mois', accent: '#2563EB' },
+  { client: 'Griffe Event Solutions', type: 'WordPress · Événementiel', desc: "Audit SEO complet + plan d'action. Quick wins + stratégie long terme.", result: '+120% de demandes de devis via le site', accent: '#059669' },
+];
+
+const faqItems = [
+  { q: "Combien de temps faut-il pour voir des résultats en SEO ?", a: "Le SEO est un investissement moyen-long terme. Les premiers signaux apparaissent généralement sous 4 à 8 semaines (améliorations techniques, indexation). Des résultats significatifs en termes de trafic et de positionnement se construisent sur 3 à 6 mois. La durée dépend de votre secteur, de la concurrence et de l'état initial de votre site.", open: true },
+  { q: "Quelle est la différence entre SEO et SEA (Google Ads) ?", a: "Le SEA (publicité) vous donne de la visibilité immédiate mais payante : dès que vous arrêtez de payer, vous disparaissez. Le SEO construit une visibilité organique durable — votre site se positionne naturellement sur Google. Les deux sont complémentaires : le SEA pour le court terme, le SEO pour le long terme." },
+  { q: "Est-ce que vous garantissez la première position sur Google ?", a: "Non. Personne ne peut garantir une position précise — Google évalue plus de 200 facteurs de classement. Ce qu'on garantit : une méthodologie structurée, des actions concrètes, un suivi transparent et des résultats mesurables. Méfiez-vous de quiconque vous promet la position #1." },
+  { q: "J'ai déjà un site, faut-il le refaire pour travailler le SEO ?", a: "Pas forcément. Dans beaucoup de cas, on peut optimiser votre site existant sans refonte : structure, contenus, balisage, performance, maillage interne. Une refonte n'est nécessaire que si votre site est techniquement obsolète ou bloque la progression SEO." },
+  { q: "C'est quoi le GEO (Generative Engine Optimization) ?", a: "Le GEO, c'est l'optimisation pour les moteurs de recherche IA — ChatGPT, Perplexity, Google AI Mode. Ces plateformes citent des sources web dans leurs réponses. Le GEO vise à ce que votre site soit choisi comme source fiable par ces IA. C'est le futur du référencement, et on l'intègre déjà dans notre approche." },
+  { q: "Comment se déroule le suivi mensuel ?", a: "Chaque mois, vous recevez un rapport détaillé : évolution des positions, trafic organique, actions réalisées, recommandations pour le mois suivant. On planifie un call de 30 minutes pour le parcourir ensemble et ajuster la stratégie si nécessaire." },
+  { q: "Travaillez-vous avec tous les CMS ?", a: "Oui. WordPress, Shopify, Webflow, Wix, PrestaShop, sites sur-mesure — on intervient sur tous les CMS. Les optimisations techniques s'adaptent à chaque plateforme." },
+  { q: "Quel budget prévoir pour une prestation SEO ?", a: "Le budget dépend de l'ampleur du projet : nombre de pages, niveau de concurrence, objectifs de positionnement, besoin en contenus. Chaque prestation est chiffrée sur-mesure après un audit initial. On vous envoie un devis détaillé avant tout engagement." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  }))
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Référencement SEO & GEO",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "DISAYNER",
+    "url": "https://disayner.com",
+    "areaServed": "FR",
+    "address": { "@type": "PostalAddress", "addressRegion": "Haute-Savoie", "addressCountry": "FR" }
+  },
+  "description": "Prestation SEO complète : audit technique, stratégie de contenus, netlinking, SEO local et visibilité IA (GEO). En partenariat avec SoRank.",
+  "serviceType": ["Audit SEO", "Optimisation technique", "Stratégie de contenus", "SEO local", "Netlinking", "GEO - Visibilité IA"]
+};
+---
+
+<Layout
+  title="Référencement SEO & GEO — Positionnement Google & visibilité IA | DISAYNER"
+  description="Prestation SEO complète : audit, optimisation technique, contenus, netlinking et visibilité IA (GEO). En partenariat avec SoRank. Résultats mesurables. Devis gratuit."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S1 — HERO                                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="sp-hero" aria-label="Référencement SEO & GEO">
+      <BgWords words={[
+        { text: 'SEO',     x: '-4%', y: '14%', rot: '-12deg', size: '9vw' },
+        { text: 'GOOGLE',  x: '62%', y: '6%',  rot: '8deg',   size: '6vw' },
+        { text: 'RANKING', x: '5%',  y: '70%', rot: '-5deg',  size: '6vw' },
+        { text: 'TRAFIC',  x: '68%', y: '76%', rot: '12deg',  size: '7vw' },
+      ]} />
+      <BgOrbs orbs={[
+        { type: 'filled', x: '85%', y: '20%', size: '300px', dur: '14s' },
+        { type: 'ring',   x: '10%', y: '80%', size: '200px', dur: '18s' },
+        { type: 'ring',   x: '50%', y: '10%', size: '150px', dur: '12s' },
+      ]} />
+
+      <div class="sp-hero-inner">
+        <!-- Left: Text -->
+        <div class="sp-hero-text">
+          <p class="sp-eyebrow">Référencement SEO</p>
+          <h1 class="sp-hero-title">
+            Rendez votre site <em class="font-serif">visible</em><br class="sp-br-lg" />là où vos clients vous cherchent.
+          </h1>
+          <p class="sp-hero-sub">
+            Stratégie SEO sur-mesure, optimisation technique, contenus performants et suivi de résultats. On positionne votre site sur Google — et sur les moteurs IA.
+          </p>
+          <div class="sp-hero-ctas">
+            <a href="/contact" class="btn-primary">
+              Demander un audit gratuit
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#resultats" class="btn-outline">Voir nos résultats</a>
+          </div>
+          <div class="sp-badges" role="list" aria-label="Points forts">
+            <span class="sp-badge" role="listitem">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              +200% trafic moyen
+            </span>
+            <span class="sp-badge-dot" aria-hidden="true">·</span>
+            <span class="sp-badge" role="listitem">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Partenaire SoRank
+            </span>
+            <span class="sp-badge-dot" aria-hidden="true">·</span>
+            <span class="sp-badge" role="listitem">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              SEO + GEO (IA)
+            </span>
+            <span class="sp-badge-dot" aria-hidden="true">·</span>
+            <span class="sp-badge" role="listitem">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Suivi mensuel
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Chart visual -->
+        <div class="sp-hero-visual" aria-hidden="true">
+          <div class="sp-chart-card">
+            <div class="sp-chart-header">
+              <span class="sp-chart-title">Trafic organique</span>
+              <span class="sp-chart-period">12 derniers mois</span>
+            </div>
+            <div class="sp-chart-badge">+200% <span>trafic</span></div>
+            <div class="sp-chart-wrap">
+              <svg viewBox="0 0 380 120" class="sp-chart-svg" role="img" aria-label="Courbe de croissance du trafic organique">
+                <defs>
+                  <linearGradient id="spSeoGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#2563EB" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <!-- Grid lines -->
+                <line x1="0" y1="30"  x2="380" y2="30"  stroke="#EEEEEA" stroke-width="1"/>
+                <line x1="0" y1="60"  x2="380" y2="60"  stroke="#EEEEEA" stroke-width="1"/>
+                <line x1="0" y1="90"  x2="380" y2="90"  stroke="#EEEEEA" stroke-width="1"/>
+                <!-- Fill -->
+                <path class="sp-chart-fill" d="M0,105 C40,102 70,95 120,82 S190,58 240,40 S310,18 380,8 V120 H0 Z" fill="url(#spSeoGrad)"/>
+                <!-- Line -->
+                <path class="sp-chart-line" d="M0,105 C40,102 70,95 120,82 S190,58 240,40 S310,18 380,8" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- Data points -->
+                <circle cx="120" cy="82" r="5" fill="#2563EB"/>
+                <circle cx="120" cy="82" r="2.5" fill="white"/>
+                <circle cx="240" cy="40" r="5" fill="#2563EB"/>
+                <circle cx="240" cy="40" r="2.5" fill="white"/>
+                <circle cx="380" cy="8"  r="6" fill="#2563EB" class="sp-pulse-dot"/>
+                <circle cx="380" cy="8"  r="3" fill="white"/>
+              </svg>
+            </div>
+            <div class="sp-chart-labels">
+              <span>Jan</span><span>Mar</span><span>Mai</span><span>Juil</span><span>Sep</span><span>Nov</span>
+            </div>
+            <!-- Mini stats row -->
+            <div class="sp-chart-stats">
+              <div class="sp-chart-stat">
+                <span class="sp-chart-stat-val">+47</span>
+                <span class="sp-chart-stat-lbl">Positions gagnées</span>
+              </div>
+              <div class="sp-chart-stat-sep"></div>
+              <div class="sp-chart-stat">
+                <span class="sp-chart-stat-val">3,2×</span>
+                <span class="sp-chart-stat-lbl">Taux de clics</span>
+              </div>
+              <div class="sp-chart-stat-sep"></div>
+              <div class="sp-chart-stat">
+                <span class="sp-chart-stat-val">12</span>
+                <span class="sp-chart-stat-lbl">Citations IA</span>
+              </div>
+            </div>
+          </div>
+          <!-- SoRank badge -->
+          <div class="sp-sorank-float">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Propulsé par <strong>SoRank</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S2 — LE PROBLÈME                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="sp-section sp-problem" aria-label="L'importance du SEO">
+      <div class="sp-container">
+        <div class="sp-section-header section-header-anim">
+          <p class="sp-eyebrow">Le constat</p>
+          <h2>Un beau site sans SEO, c'est une <em class="font-serif">vitrine dans une ruelle</em>.</h2>
+          <p class="sp-section-sub sp-problem-intro">
+            90% des expériences en ligne commencent par une recherche Google. Si votre site n'apparaît pas dans les premiers résultats, vos concurrents captent vos clients à votre place. Le SEO n'est pas un bonus — c'est la base de votre acquisition digitale.
+          </p>
+        </div>
+
+        <div class="sp-stats-row">
+          <div class="sp-stat-block sp-fade-in">
+            <span class="sp-stat-num" data-value="90" data-suffix="%">0%</span>
+            <p class="sp-stat-label">des expériences commencent sur un moteur de recherche</p>
+          </div>
+          <div class="sp-stat-block sp-fade-in" style="transition-delay:0.1s">
+            <span class="sp-stat-num" data-value="75" data-suffix="%">0%</span>
+            <p class="sp-stat-label">des utilisateurs ne dépassent jamais la page 1 de Google</p>
+          </div>
+          <div class="sp-stat-block sp-fade-in" style="transition-delay:0.2s">
+            <span class="sp-stat-num" data-value="0.63" data-suffix="%" data-decimal="true">0%</span>
+            <p class="sp-stat-label">des clics vont au-delà de la première page de résultats</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S3 — NOS SERVICES SEO                                             -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="sp-section sp-services" aria-label="Nos prestations SEO">
+      <div class="sp-container">
+        <div class="sp-section-header section-header-anim">
+          <p class="sp-eyebrow">Nos prestations</p>
+          <h2>Une approche SEO <em class="font-serif">complète et structurée</em>.</h2>
+          <p class="sp-section-sub">Du diagnostic à l'exécution, chaque action est priorisée pour maximiser votre retour sur investissement.</p>
+        </div>
+
+        <div class="sp-services-grid">
+          {seoServices.map((svc, i) => (
+            <article class="sp-svc-card sp-fade-in" style={`transition-delay:${i * 0.08}s`} aria-label={`Service : ${svc.title}`}>
+              <div class="sp-svc-header">
+                <div class="sp-svc-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={svc.iconPath} />
+                </div>
+                {svc.isNew && <span class="sp-new-badge">Nouveau</span>}
+              </div>
+              <h3 class="sp-svc-title">{svc.title}</h3>
+              <p class="sp-svc-desc">{svc.desc}</p>
+              <div class="sp-svc-deliverables">
+                {svc.deliverables.map(d => <span class="sp-tag">{d}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S4 — SORANK PARTNERSHIP                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="sp-section sp-sorank" aria-label="Partenariat SoRank">
+      <BgDots pulseCount={5} variant="accent" />
+      <div class="sp-container sp-sorank-inner" style="position:relative;z-index:1;">
+        <!-- Left: Dashboard mockup -->
+        <div class="sp-sorank-visual sp-fade-in" aria-hidden="true">
+          <div class="sp-dashboard">
+            <div class="sp-dashboard-header">
+              <div class="sp-dashboard-logo">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                <span>SoRank</span>
+              </div>
+              <div class="sp-dashboard-dots">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <!-- KPI row -->
+            <div class="sp-dashboard-kpis">
+              <div class="sp-kpi">
+                <span class="sp-kpi-val">42</span>
+                <span class="sp-kpi-lbl">Domain Authority</span>
+                <span class="sp-kpi-trend sp-kpi-trend--up">↑ +5</span>
+              </div>
+              <div class="sp-kpi">
+                <span class="sp-kpi-val">127</span>
+                <span class="sp-kpi-lbl">Mots-clés suivis</span>
+                <span class="sp-kpi-trend sp-kpi-trend--up">↑ +18</span>
+              </div>
+              <div class="sp-kpi sp-kpi--accent">
+                <span class="sp-kpi-val">14</span>
+                <span class="sp-kpi-lbl">Citations IA</span>
+                <span class="sp-kpi-trend sp-kpi-trend--up">↑ +6</span>
+              </div>
+            </div>
+            <!-- Mini chart -->
+            <div class="sp-dashboard-chart">
+              <div class="sp-dc-label">Positions Top 10</div>
+              <svg viewBox="0 0 240 60" style="width:100%">
+                <defs>
+                  <linearGradient id="spDashGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#2563EB" stop-opacity="0.12"/>
+                    <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,50 C30,48 50,44 80,36 S130,22 170,14 S210,8 240,4 V60 H0 Z" fill="url(#spDashGrad)"/>
+                <path d="M0,50 C30,48 50,44 80,36 S130,22 170,14 S210,8 240,4" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="240" cy="4" r="4" fill="#2563EB"/>
+                <circle cx="240" cy="4" r="2" fill="white"/>
+              </svg>
+            </div>
+            <!-- Task checklist -->
+            <div class="sp-dashboard-tasks">
+              <div class="sp-dc-label">Tâches prioritaires</div>
+              <div class="sp-task sp-task--done"><span class="sp-task-check">✓</span><span>Corriger les balises H1 dupliquées</span><span class="sp-task-impact sp-task-impact--high">Élevé</span></div>
+              <div class="sp-task sp-task--done"><span class="sp-task-check">✓</span><span>Optimiser les images &gt;500kb</span><span class="sp-task-impact sp-task-impact--high">Élevé</span></div>
+              <div class="sp-task"><span class="sp-task-check sp-task-check--empty"></span><span>Ajouter schema JSON-LD FAQ</span><span class="sp-task-impact sp-task-impact--medium">Moyen</span></div>
+              <div class="sp-task"><span class="sp-task-check sp-task-check--empty"></span><span>Rédiger 3 articles cibles</span><span class="sp-task-impact sp-task-impact--medium">Moyen</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="sp-sorank-content">
+          <div class="sp-sorank-badge-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            En partenariat avec SoRank
+          </div>
+          <div class="sp-section-header-left section-header-anim">
+            <p class="sp-eyebrow">Notre outil</p>
+            <h2>Propulsé par <em class="font-serif">SoRank</em>, la plateforme SEO & GEO.</h2>
+          </div>
+          <p class="sp-sorank-intro">
+            On utilise SoRank comme outil principal pour piloter votre stratégie SEO. Audits automatisés, tracking IA, analyse concurrentielle — tout est centralisé.
+          </p>
+          <div class="sp-sorank-features">
+            {soRankFeatures.map((f, i) => (
+              <div class="sp-sorank-feature sp-fade-in" style={`transition-delay:${i * 0.07}s`}>
+                <div class="sp-sorank-feat-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={f.iconPath} />
+                </div>
+                <div>
+                  <strong class="sp-sorank-feat-title">{f.title}</strong>
+                  <p class="sp-sorank-feat-desc">{f.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <a href="https://www.sorank.com" target="_blank" rel="noopener noreferrer" class="sp-sorank-link">
+            En savoir plus sur SoRank
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S5 — PROCESS SEO                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="sp-section sp-process" aria-label="Notre processus SEO">
+      <div class="sp-container">
+        <div class="sp-section-header section-header-anim">
+          <p class="sp-eyebrow">Notre méthode</p>
+          <h2>Un process SEO en <em class="font-serif">5 étapes claires</em>.</h2>
+          <p class="sp-section-sub">Pas de boîte noire. Vous savez exactement ce qu'on fait, pourquoi et quels résultats attendre.</p>
+        </div>
+
+        <div class="sp-timeline">
+          <div class="sp-timeline-line" aria-hidden="true"></div>
+          {processSteps.map((step, i) => (
+            <div class="sp-step sp-fade-in" style={`transition-delay:${i * 0.1}s`}>
+              <div class="sp-step-circle" aria-hidden="true"><span>{step.num}</span></div>
+              <article class="sp-step-card">
+                <div class="sp-step-header">
+                  <h3 class="sp-step-title">{step.title}</h3>
+                  <span class="sp-step-duration">{step.duration}</span>
+                </div>
+                <p class="sp-step-desc">{step.desc}</p>
+                <div class="sp-step-livrable">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span>{step.livrable}</span>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S6 — SEO vs GEO                                                   -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="sp-section sp-geo" aria-label="SEO classique vs GEO visibilité IA">
+      <div class="sp-container">
+        <div class="sp-section-header section-header-anim">
+          <p class="sp-eyebrow">SEO + GEO</p>
+          <h2>Google ne suffit plus. L'IA change <em class="font-serif">les règles du jeu</em>.</h2>
+        </div>
+
+        <div class="sp-geo-grid">
+          <!-- SEO column -->
+          <div class="sp-geo-col sp-fade-in">
+            <div class="sp-geo-col-header">
+              <div class="sp-geo-icon sp-geo-icon--google" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              </div>
+              <h3>SEO — Google & Bing</h3>
+            </div>
+            <ul class="sp-geo-list" role="list">
+              <li><span class="sp-geo-check">✓</span> Positionnement dans les résultats organiques</li>
+              <li><span class="sp-geo-check">✓</span> Optimisation technique & contenu</li>
+              <li><span class="sp-geo-check">✓</span> Backlinks & autorité de domaine</li>
+              <li><span class="sp-geo-check">✓</span> Résultats mesurables (positions, trafic, conversions)</li>
+              <li><span class="sp-geo-check">✓</span> ROI long terme</li>
+            </ul>
+          </div>
+
+          <!-- GEO column -->
+          <div class="sp-geo-col sp-geo-col--accent sp-fade-in" style="transition-delay:0.1s">
+            <div class="sp-geo-col-header">
+              <div class="sp-geo-icon sp-geo-icon--ia" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg>
+              </div>
+              <h3>GEO — Visibilité IA</h3>
+              <span class="sp-new-badge">Nouveau</span>
+            </div>
+            <ul class="sp-geo-list" role="list">
+              <li><span class="sp-geo-check">✓</span> Être cité par ChatGPT, Perplexity, Google AI Mode</li>
+              <li><span class="sp-geo-check">✓</span> Autorité topique & couverture sémantique</li>
+              <li><span class="sp-geo-check">✓</span> Structure de contenu optimisée pour l'extraction IA</li>
+              <li><span class="sp-geo-check">✓</span> Monitoring des citations IA en temps réel</li>
+              <li><span class="sp-geo-check">✓</span> L'avenir de la recherche</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sp-geo-conclusion sp-fade-in">
+          <p>Chez DISAYNER, on travaille les deux. Grâce à notre partenariat avec SoRank, on suit votre visibilité sur Google ET sur les plateformes IA — pour une stratégie complète et future-proof.</p>
+          <a href="/contact" class="btn-primary">
+            Discuter de votre stratégie SEO + GEO
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S7 — RÉSULTATS                                                     -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="sp-section sp-results" id="resultats" aria-label="Nos résultats SEO">
+      <div class="sp-container">
+        <div class="sp-section-header section-header-anim">
+          <p class="sp-eyebrow">Nos résultats</p>
+          <h2>Des chiffres qui <em class="font-serif">parlent d'eux-mêmes</em>.</h2>
+        </div>
+
+        <div class="sp-metrics-grid">
+          <div class="sp-metric sp-fade-in">
+            <span class="sp-metric-num">+200%</span>
+            <p class="sp-metric-label">Trafic organique moyen</p>
+          </div>
+          <div class="sp-metric sp-fade-in" style="transition-delay:0.1s">
+            <span class="sp-metric-num">+50</span>
+            <p class="sp-metric-label">Projets SEO réalisés</p>
+          </div>
+          <div class="sp-metric sp-fade-in" style="transition-delay:0.2s">
+            <span class="sp-metric-num">98</span>
+            <p class="sp-metric-label">Lighthouse Performance moyenne</p>
+          </div>
+          <div class="sp-metric sp-fade-in" style="transition-delay:0.3s">
+            <span class="sp-metric-num">Top 3</span>
+            <p class="sp-metric-label">Positions atteintes sur mots-clés cibles</p>
+          </div>
+        </div>
+
+        <div class="sp-cases">
+          {caseStudies.map((c, i) => (
+            <div class="sp-case-card sp-fade-in" style={`transition-delay:${i * 0.1}s`}>
+              <div class="sp-case-dot" style={`background:${c.accent};`} aria-hidden="true"></div>
+              <div class="sp-case-info">
+                <div class="sp-case-meta">
+                  <strong class="sp-case-client">{c.client}</strong>
+                  <span class="sp-case-type">{c.type}</span>
+                </div>
+                <p class="sp-case-desc">{c.desc}</p>
+                <p class="sp-case-result" style={`color:${c.accent};`}>→ {c.result}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S8 — POUR QUI                                                     -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="sp-section sp-forwhom" aria-label="Pour qui est le SEO">
+      <div class="sp-container">
+        <div class="sp-section-header section-header-anim">
+          <p class="sp-eyebrow">Pour qui</p>
+          <h2>Le SEO est fait pour vous <em class="font-serif">si…</em></h2>
+        </div>
+
+        <div class="sp-forwhom-grid">
+          <div class="sp-forwhom-col sp-fade-in">
+            <h3 class="sp-forwhom-title sp-forwhom-title--yes">Le SEO est pour vous si :</h3>
+            <ul class="sp-forwhom-list" role="list">
+              <li class="sp-forwhom-item">
+                <span class="sp-fw-icon sp-fw-icon--yes" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                Vous voulez attirer des clients via Google sans payer de pub
+              </li>
+              <li class="sp-forwhom-item">
+                <span class="sp-fw-icon sp-fw-icon--yes" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                Vous avez un site web mais il ne génère pas de trafic
+              </li>
+              <li class="sp-forwhom-item">
+                <span class="sp-fw-icon sp-fw-icon--yes" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                Vos concurrents apparaissent avant vous sur Google
+              </li>
+              <li class="sp-forwhom-item">
+                <span class="sp-fw-icon sp-fw-icon--yes" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                Vous voulez construire une visibilité durable (pas du one-shot)
+              </li>
+              <li class="sp-forwhom-item">
+                <span class="sp-fw-icon sp-fw-icon--yes" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                Vous êtes prêt à investir sur 3-6 mois minimum
+              </li>
+            </ul>
+          </div>
+
+          <div class="sp-forwhom-col sp-fade-in" style="transition-delay:0.1s">
+            <h3 class="sp-forwhom-title sp-forwhom-title--no">Le SEO n'est PAS pour vous si :</h3>
+            <ul class="sp-forwhom-list" role="list">
+              <li class="sp-forwhom-item sp-forwhom-item--no">
+                <span class="sp-fw-icon sp-fw-icon--no" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                Vous cherchez des résultats immédiats (&lt; 1 mois)
+              </li>
+              <li class="sp-forwhom-item sp-forwhom-item--no">
+                <span class="sp-fw-icon sp-fw-icon--no" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                Vous n'avez pas encore de site web (commencez par la <a href="/creation-site" class="sp-inline-link">création</a>)
+              </li>
+              <li class="sp-forwhom-item sp-forwhom-item--no">
+                <span class="sp-fw-icon sp-fw-icon--no" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                Vous n'êtes pas prêt à investir dans du contenu
+              </li>
+              <li class="sp-forwhom-item sp-forwhom-item--no">
+                <span class="sp-fw-icon sp-fw-icon--no" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                Vous voulez une solution "magique" sans effort
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S9 — TÉMOIGNAGES                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <Testimonials />
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S10 — FAQ                                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="sp-section sp-faq" aria-label="Questions fréquentes sur le référencement SEO">
+      <div class="sp-container sp-faq-inner">
+        <div class="sp-section-header section-header-anim">
+          <p class="sp-eyebrow">FAQ</p>
+          <h2>Vos questions sur le <em class="font-serif">référencement SEO</em>.</h2>
+        </div>
+
+        <div class="sp-faq-list" role="list">
+          {faqItems.map((item, i) => (
+            <details class="sp-faq-item sp-fade-in" open={item.open} style={`transition-delay:${i * 0.04}s`} role="listitem">
+              <summary class="sp-faq-question">
+                <span>{item.q}</span>
+                <span class="sp-faq-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </span>
+              </summary>
+              <div class="sp-faq-answer"><p>{item.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S11 — CTA FINAL                                                    -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="sp-cta-section" aria-label="Démarrer votre projet SEO">
+      <div class="sp-cta-dotgrid" aria-hidden="true"></div>
+      <div class="sp-cta-shape sp-cta-shape-1" aria-hidden="true"></div>
+      <div class="sp-cta-shape sp-cta-shape-2" aria-hidden="true"></div>
+
+      <div class="sp-cta-inner">
+        <p class="sp-cta-tag">Lancez votre stratégie SEO</p>
+        <h2 class="sp-cta-title">
+          Prêt à <em class="font-serif">booster votre visibilité</em>&nbsp;?
+        </h2>
+        <p class="sp-cta-sub">Un audit SEO gratuit de votre site pour identifier les opportunités.<br />Sans engagement.</p>
+        <div class="sp-cta-actions">
+          <a href="/contact" class="sp-btn-white">
+            Demander un audit gratuit
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="mailto:contact@disayner.com" class="sp-btn-ghost">Envoyer un message</a>
+        </div>
+        <p class="sp-cta-reassurance">Réponse sous 24h · Audit offert · Basé en Haute-Savoie</p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ─── Layout helpers ──────────────────────────────────────────────────── */
+  .sp-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .sp-section {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sp-eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .sp-section-header {
+    max-width: 680px;
+    margin: 0 auto 4rem;
+    text-align: center;
+  }
+
+  .sp-section-header h2,
+  .sp-section-header-left h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin-bottom: 1rem;
+  }
+
+  .sp-section-header h2 em,
+  .sp-section-header-left h2 em { font-style: italic; color: var(--color-accent); }
+
+  .sp-section-header-left { margin-bottom: 2.5rem; }
+
+  .sp-section-sub {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .sp-fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .sp-fade-in.visible { opacity: 1; transform: none; }
+
+  .sp-tag {
+    display: inline-flex;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.275rem 0.7rem;
+    background: rgba(37,99,235,0.07);
+    color: var(--color-accent);
+    border: 1px solid rgba(37,99,235,0.15);
+    border-radius: 100px;
+  }
+
+  .sp-new-badge {
+    display: inline-flex;
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    background: rgba(22,163,74,0.1);
+    color: #16a34a;
+    border: 1px solid rgba(22,163,74,0.2);
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── S1: HERO ────────────────────────────────────────────────────────── */
+  .sp-hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 9rem 2rem 5rem;
+    overflow: hidden;
+    background: var(--color-background);
+  }
+
+  .sp-hero-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .sp-hero-text { display: flex; flex-direction: column; gap: 1.75rem; }
+
+  .sp-hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+  }
+
+  .sp-hero-title em {
+    font-style: italic;
+    color: var(--color-accent);
+    font-weight: 400;
+    font-size: 1.05em;
+    letter-spacing: -0.02em;
+  }
+
+  .sp-hero-sub {
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 540px;
+  }
+
+  .sp-hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .sp-badges {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .sp-badge svg { color: var(--color-accent); }
+  .sp-badge-dot { color: var(--color-border); font-size: 1.25rem; line-height: 1; }
+  .sp-br-lg { display: block; }
+
+  /* Chart card */
+  .sp-hero-visual { position: relative; }
+
+  .sp-chart-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+  }
+
+  .sp-chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .sp-chart-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .sp-chart-period {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+  }
+
+  .sp-chart-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: -0.04em;
+    margin-bottom: 0.75rem;
+  }
+
+  .sp-chart-badge span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+  }
+
+  .sp-chart-wrap { position: relative; margin-bottom: 0.5rem; }
+
+  .sp-chart-svg { width: 100%; display: block; }
+
+  .sp-chart-fill { opacity: 0; animation: sp-fill-in 1.5s ease-out 0.4s forwards; }
+  .sp-chart-line {
+    stroke-dasharray: 520;
+    stroke-dashoffset: 520;
+    animation: sp-line-draw 1.5s ease-out 0.4s forwards;
+  }
+
+  @keyframes sp-line-draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes sp-fill-in {
+    to { opacity: 1; }
+  }
+
+  .sp-pulse-dot { animation: sp-pulse 2s ease-in-out infinite 2s; }
+
+  @keyframes sp-pulse {
+    0%, 100% { r: 6; opacity: 1; }
+    50% { r: 9; opacity: 0.7; }
+  }
+
+  .sp-chart-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6875rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+    padding: 0 2px;
+  }
+
+  .sp-chart-stats {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+  }
+
+  .sp-chart-stat { flex: 1; text-align: center; }
+
+  .sp-chart-stat-val {
+    display: block;
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: -0.03em;
+  }
+
+  .sp-chart-stat-lbl {
+    display: block;
+    font-size: 0.6875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.3;
+    margin-top: 0.15rem;
+  }
+
+  .sp-chart-stat-sep {
+    width: 1px;
+    height: 32px;
+    background: var(--color-border);
+    flex-shrink: 0;
+  }
+
+  /* SoRank floating badge */
+  .sp-sorank-float {
+    position: absolute;
+    bottom: -12px;
+    left: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: white;
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 100px;
+    padding: 0.4rem 0.875rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    animation: sp-badge-float 4s ease-in-out infinite;
+  }
+
+  .sp-sorank-float strong { color: var(--color-accent); font-weight: 700; }
+
+  @keyframes sp-badge-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  /* ─── S2: PROBLEM ─────────────────────────────────────────────────────── */
+  .sp-problem {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sp-problem-intro {
+    margin-top: 1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sp-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .sp-stat-block {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-right: 1px solid var(--color-border);
+    transition: background 0.2s ease;
+  }
+
+  .sp-stat-block:last-child { border-right: none; }
+  .sp-stat-block:hover { background: rgba(37,99,235,0.02); }
+
+  .sp-stat-num {
+    display: block;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .sp-stat-label {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ─── S3: SERVICES ────────────────────────────────────────────────────── */
+  .sp-services { background: var(--color-background); }
+
+  .sp-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .sp-svc-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .sp-svc-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .sp-svc-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(0,0,0,0.08); border-color: rgba(37,99,235,0.2); }
+  .sp-svc-card:hover::before { transform: scaleX(1); }
+
+  .sp-svc-header { display: flex; align-items: center; justify-content: space-between; }
+
+  .sp-svc-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .sp-svc-title { font-size: 1.0625rem; font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.02em; }
+
+  .sp-svc-desc { font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.65; flex: 1; }
+
+  .sp-svc-deliverables { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+  /* ─── S4: SORANK ──────────────────────────────────────────────────────── */
+  .sp-sorank {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sp-sorank-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .sp-sorank-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    background: var(--color-accent-soft);
+    border: 1px solid rgba(37,99,235,0.2);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+  }
+
+  .sp-sorank-intro {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  .sp-sorank-features { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 2rem; }
+
+  .sp-sorank-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 0.875rem 1rem;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+  }
+
+  .sp-sorank-feature:hover { background: rgba(37,99,235,0.04); }
+
+  .sp-sorank-feat-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .sp-sorank-feat-title { display: block; font-size: 0.9375rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.2rem; }
+
+  .sp-sorank-feat-desc { font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.55; }
+
+  .sp-sorank-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .sp-sorank-link:hover { opacity: 0.7; text-decoration: underline; }
+
+  /* Dashboard mockup */
+  .sp-dashboard {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+  }
+
+  .sp-dashboard-header {
+    padding: 12px 16px;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sp-dashboard-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: 0.05em;
+  }
+
+  .sp-dashboard-dots { display: flex; gap: 4px; }
+  .sp-dashboard-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--color-border); }
+
+  .sp-dashboard-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sp-kpi {
+    padding: 12px;
+    border-right: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .sp-kpi:last-child { border-right: none; }
+  .sp-kpi--accent { background: rgba(37,99,235,0.03); }
+
+  .sp-kpi-val { display: block; font-size: 1.375rem; font-weight: 800; color: var(--color-accent); letter-spacing: -0.03em; line-height: 1.2; }
+  .sp-kpi-lbl { display: block; font-size: 0.6rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+  .sp-kpi-trend { display: inline-block; font-size: 0.6875rem; font-weight: 700; margin-top: 3px; }
+  .sp-kpi-trend--up { color: #16a34a; }
+
+  .sp-dashboard-chart { padding: 12px 16px; border-bottom: 1px solid var(--color-border); }
+  .sp-dc-label { font-size: 0.6875rem; font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+
+  .sp-dashboard-tasks { padding: 12px 16px; }
+
+  .sp-task {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .sp-task:last-child { border-bottom: none; }
+  .sp-task--done { color: var(--color-text-primary); }
+  .sp-task--done span:nth-child(2) { text-decoration: line-through; opacity: 0.5; }
+
+  .sp-task-check {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #22c55e;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+
+  .sp-task-check--empty { background: transparent; border: 1.5px solid var(--color-border); }
+
+  .sp-task-impact {
+    margin-left: auto;
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .sp-task-impact--high { background: rgba(239,68,68,0.1); color: #dc2626; }
+  .sp-task-impact--medium { background: rgba(234,179,8,0.1); color: #b45309; }
+
+  /* ─── S5: PROCESS ─────────────────────────────────────────────────────── */
+  .sp-process { background: var(--color-background); }
+
+  .sp-timeline {
+    position: relative;
+    max-width: 780px;
+    margin: 0 auto;
+    padding-left: 3rem;
+  }
+
+  .sp-timeline-line {
+    position: absolute;
+    left: 15px;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: var(--color-border);
+    border-radius: 1px;
+  }
+
+  .sp-step { display: flex; gap: 1.5rem; margin-bottom: 2rem; align-items: flex-start; position: relative; }
+  .sp-step:last-child { margin-bottom: 0; }
+
+  .sp-step-circle {
+    position: absolute;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    z-index: 1;
+    margin-top: 4px;
+  }
+
+  .sp-step-card {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1.375rem 1.5rem;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .sp-step-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.06); border-color: rgba(37,99,235,0.25); }
+
+  .sp-step-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+
+  .sp-step-title { font-size: 1rem; font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.01em; }
+
+  .sp-step-duration {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    background: var(--color-accent-soft);
+    border: 1px solid rgba(37,99,235,0.15);
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .sp-step-desc { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.65; margin-bottom: 0.75rem; }
+
+  .sp-step-livrable {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    font-size: 0.8125rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    padding-top: 0.625rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sp-step-livrable svg { flex-shrink: 0; margin-top: 1px; }
+
+  /* ─── S6: SEO vs GEO ──────────────────────────────────────────────────── */
+  .sp-geo { background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+
+  .sp-geo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  .sp-geo-col {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 2rem;
+  }
+
+  .sp-geo-col--accent {
+    background: var(--color-accent-soft);
+    border-color: rgba(37,99,235,0.2);
+  }
+
+  .sp-geo-col-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .sp-geo-col-header h3 { font-size: 1.0625rem; font-weight: 700; color: var(--color-text-primary); }
+
+  .sp-geo-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .sp-geo-icon--google { background: var(--color-surface); color: var(--color-text-secondary); }
+  .sp-geo-icon--ia { background: rgba(37,99,235,0.12); color: var(--color-accent); }
+
+  .sp-geo-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .sp-geo-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .sp-geo-check {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(37,99,235,0.1);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .sp-geo-conclusion {
+    margin-top: 2.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .sp-geo-conclusion p {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 700px;
+  }
+
+  /* ─── S7: RESULTS ─────────────────────────────────────────────────────── */
+  .sp-results { background: var(--color-background); }
+
+  .sp-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+  }
+
+  .sp-metric {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-right: 1px solid var(--color-border);
+    transition: background 0.2s ease;
+  }
+
+  .sp-metric:last-child { border-right: none; }
+  .sp-metric:hover { background: rgba(37,99,235,0.02); }
+
+  .sp-metric-num {
+    display: block;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 0.625rem;
+  }
+
+  .sp-metric-label { font-size: 0.8125rem; color: var(--color-text-secondary); line-height: 1.4; font-weight: 500; }
+
+  .sp-cases { display: flex; flex-direction: column; gap: 1rem; }
+
+  .sp-case-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .sp-case-card:hover { transform: translateX(4px); box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+
+  .sp-case-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+
+  .sp-case-info { flex: 1; }
+
+  .sp-case-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.375rem; flex-wrap: wrap; }
+
+  .sp-case-client { font-size: 1rem; font-weight: 700; color: var(--color-text-primary); }
+
+  .sp-case-type { font-size: 0.75rem; color: var(--color-text-secondary); background: var(--color-surface); border: 1px solid var(--color-border); padding: 0.2rem 0.6rem; border-radius: 100px; }
+
+  .sp-case-desc { font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 0.375rem; }
+
+  .sp-case-result { font-size: 0.875rem; font-weight: 700; }
+
+  /* ─── S8: FOR WHOM ────────────────────────────────────────────────────── */
+  .sp-forwhom { background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+
+  .sp-forwhom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+
+  .sp-forwhom-col { background: white; border: 1px solid var(--color-border); border-radius: 20px; padding: 2rem; }
+
+  .sp-forwhom-title { font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; padding-bottom: 0.875rem; border-bottom: 1px solid var(--color-border); }
+
+  .sp-forwhom-title--yes { color: #16a34a; }
+  .sp-forwhom-title--no { color: var(--color-text-secondary); }
+
+  .sp-forwhom-list { list-style: none; display: flex; flex-direction: column; gap: 0.875rem; }
+
+  .sp-forwhom-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .sp-forwhom-item--no { opacity: 0.75; }
+
+  .sp-fw-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .sp-fw-icon--yes { background: rgba(34,197,94,0.12); }
+  .sp-fw-icon--no  { background: rgba(239,68,68,0.1); }
+
+  .sp-inline-link { color: var(--color-accent); text-decoration: underline; font-weight: 500; }
+
+  /* ─── S10: FAQ ────────────────────────────────────────────────────────── */
+  .sp-faq { background: var(--color-background); }
+
+  .sp-faq-inner { max-width: 780px; margin: 0 auto; }
+
+  .sp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+  }
+
+  .sp-faq-item { border-bottom: 1px solid var(--color-border); }
+  .sp-faq-item:last-child { border-bottom: none; }
+
+  .sp-faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    list-style: none;
+    transition: background 0.2s ease;
+    user-select: none;
+  }
+
+  .sp-faq-question::-webkit-details-marker { display: none; }
+  .sp-faq-question:hover { background: rgba(37,99,235,0.03); }
+
+  .sp-faq-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background 0.2s ease;
+  }
+
+  details[open] .sp-faq-icon { transform: rotate(45deg); background: var(--color-accent); color: white; }
+
+  .sp-faq-answer { padding: 0 1.5rem 1.25rem; }
+  .sp-faq-answer p { font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.75; }
+
+  /* ─── S11: CTA ────────────────────────────────────────────────────────── */
+  .sp-cta-section {
+    position: relative;
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%);
+    padding: 7rem 2rem;
+    min-height: 52vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .sp-cta-dotgrid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .sp-cta-shape { position: absolute; border-radius: 50%; pointer-events: none; }
+
+  .sp-cta-shape-1 { width: 500px; height: 500px; background: rgba(255,255,255,0.05); top: -150px; right: -100px; animation: sp-float 12s ease-in-out infinite; }
+  .sp-cta-shape-2 { width: 300px; height: 300px; background: rgba(255,255,255,0.04); bottom: -80px; left: -60px; animation: sp-float 15s ease-in-out infinite reverse; }
+
+  @keyframes sp-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .sp-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .sp-cta-tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+  .sp-cta-title { font-size: clamp(2.25rem, 5.5vw, 4rem); font-weight: 700; color: white; letter-spacing: -0.03em; line-height: 1.1; }
+
+  .sp-cta-title em { font-style: italic; font-family: var(--font-serif); font-weight: 400; }
+
+  .sp-cta-sub { font-size: 1.0625rem; color: rgba(255,255,255,0.75); line-height: 1.65; }
+
+  .sp-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+
+  .sp-btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    color: var(--color-accent);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .sp-btn-white:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+
+  .sp-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: rgba(255,255,255,0.9);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .sp-btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  .sp-cta-reassurance { font-size: 0.8125rem; color: rgba(255,255,255,0.5); letter-spacing: 0.02em; }
+
+  /* ─── Responsive ──────────────────────────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .sp-services-grid { grid-template-columns: repeat(2, 1fr); }
+    .sp-sorank-inner { grid-template-columns: 1fr; }
+    .sp-sorank-visual { order: -1; }
+    .sp-metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .sp-section { padding: 64px 0; }
+    .sp-hero { padding: 8rem 1.5rem 4rem; }
+    .sp-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .sp-hero-visual { display: none; }
+    .sp-br-lg { display: none; }
+    .sp-stats-row { grid-template-columns: 1fr; }
+    .sp-stat-block { border-right: none; border-bottom: 1px solid var(--color-border); }
+    .sp-stat-block:last-child { border-bottom: none; }
+    .sp-geo-grid { grid-template-columns: 1fr; }
+    .sp-forwhom-grid { grid-template-columns: 1fr; }
+    .sp-metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .sp-metric:nth-child(2) { border-right: none; }
+  }
+
+  @media (max-width: 640px) {
+    .sp-container { padding: 0 1.25rem; }
+    .sp-services-grid { grid-template-columns: 1fr; }
+    .sp-hero-ctas { flex-direction: column; }
+    .sp-hero-ctas .btn-primary,
+    .sp-hero-ctas .btn-outline { justify-content: center; }
+    .sp-timeline { padding-left: 2.5rem; }
+    .sp-metrics-grid { grid-template-columns: 1fr; }
+    .sp-metric { border-right: none; border-bottom: 1px solid var(--color-border); }
+    .sp-metric:last-child { border-bottom: none; }
+    .sp-badges { gap: 0.35rem; }
+    .sp-badge-dot { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sp-fade-in { opacity: 1; transform: none; transition: none; }
+    .sp-chart-line { animation: none; stroke-dashoffset: 0; }
+    .sp-chart-fill { animation: none; opacity: 1; }
+    .sp-pulse-dot { animation: none; }
+    .sp-sorank-float,
+    .sp-cta-shape-1, .sp-cta-shape-2 { animation: none; }
+  }
+</style>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.sp-fade-in').forEach(el => observer.observe(el));
+
+  // Stat counters (S2)
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll<HTMLElement>('.sp-stat-num').forEach((el) => {
+    const target = parseFloat(el.dataset.value ?? '0');
+    const suffix = el.dataset.suffix ?? '';
+    const isDecimal = el.dataset.decimal === 'true';
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target,
+      duration: 2,
+      ease: 'power2.out',
+      onUpdate() {
+        el.textContent = isDecimal ? obj.val.toFixed(2) + suffix : Math.round(obj.val) + suffix;
+      },
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    });
+  });
+</script>
