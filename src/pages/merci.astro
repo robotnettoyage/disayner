@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout
+  title="Message envoyé — Merci ! | DISAYNER"
+  description="Votre message a bien été envoyé. On revient vers vous sous 24 heures."
+>
+  <Fragment slot="head">
+    <link rel="canonical" href="https://disayner.com/merci" />
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content" class="merci-main" aria-label="Confirmation d'envoi">
+    <div class="merci-inner">
+
+      <div class="merci-icon" aria-hidden="true">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+
+      <div class="merci-content">
+        <p class="merci-eyebrow">Confirmation</p>
+        <h1 class="merci-title">Message envoyé&nbsp;!</h1>
+        <p class="merci-sub">Merci pour votre message. On revient vers vous sous 24 heures.</p>
+      </div>
+
+      <div class="merci-divider" aria-hidden="true"></div>
+
+      <p class="merci-note">
+        En attendant, n'hésitez pas à consulter nos réalisations
+        ou à en apprendre davantage sur nos services.
+      </p>
+
+      <div class="merci-links">
+        <a href="/" class="merci-btn-primary">
+          Retour à l'accueil
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/#realisations" class="merci-btn-outline">
+          Voir nos réalisations
+        </a>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .merci-main {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 2rem 4rem;
+    background: var(--color-background);
+  }
+
+  .merci-inner {
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .merci-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: merci-scale-in 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: 0.1s;
+  }
+
+  @keyframes merci-scale-in {
+    from { transform: scale(0.4); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  .merci-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    animation: merci-fade-up 0.5s ease both;
+    animation-delay: 0.3s;
+  }
+
+  .merci-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .merci-title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+  }
+
+  .merci-sub {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-top: 0.25rem;
+  }
+
+  .merci-divider {
+    width: 48px;
+    height: 1.5px;
+    background: var(--color-border);
+    border-radius: 2px;
+    animation: merci-fade-up 0.5s ease both;
+    animation-delay: 0.4s;
+  }
+
+  .merci-note {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    max-width: 400px;
+    animation: merci-fade-up 0.5s ease both;
+    animation-delay: 0.45s;
+  }
+
+  .merci-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: merci-fade-up 0.5s ease both;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes merci-fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .merci-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-accent);
+    color: white;
+    padding: 0.875rem 1.75rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .merci-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+  }
+
+  .merci-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--color-text-primary);
+    padding: 0.875rem 1.75rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    border: 1.5px solid var(--color-border);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .merci-btn-outline:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    .merci-links { flex-direction: column; width: 100%; }
+    .merci-btn-primary, .merci-btn-outline { justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .merci-icon, .merci-content, .merci-divider, .merci-note, .merci-links {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
