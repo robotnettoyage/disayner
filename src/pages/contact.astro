@@ -104,8 +104,7 @@ const contactSchema = {
           <div class="ct-form-card ct-fade-in">
             <h2 class="ct-form-title">Envoyez-nous un message</h2>
 
-            <!-- TODO: Replace VOTRE_ID_ICI with your Formspree form ID from https://formspree.io -->
-            <form action="https://formspree.io/f/VOTRE_ID_ICI" method="POST" class="contact-form" novalidate>
+            <form action="https://formspree.io/f/xpqodbyv" method="POST" class="contact-form" novalidate>
 
               <div class="form-row">
                 <div class="form-group">
@@ -811,8 +810,7 @@ const contactSchema = {
 </style>
 
 <script is:inline>
-  // Cal.com inline embed
-  // TODO: Replace "VOTRE_USERNAME" with your Cal.com username/event-slug
+  // Cal.eu inline embed
   (function (C, A, L) {
     let p = function (a, ar) { a.q.push(ar); };
     let d = C.document;
@@ -838,13 +836,13 @@ const contactSchema = {
       }
       p(cal, ar);
     };
-  })(window, "https://app.cal.com/embed/embed.js", "init");
+  })(window, "https://app.cal.eu/embed/embed.js", "init");
 
-  Cal("init", "appel-decouverte", { origin: "https://cal.com" });
+  Cal("init", "appel-decouverte", { origin: "https://cal.eu" });
 
   Cal.ns["appel-decouverte"]("inline", {
     elementOrSelector: "#cal-inline",
-    calLink: "VOTRE_USERNAME/appel-decouverte",
+    calLink: "disayner/appel-decouverte",
     layout: "month_view",
     config: { theme: "light" }
   });
