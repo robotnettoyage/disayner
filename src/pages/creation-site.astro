@@ -92,9 +92,9 @@ const includesColumns = [
 ];
 
 const projects = [
-  { client: 'Miroiterie VITOR', type: 'Site vitrine multi-pages + Google Ads', desc: "Refonte complète pour une miroiterie en Haute-Savoie : services détaillés, portfolio interactif, formulaire connecté Microsoft 365 et campagnes Google Ads optimisées.", stack: ['WordPress', 'Elementor', 'SEO'], accent: '#2563EB', bg: 'linear-gradient(135deg, #1e3a5f 0%, #2563EB 100%)' },
-  { client: 'Love at Me', type: 'SEO e-commerce multilingue', desc: "Optimisation SEO complète sur ~560 pages produits : meta content, schema JSON-LD, balises hreflang, descriptions optimisées et stratégie de maillage interne.", stack: ['Shopify', 'SEO', 'FR/EN/NL'], accent: '#7C3AED', bg: 'linear-gradient(135deg, #4c1d95 0%, #7C3AED 100%)' },
-  { client: 'JM Services', type: 'Site vitrine complet', desc: "Création d'un site multi-pages pour un paysagiste dans le Var : présentation des services, galerie filtrée par catégorie, lightbox et formulaire personnalisé.", stack: ['WordPress', 'Elementor', 'SEO'], accent: '#059669', bg: 'linear-gradient(135deg, #064e3b 0%, #059669 100%)' },
+  { slug: 'vitor',       client: 'Miroiterie VITOR', type: 'Site vitrine multi-pages + Google Ads', desc: "Refonte complète pour une miroiterie en Haute-Savoie : services détaillés, portfolio interactif, formulaire connecté Microsoft 365 et campagnes Google Ads optimisées.", stack: ['WordPress', 'Elementor', 'SEO'], accent: '#2563EB', bg: 'linear-gradient(135deg, #1e3a5f 0%, #2563EB 100%)' },
+  { slug: 'love-at-me',  client: 'Love at Me', type: 'SEO e-commerce multilingue', desc: "Optimisation SEO complète sur ~560 pages produits : meta content, schema JSON-LD, balises hreflang, descriptions optimisées et stratégie de maillage interne.", stack: ['Shopify', 'SEO', 'FR/EN/NL'], accent: '#7C3AED', bg: 'linear-gradient(135deg, #4c1d95 0%, #7C3AED 100%)' },
+  { slug: 'jm-services', client: 'JM Services', type: 'Site vitrine complet', desc: "Création d'un site multi-pages pour un paysagiste dans le Var : présentation des services, galerie filtrée par catégorie, lightbox et formulaire personnalisé.", stack: ['WordPress', 'Elementor', 'SEO'], accent: '#059669', bg: 'linear-gradient(135deg, #064e3b 0%, #059669 100%)' },
 ];
 
 const faqItems = [
@@ -484,7 +484,7 @@ const serviceSchema = {
                 <div class="cs-portfolio-stack">
                   {p.stack.map(s => <span class="cs-tag">{s}</span>)}
                 </div>
-                <a href="/contact" class="cs-portfolio-cta" style={`color:${p.accent};`}>Démarrer un projet similaire →</a>
+                <a href={`/realisations/${p.slug}`} class="cs-portfolio-cta" style={`color:${p.accent};`}>Voir l'étude de cas →</a>
               </div>
             </article>
           ))}
