@@ -1,0 +1,639 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BgWords from '../../components/BgWords.astro';
+import BgOrbs from '../../components/BgOrbs.astro';
+import { getAllCaseStudies, getCategories } from '../../content/case-studies/data';
+
+const studies = getAllCaseStudies();
+const categories = getCategories();
+
+// Accent color map by category (not in the data interface, derived here)
+const categoryAccents: Record<string, string> = {
+  'site-vitrine': '#2563EB',
+  'seo':          '#7C3AED',
+  'e-commerce':   '#059669',
+  'landing-page': '#F59E0B',
+  'refonte':      '#2563EB',
+  'maintenance':  '#6B6B67',
+};
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Nos Réalisations — DISAYNER",
+  "description": "Découvrez nos études de cas : création de sites vitrines, e-commerce, SEO. Projets concrets, résultats mesurables.",
+  "url": "https://disayner.com/realisations",
+  "isPartOf": { "@type": "WebSite", "url": "https://disayner.com", "name": "DISAYNER" },
+};
+---
+
+<Layout
+  title="Nos réalisations — Études de cas & projets clients | DISAYNER"
+  description="Découvrez nos études de cas : création de sites vitrines, e-commerce, SEO. Projets concrets, résultats mesurables. Portfolio de l'agence DISAYNER."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S1 — HERO                                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-hub-hero" aria-label="En-tête réalisations">
+      <BgWords words={[
+        { text: 'PORTFOLIO',  x: '4%',  y: '12%', rot: '-8deg',  size: '7vw' },
+        { text: 'PROJETS',    x: '62%', y: '6%',  rot: '10deg',  size: '5vw' },
+        { text: 'RÉSULTATS',  x: '7%',  y: '74%', rot: '-5deg',  size: '6vw' },
+        { text: 'CLIENTS',    x: '68%', y: '76%', rot: '12deg',  size: '8vw' },
+      ]} />
+      <BgOrbs orbs={[
+        { type: 'filled', x: '85%', y: '20%', size: '320px', dur: '10s' },
+        { type: 'ring',   x: '10%', y: '65%', size: '200px', dur: '14s' },
+      ]} />
+
+      <div class="cs-hub-hero-inner">
+        <p class="section-label">Nos réalisations</p>
+        <h1 class="cs-hub-title">
+          Des projets concrets,<br />
+          des <em class="font-serif">résultats réels.</em>
+        </h1>
+        <p class="cs-hub-sub">
+          Chaque projet est une collaboration unique. Découvrez comment nous avons aidé nos clients à atteindre leurs objectifs.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S2 — FILTERS + GRID                                               -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-grid-section" aria-label="Liste des réalisations">
+      <div class="cs-grid-inner">
+
+        <!-- Filter buttons -->
+        <div
+          class="cs-filters"
+          id="cs-filter-group"
+          role="group"
+          aria-label="Filtrer par catégorie"
+        >
+          <button class="cs-filter-btn cs-filter-btn--active" data-filter="all">
+            Tous les projets
+            <span class="cs-filter-count">{studies.length}</span>
+          </button>
+          {categories.map((cat) => (
+            <button class="cs-filter-btn" data-filter={cat.value}>
+              {cat.label}
+              <span class="cs-filter-count">{cat.count}</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Cards grid -->
+        <div class="cs-grid" id="cs-grid" role="list">
+          {studies.map((study, i) => {
+            const accent = categoryAccents[study.category] ?? '#2563EB';
+            return (
+              <article
+                class="cs-card"
+                data-category={study.category}
+                aria-label={`Réalisation : ${study.clientName}`}
+                role="listitem"
+              >
+                <a href={`/realisations/${study.slug}`} class="cs-card-link">
+                  <!-- Thumbnail -->
+                  <div class="cs-card-thumb">
+                    <img
+                      src={study.thumbnail}
+                      alt={`Aperçu du projet ${study.clientName}`}
+                      class="cs-card-img"
+                      loading={i < 2 ? 'eager' : 'lazy'}
+                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                    />
+                    <!-- Gradient placeholder (shown on image error) -->
+                    <div
+                      class="cs-card-placeholder"
+                      aria-hidden="true"
+                      style={`display:none; background: linear-gradient(135deg, ${accent}22 0%, ${accent}08 100%);`}
+                    >
+                      <span class="cs-placeholder-letter">{study.clientName.charAt(0)}</span>
+                    </div>
+                    <!-- Category badge -->
+                    <span
+                      class="cs-category-badge"
+                      style={`color:${accent}; background:${accent}18; border-color:${accent}30;`}
+                    >
+                      {study.categoryLabel}
+                    </span>
+                  </div>
+
+                  <!-- Card body -->
+                  <div class="cs-card-content">
+                    <h2 class="cs-card-title">{study.clientName}</h2>
+                    <p class="cs-card-type" style={`color:${accent};`}>{study.projectType}</p>
+                    <p class="cs-card-desc">{study.shortDescription}</p>
+                    <div class="cs-card-tags">
+                      {study.tags.slice(0, 3).map((tag) => (
+                        <span class="stack-tag">{tag}</span>
+                      ))}
+                    </div>
+                    <span class="cs-card-cta hover-underline" style={`color:${accent};`}>
+                      Voir l'étude de cas →
+                    </span>
+                  </div>
+                </a>
+              </article>
+            );
+          })}
+        </div>
+
+        <!-- Empty state (shown by JS when no cards match filter) -->
+        <p class="cs-empty" id="cs-empty" aria-live="polite" hidden>
+          Aucune réalisation dans cette catégorie pour le moment.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S3 — BOTTOM CTA                                                   -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-cta-section" aria-label="Démarrer un projet">
+      <div class="cs-cta-inner">
+        <p class="cs-cta-eyebrow">Parlons de votre projet</p>
+        <h2 class="cs-cta-title">
+          Vous voulez voir votre projet<br />
+          <em class="font-serif">ici&nbsp;?</em>
+        </h2>
+        <p class="cs-cta-sub">
+          Un échange de 30 minutes pour comprendre votre besoin.<br />
+          Sans engagement, sans pression.
+        </p>
+        <a href="/contact" class="cs-cta-btn-primary">
+          Démarrer un projet
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <p class="cs-cta-reassurance">Réponse sous 24h · 100% sur mesure · Basé en Haute-Savoie</p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Shared local utilities ── */
+  .section-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .stack-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    color: var(--color-text-secondary);
+  }
+
+  /* ── Hero ── */
+  .cs-hub-hero {
+    position: relative;
+    padding: 10rem 2rem 5rem;
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .cs-hub-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cs-hub-title {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+
+  .cs-hub-title em {
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+
+  .cs-hub-sub {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  /* ── Grid section ── */
+  .cs-grid-section {
+    padding: 0 2rem 6rem;
+    background: var(--color-background);
+  }
+
+  .cs-grid-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── Filter buttons ── */
+  .cs-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .cs-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 8px 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .cs-filter-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .cs-filter-btn--active {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+
+  .cs-filter-btn--active:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: #fff;
+  }
+
+  .cs-filter-count {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 100px;
+    padding: 1px 7px;
+    line-height: 1.4;
+  }
+
+  .cs-filter-btn:not(.cs-filter-btn--active) .cs-filter-count {
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+  }
+
+  /* ── Cards grid ── */
+  .cs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  /* ── Individual card ── */
+  .cs-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.5s ease;
+  }
+
+  .cs-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(37, 99, 235, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
+    border-color: rgba(37, 99, 235, 0.15);
+  }
+
+  .cs-card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Thumbnail */
+  .cs-card-thumb {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: linear-gradient(135deg, #F5F5F0, #EFF6FF);
+    flex-shrink: 0;
+  }
+
+  .cs-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+
+  .cs-card:hover .cs-card-img {
+    transform: scale(1.04);
+  }
+
+  .cs-card-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cs-placeholder-letter {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 5rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.08);
+    user-select: none;
+  }
+
+  .cs-category-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 100px;
+    border: 1px solid;
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.9) !important;
+    letter-spacing: 0.01em;
+  }
+
+  /* Card body */
+  .cs-card-content {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .cs-card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+
+  .cs-card-type {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .cs-card-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .cs-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .cs-card-cta {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: gap 0.3s ease;
+  }
+
+  .cs-card:hover .cs-card-cta {
+    gap: 10px;
+  }
+
+  /* Empty state */
+  .cs-empty {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    padding: 3rem 0;
+  }
+
+  /* ── CTA section ── */
+  .cs-cta-section {
+    position: relative;
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%);
+    padding: 7rem 2rem;
+    overflow: hidden;
+  }
+
+  .cs-cta-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cs-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .cs-cta-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .cs-cta-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .cs-cta-title em {
+    font-style: italic;
+    font-family: var(--font-serif);
+  }
+
+  .cs-cta-sub {
+    font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  .cs-cta-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    color: var(--color-accent);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 0.5rem;
+  }
+
+  .cs-cta-btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .cs-cta-reassurance {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .cs-hub-hero { padding: 8rem 1.25rem 4rem; }
+    .cs-grid-section { padding: 0 1.25rem 4rem; }
+  }
+
+  @media (max-width: 700px) {
+    .cs-grid { grid-template-columns: 1fr; }
+
+    .cs-filters {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .cs-filters::-webkit-scrollbar { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .cs-cta-section { padding: 5rem 1.25rem; }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── Hero entrance
+  gsap.from(".cs-hub-hero-inner > *", {
+    y: 40,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.12,
+    ease: "power3.out",
+    delay: 0.15,
+  });
+
+  // ── Cards stagger on scroll
+  gsap.from(".cs-card", {
+    y: 50,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".cs-grid",
+      start: "top 82%",
+    },
+  });
+
+  // ── CTA entrance
+  gsap.from(".cs-cta-inner > *", {
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.08,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".cs-cta-section",
+      start: "top 70%",
+    },
+  });
+
+  // ── Filter logic
+  const group = document.getElementById("cs-filter-group");
+  const cards = document.querySelectorAll<HTMLElement>(".cs-card");
+  const emptyState = document.getElementById("cs-empty");
+
+  group?.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".cs-filter-btn");
+    if (!btn) return;
+
+    group.querySelectorAll(".cs-filter-btn").forEach((b) => {
+      b.classList.remove("cs-filter-btn--active");
+      b.removeAttribute("aria-pressed");
+    });
+    btn.classList.add("cs-filter-btn--active");
+    btn.setAttribute("aria-pressed", "true");
+
+    const filter = btn.getAttribute("data-filter");
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const show = filter === "all" || card.getAttribute("data-category") === filter;
+      card.style.display = show ? "" : "none";
+      if (show) visibleCount++;
+    });
+
+    if (emptyState) emptyState.hidden = visibleCount > 0;
+  });
+</script>

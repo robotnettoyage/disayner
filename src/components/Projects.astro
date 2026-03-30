@@ -2,6 +2,7 @@
 const projects = [
   {
     id: 1,
+    slug: "vitor",
     client: "Miroiterie VITOR",
     type: "Site vitrine multi-pages + Google Ads",
     stack: ["WordPress", "Elementor", "SEO"],
@@ -12,6 +13,7 @@ const projects = [
   },
   {
     id: 2,
+    slug: "love-at-me",
     client: "Love at Me",
     type: "SEO e-commerce multilingue",
     stack: ["Shopify", "SEO", "FR/EN/NL"],
@@ -22,6 +24,7 @@ const projects = [
   },
   {
     id: 3,
+    slug: "jm-services",
     client: "JM Services",
     type: "Site vitrine complet",
     stack: ["WordPress", "Elementor", "SEO"],
@@ -39,7 +42,7 @@ const projects = [
       <p class="section-label">Réalisations</p>
       <h2>Quelques projets<br /><em class="font-serif">dont nous sommes fiers.</em></h2>
     </div>
-    <a href="/contact" class="btn-outline">Voir tous les projets</a>
+    <a href="/realisations" class="btn-outline">Voir tous les projets</a>
   </div>
 
   <div class="projects-list">
@@ -71,7 +74,7 @@ const projects = [
               ))}
             </div>
 
-            <a href="/contact" class="project-cta hover-underline" style={`color: ${project.accent};`}>
+            <a href={`/realisations/${project.slug}`} class="project-cta hover-underline" style={`color: ${project.accent};`}>
               Voir le projet →
             </a>
           </div>

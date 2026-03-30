@@ -1,0 +1,1251 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BgWords from '../../components/BgWords.astro';
+import BgOrbs from '../../components/BgOrbs.astro';
+import { getAllCaseStudies, getCaseStudyBySlug } from '../../content/case-studies/data';
+import type { CaseStudy } from '../../content/case-studies/data';
+
+export function getStaticPaths() {
+  return getAllCaseStudies().map((study) => ({
+    params: { slug: study.slug },
+    props: { study },
+  }));
+}
+
+interface Props {
+  study: CaseStudy;
+}
+
+const { study } = Astro.props;
+
+// 2 other case studies for the "Autres réalisations" section
+const otherStudies = getAllCaseStudies()
+  .filter((s) => s.slug !== study.slug)
+  .slice(0, 2);
+
+// Accent color map by category
+const categoryAccents: Record<string, string> = {
+  'site-vitrine': '#2563EB',
+  'seo':          '#7C3AED',
+  'e-commerce':   '#059669',
+  'landing-page': '#F59E0B',
+  'refonte':      '#2563EB',
+  'maintenance':  '#6B6B67',
+};
+
+const accent = categoryAccents[study.category] ?? '#2563EB';
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": study.metaTitle,
+  "description": study.metaDescription,
+  "url": `https://disayner.com/realisations/${study.slug}`,
+  "author": { "@type": "Organization", "name": "DISAYNER", "url": "https://disayner.com" },
+  "publisher": { "@type": "Organization", "name": "DISAYNER", "url": "https://disayner.com" },
+  ...(study.heroImage ? { "image": `https://disayner.com${study.heroImage}` } : {}),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil",       "item": "https://disayner.com" },
+    { "@type": "ListItem", "position": 2, "name": "Réalisations",  "item": "https://disayner.com/realisations" },
+    { "@type": "ListItem", "position": 3, "name": study.clientName,"item": `https://disayner.com/realisations/${study.slug}` },
+  ],
+};
+---
+
+<Layout title={study.metaTitle} description={study.metaDescription}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- BREADCRUMB                                                         -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <div class="cs-breadcrumb-wrapper">
+      <nav class="cs-breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="cs-breadcrumb-list">
+          <li><a href="/" class="hover-underline">Accueil</a></li>
+          <li aria-hidden="true">›</li>
+          <li><a href="/realisations" class="hover-underline">Réalisations</a></li>
+          <li aria-hidden="true">›</li>
+          <li aria-current="page">{study.clientName}</li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S1 — HERO                                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-detail-hero" aria-label={`Projet ${study.clientName}`}>
+      <BgOrbs orbs={[
+        { type: 'filled', x: '88%', y: '15%', size: '280px', dur: '11s' },
+        { type: 'ring',   x: '5%',  y: '75%', size: '180px', dur: '15s' },
+      ]} />
+
+      <div class="cs-detail-hero-inner">
+
+        <!-- Left: content (60%) -->
+        <div class="cs-detail-hero-content">
+          <div class="cs-detail-meta">
+            <span
+              class="cs-category-pill"
+              style={`color:${accent}; background:${accent}18; border-color:${accent}30;`}
+            >
+              {study.categoryLabel}
+            </span>
+            <span class="cs-detail-year">{study.year}</span>
+          </div>
+
+          <h1 class="cs-detail-title">{study.clientName}</h1>
+          <p class="cs-detail-subtitle">{study.projectType}</p>
+
+          <!-- Quick info row -->
+          <div class="cs-detail-info" aria-label="Informations du projet">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              {study.duration}
+            </span>
+            <span aria-hidden="true">·</span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              {study.location}
+            </span>
+          </div>
+
+          <!-- Stack tags -->
+          <div class="cs-detail-tags" aria-label="Technologies utilisées">
+            {study.tags.map((tag) => (
+              <span class="stack-tag">{tag}</span>
+            ))}
+          </div>
+
+          <!-- CTAs -->
+          <div class="cs-detail-ctas">
+            <a
+              href={study.clientWebsite}
+              class="cs-visit-btn"
+              rel="nofollow noopener"
+              target="_blank"
+              style={`color:${accent}; border-color:${accent}40;`}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Voir le site
+            </a>
+            <a href="/contact" class="btn-primary">
+              Démarrer un projet similaire
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: hero image (40%) -->
+        <div class="cs-detail-hero-visual">
+          {study.heroImage ? (
+            <img
+              src={study.heroImage}
+              alt={`Aperçu du site ${study.clientName}`}
+              class="cs-detail-hero-img"
+              loading="eager"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+            />
+          ) : null}
+          <div
+            class="cs-detail-hero-placeholder"
+            style={`${study.heroImage ? 'display:none;' : ''} background: linear-gradient(135deg, ${accent}22 0%, ${accent}06 100%);`}
+            aria-hidden="true"
+          >
+            <span class="cs-placeholder-letter">{study.clientName.charAt(0)}</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S2 — CONTEXTE                                                      -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-context cs-section" aria-label="Contexte du projet">
+      <div class="cs-section-inner">
+        <div class="cs-section-header section-header-anim">
+          <p class="section-label">Le contexte</p>
+          <h2>La <em class="font-serif">problématique</em></h2>
+        </div>
+        <div class="cs-prose" set:html={study.context} />
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S3 — SOLUTION                                                      -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-solution cs-section cs-section--alt" aria-label="Notre solution">
+      <div class="cs-section-inner">
+        <div class="cs-section-header section-header-anim">
+          <p class="section-label">Notre solution</p>
+          <h2>Ce que nous <em class="font-serif">avons fait</em></h2>
+        </div>
+
+        <div class="cs-solution-body">
+          <!-- Solution prose -->
+          <div class="cs-prose" set:html={study.solution} />
+
+          <!-- Deliverables list -->
+          <div class="cs-deliverables">
+            <h3 class="cs-deliverables-title">Livrables</h3>
+            <ul class="cs-deliverables-list" role="list">
+              {study.deliverables.map((item) => (
+                <li class="cs-deliverable-item">
+                  <svg
+                    class="cs-check-icon"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    style={`color:${accent};`}
+                  >
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S4 — RÉSULTATS (conditional)                                       -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    {study.results && study.results.length > 0 && (
+      <section class="cs-results cs-section" aria-label="Résultats du projet">
+        <div class="cs-section-inner">
+          <div class="cs-section-header section-header-anim">
+            <p class="section-label">Les résultats</p>
+            <h2>Impact <em class="font-serif">mesurable</em></h2>
+          </div>
+
+          <div
+            class="cs-metrics-grid"
+            style={`grid-template-columns: repeat(${study.results.length}, 1fr);`}
+          >
+            {study.results.map((result) => (
+              <div class="cs-metric-item">
+                <span class="cs-metric-value" style={`color:${accent};`}>{result.metric}</span>
+                <p class="cs-metric-label">{result.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S5 — GALERIE (conditional)                                         -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    {study.gallery && study.gallery.length > 0 && (
+      <section class="cs-gallery cs-section cs-section--alt" aria-label="Galerie du projet">
+        <div class="cs-section-inner">
+          <div class="cs-section-header section-header-anim">
+            <p class="section-label">Le projet en images</p>
+            <h2>Aperçu du <em class="font-serif">projet</em></h2>
+          </div>
+
+          <div class="cs-gallery-scroll" id="cs-gallery" role="list">
+            {study.gallery.map((src, i) => (
+              <button
+                class="cs-gallery-item"
+                data-src={src}
+                data-index={String(i)}
+                aria-label={`Voir l'image ${i + 1} en plein écran`}
+                role="listitem"
+              >
+                <img
+                  src={src}
+                  alt={`${study.clientName} — image ${i + 1}`}
+                  loading="lazy"
+                  class="cs-gallery-img"
+                />
+              </button>
+            ))}
+          </div>
+
+          <!-- Lightbox -->
+          <div
+            id="cs-lightbox"
+            class="cs-lightbox"
+            hidden
+            aria-modal="true"
+            aria-label="Image en plein écran"
+            role="dialog"
+          >
+            <button class="cs-lightbox-close" aria-label="Fermer la galerie">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+            <button class="cs-lightbox-nav cs-lightbox-prev" aria-label="Image précédente">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <img id="cs-lightbox-img" src="" alt="" class="cs-lightbox-img" />
+            <button class="cs-lightbox-nav cs-lightbox-next" aria-label="Image suivante">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S6 — TÉMOIGNAGE (conditional)                                      -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    {study.testimonial && (
+      <section class="cs-testimonial cs-section" aria-label="Témoignage client">
+        <div class="cs-section-inner cs-section-inner--narrow">
+          <blockquote class="cs-quote-block">
+            <div class="cs-guillemets" aria-hidden="true">"</div>
+            <p class="cs-quote-text">{study.testimonial.quote}</p>
+            <footer class="cs-quote-footer">
+              <div class="cs-quote-avatar" style={`background:${accent}18; color:${accent};`}>
+                {study.testimonial.author.charAt(0)}
+              </div>
+              <div class="cs-quote-info">
+                <cite class="cs-quote-author">{study.testimonial.author}</cite>
+                <span class="cs-quote-role">{study.testimonial.role}</span>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
+      </section>
+    )}
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S7 — CTA (blue gradient)                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cs-cta-section" aria-label="Démarrer un projet similaire">
+      <BgWords variant="light" words={[
+        { text: 'PROJET',  x: '5%',  y: '8%',  rot: '-10deg', size: '8vw' },
+        { text: 'LANCER',  x: '58%', y: '12%', rot: '12deg',  size: '6vw' },
+        { text: 'CRÉER',   x: '22%', y: '74%', rot: '-6deg',  size: '9vw' },
+      ]} />
+      <BgOrbs variant="light" orbs={[
+        { type: 'filled', x: '15%', y: '20%', size: '240px', dur: '9s' },
+        { type: 'ring',   x: '82%', y: '68%', size: '190px', dur: '13s' },
+      ]} />
+      <div class="cs-cta-inner">
+        <p class="cs-cta-eyebrow">Prochain projet ?</p>
+        <h2 class="cs-cta-title">
+          Un projet similaire <em class="font-serif">en tête&nbsp;?</em>
+        </h2>
+        <p class="cs-cta-sub">
+          Un échange de 30 minutes pour comprendre votre besoin.<br />
+          Sans engagement, sans pression.
+        </p>
+        <a href="/contact" class="cs-cta-btn-primary">
+          Discutons-en
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <p class="cs-cta-reassurance">Réponse sous 24h · 100% sur mesure · Basé en Haute-Savoie</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S8 — AUTRES RÉALISATIONS                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    {otherStudies.length > 0 && (
+      <section class="cs-others" aria-label="Autres réalisations">
+        <div class="cs-section-inner">
+          <h2 class="cs-others-title">
+            Autres <em class="font-serif">réalisations</em>
+          </h2>
+          <div class="cs-others-grid">
+            {otherStudies.map((s) => {
+              const otherAccent = categoryAccents[s.category] ?? '#2563EB';
+              return (
+                <a href={`/realisations/${s.slug}`} class="cs-other-card" aria-label={`Voir le projet ${s.clientName}`}>
+                  <div class="cs-other-thumb">
+                    <img
+                      src={s.thumbnail}
+                      alt={s.clientName}
+                      loading="lazy"
+                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                    />
+                    <div
+                      class="cs-other-placeholder"
+                      aria-hidden="true"
+                      style={`display:none; background: linear-gradient(135deg, ${otherAccent}22, ${otherAccent}06);`}
+                    >
+                      <span class="cs-placeholder-letter" style="font-size:2rem;">{s.clientName.charAt(0)}</span>
+                    </div>
+                  </div>
+                  <div class="cs-other-body">
+                    <span class="cs-other-category" style={`color:${otherAccent};`}>{s.categoryLabel}</span>
+                    <h3 class="cs-other-name">{s.clientName}</h3>
+                    <p class="cs-other-type">{s.projectType}</p>
+                    <span class="hover-underline cs-other-cta" style={`color:${otherAccent};`}>
+                      Voir →
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )}
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Shared local utilities ── */
+  .section-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .stack-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    color: var(--color-text-secondary);
+  }
+
+  /* ── Breadcrumb ── */
+  .cs-breadcrumb-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 6rem 2rem 0;
+  }
+
+  .cs-breadcrumb-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .cs-breadcrumb-list a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .cs-breadcrumb-list a:hover { color: var(--color-text-primary); }
+
+  .cs-breadcrumb-list [aria-current="page"] {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+
+  /* ── Hero ── */
+  .cs-detail-hero {
+    position: relative;
+    padding: 3rem 2rem 5rem;
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .cs-detail-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .cs-detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .cs-category-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.875rem;
+    border-radius: 100px;
+    border: 1px solid;
+    letter-spacing: 0.01em;
+  }
+
+  .cs-detail-year {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .cs-detail-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-detail-subtitle {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .cs-detail-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-detail-info span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .cs-detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .cs-detail-ctas {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cs-visit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 100px;
+    border: 1.5px solid;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    font-family: var(--font-sans);
+  }
+
+  .cs-visit-btn:hover { opacity: 0.8; transform: translateY(-1px); }
+
+  /* Hero visual */
+  .cs-detail-hero-visual {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+
+  .cs-detail-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+  }
+
+  .cs-detail-hero-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+  }
+
+  .cs-placeholder-letter {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 6rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.08);
+    user-select: none;
+  }
+
+  /* ── Sections shared ── */
+  .cs-section {
+    padding: 5rem 2rem;
+    position: relative;
+  }
+
+  .cs-section--alt {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cs-section-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .cs-section-inner--narrow {
+    max-width: 760px;
+  }
+
+  .cs-section-header {
+    margin-bottom: 3rem;
+  }
+
+  .cs-section-header h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  .cs-section-header em {
+    font-style: italic;
+    color: var(--color-text-secondary);
+    font-family: var(--font-serif);
+  }
+
+  /* ── Prose ── */
+  .cs-prose :global(p) {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    max-width: 720px;
+    margin-bottom: 1.25rem;
+  }
+
+  .cs-prose :global(p:last-child) { margin-bottom: 0; }
+
+  /* ── Solution body ── */
+  .cs-solution-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* Deliverables */
+  .cs-deliverables-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-deliverables-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .cs-deliverable-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .cs-check-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── Results (metrics) ── */
+  .cs-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* overridden by inline style */
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .cs-metric-item {
+    padding: 3rem 2rem;
+    text-align: center;
+    border-right: 1px solid var(--color-border);
+    transition: background 0.3s ease;
+  }
+
+  .cs-metric-item:hover { background: rgba(37, 99, 235, 0.03); }
+  .cs-metric-item:last-child { border-right: none; }
+
+  .cs-metric-value {
+    display: block;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-metric-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  /* ── Gallery ── */
+  .cs-gallery-scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  .cs-gallery-item {
+    flex-shrink: 0;
+    width: clamp(280px, 40vw, 480px);
+    aspect-ratio: 16 / 9;
+    scroll-snap-align: start;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--color-border);
+    padding: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .cs-gallery-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .cs-gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  /* Lightbox */
+  .cs-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.94);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cs-lightbox[hidden] { display: none; }
+
+  .cs-lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    object-fit: contain;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .cs-lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.2s ease;
+  }
+
+  .cs-lightbox-close:hover { background: rgba(255, 255, 255, 0.2); }
+
+  .cs-lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.2s ease;
+  }
+
+  .cs-lightbox-nav:hover { background: rgba(255, 255, 255, 0.2); }
+  .cs-lightbox-prev { left: 1.5rem; }
+  .cs-lightbox-next { right: 1.5rem; }
+
+  /* ── Testimonial ── */
+  .cs-testimonial {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cs-quote-block {
+    position: relative;
+    padding-top: 1rem;
+  }
+
+  .cs-guillemets {
+    font-family: var(--font-serif);
+    font-size: 8rem;
+    line-height: 0.6;
+    color: var(--color-accent);
+    opacity: 0.15;
+    margin-bottom: 1.5rem;
+    user-select: none;
+  }
+
+  .cs-quote-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .cs-quote-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cs-quote-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+  }
+
+  .cs-quote-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .cs-quote-author {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--color-text-primary);
+  }
+
+  .cs-quote-role {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* ── CTA section ── */
+  .cs-cta-section {
+    position: relative;
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%);
+    padding: 7rem 2rem;
+    overflow: hidden;
+  }
+
+  .cs-cta-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cs-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .cs-cta-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .cs-cta-title {
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .cs-cta-title em {
+    font-style: italic;
+    font-family: var(--font-serif);
+  }
+
+  .cs-cta-sub {
+    font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  .cs-cta-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    color: var(--color-accent);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 0.5rem;
+  }
+
+  .cs-cta-btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .cs-cta-reassurance {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Other case studies ── */
+  .cs-others {
+    padding: 5rem 2rem;
+    background: var(--color-background);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .cs-others-title {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    margin-bottom: 2.5rem;
+  }
+
+  .cs-others-title em {
+    font-style: italic;
+    font-family: var(--font-serif);
+    color: var(--color-text-secondary);
+  }
+
+  .cs-others-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cs-other-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    background: var(--color-surface);
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    align-items: center;
+  }
+
+  .cs-other-card:hover {
+    border-color: rgba(37, 99, 235, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .cs-other-thumb {
+    width: 110px;
+    aspect-ratio: 4 / 3;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background: var(--color-surface);
+  }
+
+  .cs-other-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cs-other-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cs-other-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .cs-other-category {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .cs-other-name {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cs-other-type {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cs-other-cta {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: auto;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .cs-breadcrumb-wrapper { padding-top: 5rem; }
+
+    .cs-detail-hero { padding: 2.5rem 1.25rem 4rem; }
+    .cs-detail-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cs-detail-hero-visual { order: -1; max-width: 500px; }
+
+    .cs-section { padding: 4rem 1.25rem; }
+
+    .cs-solution-body { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    .cs-metrics-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      border-radius: 16px;
+    }
+
+    .cs-metric-item:nth-child(2) { border-right: none; }
+    .cs-metric-item:nth-child(1),
+    .cs-metric-item:nth-child(2) { border-bottom: 1px solid var(--color-border); }
+
+    .cs-others { padding: 4rem 1.25rem; }
+    .cs-others-grid { grid-template-columns: 1fr; }
+
+    .cs-cta-section { padding: 5rem 1.25rem; }
+  }
+
+  @media (max-width: 600px) {
+    .cs-detail-title { font-size: 2.25rem; }
+    .cs-detail-ctas { flex-direction: column; align-items: flex-start; }
+
+    .cs-metrics-grid { grid-template-columns: 1fr !important; }
+    .cs-metric-item { border-right: none !important; border-bottom: 1px solid var(--color-border); }
+    .cs-metric-item:last-child { border-bottom: none; }
+
+    .cs-others-title { margin-bottom: 1.5rem; }
+
+    .cs-other-card { flex-direction: column; }
+    .cs-other-thumb { width: 100%; aspect-ratio: 16 / 9; }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── Hero entrance
+  gsap.from(".cs-detail-hero-content > *", {
+    y: 50,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.1,
+    ease: "power3.out",
+    delay: 0.2,
+  });
+
+  gsap.from(".cs-detail-hero-visual", {
+    x: 40,
+    opacity: 0,
+    duration: 0.9,
+    ease: "power3.out",
+    delay: 0.45,
+  });
+
+  // ── Sections on scroll (guard each — conditional sections may be absent)
+  const sectionSelectors = [
+    ".cs-context",
+    ".cs-solution",
+    ".cs-results",
+    ".cs-gallery",
+    ".cs-testimonial",
+    ".cs-others",
+  ];
+
+  sectionSelectors.forEach((sel) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    const targets = el.querySelectorAll(
+      ".cs-section-header, .cs-prose, .cs-metrics-grid, .cs-deliverables, .cs-quote-block, .cs-other-card, .cs-gallery-scroll"
+    );
+    if (!targets.length) return;
+    gsap.from(targets, {
+      y: 40,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.08,
+      ease: "power2.out",
+      scrollTrigger: { trigger: el, start: "top 82%" },
+    });
+  });
+
+  // ── CTA entrance
+  gsap.from(".cs-cta-inner > *", {
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.08,
+    ease: "power2.out",
+    scrollTrigger: { trigger: ".cs-cta-section", start: "top 70%" },
+  });
+
+  // ── Gallery lightbox
+  const galleryItems = document.querySelectorAll<HTMLButtonElement>(".cs-gallery-item");
+  const lightbox = document.getElementById("cs-lightbox");
+  const lightboxImg = document.getElementById("cs-lightbox-img") as HTMLImageElement | null;
+  const closeBtn = lightbox?.querySelector<HTMLButtonElement>(".cs-lightbox-close");
+  const prevBtn = lightbox?.querySelector<HTMLButtonElement>(".cs-lightbox-prev");
+  const nextBtn = lightbox?.querySelector<HTMLButtonElement>(".cs-lightbox-next");
+
+  const images = Array.from(galleryItems).map((b) => b.getAttribute("data-src") ?? "");
+  let currentIndex = 0;
+
+  function openLightbox(index: number) {
+    currentIndex = index;
+    if (lightboxImg) {
+      lightboxImg.src = images[currentIndex];
+      lightboxImg.alt = `Image ${currentIndex + 1}`;
+    }
+    lightbox?.removeAttribute("hidden");
+    document.body.style.overflow = "hidden";
+    closeBtn?.focus();
+  }
+
+  function closeLightbox() {
+    lightbox?.setAttribute("hidden", "");
+    document.body.style.overflow = "";
+  }
+
+  galleryItems.forEach((btn, i) => btn.addEventListener("click", () => openLightbox(i)));
+
+  closeBtn?.addEventListener("click", closeLightbox);
+
+  prevBtn?.addEventListener("click", () =>
+    openLightbox((currentIndex - 1 + images.length) % images.length)
+  );
+
+  nextBtn?.addEventListener("click", () =>
+    openLightbox((currentIndex + 1) % images.length)
+  );
+
+  lightbox?.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (lightbox?.hasAttribute("hidden")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") openLightbox((currentIndex - 1 + images.length) % images.length);
+    if (e.key === "ArrowRight") openLightbox((currentIndex + 1) % images.length);
+  });
+</script>
