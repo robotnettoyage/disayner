@@ -109,8 +109,16 @@ const projects = [
                   <span class="pv-url-text">{project.client.toLowerCase().replace(" ", "")}.com</span>
                 </div>
               </div>
-              <!-- Mockup content -->
-              <div class="pv-content">
+              <!-- Real thumbnail -->
+              <img
+                src={`/images/case-studies/${project.slug}/thumbnail.webp`}
+                alt={`${project.client} — aperçu du site`}
+                class="pv-thumbnail"
+                loading="lazy"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+              />
+              <!-- Gradient fallback (shown if image missing) -->
+              <div class="pv-content" style="display:none;">
                 <div class="pv-hero-block" style={`background: ${project.accent}15;`}>
                   <div class="pv-mock-line" style={`background: ${project.accent}40; width: 65%;`}></div>
                   <div class="pv-mock-line" style={`background: ${project.accent}30; width: 45%;`}></div>
@@ -345,6 +353,14 @@ const projects = [
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .pv-thumbnail {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    object-fit: cover;
+    display: block;
   }
 
   .pv-content {
