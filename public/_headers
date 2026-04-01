@@ -1,6 +1,5 @@
 /*
-  X-Frame-Options: DENY
-  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.cal.eu; frame-src 'self' https://cal.eu https://app.cal.eu; connect-src 'self' https://app.cal.eu https://cal.eu https://*.cal.eu; img-src 'self' data: https://*.cal.eu https://*.googleapis.com https:; style-src 'self' 'unsafe-inline' https://app.cal.eu; font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com https://api.fontshare.com https://app.cal.eu;
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.cal.eu https://cal.eu; style-src 'self' 'unsafe-inline' https://app.cal.eu https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://app.cal.eu; img-src 'self' https://*.cal.eu https://*.googleapis.com data: blob:; frame-src https://cal.eu https://app.cal.eu; connect-src 'self' https://*.cal.eu https://cal.eu https://formspree.io; media-src 'self'; object-src 'none'; base-uri 'self';
