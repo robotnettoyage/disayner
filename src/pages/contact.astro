@@ -189,8 +189,14 @@ const contactSchema = {
               <h3>Réserver un appel découverte</h3>
               <p>30 minutes pour discuter de votre projet. Gratuit, sans engagement.</p>
               <div class="cal-embed-wrapper">
-                <!-- Cal.com inline embed -->
-                <div id="cal-inline" style="width:100%; min-height:600px; overflow:hidden;"></div>
+                <iframe
+                  src="https://cal.eu/disayner/appel-decouverte?embed=true&theme=light&brandColor=%232563EB"
+                  style="width:100%; min-height:600px; border:none; border-radius:12px;"
+                  frameborder="0"
+                  loading="lazy"
+                  allow="payment"
+                  title="Réserver un appel découverte avec DISAYNER"
+                ></iframe>
               </div>
             </div>
 
@@ -809,51 +815,6 @@ const contactSchema = {
   }
 </style>
 
-<script is:inline>
-  // Cal.eu inline embed
-  (function (C, A, L) {
-    let p = function (a, ar) { a.q.push(ar); };
-    let d = C.document;
-    C.Cal = C.Cal || function () {
-      let cal = C.Cal;
-      let ar = arguments;
-      if (!cal.loaded) {
-        cal.ns = {};
-        cal.q = cal.q || [];
-        d.head.appendChild(d.createElement("script")).src = A;
-        cal.loaded = true;
-      }
-      if (ar[0] === L) {
-        const api = function () { p(api, arguments); };
-        const namespace = ar[1];
-        api.q = api.q || [];
-        if (typeof namespace === "string") {
-          cal.ns[namespace] = cal.ns[namespace] || api;
-          p(cal.ns[namespace], ar);
-          p(cal, ["initNamespace", namespace]);
-        } else p(cal, ar);
-        return;
-      }
-      p(cal, ar);
-    };
-  })(window, "https://app.cal.eu/embed/embed.js", "init");
-
-  Cal("init", "appel-decouverte", { origin: "https://cal.eu" });
-
-  Cal.ns["appel-decouverte"]("inline", {
-    elementOrSelector: "#cal-inline",
-    calLink: "disayner/appel-decouverte",
-    layout: "month_view",
-    config: { theme: "light" }
-  });
-
-  Cal.ns["appel-decouverte"]("ui", {
-    theme: "light",
-    styles: { branding: { brandColor: "#2563EB" } },
-    hideEventTypeDetails: false,
-    layout: "month_view",
-  });
-</script>
 
 <script>
   // Scroll reveal
