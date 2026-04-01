@@ -240,6 +240,17 @@ const breadcrumbSchema = {
             <h2>Impact <em class="font-serif">mesurable</em></h2>
           </div>
 
+          {study.gallery && study.gallery[0] && study.gallery[0].includes("gsc") && (
+            <div class="cs-gsc-screenshot">
+              <img
+                src={study.gallery[0]}
+                alt={`Évolution du trafic organique — Google Search Console — ${study.clientName}`}
+                loading="lazy"
+              />
+              <p class="cs-gsc-caption">Données Google Search Console — Octobre 2025 à Mars 2026</p>
+            </div>
+          )}
+
           <div
             class="cs-metrics-grid"
             style={`grid-template-columns: repeat(${study.results.length}, 1fr);`}
@@ -693,6 +704,25 @@ const breadcrumbSchema = {
   }
 
   /* ── Results (metrics) ── */
+  .cs-gsc-screenshot {
+    margin-bottom: 2rem;
+  }
+
+  .cs-gsc-screenshot img {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    display: block;
+  }
+
+  .cs-gsc-caption {
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-top: 12px;
+  }
+
   .cs-metrics-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* overridden by inline style */

@@ -64,7 +64,66 @@ export interface CaseStudy {
 }
 
 export const caseStudies: CaseStudy[] = [
-  // ── 1. VITOR ────────────────────────────────────────────────────────────────
+  // ── 1. MONROBOTLAVEVITRE ────────────────────────────────────────────────────
+  {
+    slug: "monrobotlavevitre",
+    clientName: "MonRobotLaveVitre",
+    clientWebsite: "https://monrobotlavevitre.fr",
+    category: "e-commerce",
+    categoryLabel: "E-commerce",
+    tags: ["WordPress", "WooCommerce", "Elementor", "SEO", "CRO"],
+    thumbnail: "/images/case-studies/monrobotlavevitre/thumbnail.webp",
+    shortDescription:
+      "Création d'une boutique e-commerce de A à Z et stratégie SEO complète : de 0 à 1 590 clics/mois et 30 200 impressions en 6 mois, 100% organique.",
+    projectType: "Création e-commerce + Stratégie SEO complète",
+    year: "2025",
+    duration: "6 mois (accompagnement continu)",
+    location: "France",
+    context: `
+      <p>Une marque spécialisée dans les robots lave-vitres automatiques pour particuliers souhaitait lancer sa présence en ligne sur le marché français. Aucun site existant, aucun domaine, aucune visibilité — le projet partait de zéro.</p>
+      <p>L'objectif était clair : créer une boutique e-commerce complète, positionner la marque sur un marché de niche concurrentiel, et générer du trafic qualifié uniquement via le référencement naturel — sans budget publicitaire.</p>
+      <p>Le défi principal résidait dans la concurrence SEO : des acteurs établis (Amazon, Darty, Boulanger) dominaient les résultats de recherche sur les requêtes principales. Il fallait une stratégie de contenu intelligente pour capter du trafic long-tail et construire une autorité thématique progressive.</p>
+    `,
+    solution: `
+      <p>Nous avons pris en charge l'intégralité du projet : achat du nom de domaine, choix de l'hébergement, installation et configuration de WordPress avec WooCommerce, design du thème avec Elementor et création d'un template produit personnalisé connecté via champs ACF.</p>
+      <p><strong>Création de la boutique :</strong> 30 pages produits ont été créées avec des fiches détaillées et optimisées pour le SEO et la conversion (CRO). Chaque fiche comprend une description unique, des caractéristiques techniques structurées, un guide d'utilisation, et des éléments de réassurance (garantie, livraison, retours). Les pages catégories (robots, accessoires, pièces détachées) ont été structurées avec du contenu SEO dédié.</p>
+      <p><strong>Stratégie SEO :</strong> Nous avons construit une architecture de site pensée pour le référencement dès le premier jour. Structure en silos thématiques, maillage interne entre fiches produits, catégories et articles de blog, balisage Hn rigoureux, schema JSON-LD Product sur chaque fiche, et optimisation des meta titles et descriptions sur l'ensemble du site.</p>
+      <p><strong>Contenus :</strong> Rédaction d'articles de blog optimisés ciblant les requêtes informationnelles et comparatives (guides d'achat, comparatifs, erreurs à éviter, conseils d'entretien). Ces contenus servent de points d'entrée SEO qui redirigent naturellement vers les pages produits via le maillage interne.</p>
+      <p><strong>Optimisation technique :</strong> Performance Lighthouse optimisée, compression des images en WebP, lazy loading, configuration du cache, sitemap XML, robots.txt, inscription Google Search Console et suivi régulier des performances.</p>
+    `,
+    deliverables: [
+      "Création du site e-commerce de A à Z (domaine, hébergement, WordPress/WooCommerce)",
+      "Design et intégration complète avec Elementor",
+      "Template produit personnalisé connecté via ACF",
+      "30 pages produits avec fiches SEO et CRO optimisées",
+      "Pages catégories avec contenu SEO dédié",
+      "Architecture en silos thématiques",
+      "Maillage interne stratégique",
+      "Schema JSON-LD Product sur chaque fiche",
+      "Rédaction d'articles de blog SEO (guides, comparatifs)",
+      "Optimisation technique (performance, cache, images WebP)",
+      "Configuration Google Search Console + suivi",
+      "Stratégie SEO long-tail et autorité thématique",
+    ],
+    results: [
+      { metric: "1 590", label: "Clics/mois (depuis 0)" },
+      { metric: "30,2k", label: "Impressions Google" },
+      { metric: "5,3%",  label: "CTR moyen" },
+      { metric: "7,8",   label: "Position moyenne" },
+    ],
+    testimonial: undefined,
+    gallery: [
+      "/images/case-studies/monrobotlavevitre/gallery/gsc-performance.webp",
+    ],
+    heroImage: "/images/case-studies/monrobotlavevitre/hero.webp",
+    metaTitle: "MonRobotLaveVitre — Création e-commerce + SEO de 0 à 1 590 clics/mois | DISAYNER",
+    metaDescription:
+      "Étude de cas : création d'une boutique e-commerce WordPress/WooCommerce et stratégie SEO complète. De 0 à 1 590 clics mensuels en 6 mois, 100% organique.",
+    order: 1,
+    featured: true,
+  },
+
+  // ── 2. VITOR ──────────────────────────────────────────────────────────────────
   {
     slug: "vitor",
     clientName: "Miroiterie VITOR",
@@ -121,7 +180,7 @@ export const caseStudies: CaseStudy[] = [
     metaTitle: "Miroiterie VITOR — Création de site vitrine & Google Ads | DISAYNER",
     metaDescription:
       "Étude de cas : refonte complète du site de la Miroiterie VITOR. Migration Wix → WordPress, SEO, Google Ads. Résultats et méthodologie détaillés.",
-    order: 1,
+    order: 2,
     featured: true,
   },
 
@@ -158,7 +217,7 @@ export const caseStudies: CaseStudy[] = [
     metaTitle: "Love at Me — SEO e-commerce multilingue Shopify | DISAYNER",
     metaDescription:
       "Étude de cas : optimisation SEO complète pour Love at Me, marque de mode belge sur Shopify. Multilingue FR/EN/NL, +180% de trafic.",
-    order: 2,
+    order: 3,
     featured: true,
   },
 
@@ -189,7 +248,7 @@ export const caseStudies: CaseStudy[] = [
     metaTitle: "JM Services — Création de site vitrine paysagiste | DISAYNER",
     metaDescription:
       "Étude de cas : création d'un site vitrine pour JM Services, paysagiste dans le Var. Multi-pages, galerie, SEO local.",
-    order: 3,
+    order: 4,
     featured: true,
   },
 ];
