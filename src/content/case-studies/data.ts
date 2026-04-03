@@ -304,7 +304,68 @@ export const caseStudies: CaseStudy[] = [
     featured: false,
   },
 
-  // ── 5. LOVE AT ME ───────────────────────────────────────────────────────────
+  // ── 5. WAVSITE ───────────────────────────────────────────────────────────────
+  {
+    slug: "wavsite",
+    clientName: "WAVSITE",
+    clientWebsite: "https://wav-site.fr",
+    category: "landing-page",
+    categoryLabel: "Landing page",
+    tags: ["HTML/CSS/JS", "Cloudflare Pages", "SEO local", "Blog", "Dark UI"],
+    thumbnail: "/images/case-studies/wavsite/thumbnail.webp",
+    shortDescription:
+      "Création d'un site one-page dark luxury pour une agence web spécialisée studios d'enregistrement rap & hip-hop : pricing, SEO local, blog et formulaire de contact.",
+    projectType: "Landing page premium + Blog SEO",
+    year: "2026",
+    duration: "2 semaines",
+    location: "France",
+    context: `
+      <p>WAVSITE est une agence web de niche positionnée sur un marché très spécifique : la création de sites pour les studios d'enregistrement rap et hip-hop en France et dans la francophonie. Le fondateur souhaitait un site vitrine qui parle directement à sa cible — des gérants de studios qui ont investi dans du matériel pro mais qui n'ont aucune présence digitale.</p>
+      <p>Le brief était précis : un site one-page avec une direction artistique dark luxury évoquant l'univers du studio (sombre, premium, sonore), un système de pricing avec trois packs, une section SEO local couvrant les grandes villes françaises, un blog pour capter du trafic organique, et un formulaire de contact qui qualifie les prospects dès la prise de contact.</p>
+      <p>L'enjeu : convaincre des gérants de studios — souvent auto-entrepreneurs créatifs peu familiers avec le web — qu'un site professionnel peut transformer leur business, tout en parlant leur langage et en respectant les codes visuels de l'industrie musicale.</p>
+    `,
+    solution: `
+      <p><strong>Direction artistique dark luxury :</strong> Un univers visuel sombre et premium inspiré de l'ambiance des studios d'enregistrement — fond noir, typographie bold et impactante, contrastes forts, accents de couleur dorés et néon. Chaque section est conçue pour évoquer l'énergie et le professionnalisme de l'industrie musicale hip-hop.</p>
+      <p><strong>Développement HTML/CSS/JS pur :</strong> Le site a été codé entièrement from scratch en HTML, CSS et JavaScript vanilla — aucun framework, aucune dépendance inutile. Le résultat : un site ultra-léger, rapide et performant, déployé sur Cloudflare Pages avec un temps de chargement sous les 2 secondes.</p>
+      <p><strong>Structure de conversion :</strong> Le one-page est structuré comme un tunnel de vente : accroche percutante → problème identifié (section "Pourquoi ton studio en a besoin" avec le constat sans site vs avec site) → solution détaillée (livrables) → preuve sociale (témoignages d'artistes) → pricing clair → FAQ → formulaire. Chaque section pousse naturellement vers l'action.</p>
+      <p><strong>Système de pricing musical :</strong> Trois packs adaptés aux stades de développement des studios — Starter (890€), Studio Pro (1 690€) et Label Pack (sur devis). La nomenclature et le wording sont pensés pour l'audience : "ton studio", "tes artistes", "ta ville". Le pack Studio Pro est mis en avant comme le plus choisi.</p>
+      <p><strong>SEO local multi-villes :</strong> Une section dédiée couvrant les principales villes françaises (Paris, Lyon, Marseille, Bordeaux, Toulouse, Lille, Nantes) plus Bruxelles et Montréal. Chaque ville est ciblée avec ses requêtes locales spécifiques ("studio rap Paris", "enregistrement hip-hop Lyon"). Cette approche permet de capter du trafic local dans chaque marché.</p>
+      <p><strong>Blog SEO :</strong> Un blog complet avec des articles stratégiques ciblant les requêtes de la niche — SEO local pour studios, éléments indispensables d'un site de studio, système de booking en ligne, comparatif de prix, stratégies marketing pour studios. Chaque article est optimisé pour le référencement et redirige vers les offres.</p>
+      <p><strong>Formulaire de contact qualifiant :</strong> Un formulaire adapté à l'audience avec des champs spécifiques : prénom, email, nom du studio, ville, budget estimé, et description du projet. Ces informations permettent de qualifier chaque lead avant même le premier échange.</p>
+    `,
+    deliverables: [
+      "Direction artistique dark luxury sur mesure",
+      "Développement HTML/CSS/JS from scratch",
+      "Site one-page avec 10+ sections de conversion",
+      "Système de pricing 3 packs (Starter, Studio Pro, Label Pack)",
+      "Section SEO local multi-villes (10+ villes ciblées)",
+      "Section livrables détaillée (10 fonctionnalités)",
+      "Carrousel de témoignages d'artistes",
+      "Section process en 4 étapes",
+      "Blog SEO complet avec 5+ articles",
+      "Formulaire de contact qualifiant",
+      "Section FAQ",
+      "Pages légales (mentions légales, confidentialité)",
+      "Déploiement Cloudflare Pages + SSL",
+      "Optimisation SEO on-page (meta, sitemap, structure Hn)",
+    ],
+    results: [
+      { metric: "10+", label: "Sections de conversion" },
+      { metric: "10+", label: "Villes ciblées en SEO local" },
+      { metric: "< 2s", label: "Temps de chargement" },
+      { metric: "5+",  label: "Articles de blog SEO" },
+    ],
+    testimonial: undefined,
+    gallery: [],
+    heroImage: "/images/case-studies/wavsite/hero.webp",
+    metaTitle: "WAVSITE — Landing page dark luxury pour studios rap & hip-hop | DISAYNER",
+    metaDescription:
+      "Étude de cas : création d'un site one-page premium pour WAVSITE, agence web spécialisée studios d'enregistrement. Dark luxury, SEO local, blog, HTML/CSS/JS.",
+    order: 5,
+    featured: false,
+  },
+
+  // ── 6. LOVE AT ME ───────────────────────────────────────────────────────────
   {
     slug: "love-at-me",
     clientName: "Love at Me",
@@ -337,7 +398,7 @@ export const caseStudies: CaseStudy[] = [
     metaTitle: "Love at Me — SEO e-commerce multilingue Shopify | DISAYNER",
     metaDescription:
       "Étude de cas : optimisation SEO complète pour Love at Me, marque de mode belge sur Shopify. Multilingue FR/EN/NL, +180% de trafic.",
-    order: 5,
+    order: 6,
     featured: true,
   },
 
@@ -368,7 +429,7 @@ export const caseStudies: CaseStudy[] = [
     metaTitle: "JM Services — Création de site vitrine paysagiste | DISAYNER",
     metaDescription:
       "Étude de cas : création d'un site vitrine pour JM Services, paysagiste dans le Var. Multi-pages, galerie, SEO local.",
-    order: 6,
+    order: 7,
     featured: true,
   },
 ];
