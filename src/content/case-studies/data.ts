@@ -184,7 +184,127 @@ export const caseStudies: CaseStudy[] = [
     featured: true,
   },
 
-  // ── 2. LOVE AT ME ───────────────────────────────────────────────────────────
+  // ── 3. LIENUNIQUE ────────────────────────────────────────────────────────────
+  {
+    slug: "lienunique",
+    clientName: "Lien Unique",
+    clientWebsite: "https://lienunique.fr",
+    category: "site-vitrine",
+    categoryLabel: "Site vitrine",
+    tags: ["WordPress", "Elementor", "Stripe", "Animations", "Dark UI"],
+    thumbnail: "/images/case-studies/lienunique/thumbnail.webp",
+    shortDescription:
+      "Création d'un site vitrine premium avec dark UI, animations immersives et système de paiement Stripe pour un service de pages link-in-bio sur-mesure.",
+    projectType: "Site vitrine premium + intégration Stripe",
+    year: "2025",
+    duration: "4 semaines",
+    location: "France",
+    context: `
+      <p>Lien Unique est un service de création de pages link-in-bio 100% personnalisées — une alternative premium à Linktree et aux solutions génériques. Le fondateur souhaitait un site à la hauteur de son positionnement : du sur-mesure, pas du template.</p>
+      <p>Le brief était ambitieux : un design immersif avec un univers visuel sombre et cinématique (dark UI), des animations poussées qui marquent dès la première seconde, un système de paiement intégré pour commander directement en ligne, et un back-end complet permettant d'héberger et de gérer les pages link-in-bio livrées aux clients.</p>
+      <p>Le défi principal était de combiner une expérience visuelle spectaculaire (qui prouve le savoir-faire en design) avec un parcours de conversion fluide (du premier scroll jusqu'au paiement Stripe). Le site devait être lui-même la meilleure démonstration du service vendu : si la vitrine est belle, le client sait que sa propre page le sera aussi.</p>
+    `,
+    solution: `
+      <p><strong>Direction artistique dark UI :</strong> Nous avons conçu un univers visuel immersif avec un fond sombre, des étoiles filantes animées, des effets de profondeur et des micro-interactions sur chaque élément. L'objectif : créer un effet "wow" immédiat qui démarque le service de la concurrence et prouve visuellement la qualité du design proposé aux clients.</p>
+      <p><strong>Animations premium :</strong> Chaque section du site intègre des animations travaillées — transitions au scroll, apparitions progressives, effets de parallaxe, hover states élaborés sur les cards de tarifs et les exemples de réalisations. Le tout reste fluide et performant grâce à une optimisation rigoureuse.</p>
+      <p><strong>Intégration Stripe :</strong> Le parcours d'achat a été intégré directement dans le site avec Stripe comme solution de paiement. Les trois offres (Essentiel, Sur-mesure, Express 24H) sont présentées dans des cards de pricing claires, et le paiement se fait en quelques clics sans quitter le site.</p>
+      <p><strong>Système back-end de gestion :</strong> Au-delà du site vitrine, nous avons mis en place un système complet en back-end pour héberger les pages link-in-bio livrées aux clients. Chaque page est accessible via une URL unique et gérée depuis l'administration WordPress.</p>
+      <p><strong>Page réalisations dynamique :</strong> Une page portfolio présentant les vraies pages link-in-bio livrées aux clients, alimentée dynamiquement. Chaque réalisation est cliquable et renvoie vers la page live — la meilleure preuve de qualité possible.</p>
+    `,
+    deliverables: [
+      "Direction artistique dark UI complète",
+      "Animations immersives (étoiles filantes, parallaxe, transitions)",
+      "Intégration WordPress + Elementor",
+      "Système de paiement Stripe (3 offres de pricing)",
+      "Back-end complet d'hébergement des pages link-in-bio",
+      "Page réalisations dynamique avec pages clients live",
+      "Design responsive et optimisé mobile",
+      "Pages de vente pour chaque offre (Essentiel, Sur-mesure, Express)",
+      "Formulaire de commande personnalisé",
+      "Blog intégré",
+    ],
+    results: [
+      { metric: "3",        label: "Offres de pricing intégrées" },
+      { metric: "< 2s",     label: "Temps de chargement" },
+      { metric: "100%",     label: "Mobile responsive" },
+      { metric: "Dark UI",  label: "Design immersif unique" },
+    ],
+    testimonial: undefined,
+    gallery: [],
+    heroImage: "/images/case-studies/lienunique/hero.webp",
+    metaTitle: "Lien Unique — Site vitrine dark UI premium + Stripe | DISAYNER",
+    metaDescription:
+      "Étude de cas : création d'un site vitrine immersif pour Lien Unique, service de pages link-in-bio sur-mesure. Dark UI, animations, intégration Stripe.",
+    order: 3,
+    featured: false,
+  },
+
+  // ── 4. BLOCKFORGE ────────────────────────────────────────────────────────────
+  {
+    slug: "blockforge",
+    clientName: "BlockForge Web",
+    clientWebsite: "https://block-forge.fr",
+    category: "landing-page",
+    categoryLabel: "Landing page",
+    tags: ["React", "Vite", "Tailwind CSS", "Cloudflare Pages", "SEO", "Blog"],
+    thumbnail: "/images/case-studies/blockforge/thumbnail.webp",
+    shortDescription:
+      "Création d'un site one-page immersif pour une agence web spécialisée Minecraft : dark UI gaming, animations avancées, système de pricing et blog SEO.",
+    projectType: "Landing page premium + Blog SEO",
+    year: "2026",
+    duration: "3 semaines",
+    location: "France",
+    context: `
+      <p>BlockForge Web est une agence spécialisée dans la création de sites web pour les serveurs Minecraft francophones. Le fondateur souhaitait un site à l'image de son positionnement : premium, immersif et crédible dans l'univers gaming — à des années-lumière des templates WordPress génériques que proposent ses concurrents.</p>
+      <p>Le brief était exigeant : un site one-page avec une direction artistique dark UI inspirée de l'univers Minecraft, des animations fluides qui captent l'attention dès le premier scroll, un système de pricing clair avec trois offres, un portfolio de réalisations filtrable, une section équipe, un blog SEO complet, et un formulaire de contact avancé — le tout déployé sur Cloudflare Pages pour des performances maximales.</p>
+      <p>Le défi : créer un site qui impressionne une audience de gamers exigeants et techniquement éduqués, tout en restant performant (score Lighthouse 90+) malgré les nombreuses animations et interactions.</p>
+    `,
+    solution: `
+      <p><strong>Direction artistique gaming :</strong> Nous avons conçu un univers visuel dark UI complet inspiré de Minecraft — fond sombre, palette de couleurs reprenant les teintes iconiques du jeu (vert émeraude, violet netherite, bleu diamond), effets de particules, typographie bold et agressive. Chaque section a sa propre identité visuelle tout en restant cohérente avec l'ensemble.</p>
+      <p><strong>Développement React + Vite :</strong> Le site a été développé entièrement from scratch en React avec Vite comme bundler et Tailwind CSS pour le styling. Aucun template, aucun thème — chaque composant a été codé sur-mesure. Le choix de React + Vite permet des performances optimales avec un bundle léger et un chargement quasi-instantané.</p>
+      <p><strong>Animations immersives :</strong> Chaque section intègre des animations travaillées — transitions au scroll, hover states élaborés sur les cartes de pricing et le portfolio, effets de parallaxe, compteurs animés, et micro-interactions sur les éléments interactifs. Le tout reste fluide grâce à l'utilisation exclusive de propriétés GPU-accélérées (transform, opacity).</p>
+      <p><strong>Système de pricing gaming :</strong> Trois packs clairement présentés (Cobblestone, Diamond, Netherite) avec une nomenclature Minecraft qui parle directement à l'audience cible. Chaque carte détaille les fonctionnalités incluses avec un système visuel de checkmarks, et le pack recommandé est mis en avant visuellement.</p>
+      <p><strong>Portfolio filtrable :</strong> Une section réalisations avec des cartes projets filtrables par type de serveur (Survival, Faction, Skyblock, Mini-jeux, Roleplay). Chaque carte affiche les technologies utilisées et les métriques du serveur.</p>
+      <p><strong>Tableau comparatif :</strong> Une section "Pourquoi choisir BlockForge" avec un tableau comparatif honnête entre templates gratuits, freelances généralistes et BlockForge — un outil de conversion redoutable qui positionne clairement l'offre face à la concurrence.</p>
+      <p><strong>Blog SEO :</strong> Un blog complet intégré au site avec des articles optimisés pour le référencement, des catégories et des slugs SEO-friendly. L'objectif : capter du trafic organique sur les requêtes liées à la création de sites Minecraft.</p>
+      <p><strong>Formulaire de contact avancé :</strong> Un formulaire dynamique avec sélection du pack, champs adaptés à l'audience gaming (pseudo, nom du serveur, Discord), sélection du type de serveur et estimation de budget. Pensé pour qualifier les leads dès la prise de contact.</p>
+      <p><strong>Déploiement Cloudflare Pages :</strong> Site déployé sur Cloudflare Pages avec CDN mondial, SSL automatique et déploiement continu via Git. Temps de chargement inférieur à 2 secondes partout dans le monde.</p>
+    `,
+    deliverables: [
+      "Direction artistique dark UI gaming complète",
+      "Développement React + Vite + Tailwind CSS from scratch",
+      "Site one-page avec 10+ sections",
+      "Animations immersives et micro-interactions",
+      "Système de pricing 3 packs (Cobblestone, Diamond, Netherite)",
+      "Portfolio de réalisations filtrable par catégorie",
+      "Tableau comparatif concurrence",
+      "Section process en 5 étapes",
+      "Section équipe avec profils gaming",
+      "Section FAQ avec filtres par catégorie",
+      "Section témoignages clients",
+      "Blog SEO complet avec catégories",
+      "Formulaire de contact avancé avec qualification",
+      "Pages légales (mentions légales, confidentialité)",
+      "Déploiement Cloudflare Pages + SSL",
+      "Optimisation SEO on-page complète",
+    ],
+    results: [
+      { metric: "10+",     label: "Sections one-page" },
+      { metric: "90+",     label: "Score Lighthouse" },
+      { metric: "< 2s",    label: "Temps de chargement" },
+      { metric: "Dark UI", label: "Direction artistique gaming" },
+    ],
+    testimonial: undefined,
+    gallery: [],
+    heroImage: "/images/case-studies/blockforge/hero.webp",
+    metaTitle: "BlockForge Web — Landing page gaming dark UI React + Vite | DISAYNER",
+    metaDescription:
+      "Étude de cas : création d'un site one-page immersif pour BlockForge Web, agence spécialisée Minecraft. React, Vite, Tailwind CSS, dark UI gaming, blog SEO.",
+    order: 4,
+    featured: false,
+  },
+
+  // ── 5. LOVE AT ME ───────────────────────────────────────────────────────────
   {
     slug: "love-at-me",
     clientName: "Love at Me",
@@ -217,7 +337,7 @@ export const caseStudies: CaseStudy[] = [
     metaTitle: "Love at Me — SEO e-commerce multilingue Shopify | DISAYNER",
     metaDescription:
       "Étude de cas : optimisation SEO complète pour Love at Me, marque de mode belge sur Shopify. Multilingue FR/EN/NL, +180% de trafic.",
-    order: 3,
+    order: 5,
     featured: true,
   },
 
@@ -248,7 +368,7 @@ export const caseStudies: CaseStudy[] = [
     metaTitle: "JM Services — Création de site vitrine paysagiste | DISAYNER",
     metaDescription:
       "Étude de cas : création d'un site vitrine pour JM Services, paysagiste dans le Var. Multi-pages, galerie, SEO local.",
-    order: 4,
+    order: 6,
     featured: true,
   },
 ];
