@@ -365,7 +365,64 @@ export const caseStudies: CaseStudy[] = [
     featured: false,
   },
 
-  // ── 6. LOVE AT ME ───────────────────────────────────────────────────────────
+  // ── 6. RÉVÉLIÆNCE ────────────────────────────────────────────────────────────
+  {
+    slug: "reveliance",
+    clientName: "Révéliænce",
+    clientWebsite: "https://reveliance.com",
+    category: "site-vitrine",
+    categoryLabel: "Site vitrine",
+    tags: ["WordPress", "Elementor", "Design", "Charte graphique"],
+    thumbnail: "/images/case-studies/reveliance/thumbnail.webp",
+    shortDescription:
+      "Création d'un site vitrine de 10 pages pour une facilitatrice en intelligence collective : direction artistique sur-mesure, identité visuelle élégante et contenu pensé pour la confiance.",
+    projectType: "Site vitrine premium + Identité visuelle",
+    year: "2026",
+    duration: "6 semaines",
+    location: "Cherbourg-en-Cotentin, France",
+    context: `
+      <p>Marie-Hélène Lerouge est facilitatrice en intelligence collective et praticienne narrative, basée à Cherbourg-en-Cotentin. Depuis plus de 15 ans, elle accompagne dirigeants, équipes et organisations dans leurs transformations — mais sa présence digitale ne reflétait pas la finesse et la profondeur de son travail.</p>
+      <p>Son activité repose essentiellement sur la confiance, la relation humaine et le bouche-à-oreille. L'enjeu n'était pas d'attirer du trafic en masse, mais de créer un site qui inspire confiance dès le premier regard, qui donne envie de prendre contact, et qui exprime avec justesse la singularité de son approche : un mélange de pratiques narratives, de facilitation collective et d'accompagnement stratégique.</p>
+      <p>Le défi principal : traduire en images et en mots un métier profondément humain, subtil et difficile à catégoriser. Le site devait éviter le jargon "coaching corporate" tout en restant crédible auprès de dirigeants, cadres de santé, directeurs d'établissements scolaires et collectivités. Un exercice d'équilibre entre élégance, accessibilité et profondeur.</p>
+    `,
+    solution: `
+      <p><strong>Direction artistique sur-mesure :</strong> Nous avons co-construit avec la cliente une identité visuelle unique qui traduit visuellement sa philosophie — le lien, le soin, la transformation douce. La palette de couleurs associe un bleu profond (#024BAD) symbolisant la confiance et l'ancrage, à un jaune lumineux (#FFDE5B) évoquant l'élan et la clarté. La typographie combine Cormorant Garamond (élégante, incarnée, pour les titres) et Manrope (moderne, lisible, pour le corps de texte).</p>
+      <p><strong>Architecture de contenu pensée pour la confiance :</strong> 10 pages structurées autour du parcours de décision du visiteur — de la découverte de l'approche (accueil, à propos) à la compréhension des services (accompagnements avec 9 sous-sections détaillées) jusqu'à la preuve sociale (témoignages, exemples concrets) et la prise de contact. Chaque page est rédigée dans un ton juste : ni trop corporate, ni trop informel — à l'image de la cliente.</p>
+      <p><strong>Page accompagnements immersive :</strong> La page centrale du site présente 9 types d'accompagnement (individuels, collectifs, projets éducatifs, co-développement, entretiens annuels, formations, projets maritimes, transitions, enjeux de territoire) avec une navigation par ancres permettant au visiteur de trouver exactement ce qui correspond à sa situation.</p>
+      <p><strong>Éléments de réassurance :</strong> Intégration d'un extrait audio d'une interview sur RCF, section témoignages avec des citations marquantes en défilé, section "Pour qui" qui permet à chaque profil cible de se reconnaître immédiatement (dirigeant, cadre de santé, directeur d'établissement, facilitateur, PME/collectivités).</p>
+      <p><strong>Développement WordPress + Elementor :</strong> Site développé sur WordPress avec Elementor pour permettre à la cliente de mettre à jour ses contenus en autonomie. Design responsive testé sur tous les appareils, performances optimisées et formulaire de contact simple et accessible.</p>
+    `,
+    deliverables: [
+      "Conception de l'identité visuelle complète (palette, typographie, ton)",
+      "Direction artistique et charte graphique",
+      "10 pages conçues et rédigées",
+      "Page accompagnements avec 9 sous-sections et navigation par ancres",
+      "Page exemples d'accompagnements concrets",
+      "Page témoignages avec citations clients",
+      "Page FAQ",
+      "Page contact avec formulaire",
+      "Section audio (interview RCF intégrée)",
+      "Design responsive mobile-first",
+      "Intégration WordPress + Elementor",
+      "Formation client à la gestion du contenu",
+    ],
+    results: [
+      { metric: "10",   label: "Pages créées" },
+      { metric: "9",    label: "Types d'accompagnement présentés" },
+      { metric: "15+",  label: "Années d'expertise mises en valeur" },
+      { metric: "100%", label: "Responsive mobile" },
+    ],
+    testimonial: undefined,
+    gallery: [],
+    heroImage: "/images/case-studies/reveliance/hero.webp",
+    metaTitle: "Révéliænce — Site vitrine premium pour facilitatrice en intelligence collective | DISAYNER",
+    metaDescription:
+      "Étude de cas : création d'un site vitrine de 10 pages pour Révéliænce, facilitatrice en intelligence collective. Identité visuelle, WordPress, Elementor.",
+    order: 6,
+    featured: false,
+  },
+
+  // ── 7. LOVE AT ME ───────────────────────────────────────────────────────────
   {
     slug: "love-at-me",
     clientName: "Love at Me",
@@ -398,7 +455,7 @@ export const caseStudies: CaseStudy[] = [
     metaTitle: "Love at Me — SEO e-commerce multilingue Shopify | DISAYNER",
     metaDescription:
       "Étude de cas : optimisation SEO complète pour Love at Me, marque de mode belge sur Shopify. Multilingue FR/EN/NL, +180% de trafic.",
-    order: 6,
+    order: 7,
     featured: true,
   },
 
@@ -429,7 +486,7 @@ export const caseStudies: CaseStudy[] = [
     metaTitle: "JM Services — Création de site vitrine paysagiste | DISAYNER",
     metaDescription:
       "Étude de cas : création d'un site vitrine pour JM Services, paysagiste dans le Var. Multi-pages, galerie, SEO local.",
-    order: 7,
+    order: 8,
     featured: true,
   },
 ];
