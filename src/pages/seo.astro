@@ -6,6 +6,16 @@ import Testimonials from '../components/Testimonials.astro';
 import BgWords from '../components/BgWords.astro';
 import BgOrbs from '../components/BgOrbs.astro';
 import BgDots from '../components/BgDots.astro';
+import { caseStudies as allCaseStudies } from '../content/case-studies/data';
+
+const seoCaseStudies = allCaseStudies.filter(cs => cs.categories.includes('seo')).slice(0, 3);
+
+const categoryAccents: Record<string, string> = {
+  'site-vitrine': '#2563EB',
+  'seo':          '#7C3AED',
+  'e-commerce':   '#059669',
+  'landing-page': '#F59E0B',
+};
 
 const seoServices = [
   {
@@ -84,11 +94,6 @@ const processSteps = [
   { num: '05', title: 'Suivi & reporting', desc: "Chaque mois : rapport de performance, analyse des évolutions, ajustements stratégiques. Vous avez une visibilité totale.", livrable: 'Rapport mensuel + call de suivi', duration: 'Mensuel' },
 ];
 
-const caseStudies = [
-  { client: 'Love at Me', type: 'E-commerce Shopify', desc: "SEO multilingue sur ~560 pages. Optimisation meta, JSON-LD, hreflang.", result: '+180% de trafic organique en 4 mois', accent: '#7C3AED' },
-  { client: 'Miroiterie VITOR', type: 'WordPress · Artisan local', desc: "SEO local + Google Ads. Structure, contenus, Google Business Profile.", result: '1ère page Google sur les mots-clés cibles en 3 mois', accent: '#2563EB' },
-  { client: 'Griffe Event Solutions', type: 'WordPress · Événementiel', desc: "Audit SEO complet + plan d'action. Quick wins + stratégie long terme.", result: '+120% de demandes de devis via le site', accent: '#059669' },
-];
 
 const faqItems = [
   { q: "Combien de temps faut-il pour voir des résultats en SEO ?", a: "Le SEO est un investissement moyen-long terme. Les premiers signaux apparaissent généralement sous 4 à 8 semaines (améliorations techniques, indexation). Des résultats significatifs en termes de trafic et de positionnement se construisent sur 3 à 6 mois. La durée dépend de votre secteur, de la concurrence et de l'état initial de votre site.", open: true },
@@ -537,19 +542,28 @@ const serviceSchema = {
         </div>
 
         <div class="sp-cases">
-          {caseStudies.map((c, i) => (
-            <div class="sp-case-card sp-fade-in" style={`transition-delay:${i * 0.1}s`}>
-              <div class="sp-case-dot" style={`background:${c.accent};`} aria-hidden="true"></div>
-              <div class="sp-case-info">
-                <div class="sp-case-meta">
-                  <strong class="sp-case-client">{c.client}</strong>
-                  <span class="sp-case-type">{c.type}</span>
+          {seoCaseStudies.map((cs, i) => {
+            const accent = categoryAccents[cs.categories[0]] ?? '#7C3AED';
+            return (
+              <a href={`/realisations/${cs.slug}`} class="sp-case-card sp-fade-in" style={`transition-delay:${i * 0.1}s; text-decoration:none; color:inherit;`}>
+                <div class="sp-case-dot" style={`background:${accent};`} aria-hidden="true"></div>
+                <div class="sp-case-info">
+                  <div class="sp-case-meta">
+                    <strong class="sp-case-client">{cs.clientName}</strong>
+                    <span class="sp-case-type">{cs.projectType}</span>
+                  </div>
+                  <p class="sp-case-desc">{cs.shortDescription}</p>
+                  {cs.results && cs.results.length > 0 && (
+                    <div class="sp-case-results">
+                      {cs.results.slice(0, 2).map(r => (
+                        <span class="sp-case-result" style={`color:${accent};`}>→ {r.metric} {r.label}</span>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <p class="sp-case-desc">{c.desc}</p>
-                <p class="sp-case-result" style={`color:${c.accent};`}>→ {c.result}</p>
-              </div>
-            </div>
-          ))}
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -1497,7 +1511,10 @@ const serviceSchema = {
 
   .sp-case-desc { font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 0.375rem; }
 
+  .sp-case-results { display: flex; flex-direction: column; gap: 4px; }
   .sp-case-result { font-size: 0.875rem; font-weight: 700; }
+  .sp-case-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .sp-case-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
 
   /* ─── S8: FOR WHOM ────────────────────────────────────────────────────── */
   .sp-forwhom { background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }

@@ -5,6 +5,16 @@ import Footer from '../components/Footer.astro';
 import Testimonials from '../components/Testimonials.astro';
 import BgWords from '../components/BgWords.astro';
 import BgDots from '../components/BgDots.astro';
+import { caseStudies as allCaseStudies } from '../content/case-studies/data';
+
+const siteProjects = allCaseStudies.filter(cs => cs.categories.includes('site-vitrine')).slice(0, 3);
+
+const categoryAccents: Record<string, string> = {
+  'site-vitrine': '#2563EB',
+  'seo':          '#7C3AED',
+  'e-commerce':   '#059669',
+  'landing-page': '#F59E0B',
+};
 
 const siteTypes = [
   {
@@ -91,11 +101,6 @@ const includesColumns = [
   },
 ];
 
-const projects = [
-  { slug: 'vitor',       client: 'Miroiterie VITOR', type: 'Site vitrine multi-pages + Google Ads', desc: "Refonte complète pour une miroiterie en Haute-Savoie : services détaillés, portfolio interactif, formulaire connecté Microsoft 365 et campagnes Google Ads optimisées.", stack: ['WordPress', 'Elementor', 'SEO'], accent: '#2563EB', bg: 'linear-gradient(135deg, #1e3a5f 0%, #2563EB 100%)' },
-  { slug: 'love-at-me',  client: 'Love at Me', type: 'SEO e-commerce multilingue', desc: "Optimisation SEO complète sur ~560 pages produits : meta content, schema JSON-LD, balises hreflang, descriptions optimisées et stratégie de maillage interne.", stack: ['Shopify', 'SEO', 'FR/EN/NL'], accent: '#7C3AED', bg: 'linear-gradient(135deg, #4c1d95 0%, #7C3AED 100%)' },
-  { slug: 'jm-services', client: 'JM Services', type: 'Site vitrine complet', desc: "Création d'un site multi-pages pour un paysagiste dans le Var : présentation des services, galerie filtrée par catégorie, lightbox et formulaire personnalisé.", stack: ['WordPress', 'Elementor', 'SEO'], accent: '#059669', bg: 'linear-gradient(135deg, #064e3b 0%, #059669 100%)' },
-];
 
 const faqItems = [
   { q: "Combien coûte la création d'un site web ?", a: "Le budget dépend du type de site (vitrine, e-commerce, landing page), du nombre de pages, des fonctionnalités et du CMS choisi. Chaque projet est chiffré sur-mesure après un appel découverte gratuit. Pas de surprise : vous recevez un devis détaillé avant de vous engager.", open: true },
@@ -470,24 +475,36 @@ const serviceSchema = {
         </div>
 
         <div class="cs-portfolio-list">
-          {projects.map((p, i) => (
-            <article class="cs-portfolio-card cs-fade-in" style={`transition-delay:${i * 0.1}s`} aria-label={`Projet : ${p.client}`}>
-              <div class="cs-portfolio-img" style={`background:${p.bg};`} aria-hidden="true">
-                <div class="cs-portfolio-client-initial" style={`color:white; opacity:0.15; font-size:6rem; font-weight:800; letter-spacing:-0.04em;`}>
-                  {p.client.charAt(0)}
+          {siteProjects.map((cs, i) => {
+            const accent = categoryAccents[cs.categories[0]] ?? '#2563EB';
+            return (
+              <article class="cs-portfolio-card cs-fade-in" style={`transition-delay:${i * 0.1}s`} aria-label={`Projet : ${cs.clientName}`}>
+                <div class="cs-portfolio-img" aria-hidden="true">
+                  <img
+                    src={cs.thumbnail}
+                    alt={`Aperçu du projet ${cs.clientName}`}
+                    class="cs-portfolio-thumb"
+                    loading={i < 2 ? 'eager' : 'lazy'}
+                    onerror={`this.style.display='none';this.nextElementSibling.style.display='flex';`}
+                  />
+                  <div class="cs-portfolio-placeholder" style={`display:none; background:linear-gradient(135deg, ${accent}22 0%, ${accent}08 100%);`}>
+                    <span style="color:white; opacity:0.15; font-size:6rem; font-weight:800; letter-spacing:-0.04em;">
+                      {cs.clientName.charAt(0)}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div class="cs-portfolio-info">
-                <span class="cs-portfolio-badge" style={`color:${p.accent}; background:${p.accent}18; border-color:${p.accent}30;`}>{p.type}</span>
-                <h3 class="cs-portfolio-title">{p.client}</h3>
-                <p class="cs-portfolio-desc">{p.desc}</p>
-                <div class="cs-portfolio-stack">
-                  {p.stack.map(s => <span class="cs-tag">{s}</span>)}
+                <div class="cs-portfolio-info">
+                  <span class="cs-portfolio-badge" style={`color:${accent}; background:${accent}18; border-color:${accent}30;`}>{cs.projectType}</span>
+                  <h3 class="cs-portfolio-title">{cs.clientName}</h3>
+                  <p class="cs-portfolio-desc">{cs.shortDescription}</p>
+                  <div class="cs-portfolio-stack">
+                    {cs.tags.slice(0, 3).map(t => <span class="cs-tag">{t}</span>)}
+                  </div>
+                  <a href={`/realisations/${cs.slug}`} class="cs-portfolio-cta" style={`color:${accent};`}>Voir l'étude de cas →</a>
                 </div>
-                <a href={`/realisations/${p.slug}`} class="cs-portfolio-cta" style={`color:${p.accent};`}>Voir l'étude de cas →</a>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
         <div class="cs-portfolio-footer">
@@ -1363,6 +1380,24 @@ const serviceSchema = {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, #F5F5F0, #EFF6FF);
+  }
+
+  .cs-portfolio-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  .cs-portfolio-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .cs-portfolio-info {

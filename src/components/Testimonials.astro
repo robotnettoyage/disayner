@@ -167,31 +167,32 @@ const testimonials = [
 
   .slides-container {
     position: relative;
-    min-height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   /* Slides */
   .testimonial-slide {
-    position: absolute;
-    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
+    padding: 1rem 0;
+    /* Hidden by default */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
     transition: none;
-    padding: 1rem 0;
   }
 
   .testimonial-slide.slide-active {
     position: relative;
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
   }
 
   .testimonial-quote {
@@ -384,10 +385,12 @@ const testimonials = [
         prev.classList.remove("slide-active");
         prev.setAttribute("aria-hidden", "true");
         prev.style.position = "absolute";
+        prev.style.visibility = "hidden";
 
         next.classList.add("slide-active");
         next.setAttribute("aria-hidden", "false");
         next.style.position = "relative";
+        next.style.visibility = "visible";
         gsap.fromTo(next,
           { opacity: 0, y: 18 },
           { opacity: 1, y: 0, duration: 0.42, ease: "power2.out" }
