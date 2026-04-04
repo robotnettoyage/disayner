@@ -1419,22 +1419,15 @@ const breadcrumbSchema = {
   gsap.registerPlugin(ScrollTrigger);
 
   // ── Hero entrance
-  gsap.from(".cs-detail-hero-content > *", {
-    y: 50,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: "power3.out",
-    delay: 0.2,
-  });
+  gsap.fromTo(".cs-detail-hero-content > *",
+    { y: 50, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out", delay: 0.2, clearProps: "transform,opacity" }
+  );
 
-  gsap.from(".cs-detail-hero-visual", {
-    x: 40,
-    opacity: 0,
-    duration: 0.9,
-    ease: "power3.out",
-    delay: 0.45,
-  });
+  gsap.fromTo(".cs-detail-hero-visual",
+    { x: 40, opacity: 0 },
+    { x: 0, opacity: 1, duration: 0.9, ease: "power3.out", delay: 0.45, clearProps: "transform,opacity" }
+  );
 
   // ── Sections on scroll (guard each — conditional sections may be absent)
   const sectionSelectors = [
@@ -1453,25 +1446,25 @@ const breadcrumbSchema = {
       ".cs-section-header, .cs-prose, .cs-metrics-grid, .cs-deliverables, .cs-quote-block, .cs-other-card, .cs-gallery-scroll"
     );
     if (!targets.length) return;
-    gsap.from(targets, {
-      y: 40,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.08,
-      ease: "power2.out",
-      scrollTrigger: { trigger: el, start: "top 82%" },
-    });
+    gsap.fromTo(targets,
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: "power2.out", clearProps: "transform,opacity", scrollTrigger: { trigger: el, start: "top 82%" } }
+    );
   });
 
   // ── CTA entrance
-  gsap.from(".cs-cta-inner > *", {
-    y: 30,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.08,
-    ease: "power2.out",
-    scrollTrigger: { trigger: ".cs-cta-section", start: "top 70%" },
-  });
+  gsap.fromTo(".cs-cta-inner > *",
+    { y: 30, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+      scrollTrigger: { trigger: ".cs-cta-section", start: "top 70%" },
+    }
+  );
 
   // ── Gallery lightbox
   const galleryItems = document.querySelectorAll<HTMLButtonElement>(".cs-gallery-item");
