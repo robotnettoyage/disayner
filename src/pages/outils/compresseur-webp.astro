@@ -601,49 +601,57 @@ const benefits = [
   .wc-btn-clear-all { font-size: 12px; color: #EF4444; background: none; border: none; cursor: pointer; font-family: inherit; font-weight: 500; }
   .wc-btn-clear-all:hover { text-decoration: underline; }
 
-  .wc-image-table, .wc-results-table { border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; max-height: 350px; overflow-y: auto; }
+  /* Tables shared */
+  .wc-image-table, .wc-results-table { border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; max-height: 400px; overflow-y: auto; }
   .wc-image-table::-webkit-scrollbar, .wc-results-table::-webkit-scrollbar { width: 5px; }
+  .wc-image-table::-webkit-scrollbar-track, .wc-results-table::-webkit-scrollbar-track { background: transparent; }
   .wc-image-table::-webkit-scrollbar-thumb, .wc-results-table::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+  .wc-image-table::-webkit-scrollbar-thumb:hover, .wc-results-table::-webkit-scrollbar-thumb:hover { background: #D0D0CB; }
 
+  /* Image table head/rows (4 cols) */
   .wc-table-head {
     display: grid;
     grid-template-columns: 1fr 70px 80px 36px;
-    padding: 10px 16px;
+    padding: 12px 16px;
     background: var(--color-surface);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--color-text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     border-bottom: 1px solid var(--color-border);
     position: sticky;
     top: 0;
     z-index: 1;
   }
 
-  .wc-table-head--results { grid-template-columns: 1fr 70px 70px 60px 36px; }
-
   .wc-table-row {
     display: grid;
     grid-template-columns: 1fr 70px 80px 36px;
-    padding: 10px 16px;
+    padding: 12px 16px;
     align-items: center;
     border-bottom: 1px solid #F0F0EB;
     font-size: 13px;
     transition: background 0.2s ease;
   }
 
-  .wc-table-row:hover { background: var(--color-background); }
   .wc-table-row:last-child { border-bottom: none; }
+  .wc-table-row:hover { background: var(--color-background); }
 
-  .wc-table-row--results { grid-template-columns: 1fr 70px 70px 60px 36px; }
+  /* Results table head/rows (5 cols) */
+  .wc-table-head--results { grid-template-columns: 1fr 80px 80px 70px 44px; }
+  .wc-table-row--results { grid-template-columns: 1fr 80px 80px 70px 44px; }
 
-  .wc-col-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-primary); font-weight: 500; }
+  .wc-results-table .wc-table-row:nth-child(even) { background: var(--color-background); }
+  .wc-results-table .wc-table-row:nth-child(even):hover { background: var(--color-surface); }
+
+  /* Column styles */
+  .wc-col-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-primary); font-weight: 500; font-size: 13px; }
   .wc-col-format { color: var(--color-text-secondary); font-size: 12px; }
   .wc-col-size { font-weight: 600; color: var(--color-text-primary); font-size: 12px; }
-  .wc-col-before { color: var(--color-text-secondary); font-size: 12px; }
-  .wc-col-after { font-weight: 600; color: var(--color-text-primary); font-size: 12px; }
-  .wc-col-saved { font-weight: 700; font-size: 12px; }
+  .wc-col-before { color: var(--color-text-secondary); font-size: 12px; text-align: right; }
+  .wc-col-after { font-weight: 600; color: var(--color-text-primary); font-size: 12px; text-align: right; }
+  .wc-col-saved { font-weight: 700; font-size: 12px; text-align: right; }
   .wc-col-saved.positive { color: #22C55E; }
   .wc-col-saved.negative { color: #EF4444; }
 
@@ -664,18 +672,17 @@ const benefits = [
   .wc-image-remove:hover { background: #FEF2F2; color: #EF4444; }
 
   .wc-result-download {
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
     background: var(--color-accent-soft);
     color: var(--color-accent);
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
     transition: all 0.2s ease;
+    margin-left: auto;
   }
   .wc-result-download:hover { background: var(--color-accent); color: white; }
 
@@ -716,20 +723,29 @@ const benefits = [
 
   .wc-btn-reset:hover { border-color: var(--color-accent); color: var(--color-accent); }
 
-  /* Results */
+  /* Results summary */
   .wc-results-summary {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 32px;
-    padding: 24px;
-    background: linear-gradient(135deg, var(--color-surface), var(--color-accent-soft));
+    gap: 1px;
+    background: var(--color-border);
     border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 24px;
   }
 
-  .wc-result-stat { text-align: center; }
-  .wc-stat-number { display: block; font-size: 2rem; font-weight: 800; color: var(--color-accent); }
-  .wc-stat-label { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; }
+  .wc-result-stat {
+    text-align: center;
+    padding: 28px 20px;
+    background: white;
+  }
+
+  .wc-result-stat:first-child {
+    background: linear-gradient(135deg, var(--color-accent-soft), white);
+  }
+
+  .wc-stat-number { display: block; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: var(--color-accent); line-height: 1; }
+  .wc-stat-label { font-size: 12px; color: var(--color-text-secondary); margin-top: 8px; font-weight: 500; }
 
   .wc-results-list { margin-bottom: 0; }
 
@@ -982,9 +998,11 @@ const benefits = [
     .wc-results-summary { grid-template-columns: 1fr; }
     .wc-benefits-grid { grid-template-columns: 1fr; }
     .wc-col-format { display: none; }
-    .wc-table-head, .wc-table-row { grid-template-columns: 1fr 70px 36px; padding: 8px 12px; }
-    .wc-table-head--results, .wc-table-row--results { grid-template-columns: 1fr 60px 50px 36px; }
+    .wc-table-head, .wc-table-row { grid-template-columns: 1fr 70px 36px; padding: 10px 12px; }
+    .wc-table-head--results, .wc-table-row--results { grid-template-columns: 1fr 60px 60px 44px; }
     .wc-col-before { display: none; }
+    .wc-table-head--results { font-size: 10px; }
+    .wc-table-row--results { font-size: 12px; padding: 10px 12px; }
     .wc-actions { flex-direction: column; align-items: stretch; }
     .wc-btn-compress, .wc-btn-reset { width: 100%; justify-content: center; }
     .wc-cta-actions { flex-direction: column; align-items: center; }
@@ -1098,6 +1116,12 @@ const benefits = [
     function getFileExt(name: string): string {
       const ext = name.split('.').pop()?.toUpperCase() || '?';
       return ext === 'JPEG' ? 'JPG' : ext;
+    }
+
+    function truncate(str: string, max: number): string {
+      if (str.length <= max) return str;
+      const ext = str.split('.').pop() || '';
+      return str.substring(0, max - ext.length - 3) + '...' + ext;
     }
 
     function renderFileList() {
@@ -1230,11 +1254,13 @@ const benefits = [
           const savingsClass = r.savings >= 0 ? 'positive' : 'negative';
           return `
             <div class="wc-table-row wc-table-row--results">
-              <span class="wc-col-name" title="${r.newName}">${r.newName}</span>
+              <span class="wc-col-name" title="${r.newName}">${truncate(r.newName, 28)}</span>
               <span class="wc-col-before">${formatSize(r.originalSize)}</span>
               <span class="wc-col-after">${formatSize(r.newSize)}</span>
               <span class="wc-col-saved ${savingsClass}">${r.savings >= 0 ? '-' : '+'}${Math.abs(r.savings)}%</span>
-              <a class="wc-result-download" href="${URL.createObjectURL(r.blob)}" download="${r.newName}" title="Télécharger">&darr;</a>
+              <a class="wc-result-download" href="${URL.createObjectURL(r.blob)}" download="${r.newName}" title="Télécharger">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </a>
             </div>
           `;
         }).join('');
