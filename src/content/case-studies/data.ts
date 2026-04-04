@@ -173,8 +173,7 @@ export const caseStudies: CaseStudy[] = [
       role: "Fondateur, Miroiterie VITOR",
     },
     gallery: [
-      "/images/case-studies/vitor/gallery/1.webp",
-      "/images/case-studies/vitor/gallery/2.webp",
+      "/images/case-studies/vitor/gallery/screenshot-1.webp",
     ],
     heroImage: "/images/case-studies/vitor/hero.webp",
     metaTitle: "Miroiterie VITOR — Création de site vitrine & Google Ads | DISAYNER",
@@ -230,7 +229,9 @@ export const caseStudies: CaseStudy[] = [
       { metric: "Dark UI",  label: "Design immersif unique" },
     ],
     testimonial: undefined,
-    gallery: [],
+    gallery: [
+      "/images/case-studies/lienunique/gallery/screenshot-1.webp",
+    ],
     heroImage: "/images/case-studies/lienunique/hero.webp",
     metaTitle: "Lien Unique — Site vitrine dark UI premium + Stripe | DISAYNER",
     metaDescription:
@@ -295,7 +296,9 @@ export const caseStudies: CaseStudy[] = [
       { metric: "Dark UI", label: "Direction artistique gaming" },
     ],
     testimonial: undefined,
-    gallery: [],
+    gallery: [
+      "/images/case-studies/blockforge/gallery/screenshot-1.webp",
+    ],
     heroImage: "/images/case-studies/blockforge/hero.webp",
     metaTitle: "BlockForge Web — Landing page gaming dark UI React + Vite | DISAYNER",
     metaDescription:
@@ -356,7 +359,9 @@ export const caseStudies: CaseStudy[] = [
       { metric: "5+",  label: "Articles de blog SEO" },
     ],
     testimonial: undefined,
-    gallery: [],
+    gallery: [
+      "/images/case-studies/wavsite/gallery/screenshot-1.webp",
+    ],
     heroImage: "/images/case-studies/wavsite/hero.webp",
     metaTitle: "WAVSITE — Landing page dark luxury pour studios rap & hip-hop | DISAYNER",
     metaDescription:
@@ -413,7 +418,9 @@ export const caseStudies: CaseStudy[] = [
       { metric: "100%", label: "Responsive mobile" },
     ],
     testimonial: undefined,
-    gallery: [],
+    gallery: [
+      "/images/case-studies/reveliance/gallery/screenshot-1.webp",
+    ],
     heroImage: "/images/case-studies/reveliance/hero.webp",
     metaTitle: "Révéliænce — Site vitrine premium pour facilitatrice en intelligence collective | DISAYNER",
     metaDescription:
@@ -451,6 +458,9 @@ export const caseStudies: CaseStudy[] = [
       { metric: "278",   label: "Produits optimisés" },
       { metric: "1.1s",  label: "LCP (avant : 21.6s)" },
     ],
+    gallery: [
+      "/images/case-studies/love-at-me/gallery/screenshot-1.webp",
+    ],
     heroImage: "/images/case-studies/love-at-me/hero.webp",
     metaTitle: "Love at Me — SEO e-commerce multilingue Shopify | DISAYNER",
     metaDescription:
@@ -481,6 +491,9 @@ export const caseStudies: CaseStudy[] = [
       "Galerie réalisations avec lightbox",
       "Formulaire de contact personnalisé",
       "SEO local optimisé",
+    ],
+    gallery: [
+      "/images/case-studies/jm-services/gallery/screenshot-1.webp",
     ],
     heroImage: "/images/case-studies/jm-services/hero.webp",
     metaTitle: "JM Services — Création de site vitrine paysagiste | DISAYNER",
