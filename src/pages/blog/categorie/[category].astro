@@ -1,0 +1,517 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import { getAllCategories, getArticlesByCategory, getCategoryBySlug } from '../../../content/blog/data';
+
+export async function getStaticPaths() {
+  const cats = getAllCategories();
+  return cats.map((cat) => ({
+    params: { category: cat.slug },
+  }));
+}
+
+const { category: categorySlug } = Astro.params;
+const category = getCategoryBySlug(categorySlug!);
+if (!category) return Astro.redirect('/blog');
+
+const articles = getArticlesByCategory(categorySlug!);
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": `${category.name} — Blog DISAYNER`,
+  "description": category.description,
+  "url": `https://disayner.com/blog/categorie/${category.slug}`,
+  "isPartOf": { "@type": "WebSite", "url": "https://disayner.com", "name": "DISAYNER" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://disayner.com" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://disayner.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": category.name, "item": `https://disayner.com/blog/categorie/${category.slug}` },
+  ],
+};
+---
+
+<Layout
+  title={`${category.name} — Blog | DISAYNER`}
+  description={category.description}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- BREADCRUMB                                                         -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <nav class="cat-breadcrumb" aria-label="Fil d'Ariane">
+      <div class="cat-breadcrumb-inner">
+        <a href="/">Accueil</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="/blog">Blog</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="breadcrumb-current" aria-current="page">{category.name}</span>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- CATEGORY HEADER                                                    -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cat-header" aria-label={`Catégorie ${category.name}`}>
+      <div class="cat-header-inner">
+        <div class="cat-icon-wrap" style={`border-color:${category.color}30;`}>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={category.color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={category.icon} />
+        </div>
+        <h1 class="cat-title">{category.name}</h1>
+        <p class="cat-description">{category.description}</p>
+        <p class="cat-count">{articles.length} article{articles.length > 1 ? 's' : ''}</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- ARTICLE GRID                                                       -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cat-grid-section" aria-label="Articles de la catégorie">
+      <div class="cat-grid-inner">
+
+        {articles.length > 0 ? (
+          <div class="cat-grid" role="list">
+            {articles.map((article) => (
+              <article class="cat-card" role="listitem">
+                <a href={`/blog/${article.slug}`} class="cat-card-link" style={`--card-accent:${category.color};`}>
+                  <div class="cat-card-header">
+                    <span
+                      class="cat-badge"
+                      style={`color:${category.color}; background:${category.color}12; border-color:${category.color}30;`}
+                    >
+                      {article.categoryName}
+                    </span>
+                    <span class="cat-card-date">{formatDate(article.publishDate)}</span>
+                  </div>
+                  <h2 class="cat-card-title">{article.title}</h2>
+                  <p class="cat-card-excerpt">{article.excerpt}</p>
+                  <div class="cat-card-footer">
+                    <span class="cat-card-reading">{article.readingTime} de lecture</span>
+                    <span class="cat-card-cta">Lire &rarr;</span>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p class="cat-empty">Aucun article dans cette catégorie pour le moment.</p>
+        )}
+
+        <div class="cat-back">
+          <a href="/blog" class="cat-back-link hover-underline">
+            &larr; Retour au blog
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- CTA                                                                -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="cat-cta-section" aria-label="Passer à l'action">
+      <div class="cat-cta-inner">
+        <p class="cat-cta-eyebrow">Besoin d'un accompagnement ?</p>
+        <h2 class="cat-cta-title">
+          Nos articles vous donnent les clés,<br />
+          <em class="font-serif">notre agence les met en œuvre.</em>
+        </h2>
+        <p class="cat-cta-sub">
+          Un échange de 30 minutes pour comprendre votre besoin.<br />
+          Sans engagement, sans pression.
+        </p>
+        <a href="/contact" class="cat-cta-btn">
+          Démarrer un projet
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <p class="cat-cta-reassurance">Réponse sous 24h · 100% sur mesure · Basé en Haute-Savoie</p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Breadcrumb ── */
+  .cat-breadcrumb {
+    padding: 6.5rem 2rem 0;
+    background: var(--color-background);
+  }
+
+  .cat-breadcrumb-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .cat-breadcrumb a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .cat-breadcrumb a:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb-sep {
+    opacity: 0.35;
+    margin: 0 0.1rem;
+  }
+
+  .breadcrumb-current {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+
+  /* ── Category header ── */
+  .cat-header {
+    padding: 3rem 2rem 0;
+    background: var(--color-background);
+  }
+
+  .cat-header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .cat-icon-wrap {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent-soft);
+    border: 1px solid;
+    border-radius: 14px;
+    margin-bottom: 1.25rem;
+  }
+
+  .cat-title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+
+  .cat-description {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 620px;
+    margin-bottom: 0.5rem;
+  }
+
+  .cat-count {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+  }
+
+  /* ── Grid section ── */
+  .cat-grid-section {
+    padding: 3rem 2rem 6rem;
+    background: var(--color-background);
+  }
+
+  .cat-grid-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── Card ── */
+  .cat-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.5s ease;
+  }
+
+  .cat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.03);
+    border-color: rgba(37, 99, 235, 0.12);
+  }
+
+  .cat-card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  .cat-card:hover .cat-card-link {
+    border-left-color: var(--card-accent);
+  }
+
+  .cat-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .cat-badge {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    border: 1px solid;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .cat-card-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .cat-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
+  .cat-card-excerpt {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cat-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .cat-card-reading {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .cat-card-cta {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  /* ── Back link ── */
+  .cat-back {
+    text-align: center;
+  }
+
+  .cat-back-link {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  /* ── Empty state ── */
+  .cat-empty {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    padding: 3rem 0;
+  }
+
+  /* ── CTA section ── */
+  .cat-cta-section {
+    position: relative;
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%);
+    padding: 7rem 2rem;
+    overflow: hidden;
+  }
+
+  .cat-cta-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cat-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .cat-cta-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .cat-cta-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .cat-cta-title em {
+    font-style: italic;
+    font-family: var(--font-serif);
+  }
+
+  .cat-cta-sub {
+    font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  .cat-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    color: var(--color-accent);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cat-cta-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .cat-cta-reassurance {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .cat-breadcrumb { padding: 6rem 1.25rem 0; }
+    .cat-header { padding: 2rem 1.25rem 0; }
+    .cat-grid-section { padding: 2rem 1.25rem 4rem; }
+  }
+
+  @media (max-width: 700px) {
+    .cat-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .cat-cta-section { padding: 5rem 1.25rem; }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── Header entrance
+  gsap.from(".cat-header-inner > *", {
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: "power3.out",
+    delay: 0.1,
+  });
+
+  // ── Cards stagger on scroll
+  gsap.from(".cat-card", {
+    y: 50,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".cat-grid",
+      start: "top 82%",
+    },
+  });
+
+  // ── CTA entrance
+  gsap.from(".cat-cta-inner > *", {
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.08,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".cat-cta-section",
+      start: "top 70%",
+    },
+  });
+</script>

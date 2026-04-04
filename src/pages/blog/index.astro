@@ -1,0 +1,850 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BgWords from '../../components/BgWords.astro';
+import BgOrbs from '../../components/BgOrbs.astro';
+import { getAllArticles, getFeaturedArticles, getAllCategories, getArticlesByCategory } from '../../content/blog/data';
+
+const allArticles = getAllArticles();
+const featured = getFeaturedArticles()[0];
+const blogCategories = getAllCategories();
+
+const categoryColors: Record<string, string> = {};
+blogCategories.forEach((c) => { categoryColors[c.slug] = c.color; });
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Blog — DISAYNER",
+  "description": "Guides et conseils pour créer un site web performant, améliorer votre SEO, développer votre e-commerce et optimiser votre design.",
+  "url": "https://disayner.com/blog",
+  "isPartOf": { "@type": "WebSite", "url": "https://disayner.com", "name": "DISAYNER" },
+};
+---
+
+<Layout
+  title="Blog — Conseils création de sites web, SEO & e-commerce | DISAYNER"
+  description="Guides et conseils pour créer un site web performant, améliorer votre SEO, développer votre e-commerce et optimiser votre design. Par DISAYNER."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S1 — HERO                                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="blog-hero" aria-label="En-tête blog">
+      <BgWords words={[
+        { text: 'ARTICLES',   x: '4%',  y: '12%', rot: '-8deg',  size: '7vw' },
+        { text: 'GUIDES',     x: '62%', y: '6%',  rot: '10deg',  size: '5vw' },
+        { text: 'CONSEILS',   x: '7%',  y: '74%', rot: '-5deg',  size: '6vw' },
+        { text: 'DIGITAL',    x: '68%', y: '76%', rot: '12deg',  size: '8vw' },
+      ]} />
+      <BgOrbs orbs={[
+        { type: 'filled', x: '85%', y: '20%', size: '320px', dur: '10s' },
+        { type: 'ring',   x: '10%', y: '65%', size: '200px', dur: '14s' },
+      ]} />
+
+      <div class="blog-hero-inner">
+        <p class="section-label">Blog</p>
+        <h1 class="blog-hero-title">
+          Conseils & guides pour votre<br />
+          <em class="font-serif">présence web.</em>
+        </h1>
+        <p class="blog-hero-sub">
+          Création de sites, SEO, e-commerce, performance, design — des articles concrets pour faire les bons choix et développer votre activité en ligne.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S2 — FEATURED ARTICLE                                              -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    {featured && (
+      <section class="blog-featured-section" aria-label="Article mis en avant">
+        <div class="blog-featured-inner">
+          <a href={`/blog/${featured.slug}`} class="blog-featured-card">
+            <div class="blog-featured-content">
+              <span
+                class="blog-badge"
+                style={`color:${categoryColors[featured.category]}; background:${categoryColors[featured.category]}12; border-color:${categoryColors[featured.category]}30;`}
+              >
+                {featured.categoryName}
+              </span>
+              <h2 class="blog-featured-title">{featured.title}</h2>
+              <p class="blog-featured-excerpt">{featured.excerpt}</p>
+              <div class="blog-featured-meta">
+                <span class="blog-meta-item">{featured.readingTime} de lecture</span>
+                <span class="blog-meta-sep">&middot;</span>
+                <span class="blog-meta-item">{formatDate(featured.publishDate)}</span>
+              </div>
+              <span class="blog-featured-cta">
+                Lire l'article
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+    )}
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S3 — FILTERS + ARTICLE GRID                                        -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="blog-grid-section" aria-label="Liste des articles">
+      <div class="blog-grid-inner">
+
+        <!-- Filter buttons -->
+        <div
+          class="blog-filters"
+          id="blog-filter-group"
+          role="group"
+          aria-label="Filtrer par catégorie"
+        >
+          <button class="blog-filter-btn blog-filter-btn--active" data-filter="all">
+            Tous
+            <span class="blog-filter-count">{allArticles.length}</span>
+          </button>
+          {blogCategories.map((cat) => {
+            const count = getArticlesByCategory(cat.slug).length;
+            return (
+              <button class="blog-filter-btn" data-filter={cat.slug}>
+                {cat.name}
+                <span class="blog-filter-count">{count}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        <!-- Article cards grid -->
+        <div class="blog-grid" id="blog-grid" role="list">
+          {allArticles.map((article, i) => {
+            const color = categoryColors[article.category] ?? '#2563EB';
+            return (
+              <article
+                class="blog-card"
+                data-category={article.category}
+                role="listitem"
+              >
+                <a href={`/blog/${article.slug}`} class="blog-card-link" style={`--card-accent:${color};`}>
+                  <div class="blog-card-header">
+                    <span
+                      class="blog-badge blog-badge--sm"
+                      style={`color:${color}; background:${color}12; border-color:${color}30;`}
+                    >
+                      {article.categoryName}
+                    </span>
+                    <span class="blog-card-date">{formatDate(article.publishDate)}</span>
+                  </div>
+                  <h3 class="blog-card-title">{article.title}</h3>
+                  <p class="blog-card-excerpt">{article.excerpt}</p>
+                  <div class="blog-card-footer">
+                    <span class="blog-card-reading">{article.readingTime} de lecture</span>
+                    <span class="blog-card-cta">Lire &rarr;</span>
+                  </div>
+                </a>
+              </article>
+            );
+          })}
+        </div>
+
+        <!-- Empty state -->
+        <p class="blog-empty" id="blog-empty" aria-live="polite" hidden>
+          Aucun article dans cette catégorie pour le moment.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S4 — CATEGORIES GRID                                               -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="blog-categories-section" aria-label="Catégories du blog">
+      <div class="blog-categories-inner">
+        <div class="blog-categories-header section-header-anim">
+          <p class="section-label">Explorer par thème</p>
+          <h2 class="blog-categories-title">
+            Nos <em class="font-serif">catégories</em>
+          </h2>
+        </div>
+        <div class="blog-categories-grid">
+          {blogCategories.map((cat) => {
+            const count = getArticlesByCategory(cat.slug).length;
+            return (
+              <a href={`/blog/categorie/${cat.slug}`} class="blog-cat-card" style={`--cat-color:${cat.color};`}>
+                <div class="blog-cat-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={cat.color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={cat.icon} />
+                </div>
+                <h3 class="blog-cat-name">{cat.name}</h3>
+                <p class="blog-cat-count">{count} article{count > 1 ? 's' : ''}</p>
+                <p class="blog-cat-desc">{cat.description}</p>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S5 — CTA                                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="blog-cta-section" aria-label="Passer à l'action">
+      <div class="blog-cta-inner">
+        <p class="blog-cta-eyebrow">Besoin d'un accompagnement ?</p>
+        <h2 class="blog-cta-title">
+          Nos articles vous donnent les clés,<br />
+          <em class="font-serif">notre agence les met en œuvre.</em>
+        </h2>
+        <p class="blog-cta-sub">
+          Un échange de 30 minutes pour comprendre votre besoin.<br />
+          Sans engagement, sans pression.
+        </p>
+        <a href="/contact" class="blog-cta-btn">
+          Démarrer un projet
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <p class="blog-cta-reassurance">Réponse sous 24h · 100% sur mesure · Basé en Haute-Savoie</p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Shared utilities ── */
+  .section-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .blog-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 100px;
+    border: 1px solid;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .blog-badge--sm {
+    font-size: 0.6875rem;
+    padding: 3px 10px;
+  }
+
+  /* ── Hero ── */
+  .blog-hero {
+    position: relative;
+    padding: 10rem 2rem 5rem;
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .blog-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .blog-hero-title {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+
+  .blog-hero-title em {
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+
+  .blog-hero-sub {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  /* ── Featured article ── */
+  .blog-featured-section {
+    padding: 0 2rem;
+    background: var(--color-background);
+  }
+
+  .blog-featured-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 3.5rem;
+  }
+
+  .blog-featured-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-accent-soft) 100%);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 48px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .blog-featured-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 60px rgba(37, 99, 235, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .blog-featured-content {
+    max-width: 720px;
+  }
+
+  .blog-featured-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
+
+  .blog-featured-excerpt {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .blog-featured-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 20px;
+  }
+
+  .blog-meta-sep {
+    opacity: 0.4;
+  }
+
+  .blog-featured-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    transition: gap 0.3s ease;
+  }
+
+  .blog-featured-card:hover .blog-featured-cta {
+    gap: 0.75rem;
+  }
+
+  /* ── Grid section ── */
+  .blog-grid-section {
+    padding: 0 2rem 6rem;
+    background: var(--color-background);
+  }
+
+  .blog-grid-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── Filter buttons ── */
+  .blog-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .blog-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 8px 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .blog-filter-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .blog-filter-btn--active {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+
+  .blog-filter-btn--active:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: #fff;
+  }
+
+  .blog-filter-count {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 100px;
+    padding: 1px 7px;
+    line-height: 1.4;
+  }
+
+  .blog-filter-btn:not(.blog-filter-btn--active) .blog-filter-count {
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+  }
+
+  /* ── Article cards grid ── */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  /* ── Individual card ── */
+  .blog-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.5s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.03);
+    border-color: rgba(37, 99, 235, 0.12);
+  }
+
+  .blog-card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  .blog-card:hover .blog-card-link {
+    border-left-color: var(--card-accent);
+  }
+
+  .blog-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .blog-card-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .blog-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
+  .blog-card-excerpt {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blog-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .blog-card-reading {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .blog-card-cta {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    transition: gap 0.3s ease;
+  }
+
+  /* ── Empty state ── */
+  .blog-empty {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    padding: 3rem 0;
+  }
+
+  /* ── Categories section ── */
+  .blog-categories-section {
+    padding: 6rem 2rem;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .blog-categories-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .blog-categories-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .blog-categories-title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .blog-categories-title em {
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+
+  .blog-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+
+  .blog-cat-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    border-top: 3px solid var(--cat-color);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .blog-cat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  }
+
+  .blog-cat-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent-soft);
+    border-radius: 10px;
+    margin-bottom: 14px;
+  }
+
+  .blog-cat-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+  }
+
+  .blog-cat-count {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 10px;
+  }
+
+  .blog-cat-desc {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+  }
+
+  /* ── CTA section ── */
+  .blog-cta-section {
+    position: relative;
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%);
+    padding: 7rem 2rem;
+    overflow: hidden;
+  }
+
+  .blog-cta-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .blog-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .blog-cta-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .blog-cta-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .blog-cta-title em {
+    font-style: italic;
+    font-family: var(--font-serif);
+  }
+
+  .blog-cta-sub {
+    font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  .blog-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    color: var(--color-accent);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-cta-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .blog-cta-reassurance {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .blog-categories-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .blog-hero { padding: 8rem 1.25rem 4rem; }
+    .blog-featured-section { padding: 0 1.25rem; }
+    .blog-grid-section { padding: 0 1.25rem 4rem; }
+    .blog-categories-section { padding: 4rem 1.25rem; }
+
+    .blog-featured-card { padding: 32px; }
+  }
+
+  @media (max-width: 700px) {
+    .blog-grid { grid-template-columns: 1fr; }
+
+    .blog-categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .blog-filters {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .blog-filters::-webkit-scrollbar { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .blog-categories-grid {
+      grid-template-columns: 1fr;
+    }
+    .blog-featured-card { padding: 24px; }
+    .blog-cta-section { padding: 5rem 1.25rem; }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── Hero entrance
+  gsap.from(".blog-hero-inner > *", {
+    y: 40,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.12,
+    ease: "power3.out",
+    delay: 0.15,
+  });
+
+  // ── Featured card entrance
+  gsap.from(".blog-featured-card", {
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".blog-featured-section",
+      start: "top 85%",
+    },
+  });
+
+  // ── Cards stagger on scroll
+  gsap.from(".blog-card", {
+    y: 50,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".blog-grid",
+      start: "top 82%",
+    },
+  });
+
+  // ── Categories stagger
+  gsap.from(".blog-cat-card", {
+    y: 30,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.08,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".blog-categories-grid",
+      start: "top 80%",
+    },
+  });
+
+  // ── CTA entrance
+  gsap.from(".blog-cta-inner > *", {
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.08,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".blog-cta-section",
+      start: "top 70%",
+    },
+  });
+
+  // ── Filter logic
+  const group = document.getElementById("blog-filter-group");
+  const cards = document.querySelectorAll<HTMLElement>(".blog-card");
+  const emptyState = document.getElementById("blog-empty");
+
+  group?.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".blog-filter-btn");
+    if (!btn) return;
+
+    group.querySelectorAll(".blog-filter-btn").forEach((b) => {
+      b.classList.remove("blog-filter-btn--active");
+      b.removeAttribute("aria-pressed");
+    });
+    btn.classList.add("blog-filter-btn--active");
+    btn.setAttribute("aria-pressed", "true");
+
+    const filter = btn.getAttribute("data-filter");
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const cat = card.getAttribute("data-category") || "";
+      const show = filter === "all" || cat === filter;
+      card.style.display = show ? "" : "none";
+      if (show) visibleCount++;
+    });
+
+    if (emptyState) emptyState.hidden = visibleCount > 0;
+  });
+</script>
