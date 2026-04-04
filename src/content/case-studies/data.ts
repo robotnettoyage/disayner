@@ -455,28 +455,45 @@ export const caseStudies: CaseStudy[] = [
     clientWebsite: "https://loveatme.com",
     categories: ["seo", "e-commerce"],
     categoryLabel: "SEO",
-    tags: ["Shopify", "SEO", "Multilingue", "FR/EN/NL"],
+    tags: ["Shopify", "SEO technique", "Multilingue", "FR/EN/NL", "GraphQL API"],
     thumbnail: "/images/case-studies/love-at-me/thumbnail.webp",
     shortDescription:
-      "Optimisation SEO complète sur ~560 pages pour une marque de mode belge multilingue.",
+      "Optimisation SEO complète d'une boutique Shopify multilingue : 278 produits, 2 935 images, hreflang FR/EN/NL et LCP réduit de 21.6s à 1.1s en 3 semaines.",
     projectType: "SEO e-commerce multilingue",
     year: "2025",
-    duration: "Mission one-shot",
+    duration: "3 semaines",
     location: "Belgique",
-    context: "<p>À compléter.</p>",
-    solution: "<p>À compléter.</p>",
+    context: `
+      <p>Love at Me est une marque de mode belge qui commercialise ses collections via une boutique Shopify multilingue (français, anglais, néerlandais). La marque était confrontée à un problème critique : malgré un catalogue de 278 produits et une présence sur trois marchés linguistiques, le site était quasiment invisible sur Google.</p>
+      <p>Les causes étaient multiples. Les balises meta (title et description) étaient génériques ou manquantes sur la majorité des produits. Les balises hreflang, essentielles pour indiquer à Google quelle version linguistique servir dans chaque pays, étaient mal configurées. Les 2 935 images du catalogue n'avaient aucun texte alternatif, privant le site de visibilité sur Google Images. Et le plus problématique : un LCP (Largest Contentful Paint) de 21.6 secondes rendait l'expérience utilisateur catastrophique, surtout sur mobile.</p>
+      <p>La marque avait besoin d'une intervention SEO technique rapide et complète, sans refonte du site, pour débloquer le potentiel de trafic organique sur les trois marchés simultanément.</p>
+    `,
+    solution: `
+      <p><strong>Optimisation meta sur 278 produits :</strong> Nous avons rédigé des meta titles et descriptions uniques et optimisées pour chaque produit, dans les trois langues (FR, EN, NL). Pour gérer ce volume, nous avons développé un processus d'automatisation via l'API GraphQL de Shopify, utilisant un pattern Python/curl subprocess avec la mutation translationsRegister et le translatableContentDigest. Chaque meta a été rédigée pour cibler les requêtes d'achat pertinentes dans chaque langue.</p>
+      <p><strong>Configuration hreflang complète :</strong> Les balises hreflang ont été implémentées sur l'ensemble du site pour indiquer à Google la correspondance entre les versions française, anglaise et néerlandaise de chaque page. Cette configuration permet à Google de servir la bonne version linguistique aux utilisateurs de chaque pays (France, Belgique francophone, Belgique néerlandophone, Pays-Bas, pays anglophones).</p>
+      <p><strong>Alt text pour 2 935 images :</strong> Chaque image produit a reçu un texte alternatif descriptif et optimisé pour le SEO. Ce travail couvre à la fois l'accessibilité (lecteurs d'écran) et le référencement sur Google Images, un canal d'acquisition souvent négligé en e-commerce mode.</p>
+      <p><strong>Schemas JSON-LD Product :</strong> Des données structurées Product ont été ajoutées sur chaque fiche produit pour permettre l'affichage de résultats enrichis dans Google (prix, disponibilité, avis). Ces rich snippets augmentent significativement le taux de clic dans les résultats de recherche.</p>
+      <p><strong>Optimisation du LCP (21.6s → 1.1s) :</strong> Le temps de chargement du plus grand élément visible est passé de 21.6 secondes à 1.1 seconde. Les optimisations ont porté sur la compression et le redimensionnement des images, le chargement différé des scripts non critiques, l'optimisation du thème Shopify et la mise en cache des ressources statiques.</p>
+      <p><strong>Setup blog via SoRank :</strong> Un blog a été mis en place et connecté à la plateforme SoRank pour la génération de contenus SEO optimisés, posant les bases d'une stratégie de contenu long terme.</p>
+    `,
     deliverables: [
-      "Optimisation meta sur 278 produits",
-      "2 935 alt texts optimisés",
-      "Schema JSON-LD produits",
-      "Hreflang FR/EN/NL",
-      "LCP optimisé (21.6s → 1.1s)",
+      "Audit SEO technique complet du site Shopify",
+      "Rédaction de meta titles et descriptions pour 278 produits (FR/EN/NL)",
+      "Configuration hreflang sur l'ensemble du site (3 langues)",
+      "Rédaction de textes alternatifs pour 2 935 images",
+      "Implémentation schemas JSON-LD Product",
+      "Optimisation LCP : de 21.6s à 1.1s",
+      "Automatisation via Shopify GraphQL API (Python)",
+      "Setup blog + connexion SoRank",
+      "Rapport de livraison détaillé",
     ],
     results: [
-      { metric: "+180%", label: "Trafic organique" },
-      { metric: "278",   label: "Produits optimisés" },
+      { metric: "278",   label: "Produits optimisés (FR/EN/NL)" },
+      { metric: "2 935", label: "Images avec alt text" },
       { metric: "1.1s",  label: "LCP (avant : 21.6s)" },
+      { metric: "3",     label: "Langues configurées (hreflang)" },
     ],
+    testimonial: undefined,
     gallery: [
       "/images/case-studies/love-at-me/gallery/love-at-me-1.webp",
       "/images/case-studies/love-at-me/gallery/love-at-me-2.webp",
@@ -484,36 +501,60 @@ export const caseStudies: CaseStudy[] = [
       "/images/case-studies/love-at-me/gallery/love-at-me-4.webp",
     ],
     heroImage: "/images/case-studies/love-at-me/hero.webp",
-    metaTitle: "Love at Me — SEO e-commerce multilingue Shopify | DISAYNER",
+    metaTitle: "Love at Me : SEO e-commerce multilingue Shopify | DISAYNER",
     metaDescription:
-      "Étude de cas : optimisation SEO complète pour Love at Me, marque de mode belge sur Shopify. Multilingue FR/EN/NL, +180% de trafic.",
+      "Étude de cas : optimisation SEO complète pour Love at Me, marque de mode belge sur Shopify. 278 produits, 3 langues, LCP de 21.6s à 1.1s.",
     order: 7,
     featured: true,
   },
 
-  // ── 3. JM SERVICES ──────────────────────────────────────────────────────────
+  // ── 8. JM SERVICES ──────────────────────────────────────────────────────────
   {
     slug: "jm-services",
     clientName: "JM Services",
     clientWebsite: "https://jm-services-var.com",
     categories: ["site-vitrine"],
     categoryLabel: "Site vitrine",
-    tags: ["WordPress", "Elementor", "SEO"],
+    tags: ["WordPress", "Elementor", "SEO on-page", "Galerie", "Responsive"],
     thumbnail: "/images/case-studies/jm-services/thumbnail.webp",
     shortDescription:
-      "Création d'un site multi-pages pour un paysagiste dans le Var avec galerie et formulaire.",
+      "Création d'un site vitrine de 10 pages pour un paysagiste dans le Var : pages services détaillées, galerie de réalisations et formulaire de contact.",
     projectType: "Site vitrine complet",
     year: "2025",
     duration: "4 semaines",
-    location: "Var (83), France",
-    context: "<p>À compléter.</p>",
-    solution: "<p>À compléter.</p>",
+    location: "Fayence (83), Var, France",
+    context: `
+      <p>JM Services est une entreprise de paysagisme et d'aménagement extérieur dirigée par Jason Merlin, basée à Fayence dans le Var (83). L'entreprise intervient dans tout le Var et les Alpes-Maritimes (06) pour des prestations variées : entretien de jardins, création de terrasses bois, installation d'arrosage automatique, pose de clôtures, travaux de maçonnerie paysagère et aménagement complet d'espaces extérieurs.</p>
+      <p>Jason n'avait aucune présence en ligne. Ses clients venaient exclusivement du bouche-à-oreille local. Mais face à une concurrence de plus en plus présente sur Google, il avait besoin d'un site professionnel pour crédibiliser son activité, présenter ses réalisations et capter les demandes de devis en ligne sur sa zone d'intervention.</p>
+      <p>Le challenge : créer un site qui reflète la qualité artisanale de son travail tout en couvrant une offre de services très large (6 types de prestations différentes), avec une navigation intuitive permettant à chaque prospect de trouver exactement le service qu'il cherche.</p>
+    `,
+    solution: `
+      <p><strong>10 pages sur mesure :</strong> Nous avons conçu un site complet de 10 pages couvrant l'ensemble de l'activité de JM Services. Chaque service dispose de sa propre page dédiée avec du contenu spécifique : entretien de jardins, terrasses bois, arrosage automatique, clôtures et portails, maçonnerie paysagère et aménagement d'espaces extérieurs. Ce découpage permet à chaque prospect d'arriver directement sur la page correspondant à son besoin.</p>
+      <p><strong>Direction artistique nature :</strong> Le design system a été pensé pour évoquer l'univers du paysagisme : palette de verts, sable et tons terre, typographie combinant DM Serif Display (élégance, artisanat) et Outfit (modernité, lisibilité). Chaque page utilise des visuels de réalisations réelles pour montrer le savoir-faire concret de l'entreprise.</p>
+      <p><strong>Galerie de réalisations :</strong> Une page dédiée aux réalisations avec une galerie photo filtrée par catégorie et lightbox intégrée. Les prospects peuvent voir des exemples concrets de projets similaires au leur, ce qui renforce la confiance et accélère la prise de décision.</p>
+      <p><strong>Formulaire de contact optimisé :</strong> Un formulaire de demande de devis personnalisé, accessible depuis chaque page service, avec les champs adaptés au secteur (type de prestation, surface estimée, localisation du chantier). Conçu pour qualifier les demandes dès la prise de contact.</p>
+      <p><strong>SEO on-page :</strong> Chaque page a été structurée avec un balisage SEO propre (structure Hn, meta titles et descriptions uniques, textes optimisés pour les requêtes locales du Var et des Alpes-Maritimes). Le site est prêt pour un référencement naturel efficace sur les requêtes de type "paysagiste Fayence", "terrasse bois Var" ou "entretien jardin 83".</p>
+      <p><strong>Développement WordPress + Elementor :</strong> Site développé sur WordPress avec Elementor pour permettre à Jason de gérer ses réalisations et son contenu en autonomie. Design 100% responsive, optimisé pour tous les appareils.</p>
+    `,
     deliverables: [
-      "Site multi-pages complet",
-      "Galerie réalisations avec lightbox",
-      "Formulaire de contact personnalisé",
-      "SEO local optimisé",
+      "Création de 10 pages sur mesure",
+      "6 pages services détaillées (jardin, terrasse, arrosage, clôtures, maçonnerie, aménagement)",
+      "Direction artistique verte/nature adaptée au paysagisme",
+      "Galerie de réalisations filtrée avec lightbox",
+      "Formulaire de devis personnalisé",
+      "Page à propos et page contact",
+      "Design responsive mobile-first",
+      "SEO on-page complet (meta, structure Hn, textes optimisés)",
+      "Intégration WordPress + Elementor",
+      "Formation client à la gestion du contenu",
     ],
+    results: [
+      { metric: "10",   label: "Pages créées" },
+      { metric: "6",    label: "Pages services dédiées" },
+      { metric: "2",    label: "Départements couverts (83/06)" },
+      { metric: "100%", label: "Responsive mobile" },
+    ],
+    testimonial: undefined,
     gallery: [
       "/images/case-studies/jm-services/gallery/jm-1.webp",
       "/images/case-studies/jm-services/gallery/jm-2.webp",
@@ -521,11 +562,11 @@ export const caseStudies: CaseStudy[] = [
       "/images/case-studies/jm-services/gallery/jm-4.webp",
     ],
     heroImage: "/images/case-studies/jm-services/hero.webp",
-    metaTitle: "JM Services — Création de site vitrine paysagiste | DISAYNER",
+    metaTitle: "JM Services : création site vitrine paysagiste Var | DISAYNER",
     metaDescription:
-      "Étude de cas : création d'un site vitrine pour JM Services, paysagiste dans le Var. Multi-pages, galerie, SEO local.",
+      "Étude de cas : création d'un site vitrine de 10 pages pour JM Services, paysagiste dans le Var. Pages services, galerie, formulaire de devis, SEO on-page.",
     order: 8,
-    featured: true,
+    featured: false,
   },
 ];
 
