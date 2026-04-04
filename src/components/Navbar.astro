@@ -1,11 +1,17 @@
 ---
-const navLinks = [
-  { label: "Services", href: "/creation-site" },
-  { label: "Méthode", href: "/#methode" },
-  { label: "Réalisations", href: "/realisations" },
-  { label: "Outils", href: "/outils" },
-  { label: "Blog", href: "/#blog" },
-  { label: "Contact", href: "/contact" },
+const services = [
+  { label: "Création de sites web", href: "/creation-site", desc: "Sites vitrines, e-commerce & landing pages sur-mesure" },
+  { label: "Référencement SEO", href: "/seo", desc: "Audit, contenus, technique & visibilité IA (GEO)" },
+  { label: "Maintenance web", href: "/maintenance", desc: "Sécurité, mises à jour & monitoring 24/7" },
+];
+
+const tools = [
+  { label: "Compresseur WebP", href: "/outils/compresseur-webp" },
+  { label: "Analyseur meta tags", href: "/outils/analyseur-meta-tags" },
+  { label: "Compteur de mots SEO", href: "/outils/compteur-mots-seo" },
+  { label: "Générateur meta tags", href: "/outils/generateur-meta-tags" },
+  { label: "Générateur robots.txt", href: "/outils/generateur-robots-txt" },
+  { label: "Vérificateur structure Hn", href: "/outils/verificateur-structure-hn" },
 ];
 ---
 
@@ -17,15 +23,53 @@ const navLinks = [
     </a>
 
     <!-- Desktop links -->
-    <ul class="nav-links" role="list">
-      {navLinks.map((link) => (
-        <li>
-          <a href={link.href} class="nav-link hover-underline">
-            {link.label}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div class="nav-links">
+      <div class="nav-item-dropdown" id="servicesTrigger">
+        <button type="button" class="nav-link nav-link-dropdown" aria-expanded="false" aria-controls="megaDropdown">
+          Services
+          <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+
+        <div class="mega-dropdown" id="megaDropdown" role="menu" aria-label="Menu services">
+          <div class="mega-grid">
+            <!-- Col 1: Services -->
+            <div class="mega-col">
+              <span class="mega-col-title">Nos services</span>
+              {services.map((s) => (
+                <a href={s.href} class="mega-link" role="menuitem">
+                  <span class="mega-link-label">{s.label}</span>
+                  <span class="mega-link-desc">{s.desc}</span>
+                </a>
+              ))}
+            </div>
+            <!-- Col 2: Outils SEO -->
+            <div class="mega-col">
+              <span class="mega-col-title">Outils SEO gratuits</span>
+              {tools.map((t) => (
+                <a href={t.href} class="mega-link mega-link-compact" role="menuitem">{t.label}</a>
+              ))}
+              <a href="/outils" class="mega-link-all">Voir tous les outils &rarr;</a>
+            </div>
+            <!-- Col 3: Ressources -->
+            <div class="mega-col mega-col-tinted">
+              <span class="mega-col-title">Ressources</span>
+              <a href="/realisations" class="mega-resource" role="menuitem">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <div><span class="mega-resource-title">Études de cas</span><span class="mega-resource-desc">Nos réalisations et résultats clients</span></div>
+              </a>
+              <a href="/contact" class="mega-resource" role="menuitem">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <div><span class="mega-resource-title">Discutons de votre projet</span><span class="mega-resource-desc">Appel découverte gratuit, réponse sous 24h</span></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="/realisations" class="nav-link hover-underline">Réalisations</a>
+      <a href="/#blog" class="nav-link hover-underline">Blog</a>
+      <a href="/contact" class="nav-link hover-underline">Contact</a>
+    </div>
 
     <!-- Desktop CTA -->
     <a href="/contact" class="btn-primary nav-cta">
@@ -51,20 +95,27 @@ const navLinks = [
       </svg>
     </button>
 
-    <ul class="mobile-nav-links" role="list">
-      {navLinks.map((link) => (
-        <li>
-          <a href={link.href} class="mobile-nav-link">
-            {link.label}
-          </a>
-        </li>
-      ))}
-      <li>
-        <a href="/contact" class="btn-primary mobile-cta">
-          Démarrer un projet →
-        </a>
-      </li>
-    </ul>
+    <nav class="mobile-nav-content" aria-label="Menu mobile">
+      <div class="mobile-section">
+        <span class="mobile-section-title">Services</span>
+        {services.map((s) => (
+          <a href={s.href} class="mobile-link">{s.label}</a>
+        ))}
+      </div>
+      <div class="mobile-section">
+        <span class="mobile-section-title">Outils SEO</span>
+        {tools.map((t) => (
+          <a href={t.href} class="mobile-link">{t.label}</a>
+        ))}
+        <a href="/outils" class="mobile-link mobile-link-accent">Voir tous les outils &rarr;</a>
+      </div>
+      <hr class="mobile-divider" />
+      <a href="/realisations" class="mobile-link">Réalisations</a>
+      <a href="/#methode" class="mobile-link">Notre méthode</a>
+      <a href="/#blog" class="mobile-link">Blog</a>
+      <a href="/contact" class="mobile-link">Contact</a>
+      <a href="/contact" class="btn-primary mobile-cta">Démarrer un projet &rarr;</a>
+    </nav>
   </div>
 </header>
 
@@ -87,6 +138,7 @@ const navLinks = [
   }
 
   .nav-inner {
+    position: relative;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -142,7 +194,6 @@ const navLinks = [
     display: flex;
     align-items: center;
     gap: 2rem;
-    list-style: none;
     margin-left: auto;
   }
 
@@ -156,6 +207,137 @@ const navLinks = [
   }
 
   .nav-link:hover { color: var(--color-text-primary); }
+
+  /* ─── Dropdown trigger ─── */
+  .nav-link-dropdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    padding: 0;
+    padding-bottom: 2px;
+  }
+
+  .chevron-icon { transition: transform 0.3s ease; }
+
+  .nav-item-dropdown.is-open .chevron-icon { transform: rotate(180deg); }
+
+  /* ─── Mega-dropdown panel ─── */
+  .nav-item-dropdown { position: static; }
+
+  .mega-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    width: min(920px, calc(100vw - 3rem));
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    padding: 1.75rem 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .nav-item-dropdown.is-open .mega-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+
+  .mega-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 0.85fr;
+    gap: 2rem;
+  }
+
+  .mega-col { display: flex; flex-direction: column; gap: 0.25rem; }
+
+  .mega-col-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.75rem;
+  }
+
+  .mega-link {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0.625rem 0.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    transition: background 0.15s ease;
+  }
+
+  .mega-link:hover { background: var(--color-surface); }
+
+  .mega-link-label { font-size: 0.9375rem; font-weight: 600; }
+
+  .mega-link-desc { font-size: 0.8125rem; color: var(--color-text-secondary); line-height: 1.4; }
+
+  .mega-link-compact {
+    flex-direction: row;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .mega-link-all {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.25rem;
+    transition: padding-left 0.2s ease;
+  }
+
+  .mega-link-all:hover { padding-left: 1rem; }
+
+  .mega-col-tinted {
+    background: var(--color-surface);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin: -1.75rem -2rem -1.75rem 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .mega-resource {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0.875rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+    margin-bottom: 0.5rem;
+  }
+
+  .mega-resource:hover { background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+
+  .mega-resource svg { flex-shrink: 0; color: var(--color-accent); margin-top: 2px; }
+
+  .mega-resource-title { display: block; font-size: 0.875rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 2px; }
+
+  .mega-resource-desc { display: block; font-size: 0.75rem; color: var(--color-text-secondary); line-height: 1.4; }
 
   .nav-cta {
     flex-shrink: 0;
@@ -211,34 +393,51 @@ const navLinks = [
     padding: 8px;
   }
 
-  .mobile-nav-links {
-    list-style: none;
+  .mobile-nav-content {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.25rem;
     width: 100%;
+    overflow-y: auto;
+    max-height: calc(100svh - 6rem);
+    padding-right: 0.5rem;
   }
 
-  .mobile-nav-link {
-    font-size: clamp(2rem, 6vw, 3rem);
-    font-weight: 600;
+  .mobile-section { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 1rem; }
+
+  .mobile-section-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.375rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-link {
+    font-size: 1.0625rem;
+    font-weight: 500;
     color: var(--color-text-primary);
     text-decoration: none;
-    font-family: var(--font-serif);
-    font-style: italic;
+    padding: 0.5rem 0;
     transition: color 0.2s ease;
   }
 
-  .mobile-nav-link:hover { color: var(--color-accent); }
+  .mobile-link:hover { color: var(--color-accent); }
 
-  .mobile-cta {
-    margin-top: 1rem;
-  }
+  .mobile-link-accent { font-weight: 600; color: var(--color-accent); font-size: 0.9375rem; }
+
+  .mobile-divider { border: none; border-top: 1px solid var(--color-border); margin: 0.75rem 0; }
+
+  .mobile-cta { margin-top: 1rem; text-align: center; }
 
   @media (max-width: 900px) {
-    .nav-links { display: none; }
-    .nav-cta   { display: none; }
-    .burger    { display: flex; }
+    .nav-links      { display: none; }
+    .nav-cta        { display: none; }
+    .mega-dropdown  { display: none !important; }
+    .burger         { display: flex; }
   }
 
   @media (max-width: 768px) {
@@ -255,13 +454,54 @@ const navLinks = [
   const burger  = document.querySelector(".burger") as HTMLButtonElement;
   const closeBtn = document.querySelector(".mobile-close") as HTMLButtonElement;
   const mobileMenu = document.getElementById("mobile-menu")!;
-  const mobileLinks = document.querySelectorAll(".mobile-nav-link, .mobile-cta");
+  const mobileLinks = document.querySelectorAll(".mobile-link, .mobile-cta");
 
   // Glassmorphism on scroll
   ScrollTrigger.create({
     start: "top -60px",
     onEnter: () => navbar.classList.add("nav--scrolled"),
     onLeaveBack: () => navbar.classList.remove("nav--scrolled"),
+  });
+
+  // ── Mega-dropdown hover logic ──
+  const ddTrigger = document.getElementById("servicesTrigger");
+  const ddPanel = document.getElementById("megaDropdown");
+  const ddBtn = ddTrigger?.querySelector(".nav-link-dropdown") as HTMLButtonElement | null;
+  let closeTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  function openDropdown() {
+    if (closeTimeout) { clearTimeout(closeTimeout); closeTimeout = null; }
+    ddTrigger?.classList.add("is-open");
+    ddBtn?.setAttribute("aria-expanded", "true");
+  }
+
+  function closeDropdown() {
+    ddTrigger?.classList.remove("is-open");
+    ddBtn?.setAttribute("aria-expanded", "false");
+  }
+
+  function scheduleClose() {
+    closeTimeout = setTimeout(closeDropdown, 200);
+  }
+
+  ddTrigger?.addEventListener("mouseenter", openDropdown);
+  ddTrigger?.addEventListener("mouseleave", scheduleClose);
+  ddPanel?.addEventListener("mouseenter", openDropdown);
+  ddPanel?.addEventListener("mouseleave", scheduleClose);
+
+  ddBtn?.addEventListener("click", () => {
+    ddBtn.getAttribute("aria-expanded") === "true" ? closeDropdown() : openDropdown();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && ddTrigger?.classList.contains("is-open")) {
+      closeDropdown();
+      ddBtn?.focus();
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (ddTrigger && !ddTrigger.contains(e.target as Node)) closeDropdown();
   });
 
   // Mobile menu
@@ -277,7 +517,7 @@ const navLinks = [
     gsap.from(mobileLinks, {
       x: 50,
       opacity: 0,
-      stagger: 0.07,
+      stagger: 0.04,
       delay: 0.25,
       duration: 0.5,
       ease: "power2.out",
