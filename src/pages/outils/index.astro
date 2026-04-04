@@ -1,0 +1,539 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BgWords from '../../components/BgWords.astro';
+import BgOrbs from '../../components/BgOrbs.astro';
+
+const tools = [
+  {
+    slug: 'compresseur-webp',
+    title: 'Compresseur WebP',
+    desc: 'Compressez et convertissez vos images en WebP directement dans votre navigateur. Gratuit, sans upload serveur.',
+    iconPath: `<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>`,
+    tags: ['Images', 'Performance', 'Gratuit'],
+    available: true,
+  },
+  {
+    title: 'Analyseur de meta tags',
+    desc: "Vérifiez vos balises title, description et Open Graph en un clic. Prévisualisez le rendu Google.",
+    iconPath: `<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>`,
+    tags: ['SEO', 'Balises', 'Gratuit'],
+    available: false,
+  },
+  {
+    title: 'Vérificateur de liens cassés',
+    desc: "Scannez votre site pour détecter les liens morts (404) qui nuisent à votre référencement.",
+    iconPath: `<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>`,
+    tags: ['SEO', 'Technique', 'Gratuit'],
+    available: false,
+  },
+  {
+    title: 'Testeur de vitesse de page',
+    desc: "Mesurez les Core Web Vitals de votre site et obtenez des recommandations d'optimisation.",
+    iconPath: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
+    tags: ['Performance', 'Core Web Vitals', 'Gratuit'],
+    available: false,
+  },
+  {
+    title: 'Générateur de robots.txt',
+    desc: "Créez un fichier robots.txt optimisé pour le SEO en quelques clics. Copiez-collez le résultat.",
+    iconPath: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>`,
+    tags: ['SEO', 'Technique', 'Gratuit'],
+    available: false,
+  },
+  {
+    title: 'Compteur de mots SEO',
+    desc: "Analysez la densité de mots-clés et la longueur de vos contenus pour le référencement.",
+    iconPath: `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
+    tags: ['Contenu', 'SEO', 'Gratuit'],
+    available: false,
+  },
+];
+---
+
+<Layout
+  title="Outils SEO gratuits — Compresseur WebP, Analyseur, Tests | DISAYNER"
+  description="Outils SEO gratuits et sans inscription : compresseur d'images WebP, analyseur de meta tags, testeur de performance. Optimisez votre site en quelques clics."
+>
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S1 — HERO                                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="ot-hero" aria-label="Outils SEO gratuits">
+      <BgWords words={[
+        { text: 'OUTILS',  x: '-2%', y: '12%', rot: '-10deg', size: '8vw' },
+        { text: 'GRATUIT', x: '58%', y: '8%',  rot: '8deg',   size: '6vw' },
+        { text: 'SEO',     x: '8%',  y: '72%', rot: '-6deg',  size: '9vw' },
+        { text: 'WEBP',    x: '66%', y: '74%', rot: '10deg',  size: '7vw' },
+      ]} />
+      <BgOrbs orbs={[
+        { type: 'filled', x: '82%', y: '22%', size: '280px', dur: '14s' },
+        { type: 'ring',   x: '12%', y: '78%', size: '180px', dur: '16s' },
+      ]} />
+
+      <div class="ot-hero-inner">
+        <p class="ot-eyebrow">Outils SEO gratuits</p>
+        <h1 class="ot-hero-title">
+          Des outils <em class="font-serif">gratuits</em> pour optimiser votre site.
+        </h1>
+        <p class="ot-hero-sub">
+          Compressez vos images, analysez votre SEO, testez vos balises — des outils simples, rapides et sans inscription. Fait par DISAYNER.
+        </p>
+        <div class="ot-badges" role="list" aria-label="Points forts">
+          <span class="ot-badge" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            100% gratuit
+          </span>
+          <span class="ot-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="ot-badge" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Sans inscription
+          </span>
+          <span class="ot-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="ot-badge" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Vos données restent privées
+          </span>
+          <span class="ot-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="ot-badge" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Fait en France
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S2 — TOOLS GRID                                                    -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="ot-section ot-tools" aria-label="Nos outils SEO">
+      <div class="ot-container">
+        <div class="ot-section-header section-header-anim">
+          <p class="ot-eyebrow">Nos outils</p>
+          <h2>Des outils <em class="font-serif">concrets</em> pour votre site.</h2>
+          <p class="ot-section-sub">Chaque outil est conçu pour résoudre un problème précis. Gratuit, sans inscription, directement dans votre navigateur.</p>
+        </div>
+
+        <div class="ot-tools-grid">
+          {tools.map((tool, i) => (
+            tool.available ? (
+              <a href={`/outils/${tool.slug}`} class="ot-tool-card ot-fade-in" style={`transition-delay:${i * 0.08}s`} aria-label={`Outil : ${tool.title}`}>
+                <div class="ot-tool-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={tool.iconPath} />
+                </div>
+                <h3 class="ot-tool-title">{tool.title}</h3>
+                <p class="ot-tool-desc">{tool.desc}</p>
+                <div class="ot-tool-tags">
+                  {tool.tags.map(tag => <span class="ot-tag">{tag}</span>)}
+                </div>
+                <span class="ot-tool-cta">Utiliser l'outil &rarr;</span>
+              </a>
+            ) : (
+              <article class="ot-tool-card ot-tool-card--soon ot-fade-in" style={`transition-delay:${i * 0.08}s`} aria-label={`${tool.title} — Bientôt disponible`}>
+                <div class="ot-tool-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={tool.iconPath} />
+                </div>
+                <h3 class="ot-tool-title">{tool.title}</h3>
+                <p class="ot-tool-desc">{tool.desc}</p>
+                <div class="ot-tool-tags">
+                  {tool.tags.map(tag => <span class="ot-tag">{tag}</span>)}
+                </div>
+                <span class="ot-soon-badge">Bientôt disponible</span>
+              </article>
+            )
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S3 — CTA                                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="ot-cta-section" aria-label="Accompagnement SEO professionnel">
+      <div class="ot-cta-dotgrid" aria-hidden="true"></div>
+      <div class="ot-cta-shape ot-cta-shape-1" aria-hidden="true"></div>
+      <div class="ot-cta-shape ot-cta-shape-2" aria-hidden="true"></div>
+
+      <div class="ot-cta-inner">
+        <p class="ot-cta-tag">Accompagnement professionnel</p>
+        <h2 class="ot-cta-title">
+          Besoin d'un accompagnement SEO <em class="font-serif">professionnel</em>&nbsp;?
+        </h2>
+        <p class="ot-cta-sub">Nos prestations SEO incluent l'optimisation complète de vos images, votre performance et votre référencement.</p>
+        <div class="ot-cta-actions">
+          <a href="/seo" class="ot-btn-white">
+            Découvrir nos prestations SEO
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/contact" class="ot-btn-ghost">Nous contacter</a>
+        </div>
+        <p class="ot-cta-reassurance">Réponse sous 24h · Audit offert · Basé en Haute-Savoie</p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ─── Layout helpers ──────────────────────────────────────────────────── */
+  .ot-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .ot-section {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ot-eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .ot-section-header {
+    max-width: 680px;
+    margin: 0 auto 4rem;
+    text-align: center;
+  }
+
+  .ot-section-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin-bottom: 1rem;
+  }
+
+  .ot-section-header h2 em { font-style: italic; color: var(--color-accent); }
+
+  .ot-section-sub {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .ot-fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ot-fade-in.visible { opacity: 1; transform: none; }
+
+  /* ─── S1: HERO ────────────────────────────────────────────────────────── */
+  .ot-hero {
+    position: relative;
+    min-height: 70svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem 2rem 5rem;
+    overflow: hidden;
+    background: var(--color-background);
+    text-align: center;
+  }
+
+  .ot-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .ot-hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+  }
+
+  .ot-hero-title em {
+    font-style: italic;
+    color: var(--color-accent);
+    font-weight: 400;
+    font-size: 1.05em;
+    letter-spacing: -0.02em;
+  }
+
+  .ot-hero-sub {
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .ot-badges {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .ot-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .ot-badge svg { color: var(--color-accent); }
+  .ot-badge-dot { color: var(--color-border); font-size: 1.25rem; line-height: 1; }
+
+  /* ─── S2: TOOLS GRID ──────────────────────────────────────────────────── */
+  .ot-tools { background: var(--color-surface); border-top: 1px solid var(--color-border); }
+
+  .ot-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .ot-tool-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .ot-tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  a.ot-tool-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.08);
+    border-color: rgba(37,99,235,0.2);
+  }
+
+  a.ot-tool-card:hover::before { transform: scaleX(1); }
+
+  .ot-tool-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ot-tool-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .ot-tool-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .ot-tool-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .ot-tag {
+    display: inline-flex;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.275rem 0.7rem;
+    background: rgba(37,99,235,0.07);
+    color: var(--color-accent);
+    border: 1px solid rgba(37,99,235,0.15);
+    border-radius: 100px;
+  }
+
+  .ot-tool-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-top: auto;
+  }
+
+  /* Coming soon cards */
+  .ot-tool-card--soon {
+    opacity: 0.55;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .ot-tool-card--soon::before { display: none; }
+
+  .ot-soon-badge {
+    display: inline-flex;
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    background: rgba(107,107,103,0.08);
+    color: var(--color-text-secondary);
+    border: 1px solid rgba(107,107,103,0.15);
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: auto;
+  }
+
+  /* ─── S3: CTA ─────────────────────────────────────────────────────────── */
+  .ot-cta-section {
+    position: relative;
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%);
+    padding: 7rem 2rem;
+    min-height: 52vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .ot-cta-dotgrid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ot-cta-shape { position: absolute; border-radius: 50%; pointer-events: none; }
+
+  .ot-cta-shape-1 { width: 500px; height: 500px; background: rgba(255,255,255,0.05); top: -150px; right: -100px; animation: ot-float 12s ease-in-out infinite; }
+  .ot-cta-shape-2 { width: 300px; height: 300px; background: rgba(255,255,255,0.04); bottom: -80px; left: -60px; animation: ot-float 15s ease-in-out infinite reverse; }
+
+  @keyframes ot-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .ot-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .ot-cta-tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+  .ot-cta-title { font-size: clamp(2.25rem, 5.5vw, 4rem); font-weight: 700; color: white; letter-spacing: -0.03em; line-height: 1.1; }
+
+  .ot-cta-title em { font-style: italic; font-family: var(--font-serif); font-weight: 400; }
+
+  .ot-cta-sub { font-size: 1.0625rem; color: rgba(255,255,255,0.75); line-height: 1.65; }
+
+  .ot-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; margin-bottom: 0.75rem; }
+
+  .ot-btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    color: var(--color-accent);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .ot-btn-white:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+
+  .ot-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: rgba(255,255,255,0.9);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .ot-btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  .ot-cta-reassurance { font-size: 0.8125rem; color: rgba(255,255,255,0.5); letter-spacing: 0.02em; }
+
+  /* ─── Responsive ──────────────────────────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .ot-tools-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .ot-section { padding: 64px 0; }
+    .ot-hero { min-height: auto; padding: 8rem 1.5rem 4rem; }
+  }
+
+  @media (max-width: 640px) {
+    .ot-container { padding: 0 1.25rem; }
+    .ot-tools-grid { grid-template-columns: 1fr; }
+    .ot-cta-actions { flex-direction: column; align-items: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ot-fade-in { opacity: 1; transform: none; transition: none; }
+    .ot-cta-shape-1, .ot-cta-shape-2 { animation: none; }
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.ot-fade-in').forEach(el => observer.observe(el));
+</script>

@@ -1,0 +1,1326 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BgOrbs from '../../components/BgOrbs.astro';
+
+const faqItems = [
+  { q: "Est-ce que mes images sont envoyées sur un serveur ?", a: "Non. La compression se fait intégralement dans votre navigateur grâce au Canvas API. Vos images ne quittent jamais votre appareil. Aucune donnée n'est collectée ni stockée.", open: true },
+  { q: "Quelle qualité de compression choisir ?", a: "80% offre le meilleur rapport qualité/poids pour la majorité des usages web. Pour des photos de portfolio, montez à 90%. Pour des thumbnails, 60-70% suffit." },
+  { q: "Quels formats d'entrée sont acceptés ?", a: "PNG, JPG/JPEG, GIF, BMP, TIFF et même WebP (pour re-compresser). Jusqu'à 20 images simultanément, 50 Mo max par fichier." },
+  { q: "Le WebP est-il compatible avec tous les navigateurs ?", a: "Oui. Depuis 2020, tous les navigateurs majeurs supportent le WebP : Chrome, Firefox, Safari (14+), Edge et Opera. La part de marché des navigateurs compatibles dépasse 97%." },
+  { q: "Puis-je utiliser cet outil pour mon site professionnel ?", a: "Absolument. L'outil est gratuit et sans limitation. Si vous avez besoin d'un accompagnement complet pour optimiser les performances de votre site, découvrez nos prestations SEO." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  }))
+};
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Compresseur WebP — DISAYNER",
+  "description": "Outil gratuit de compression et conversion d'images en format WebP. 100% côté client, sans upload serveur.",
+  "url": "https://disayner.com/outils/compresseur-webp",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "DISAYNER",
+    "url": "https://disayner.com"
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://disayner.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Outils SEO", "item": "https://disayner.com/outils" },
+    { "@type": "ListItem", "position": 3, "name": "Compresseur WebP", "item": "https://disayner.com/outils/compresseur-webp" },
+  ]
+};
+
+const howSteps = [
+  { num: '01', title: 'Déposez vos images', desc: "Glissez-déposez ou sélectionnez vos fichiers PNG, JPG, GIF. Jusqu'à 20 images à la fois." },
+  { num: '02', title: 'Réglez la qualité', desc: "Choisissez le niveau de compression (80% recommandé) et la taille maximale optionnelle." },
+  { num: '03', title: 'Téléchargez en WebP', desc: "Vos images sont compressées instantanément. Téléchargez-les une par une ou toutes en .zip." },
+];
+
+const benefits = [
+  { iconPath: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`, title: 'Performance', desc: "Des pages qui se chargent plus vite. Google recommande le WebP pour améliorer les Core Web Vitals." },
+  { iconPath: `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>`, title: 'SEO', desc: "Un site rapide est mieux classé sur Google. Le poids des images est le premier facteur de lenteur." },
+  { iconPath: `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>`, title: 'Qualité', desc: "Compression avec perte quasi-invisible. À qualité égale, le WebP est 25-34% plus léger que le JPEG." },
+  { iconPath: `<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>`, title: 'Compatibilité', desc: "Supporté par tous les navigateurs modernes (Chrome, Firefox, Safari, Edge) depuis 2020." },
+];
+---
+
+<Layout
+  title="Compresseur WebP gratuit en ligne — Convertir PNG/JPG en WebP | DISAYNER"
+  description="Compressez et convertissez vos images en WebP gratuitement, directement dans votre navigateur. Aucun upload serveur, 100% privé. Jusqu'à 20 images à la fois."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S1 — BREADCRUMB + HERO                                             -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="wc-hero" aria-label="Compresseur WebP gratuit">
+      <BgOrbs orbs={[
+        { type: 'filled', x: '85%', y: '25%', size: '220px', dur: '14s' },
+        { type: 'ring',   x: '8%',  y: '70%', size: '160px', dur: '18s' },
+      ]} />
+
+      <div class="wc-hero-inner">
+        <nav class="wc-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a>
+          <span aria-hidden="true">/</span>
+          <a href="/outils">Outils SEO</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Compresseur WebP</span>
+        </nav>
+
+        <p class="wc-eyebrow">Outil gratuit</p>
+        <h1 class="wc-hero-title">
+          Compresseur d'images <em class="font-serif">WebP</em>
+        </h1>
+        <p class="wc-hero-sub">
+          Convertissez et compressez vos images en WebP directement dans votre navigateur. Aucun upload serveur — vos fichiers restent 100% privés.
+        </p>
+        <div class="wc-badges" role="list" aria-label="Garanties">
+          <span class="wc-badge" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            100% côté client
+          </span>
+          <span class="wc-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="wc-badge" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Aucun upload
+          </span>
+          <span class="wc-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="wc-badge" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Gratuit &amp; sans inscription
+          </span>
+          <span class="wc-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="wc-badge" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Données privées
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S2 — TOOL INTERFACE                                                -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="wc-section wc-tool-section" aria-label="Outil de compression">
+      <div class="wc-container">
+        <div class="wc-app" id="wcApp">
+
+          <!-- STATE 1: Drop Zone -->
+          <div class="wc-dropzone" id="wcDropzone">
+            <div class="wc-dropzone-content">
+              <svg class="wc-drop-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <h3>Glissez vos images ici</h3>
+              <p>ou <button type="button" class="wc-browse-btn" id="wcBrowseBtn">parcourez vos fichiers</button></p>
+              <p class="wc-drop-info">PNG, JPG, JPEG, GIF, BMP, TIFF — Max 50 Mo par fichier — Jusqu'à 20 images</p>
+            </div>
+            <input type="file" id="wcFileInput" multiple accept="image/png,image/jpeg,image/gif,image/bmp,image/tiff,image/webp" hidden />
+          </div>
+
+          <!-- STATE 2: Settings + Preview -->
+          <div class="wc-settings" id="wcSettings" style="display:none">
+            <div class="wc-setting-row">
+              <label for="wcQuality">Qualité de compression</label>
+              <div class="wc-slider-container">
+                <input type="range" id="wcQuality" min="1" max="100" value="80" />
+                <span class="wc-quality-value" id="wcQualityValue">80%</span>
+              </div>
+              <p class="wc-setting-hint">80% offre le meilleur rapport qualité/poids. En dessous de 60%, la perte de qualité devient visible.</p>
+            </div>
+
+            <div class="wc-setting-row">
+              <label>Largeur maximale (optionnel)</label>
+              <div class="wc-resize-options" id="wcResizeOptions">
+                <button type="button" class="wc-resize-btn active" data-width="0">Original</button>
+                <button type="button" class="wc-resize-btn" data-width="1920">1920px</button>
+                <button type="button" class="wc-resize-btn" data-width="1200">1200px</button>
+                <button type="button" class="wc-resize-btn" data-width="800">800px</button>
+              </div>
+              <p class="wc-setting-hint">Redimensionne les images plus larges que la valeur choisie. Hauteur ajustée proportionnellement.</p>
+            </div>
+          </div>
+
+          <!-- Image list -->
+          <div class="wc-image-list" id="wcImageList" style="display:none"></div>
+
+          <!-- Action buttons (settings state) -->
+          <div class="wc-actions" id="wcActions" style="display:none">
+            <button type="button" class="wc-btn-compress" id="wcCompressBtn">
+              Compresser en WebP
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+            <button type="button" class="wc-btn-reset" id="wcResetBtn">Recommencer</button>
+          </div>
+
+          <!-- STATE 3: Results -->
+          <div class="wc-results" id="wcResults" style="display:none">
+            <div class="wc-results-summary">
+              <div class="wc-result-stat">
+                <span class="wc-stat-number" id="wcTotalSaved">0%</span>
+                <span class="wc-stat-label">Réduction moyenne</span>
+              </div>
+              <div class="wc-result-stat">
+                <span class="wc-stat-number" id="wcTotalBefore">0 Mo</span>
+                <span class="wc-stat-label">Taille originale</span>
+              </div>
+              <div class="wc-result-stat">
+                <span class="wc-stat-number" id="wcTotalAfter">0 Mo</span>
+                <span class="wc-stat-label">Après compression</span>
+              </div>
+            </div>
+
+            <div class="wc-results-list" id="wcResultsList"></div>
+
+            <div class="wc-actions">
+              <button type="button" class="wc-btn-compress" id="wcDownloadAllBtn">
+                Télécharger tout (.zip)
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <button type="button" class="wc-btn-reset" id="wcNewBatchBtn">Compresser d'autres images</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S3 — HOW IT WORKS                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="wc-section wc-howto" aria-label="Comment ça marche">
+      <div class="wc-container">
+        <div class="wc-section-header section-header-anim">
+          <p class="wc-eyebrow">Comment ça marche</p>
+          <h2>3 étapes, <em class="font-serif">zéro friction</em>.</h2>
+        </div>
+
+        <div class="wc-steps-grid">
+          {howSteps.map((step, i) => (
+            <div class="wc-step wc-fade-in" style={`transition-delay:${i * 0.1}s`}>
+              <span class="wc-step-num" aria-hidden="true">{step.num}</span>
+              <h3 class="wc-step-title">{step.title}</h3>
+              <p class="wc-step-desc">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S4 — WHY WEBP                                                      -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="wc-section wc-benefits" aria-label="Pourquoi le WebP">
+      <div class="wc-container">
+        <div class="wc-section-header section-header-anim">
+          <p class="wc-eyebrow">Pourquoi le WebP ?</p>
+          <h2>Le format WebP réduit le poids de vos images de <em class="font-serif">70% en moyenne</em>.</h2>
+        </div>
+
+        <div class="wc-benefits-grid">
+          {benefits.map((b, i) => (
+            <article class="wc-benefit-card wc-fade-in" style={`transition-delay:${i * 0.08}s`}>
+              <div class="wc-benefit-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={b.iconPath} />
+              </div>
+              <h3>{b.title}</h3>
+              <p>{b.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S5 — FAQ                                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="wc-section wc-faq" aria-label="Questions fréquentes">
+      <div class="wc-container wc-faq-inner">
+        <div class="wc-section-header section-header-anim">
+          <p class="wc-eyebrow">FAQ</p>
+          <h2>Questions fréquentes sur le <em class="font-serif">compresseur WebP</em>.</h2>
+        </div>
+
+        <div class="wc-faq-list" role="list">
+          {faqItems.map((item, i) => (
+            <details class="wc-faq-item wc-fade-in" open={item.open} style={`transition-delay:${i * 0.04}s`} role="listitem">
+              <summary class="wc-faq-question">
+                <span>{item.q}</span>
+                <span class="wc-faq-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </span>
+              </summary>
+              <div class="wc-faq-answer"><p>{item.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- S6 — CTA                                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="wc-cta-section" aria-label="Optimiser tout votre site">
+      <div class="wc-cta-dotgrid" aria-hidden="true"></div>
+      <div class="wc-cta-shape wc-cta-shape-1" aria-hidden="true"></div>
+      <div class="wc-cta-shape wc-cta-shape-2" aria-hidden="true"></div>
+
+      <div class="wc-cta-inner">
+        <p class="wc-cta-tag">Optimisation complète</p>
+        <h2 class="wc-cta-title">
+          Besoin d'optimiser <em class="font-serif">tout votre site</em>&nbsp;?
+        </h2>
+        <p class="wc-cta-sub">Nos prestations SEO incluent l'optimisation complète de vos images, votre performance et votre référencement.</p>
+        <div class="wc-cta-actions">
+          <a href="/seo" class="wc-btn-white">
+            Découvrir nos prestations SEO
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/contact" class="wc-btn-ghost">Nous contacter</a>
+        </div>
+        <p class="wc-cta-reassurance">Réponse sous 24h · Audit offert · Basé en Haute-Savoie</p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ─── Layout helpers ──────────────────────────────────────────────────── */
+  .wc-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .wc-section {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wc-eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .wc-section-header {
+    max-width: 680px;
+    margin: 0 auto 4rem;
+    text-align: center;
+  }
+
+  .wc-section-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin-bottom: 1rem;
+  }
+
+  .wc-section-header h2 em { font-style: italic; color: var(--color-accent); }
+
+  .wc-section-sub {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .wc-fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .wc-fade-in.visible { opacity: 1; transform: none; }
+
+  /* ─── S1: HERO ────────────────────────────────────────────────────────── */
+  .wc-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9rem 2rem 4rem;
+    overflow: hidden;
+    background: var(--color-background);
+    text-align: center;
+  }
+
+  .wc-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .wc-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .wc-breadcrumb a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .wc-breadcrumb a:hover { color: var(--color-accent); }
+
+  .wc-breadcrumb span[aria-current] {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  .wc-hero-title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+  }
+
+  .wc-hero-title em {
+    font-style: italic;
+    color: var(--color-accent);
+    font-weight: 400;
+    font-size: 1.05em;
+    letter-spacing: -0.02em;
+  }
+
+  .wc-hero-sub {
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .wc-badges {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .wc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .wc-badge svg { color: var(--color-accent); }
+  .wc-badge-dot { color: var(--color-border); font-size: 1.25rem; line-height: 1; }
+
+  /* ─── S2: TOOL INTERFACE ──────────────────────────────────────────────── */
+  .wc-tool-section { padding-top: 2rem; background: var(--color-background); }
+
+  .wc-app {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Drop zone */
+  .wc-dropzone {
+    border: 2px dashed var(--color-border);
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--color-background);
+  }
+
+  .wc-dropzone:hover,
+  .wc-dropzone.drag-over {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+  }
+
+  .wc-dropzone h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 16px 0 8px;
+  }
+
+  .wc-dropzone p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+  }
+
+  .wc-browse-btn {
+    background: none;
+    border: none;
+    color: var(--color-accent);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: inherit;
+    font-family: inherit;
+  }
+
+  .wc-drop-info {
+    font-size: 12px !important;
+    color: #B0B0A8 !important;
+    margin-top: 12px;
+  }
+
+  /* Settings */
+  .wc-settings { margin-bottom: 24px; }
+
+  .wc-setting-row { margin-bottom: 24px; }
+
+  .wc-setting-row label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .wc-setting-hint {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-top: 6px;
+  }
+
+  .wc-slider-container { display: flex; align-items: center; gap: 16px; }
+  .wc-slider-container input[type="range"] { flex: 1; accent-color: var(--color-accent); }
+
+  .wc-quality-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-accent);
+    min-width: 45px;
+  }
+
+  .wc-resize-options { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .wc-resize-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    background: white;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .wc-resize-btn:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .wc-resize-btn.active { background: var(--color-accent); color: white; border-color: var(--color-accent); }
+
+  /* Image list */
+  .wc-image-list { margin-bottom: 24px; }
+
+  .wc-image-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    background: white;
+  }
+
+  .wc-image-thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; }
+
+  .wc-image-info { flex: 1; min-width: 0; }
+
+  .wc-image-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .wc-image-size { font-size: 12px; color: var(--color-text-secondary); }
+
+  .wc-image-remove {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: white;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .wc-image-remove:hover { background: #FEF2F2; color: #EF4444; border-color: #EF4444; }
+
+  /* Actions */
+  .wc-actions { display: flex; gap: 12px; justify-content: center; margin-top: 24px; }
+
+  .wc-btn-compress {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #1D4ED8, #2563EB);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .wc-btn-compress:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.3); }
+  .wc-btn-compress:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .wc-btn-reset {
+    padding: 14px 24px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .wc-btn-reset:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+  /* Results */
+  .wc-results-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+    padding: 24px;
+    background: linear-gradient(135deg, var(--color-surface), var(--color-accent-soft));
+    border-radius: 16px;
+  }
+
+  .wc-result-stat { text-align: center; }
+  .wc-stat-number { display: block; font-size: 2rem; font-weight: 800; color: var(--color-accent); }
+  .wc-stat-label { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; }
+
+  .wc-result-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    background: white;
+  }
+
+  .wc-result-thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; }
+
+  .wc-result-info { flex: 1; min-width: 0; }
+
+  .wc-result-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .wc-result-sizes { display: flex; align-items: center; gap: 8px; font-size: 13px; flex-wrap: wrap; }
+  .wc-size-before { color: var(--color-text-secondary); }
+  .wc-size-arrow { color: #B0B0A8; }
+  .wc-size-after { color: var(--color-text-primary); font-weight: 600; }
+  .wc-size-saved { color: #22C55E; font-weight: 600; }
+  .wc-size-saved.negative { color: #EF4444; }
+
+  .wc-compression-bar { width: 100%; height: 4px; background: var(--color-border); border-radius: 2px; margin-top: 6px; }
+  .wc-compression-fill { height: 100%; background: var(--color-accent); border-radius: 2px; transition: width 0.6s ease; }
+
+  .wc-result-download {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .wc-result-download:hover { background: var(--color-accent); color: white; }
+
+  /* ─── S3: HOW IT WORKS ────────────────────────────────────────────────── */
+  .wc-howto { background: var(--color-surface); border-top: 1px solid var(--color-border); }
+
+  .wc-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .wc-step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .wc-step-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  .wc-step-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .wc-step-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ─── S4: BENEFITS ────────────────────────────────────────────────────── */
+  .wc-benefits { background: var(--color-background); }
+
+  .wc-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .wc-benefit-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .wc-benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+
+  .wc-benefit-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wc-benefit-card h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .wc-benefit-card p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ─── S5: FAQ ─────────────────────────────────────────────────────────── */
+  .wc-faq { background: var(--color-background); }
+  .wc-faq-inner { max-width: 780px; margin: 0 auto; }
+
+  .wc-faq-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+  }
+
+  .wc-faq-item { border-bottom: 1px solid var(--color-border); }
+  .wc-faq-item:last-child { border-bottom: none; }
+
+  .wc-faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    list-style: none;
+    transition: background 0.2s ease;
+    user-select: none;
+  }
+
+  .wc-faq-question::-webkit-details-marker { display: none; }
+  .wc-faq-question:hover { background: rgba(37,99,235,0.03); }
+
+  .wc-faq-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background 0.2s ease;
+  }
+
+  details[open] .wc-faq-icon {
+    transform: rotate(45deg);
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .wc-faq-answer { padding: 0 1.5rem 1.25rem; }
+
+  .wc-faq-answer p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  /* ─── S6: CTA ─────────────────────────────────────────────────────────── */
+  .wc-cta-section {
+    position: relative;
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%);
+    padding: 7rem 2rem;
+    min-height: 52vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .wc-cta-dotgrid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wc-cta-shape { position: absolute; border-radius: 50%; pointer-events: none; }
+
+  .wc-cta-shape-1 { width: 500px; height: 500px; background: rgba(255,255,255,0.05); top: -150px; right: -100px; animation: wc-float 12s ease-in-out infinite; }
+  .wc-cta-shape-2 { width: 300px; height: 300px; background: rgba(255,255,255,0.04); bottom: -80px; left: -60px; animation: wc-float 15s ease-in-out infinite reverse; }
+
+  @keyframes wc-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .wc-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .wc-cta-tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+  .wc-cta-title { font-size: clamp(2.25rem, 5.5vw, 4rem); font-weight: 700; color: white; letter-spacing: -0.03em; line-height: 1.1; }
+
+  .wc-cta-title em { font-style: italic; font-family: var(--font-serif); font-weight: 400; }
+
+  .wc-cta-sub { font-size: 1.0625rem; color: rgba(255,255,255,0.75); line-height: 1.65; }
+
+  .wc-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; margin-bottom: 0.75rem; }
+
+  .wc-btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    color: var(--color-accent);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .wc-btn-white:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+
+  .wc-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: rgba(255,255,255,0.9);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .wc-btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  .wc-cta-reassurance { font-size: 0.8125rem; color: rgba(255,255,255,0.5); letter-spacing: 0.02em; }
+
+  /* ─── Responsive ──────────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .wc-section { padding: 64px 0; }
+    .wc-hero { padding: 8rem 1.5rem 3rem; }
+    .wc-steps-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  @media (max-width: 640px) {
+    .wc-container { padding: 0 1.25rem; }
+    .wc-dropzone { padding: 40px 20px; }
+    .wc-results-summary { grid-template-columns: 1fr; }
+    .wc-benefits-grid { grid-template-columns: 1fr; }
+    .wc-result-sizes { flex-wrap: wrap; }
+    .wc-actions { flex-direction: column; align-items: stretch; }
+    .wc-btn-compress, .wc-btn-reset { width: 100%; justify-content: center; }
+    .wc-cta-actions { flex-direction: column; align-items: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wc-fade-in { opacity: 1; transform: none; transition: none; }
+    .wc-cta-shape-1, .wc-cta-shape-2 { animation: none; }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ── DOM references ──────────────────────────────────────────────────
+    const dropzone = document.getElementById('wcDropzone');
+    const fileInput = document.getElementById('wcFileInput') as HTMLInputElement;
+    const browseBtn = document.getElementById('wcBrowseBtn');
+    const settingsPanel = document.getElementById('wcSettings');
+    const imageList = document.getElementById('wcImageList');
+    const actionsPanel = document.getElementById('wcActions');
+    const resultsPanel = document.getElementById('wcResults');
+    const qualitySlider = document.getElementById('wcQuality') as HTMLInputElement;
+    const qualityValue = document.getElementById('wcQualityValue');
+    const resizeOptions = document.getElementById('wcResizeOptions');
+    const compressBtn = document.getElementById('wcCompressBtn');
+    const resetBtn = document.getElementById('wcResetBtn');
+    const downloadAllBtn = document.getElementById('wcDownloadAllBtn');
+    const newBatchBtn = document.getElementById('wcNewBatchBtn');
+    const resultsList = document.getElementById('wcResultsList');
+
+    if (!dropzone || !fileInput) return;
+
+    // ── State ───────────────────────────────────────────────────────────
+    let files: File[] = [];
+    let quality = 80;
+    let maxWidth = 0;
+    let compressionResults: { originalName: string; newName: string; originalSize: number; newSize: number; blob: Blob; thumb: string; savings: number }[] = [];
+
+    // ── Helpers ─────────────────────────────────────────────────────────
+    function formatSize(bytes: number): string {
+      if (bytes < 1024) return bytes + ' o';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' Ko';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' Mo';
+    }
+
+    function showState(state: 'drop' | 'settings' | 'results') {
+      dropzone!.style.display = state === 'drop' ? 'block' : 'none';
+      settingsPanel!.style.display = state === 'settings' ? 'block' : 'none';
+      imageList!.style.display = state === 'settings' ? 'block' : 'none';
+      actionsPanel!.style.display = state === 'settings' ? 'flex' : 'none';
+      resultsPanel!.style.display = state === 'results' ? 'block' : 'none';
+    }
+
+    // ── Drag & drop ─────────────────────────────────────────────────────
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
+      dropzone!.addEventListener(evt, (e) => { e.preventDefault(); e.stopPropagation(); });
+    });
+
+    dropzone!.addEventListener('dragenter', () => dropzone!.classList.add('drag-over'));
+    dropzone!.addEventListener('dragleave', (e) => {
+      const relTarget = (e as DragEvent).relatedTarget as Node | null;
+      if (!dropzone!.contains(relTarget)) dropzone!.classList.remove('drag-over');
+    });
+    dropzone!.addEventListener('drop', (e) => {
+      dropzone!.classList.remove('drag-over');
+      handleFiles((e as DragEvent).dataTransfer?.files);
+    });
+
+    dropzone!.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('.wc-browse-btn')) return;
+      fileInput!.click();
+    });
+    browseBtn?.addEventListener('click', () => fileInput!.click());
+    fileInput!.addEventListener('change', () => {
+      handleFiles(fileInput!.files);
+      fileInput!.value = '';
+    });
+
+    // ── Quality slider ──────────────────────────────────────────────────
+    qualitySlider?.addEventListener('input', () => {
+      quality = parseInt(qualitySlider.value);
+      if (qualityValue) qualityValue.textContent = quality + '%';
+    });
+
+    // ── Resize buttons ──────────────────────────────────────────────────
+    resizeOptions?.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.wc-resize-btn') as HTMLElement | null;
+      if (!btn) return;
+      resizeOptions.querySelectorAll('.wc-resize-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      maxWidth = parseInt(btn.dataset.width || '0');
+    });
+
+    // ── File handling ───────────────────────────────────────────────────
+    const validTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/bmp', 'image/tiff', 'image/webp'];
+    const maxFileSize = 50 * 1024 * 1024;
+
+    function handleFiles(fileList: FileList | null | undefined) {
+      if (!fileList || fileList.length === 0) return;
+
+      const newFiles = Array.from(fileList).filter(f => validTypes.includes(f.type) && f.size <= maxFileSize);
+      if (newFiles.length === 0) return;
+
+      files = [...files, ...newFiles].slice(0, 20);
+      showState('settings');
+      renderFileList();
+    }
+
+    function renderFileList() {
+      if (!imageList) return;
+      imageList.innerHTML = files.map((f, i) => `
+        <div class="wc-image-item">
+          <img src="${URL.createObjectURL(f)}" class="wc-image-thumb" alt="" />
+          <div class="wc-image-info">
+            <span class="wc-image-name">${f.name}</span>
+            <span class="wc-image-size">${formatSize(f.size)}</span>
+          </div>
+          <button type="button" class="wc-image-remove" data-index="${i}" title="Retirer">&times;</button>
+        </div>
+      `).join('');
+
+      imageList.querySelectorAll('.wc-image-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt((btn as HTMLElement).dataset.index || '0');
+          files.splice(idx, 1);
+          if (files.length === 0) {
+            resetTool();
+          } else {
+            renderFileList();
+          }
+        });
+      });
+    }
+
+    // ── Core compression ────────────────────────────────────────────────
+    function compressToWebP(file: File, q: number, mw: number): Promise<{ originalName: string; newName: string; originalSize: number; newSize: number; blob: Blob; thumb: string; savings: number }> {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let w = img.naturalWidth;
+          let h = img.naturalHeight;
+
+          if (mw > 0 && w > mw) {
+            h = Math.round((h * mw) / w);
+            w = mw;
+          }
+
+          canvas.width = w;
+          canvas.height = h;
+
+          const ctx = canvas.getContext('2d');
+          if (!ctx) { reject(new Error('Canvas non supporté')); return; }
+          ctx.drawImage(img, 0, 0, w, h);
+
+          canvas.toBlob((blob) => {
+            URL.revokeObjectURL(img.src);
+            if (!blob) { reject(new Error('Compression WebP non supportée par ce navigateur')); return; }
+
+            const originalName = file.name;
+            const newName = file.name.replace(/\.[^/.]+$/, '') + '.webp';
+            const savings = Math.round((1 - blob.size / file.size) * 100);
+
+            resolve({
+              originalName,
+              newName,
+              originalSize: file.size,
+              newSize: blob.size,
+              blob,
+              thumb: URL.createObjectURL(blob),
+              savings,
+            });
+          }, 'image/webp', q / 100);
+        };
+
+        img.onerror = () => {
+          URL.revokeObjectURL(img.src);
+          reject(new Error(`Impossible de charger : ${file.name}`));
+        };
+
+        img.src = URL.createObjectURL(file);
+      });
+    }
+
+    // ── Compress all ────────────────────────────────────────────────────
+    compressBtn?.addEventListener('click', async () => {
+      if (!compressBtn) return;
+      (compressBtn as HTMLButtonElement).disabled = true;
+      compressBtn.innerHTML = `
+        Compression en cours...
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+      `;
+
+      compressionResults = [];
+
+      for (const file of files) {
+        try {
+          const result = await compressToWebP(file, quality, maxWidth);
+          compressionResults.push(result);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      if (compressionResults.length === 0) {
+        (compressBtn as HTMLButtonElement).disabled = false;
+        compressBtn.innerHTML = `Compresser en WebP <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+        return;
+      }
+
+      showResults();
+    });
+
+    // ── Show results ────────────────────────────────────────────────────
+    function showResults() {
+      showState('results');
+
+      const totalBefore = compressionResults.reduce((s, r) => s + r.originalSize, 0);
+      const totalAfter = compressionResults.reduce((s, r) => s + r.newSize, 0);
+      const avgSavings = totalBefore > 0 ? Math.round((1 - totalAfter / totalBefore) * 100) : 0;
+
+      const elSaved = document.getElementById('wcTotalSaved');
+      const elBefore = document.getElementById('wcTotalBefore');
+      const elAfter = document.getElementById('wcTotalAfter');
+
+      if (elSaved) elSaved.textContent = avgSavings + '%';
+      if (elBefore) elBefore.textContent = formatSize(totalBefore);
+      if (elAfter) elAfter.textContent = formatSize(totalAfter);
+
+      if (resultsList) {
+        resultsList.innerHTML = compressionResults.map(r => {
+          const fillWidth = Math.max(0, Math.min(100, 100 - r.savings));
+          const savingsClass = r.savings >= 0 ? '' : 'negative';
+          return `
+            <div class="wc-result-item">
+              <img src="${r.thumb}" class="wc-result-thumb" alt="" />
+              <div class="wc-result-info">
+                <span class="wc-result-name">${r.newName}</span>
+                <div class="wc-result-sizes">
+                  <span class="wc-size-before">${formatSize(r.originalSize)}</span>
+                  <span class="wc-size-arrow">&rarr;</span>
+                  <span class="wc-size-after">${formatSize(r.newSize)}</span>
+                  <span class="wc-size-saved ${savingsClass}">${r.savings >= 0 ? '-' : '+'}${Math.abs(r.savings)}%</span>
+                </div>
+                <div class="wc-compression-bar">
+                  <div class="wc-compression-fill" style="width:${fillWidth}%"></div>
+                </div>
+              </div>
+              <a class="wc-result-download" href="${URL.createObjectURL(r.blob)}" download="${r.newName}" title="Télécharger">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </a>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    // ── Download all as zip ─────────────────────────────────────────────
+    downloadAllBtn?.addEventListener('click', async () => {
+      if (compressionResults.length === 0) return;
+
+      if (compressionResults.length === 1) {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(compressionResults[0].blob);
+        a.download = compressionResults[0].newName;
+        a.click();
+        return;
+      }
+
+      const btn = downloadAllBtn as HTMLButtonElement;
+      btn.disabled = true;
+      btn.textContent = 'Préparation du zip...';
+
+      try {
+        if (!(window as any).JSZip) {
+          const script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+          document.head.appendChild(script);
+          await new Promise<void>((resolve, reject) => {
+            script.onload = () => resolve();
+            script.onerror = () => reject(new Error('Impossible de charger JSZip'));
+          });
+        }
+
+        const zip = new (window as any).JSZip();
+
+        // Deduplicate filenames
+        const nameCount: Record<string, number> = {};
+        compressionResults.forEach(r => {
+          const base = r.newName.replace(/\.webp$/, '');
+          nameCount[base] = (nameCount[base] || 0) + 1;
+          const suffix = nameCount[base] > 1 ? `-${nameCount[base]}` : '';
+          zip.file(`${base}${suffix}.webp`, r.blob);
+        });
+
+        const content = await zip.generateAsync({ type: 'blob' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(content);
+        a.download = 'images-webp-disayner.zip';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      } catch (err) {
+        console.error('Erreur zip:', err);
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = `
+        Télécharger tout (.zip)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      `;
+    });
+
+    // ── Reset ───────────────────────────────────────────────────────────
+    function resetTool() {
+      compressionResults.forEach(r => URL.revokeObjectURL(r.thumb));
+      files = [];
+      compressionResults = [];
+      quality = 80;
+      maxWidth = 0;
+      showState('drop');
+
+      if (qualitySlider) qualitySlider.value = '80';
+      if (qualityValue) qualityValue.textContent = '80%';
+      resizeOptions?.querySelectorAll('.wc-resize-btn').forEach((b, i) => {
+        b.classList.toggle('active', i === 0);
+      });
+      if (compressBtn) {
+        (compressBtn as HTMLButtonElement).disabled = false;
+        compressBtn.innerHTML = `
+          Compresser en WebP
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        `;
+      }
+    }
+
+    resetBtn?.addEventListener('click', resetTool);
+    newBatchBtn?.addEventListener('click', resetTool);
+
+    // ── Fade-in observer ────────────────────────────────────────────────
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.wc-fade-in').forEach(el => observer.observe(el));
+  });
+</script>
+
+<style>
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>
