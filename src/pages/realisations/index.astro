@@ -96,11 +96,11 @@ const pageSchema = {
         <!-- Cards grid -->
         <div class="cs-grid" id="cs-grid" role="list">
           {studies.map((study, i) => {
-            const accent = categoryAccents[study.category] ?? '#2563EB';
+            const accent = categoryAccents[study.categories[0]] ?? '#2563EB';
             return (
               <article
                 class="cs-card"
-                data-category={study.category}
+                data-category={study.categories.join(',')}
                 aria-label={`Réalisation : ${study.clientName}`}
                 role="listitem"
               >
@@ -630,7 +630,8 @@ const pageSchema = {
     let visibleCount = 0;
 
     cards.forEach((card) => {
-      const show = filter === "all" || card.getAttribute("data-category") === filter;
+      const cats = (card.getAttribute("data-category") || "").split(",");
+      const show = filter === "all" || cats.includes(filter);
       card.style.display = show ? "" : "none";
       if (show) visibleCount++;
     });

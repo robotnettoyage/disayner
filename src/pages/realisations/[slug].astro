@@ -35,14 +35,21 @@ const categoryAccents: Record<string, string> = {
   'maintenance':  '#6B6B67',
 };
 
-const accent = categoryAccents[study.category] ?? '#2563EB';
+const accent = categoryAccents[study.categories[0]] ?? '#2563EB';
 
 // Visual type for the context section illustration
-const visualType = study.category === 'e-commerce'
+const isRefonte = study.context.includes('ancien site')
+  || study.context.includes('migration')
+  || study.context.includes('Wix')
+  || study.context.includes('refonte');
+
+const visualType = study.categories.includes('e-commerce')
   ? 'ecommerce'
-  : study.category === 'seo'
+  : study.categories.includes('seo')
     ? 'seo'
-    : 'broken-site'; // default: site-vitrine, refonte, landing-page, maintenance
+    : isRefonte
+      ? 'broken-site'
+      : 'blank'; // new projects created from scratch
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -271,6 +278,40 @@ const breadcrumbSchema = {
                 <text x="120" y="175" text-anchor="middle" font-size="11" fill="#6B6B67" opacity="0.3" class="page-label">Page 8 de Google</text>
               </svg>
             )}
+
+            {visualType === 'blank' && (
+              <svg viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="visual-blank">
+                <!-- Monitor body -->
+                <rect x="20" y="10" width="200" height="140" rx="12" stroke="#E8E8E3" stroke-width="1.5" fill="#1A1A2E"/>
+                <!-- Screen -->
+                <rect x="30" y="20" width="180" height="110" rx="6" fill="#0F0F1A"/>
+                <!-- Blinking cursor -->
+                <rect x="50" y="55" width="2" height="18" fill="#2563EB" class="cursor-blink"/>
+                <!-- Grid dots -->
+                <circle cx="60"  cy="40" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="90"  cy="40" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="120" cy="40" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="150" cy="40" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="180" cy="40" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="60"  cy="65" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="90"  cy="65" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="120" cy="65" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="150" cy="65" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="180" cy="65" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="60"  cy="90" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="90"  cy="90" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="120" cy="90" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="150" cy="90" r="1" fill="#2563EB" opacity="0.1"/>
+                <circle cx="180" cy="90" r="1" fill="#2563EB" opacity="0.1"/>
+                <!-- Star sparkles -->
+                <circle cx="170" cy="35" r="1.5" fill="white" opacity="0.2" class="star s1"/>
+                <circle cx="80"  cy="95" r="1"   fill="white" opacity="0.15" class="star s2"/>
+                <circle cx="150" cy="75" r="1.2" fill="white" opacity="0.18" class="star s3"/>
+                <!-- Monitor stand -->
+                <rect x="100" y="150" width="40" height="12" rx="2" fill="#E8E8E3"/>
+                <rect x="80"  y="162" width="80" height="6"  rx="3" fill="#E8E8E3"/>
+              </svg>
+            )}
           </div>
         </div>
       </div>
@@ -475,7 +516,7 @@ const breadcrumbSchema = {
           </h2>
           <div class="cs-others-grid">
             {otherStudies.map((s) => {
-              const otherAccent = categoryAccents[s.category] ?? '#2563EB';
+              const otherAccent = categoryAccents[s.categories[0]] ?? '#2563EB';
               return (
                 <a href={`/realisations/${s.slug}`} class="cs-other-card" aria-label={`Voir le projet ${s.clientName}`}>
                   <div class="cs-other-thumb">
@@ -822,11 +863,28 @@ const breadcrumbSchema = {
   .q3         { animation: floatQuestion 3s ease-in-out infinite 1.6s; }
   .page-label { animation: fadeInOut 5s ease-in-out infinite; }
 
+  /* ── Blank canvas animations ── */
+  .visual-blank { max-width: 280px; width: 100%; margin: 0 auto; }
+
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+  @keyframes starTwinkle {
+    0%, 100% { opacity: 0.1; }
+    50%       { opacity: 0.35; }
+  }
+  .cursor-blink { animation: cursorBlink 1s step-end infinite; }
+  .s1 { animation: starTwinkle 3s ease-in-out infinite; }
+  .s2 { animation: starTwinkle 3s ease-in-out infinite 1s; }
+  .s3 { animation: starTwinkle 3s ease-in-out infinite 2s; }
+
   /* ── Reduced motion ── */
   @media (prefers-reduced-motion: reduce) {
     .glitch-line, .warning-icon, .error-dot,
     .decline-line, .cart-icon, .down-arrow,
-    .hidden-page, .qmark, .page-label { animation: none !important; }
+    .hidden-page, .qmark, .page-label,
+    .cursor-blink, .star { animation: none !important; }
   }
 
   /* ── Mobile: hide visual ── */

@@ -12,7 +12,7 @@ export interface CaseStudy {
   clientWebsite: string;           // "https://miroiterie-vitor.com"
 
   // Classification
-  category: "site-vitrine" | "e-commerce" | "landing-page" | "seo" | "refonte" | "maintenance";
+  categories: string[];            // ["site-vitrine", "seo"] — first = primary
   categoryLabel: string;           // "Site vitrine" (display label)
   tags: string[];                  // ["WordPress", "Elementor", "SEO", "Google Ads"]
 
@@ -69,7 +69,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "monrobotlavevitre",
     clientName: "MonRobotLaveVitre",
     clientWebsite: "https://monrobotlavevitre.fr",
-    category: "e-commerce",
+    categories: ["e-commerce", "seo"],
     categoryLabel: "E-commerce",
     tags: ["WordPress", "WooCommerce", "Elementor", "SEO", "CRO"],
     thumbnail: "/images/case-studies/monrobotlavevitre/thumbnail.webp",
@@ -128,7 +128,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "vitor",
     clientName: "Miroiterie VITOR",
     clientWebsite: "https://miroiterie-vitor.com",
-    category: "site-vitrine",
+    categories: ["site-vitrine"],
     categoryLabel: "Site vitrine",
     tags: ["WordPress", "Elementor", "SEO", "Google Ads"],
     thumbnail: "/images/case-studies/vitor/thumbnail.webp",
@@ -189,7 +189,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "lienunique",
     clientName: "Lien Unique",
     clientWebsite: "https://lienunique.fr",
-    category: "site-vitrine",
+    categories: ["site-vitrine"],
     categoryLabel: "Site vitrine",
     tags: ["WordPress", "Elementor", "Stripe", "Animations", "Dark UI"],
     thumbnail: "/images/case-studies/lienunique/thumbnail.webp",
@@ -244,7 +244,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "blockforge",
     clientName: "BlockForge Web",
     clientWebsite: "https://block-forge.fr",
-    category: "landing-page",
+    categories: ["landing-page"],
     categoryLabel: "Landing page",
     tags: ["React", "Vite", "Tailwind CSS", "Cloudflare Pages", "SEO", "Blog"],
     thumbnail: "/images/case-studies/blockforge/thumbnail.webp",
@@ -309,7 +309,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "wavsite",
     clientName: "WAVSITE",
     clientWebsite: "https://wav-site.fr",
-    category: "landing-page",
+    categories: ["landing-page"],
     categoryLabel: "Landing page",
     tags: ["HTML/CSS/JS", "Cloudflare Pages", "SEO local", "Blog", "Dark UI"],
     thumbnail: "/images/case-studies/wavsite/thumbnail.webp",
@@ -370,7 +370,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "reveliance",
     clientName: "Révéliænce",
     clientWebsite: "https://reveliance.com",
-    category: "site-vitrine",
+    categories: ["site-vitrine"],
     categoryLabel: "Site vitrine",
     tags: ["WordPress", "Elementor", "Design", "Charte graphique"],
     thumbnail: "/images/case-studies/reveliance/thumbnail.webp",
@@ -427,7 +427,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "love-at-me",
     clientName: "Love at Me",
     clientWebsite: "https://loveatme.com",
-    category: "seo",
+    categories: ["seo", "e-commerce"],
     categoryLabel: "SEO",
     tags: ["Shopify", "SEO", "Multilingue", "FR/EN/NL"],
     thumbnail: "/images/case-studies/love-at-me/thumbnail.webp",
@@ -464,7 +464,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "jm-services",
     clientName: "JM Services",
     clientWebsite: "https://jm-services-var.com",
-    category: "site-vitrine",
+    categories: ["site-vitrine"],
     categoryLabel: "Site vitrine",
     tags: ["WordPress", "Elementor", "SEO"],
     thumbnail: "/images/case-studies/jm-services/thumbnail.webp",
@@ -506,18 +506,23 @@ export function getFeaturedCaseStudies(): CaseStudy[] {
 }
 
 export function getCategories(): { value: string; label: string; count: number }[] {
-  const cats = new Map<string, { label: string; count: number }>();
+  const categoryLabels: Record<string, string> = {
+    'site-vitrine': 'Sites vitrines',
+    'e-commerce':   'E-commerce',
+    'landing-page': 'Landing pages',
+    'seo':          'SEO',
+    'refonte':      'Refonte',
+    'maintenance':  'Maintenance',
+  };
+  const cats = new Map<string, number>();
   caseStudies.forEach((cs) => {
-    const existing = cats.get(cs.category);
-    if (existing) {
-      existing.count++;
-    } else {
-      cats.set(cs.category, { label: cs.categoryLabel, count: 1 });
-    }
+    cs.categories.forEach((cat) => {
+      cats.set(cat, (cats.get(cat) ?? 0) + 1);
+    });
   });
-  return Array.from(cats.entries()).map(([value, { label, count }]) => ({
+  return Array.from(cats.entries()).map(([value, count]) => ({
     value,
-    label,
+    label: categoryLabels[value] ?? value,
     count,
   }));
 }
