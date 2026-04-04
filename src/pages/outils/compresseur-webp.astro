@@ -175,7 +175,21 @@ const benefits = [
           </div>
 
           <!-- Image list -->
-          <div class="wc-image-list" id="wcImageList" style="display:none"></div>
+          <div class="wc-image-list" id="wcImageList" style="display:none">
+            <div class="wc-list-header">
+              <span class="wc-list-count" id="wcListCount">0 images</span>
+              <button type="button" class="wc-btn-clear-all" id="wcClearAll">Tout supprimer</button>
+            </div>
+            <div class="wc-image-table">
+              <div class="wc-table-head">
+                <span class="wc-col-name">Fichier</span>
+                <span class="wc-col-format">Format</span>
+                <span class="wc-col-size">Taille</span>
+                <span class="wc-col-action"></span>
+              </div>
+              <div class="wc-table-body" id="wcImageTableBody"></div>
+            </div>
+          </div>
 
           <!-- Action buttons (settings state) -->
           <div class="wc-actions" id="wcActions" style="display:none">
@@ -203,7 +217,21 @@ const benefits = [
               </div>
             </div>
 
-            <div class="wc-results-list" id="wcResultsList"></div>
+            <div class="wc-results-list" id="wcResultsList">
+              <div class="wc-list-header">
+                <span class="wc-list-count" id="wcResultsCount">0 images compressées</span>
+              </div>
+              <div class="wc-results-table">
+                <div class="wc-table-head wc-table-head--results">
+                  <span class="wc-col-name">Fichier</span>
+                  <span class="wc-col-before">Avant</span>
+                  <span class="wc-col-after">Après</span>
+                  <span class="wc-col-saved">Réduit</span>
+                  <span class="wc-col-action"></span>
+                </div>
+                <div class="wc-table-body" id="wcResultsTableBody"></div>
+              </div>
+            </div>
 
             <div class="wc-actions">
               <button type="button" class="wc-btn-compress" id="wcDownloadAllBtn">
@@ -568,50 +596,88 @@ const benefits = [
   /* Image list */
   .wc-image-list { margin-bottom: 24px; }
 
-  .wc-image-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 12px 16px;
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    margin-bottom: 8px;
-    background: white;
-  }
+  .wc-list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .wc-list-count { font-size: 13px; font-weight: 600; color: var(--color-text-secondary); }
+  .wc-btn-clear-all { font-size: 12px; color: #EF4444; background: none; border: none; cursor: pointer; font-family: inherit; font-weight: 500; }
+  .wc-btn-clear-all:hover { text-decoration: underline; }
 
-  .wc-image-thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; }
+  .wc-image-table, .wc-results-table { border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; max-height: 350px; overflow-y: auto; }
+  .wc-image-table::-webkit-scrollbar, .wc-results-table::-webkit-scrollbar { width: 5px; }
+  .wc-image-table::-webkit-scrollbar-thumb, .wc-results-table::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
 
-  .wc-image-info { flex: 1; min-width: 0; }
-
-  .wc-image-name {
-    display: block;
-    font-size: 14px;
+  .wc-table-head {
+    display: grid;
+    grid-template-columns: 1fr 70px 80px 36px;
+    padding: 10px 16px;
+    background: var(--color-surface);
+    font-size: 12px;
     font-weight: 600;
-    color: var(--color-text-primary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
 
-  .wc-image-size { font-size: 12px; color: var(--color-text-secondary); }
+  .wc-table-head--results { grid-template-columns: 1fr 70px 70px 60px 36px; }
+
+  .wc-table-row {
+    display: grid;
+    grid-template-columns: 1fr 70px 80px 36px;
+    padding: 10px 16px;
+    align-items: center;
+    border-bottom: 1px solid #F0F0EB;
+    font-size: 13px;
+    transition: background 0.2s ease;
+  }
+
+  .wc-table-row:hover { background: var(--color-background); }
+  .wc-table-row:last-child { border-bottom: none; }
+
+  .wc-table-row--results { grid-template-columns: 1fr 70px 70px 60px 36px; }
+
+  .wc-col-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-primary); font-weight: 500; }
+  .wc-col-format { color: var(--color-text-secondary); font-size: 12px; }
+  .wc-col-size { font-weight: 600; color: var(--color-text-primary); font-size: 12px; }
+  .wc-col-before { color: var(--color-text-secondary); font-size: 12px; }
+  .wc-col-after { font-weight: 600; color: var(--color-text-primary); font-size: 12px; }
+  .wc-col-saved { font-weight: 700; font-size: 12px; }
+  .wc-col-saved.positive { color: #22C55E; }
+  .wc-col-saved.negative { color: #EF4444; }
 
   .wc-image-remove {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    border: 1px solid var(--color-border);
-    background: white;
-    color: var(--color-text-secondary);
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: #B0B0A8;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
+    transition: all 0.2s ease;
   }
+  .wc-image-remove:hover { background: #FEF2F2; color: #EF4444; }
 
-  .wc-image-remove:hover { background: #FEF2F2; color: #EF4444; border-color: #EF4444; }
+  .wc-result-download {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+  .wc-result-download:hover { background: var(--color-accent); color: white; }
 
   /* Actions */
   .wc-actions { display: flex; gap: 12px; justify-content: center; margin-top: 24px; }
@@ -665,57 +731,7 @@ const benefits = [
   .wc-stat-number { display: block; font-size: 2rem; font-weight: 800; color: var(--color-accent); }
   .wc-stat-label { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; }
 
-  .wc-result-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 16px;
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    margin-bottom: 8px;
-    background: white;
-  }
-
-  .wc-result-thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; }
-
-  .wc-result-info { flex: 1; min-width: 0; }
-
-  .wc-result-name {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin-bottom: 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .wc-result-sizes { display: flex; align-items: center; gap: 8px; font-size: 13px; flex-wrap: wrap; }
-  .wc-size-before { color: var(--color-text-secondary); }
-  .wc-size-arrow { color: #B0B0A8; }
-  .wc-size-after { color: var(--color-text-primary); font-weight: 600; }
-  .wc-size-saved { color: #22C55E; font-weight: 600; }
-  .wc-size-saved.negative { color: #EF4444; }
-
-  .wc-compression-bar { width: 100%; height: 4px; background: var(--color-border); border-radius: 2px; margin-top: 6px; }
-  .wc-compression-fill { height: 100%; background: var(--color-accent); border-radius: 2px; transition: width 0.6s ease; }
-
-  .wc-result-download {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: var(--color-accent-soft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-accent);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .wc-result-download:hover { background: var(--color-accent); color: white; }
+  .wc-results-list { margin-bottom: 0; }
 
   /* ─── S3: HOW IT WORKS ────────────────────────────────────────────────── */
   .wc-howto { background: var(--color-surface); border-top: 1px solid var(--color-border); }
@@ -965,7 +981,10 @@ const benefits = [
     .wc-dropzone { padding: 40px 20px; }
     .wc-results-summary { grid-template-columns: 1fr; }
     .wc-benefits-grid { grid-template-columns: 1fr; }
-    .wc-result-sizes { flex-wrap: wrap; }
+    .wc-col-format { display: none; }
+    .wc-table-head, .wc-table-row { grid-template-columns: 1fr 70px 36px; padding: 8px 12px; }
+    .wc-table-head--results, .wc-table-row--results { grid-template-columns: 1fr 60px 50px 36px; }
+    .wc-col-before { display: none; }
     .wc-actions { flex-direction: column; align-items: stretch; }
     .wc-btn-compress, .wc-btn-reset { width: 100%; justify-content: center; }
     .wc-cta-actions { flex-direction: column; align-items: center; }
@@ -994,7 +1013,9 @@ const benefits = [
     const resetBtn = document.getElementById('wcResetBtn');
     const downloadAllBtn = document.getElementById('wcDownloadAllBtn');
     const newBatchBtn = document.getElementById('wcNewBatchBtn');
-    const resultsList = document.getElementById('wcResultsList');
+    const clearAllBtn = document.getElementById('wcClearAll');
+    const imageTableBody = document.getElementById('wcImageTableBody');
+    const resultsTableBody = document.getElementById('wcResultsTableBody');
 
     if (!dropzone || !fileInput) return;
 
@@ -1074,20 +1095,26 @@ const benefits = [
       renderFileList();
     }
 
+    function getFileExt(name: string): string {
+      const ext = name.split('.').pop()?.toUpperCase() || '?';
+      return ext === 'JPEG' ? 'JPG' : ext;
+    }
+
     function renderFileList() {
-      if (!imageList) return;
-      imageList.innerHTML = files.map((f, i) => `
-        <div class="wc-image-item">
-          <img src="${URL.createObjectURL(f)}" class="wc-image-thumb" alt="" />
-          <div class="wc-image-info">
-            <span class="wc-image-name">${f.name}</span>
-            <span class="wc-image-size">${formatSize(f.size)}</span>
-          </div>
+      if (!imageTableBody) return;
+      const countEl = document.getElementById('wcListCount');
+      if (countEl) countEl.textContent = `${files.length} image${files.length > 1 ? 's' : ''}`;
+
+      imageTableBody.innerHTML = files.map((f, i) => `
+        <div class="wc-table-row">
+          <span class="wc-col-name" title="${f.name}">${f.name}</span>
+          <span class="wc-col-format">${getFileExt(f.name)}</span>
+          <span class="wc-col-size">${formatSize(f.size)}</span>
           <button type="button" class="wc-image-remove" data-index="${i}" title="Retirer">&times;</button>
         </div>
       `).join('');
 
-      imageList.querySelectorAll('.wc-image-remove').forEach(btn => {
+      imageTableBody.querySelectorAll('.wc-image-remove').forEach(btn => {
         btn.addEventListener('click', () => {
           const idx = parseInt((btn as HTMLElement).dataset.index || '0');
           files.splice(idx, 1);
@@ -1195,28 +1222,19 @@ const benefits = [
       if (elBefore) elBefore.textContent = formatSize(totalBefore);
       if (elAfter) elAfter.textContent = formatSize(totalAfter);
 
-      if (resultsList) {
-        resultsList.innerHTML = compressionResults.map(r => {
-          const fillWidth = Math.max(0, Math.min(100, 100 - r.savings));
-          const savingsClass = r.savings >= 0 ? '' : 'negative';
+      const resultsCountEl = document.getElementById('wcResultsCount');
+      if (resultsCountEl) resultsCountEl.textContent = `${compressionResults.length} image${compressionResults.length > 1 ? 's' : ''} compressée${compressionResults.length > 1 ? 's' : ''}`;
+
+      if (resultsTableBody) {
+        resultsTableBody.innerHTML = compressionResults.map(r => {
+          const savingsClass = r.savings >= 0 ? 'positive' : 'negative';
           return `
-            <div class="wc-result-item">
-              <img src="${r.thumb}" class="wc-result-thumb" alt="" />
-              <div class="wc-result-info">
-                <span class="wc-result-name">${r.newName}</span>
-                <div class="wc-result-sizes">
-                  <span class="wc-size-before">${formatSize(r.originalSize)}</span>
-                  <span class="wc-size-arrow">&rarr;</span>
-                  <span class="wc-size-after">${formatSize(r.newSize)}</span>
-                  <span class="wc-size-saved ${savingsClass}">${r.savings >= 0 ? '-' : '+'}${Math.abs(r.savings)}%</span>
-                </div>
-                <div class="wc-compression-bar">
-                  <div class="wc-compression-fill" style="width:${fillWidth}%"></div>
-                </div>
-              </div>
-              <a class="wc-result-download" href="${URL.createObjectURL(r.blob)}" download="${r.newName}" title="Télécharger">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              </a>
+            <div class="wc-table-row wc-table-row--results">
+              <span class="wc-col-name" title="${r.newName}">${r.newName}</span>
+              <span class="wc-col-before">${formatSize(r.originalSize)}</span>
+              <span class="wc-col-after">${formatSize(r.newSize)}</span>
+              <span class="wc-col-saved ${savingsClass}">${r.savings >= 0 ? '-' : '+'}${Math.abs(r.savings)}%</span>
+              <a class="wc-result-download" href="${URL.createObjectURL(r.blob)}" download="${r.newName}" title="Télécharger">&darr;</a>
             </div>
           `;
         }).join('');
@@ -1303,6 +1321,7 @@ const benefits = [
 
     resetBtn?.addEventListener('click', resetTool);
     newBatchBtn?.addEventListener('click', resetTool);
+    clearAllBtn?.addEventListener('click', resetTool);
 
     // ── Fade-in observer ────────────────────────────────────────────────
     const observer = new IntersectionObserver(
