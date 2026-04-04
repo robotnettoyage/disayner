@@ -68,7 +68,7 @@ Dimensionnez-la correctement. Une image de 4000x3000 pixels affichée dans un co
 
 Utilisez le **preload** pour l'image LCP. Ajoutez cette balise dans le `<head>` de votre page pour que le navigateur commence à télécharger l'image hero avant même d'avoir parsé le CSS : `<link rel="preload" as="image" href="/hero.webp">`. Cette seule ligne peut améliorer votre LCP de 200 à 500 millisecondes.
 
-Ne mettez PAS de lazy loading sur l'image hero. Le lazy loading retarde intentionnellement le chargement — c'est l'inverse de ce que vous voulez pour l'élément LCP. Réservez le lazy loading aux images sous la ligne de flottaison.
+Ne mettez PAS de lazy loading sur l'image hero. Le lazy loading retarde intentionnellement le chargement, c'est l'inverse de ce que vous voulez pour l'élément LCP. Réservez le lazy loading aux images sous la ligne de flottaison.
 
 ### Optimiser les polices
 
@@ -102,13 +102,13 @@ Chargez le JavaScript non critique en différé avec les attributs `defer` ou `a
 
 ### Découper les tâches longues
 
-Le navigateur ne peut faire qu'une chose à la fois sur le thread principal. Une tâche JavaScript de 300 millisecondes bloque toute interaction pendant 300 millisecondes. Le visiteur clique et rien ne se passe pendant un tiers de seconde — c'est perceptible et frustrant.
+Le navigateur ne peut faire qu'une chose à la fois sur le thread principal. Une tâche JavaScript de 300 millisecondes bloque toute interaction pendant 300 millisecondes. Le visiteur clique et rien ne se passe pendant un tiers de seconde, c'est perceptible et frustrant.
 
 Identifiez les tâches longues avec l'onglet Performance de Chrome DevTools. Toute tâche qui dépasse 50 millisecondes est considérée comme longue par Google. La solution est de découper les tâches longues en morceaux plus petits en utilisant `requestAnimationFrame` ou `setTimeout` pour céder le contrôle au thread principal entre chaque morceau.
 
 ### Limiter les scripts tiers
 
-Google Analytics, Facebook Pixel, Hotjar, Intercom, plugins de chat, popups de newsletter — chaque script tiers consomme des ressources. Auditez vos scripts tiers et supprimez ceux qui ne sont pas essentiels.
+Google Analytics, Facebook Pixel, Hotjar, Intercom, plugins de chat, popups de newsletter : chaque script tiers consomme des ressources. Auditez vos scripts tiers et supprimez ceux qui ne sont pas essentiels.
 
 Pour les scripts tiers que vous devez garder, chargez-les après l'interaction initiale avec la page. Par exemple, ne chargez le chat widget qu'après 5 secondes ou au premier scroll. Ne chargez le pixel Facebook qu'après le chargement complet de la page.
 
@@ -142,10 +142,10 @@ En deuxième semaine, passez au JavaScript : auditez et supprimez les scripts in
 
 En troisième semaine, travaillez le serveur : configurez un CDN (Cloudflare est gratuit), optimisez les headers de cache, activez la compression Gzip ou Brotli.
 
-En continu, mesurez régulièrement avec PageSpeed Insights et Search Console. Chaque nouveau plugin, chaque nouvelle fonctionnalité peut dégrader les performances. L'optimisation n'est pas un projet ponctuel — c'est une discipline continue.
+En continu, mesurez régulièrement avec PageSpeed Insights et Search Console. Chaque nouveau plugin, chaque nouvelle fonctionnalité peut dégrader les performances. L'optimisation n'est pas un projet ponctuel, c'est une discipline continue.
 
 ## Conclusion
 
 Les Core Web Vitals ne sont pas qu'un facteur SEO. Un site rapide et stable génère plus de conversions, moins de rebond et une meilleure satisfaction utilisateur. Un gain d'une seconde sur le temps de chargement peut augmenter le taux de conversion de 7% selon les études du secteur.
 
-Commencez par mesurer, identifiez vos faiblesses, corrigez dans l'ordre de priorité. Un score Lighthouse de 95+ est atteignable pour la grande majorité des sites — il suffit de méthodiquement éliminer les problèmes un par un.
+Commencez par mesurer, identifiez vos faiblesses, corrigez dans l'ordre de priorité. Un score Lighthouse de 95+ est atteignable pour la grande majorité des sites, il suffit de méthodiquement éliminer les problèmes un par un.

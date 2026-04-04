@@ -32,7 +32,7 @@ Voici les stratégies concrètes pour optimiser votre site pour les moteurs de r
 
 ### 1. Construire une autorité topique
 
-L'autorité topique est le concept le plus important du GEO. Il ne suffit pas d'avoir un bon article sur un sujet — il faut que votre site démontre une expertise complète et approfondie sur un thème.
+L'autorité topique est le concept le plus important du GEO. Il ne suffit pas d'avoir un bon article sur un sujet, il faut que votre site démontre une expertise complète et approfondie sur un thème.
 
 Concrètement, cela signifie créer des clusters de contenu. Un article pilier (guide complet de 2000+ mots) entouré de 5 à 10 articles satellites couvrant chaque sous-aspect du sujet. Tous liés entre eux par un maillage interne logique.
 

@@ -1,6 +1,6 @@
-WordPress, Shopify, Webflow — trois plateformes, trois philosophies, trois écosystèmes. Choisir le bon CMS pour votre projet web est une décision structurante qui impactera votre quotidien pendant des années. Mauvais choix, et vous passerez plus de temps à contourner les limitations qu'à développer votre activité.
+WordPress, Shopify, Webflow : trois plateformes, trois philosophies, trois écosystèmes. Choisir le bon CMS pour votre projet web est une décision structurante qui impactera votre quotidien pendant des années. Mauvais choix, et vous passerez plus de temps à contourner les limitations qu'à développer votre activité.
 
-Ce comparatif est basé sur notre expérience de plus de 50 projets réalisés sur ces trois plateformes. Pas de sponsor, pas de lien affilié — juste un retour honnête pour vous aider à choisir.
+Ce comparatif est basé sur notre expérience de plus de 50 projets réalisés sur ces trois plateformes. Pas de sponsor, pas de lien affilié, juste un retour honnête pour vous aider à choisir.
 
 ## WordPress : le couteau suisse
 
@@ -16,13 +16,13 @@ Le **coût d'entrée** est bas. WordPress lui-même est gratuit. Un hébergement
 
 Le **SEO** est un terrain où WordPress excelle. Avec des plugins comme Yoast SEO ou Rank Math, la gestion des balises meta, des sitemaps, du schema markup et de la structure SEO est accessible même aux débutants. La flexibilité de WordPress permet aussi un contrôle total du code HTML pour les optimisations avancées.
 
-L'**autonomie** est maximale. Une fois le site livré, vous pouvez modifier vos textes, ajouter des pages, publier des articles de blog, gérer vos produits WooCommerce — tout depuis une interface d'administration intuitive.
+L'**autonomie** est maximale. Une fois le site livré, vous pouvez modifier vos textes, ajouter des pages, publier des articles de blog, gérer vos produits WooCommerce, tout depuis une interface d'administration intuitive.
 
 ### Les faiblesses de WordPress
 
 La **sécurité** est le talon d'Achille de WordPress. Sa popularité en fait la cible principale des hackers. Chaque plugin installé est une porte d'entrée potentielle. Les mises à jour de sécurité sont fréquentes et ne peuvent pas être ignorées. Sans maintenance régulière, un site WordPress finira par se faire pirater.
 
-La **maintenance** est contraignante. WordPress core, le thème, les plugins — tout doit être mis à jour régulièrement. Une mise à jour de plugin peut casser une fonctionnalité. Un plugin abandonné par son développeur devient un risque de sécurité. Il faut prévoir un budget maintenance mensuel ou s'en occuper soi-même.
+La **maintenance** est contraignante. WordPress core, le thème, les plugins : tout doit être mis à jour régulièrement. Une mise à jour de plugin peut casser une fonctionnalité. Un plugin abandonné par son développeur devient un risque de sécurité. Il faut prévoir un budget maintenance mensuel ou s'en occuper soi-même.
 
 La **performance** n'est pas native. Un WordPress "out of the box" est lent. Il faut optimiser : plugin de cache, compression d'images, CDN, minification du CSS/JS, optimisation de la base de données. Chaque plugin ajouté alourdit le site. Un WordPress avec 20 plugins sera toujours plus lent qu'un site codé sur-mesure.
 
@@ -32,15 +32,15 @@ Vous avez besoin d'un site vitrine avec un blog intégré. Vous voulez un e-comm
 
 ## Shopify : le roi du e-commerce
 
-Shopify est une plateforme SaaS (Software as a Service) spécialisée dans le e-commerce. Contrairement à WordPress, vous n'avez rien à installer ni à héberger — tout est géré par Shopify.
+Shopify est une plateforme SaaS (Software as a Service) spécialisée dans le e-commerce. Contrairement à WordPress, vous n'avez rien à installer ni à héberger, tout est géré par Shopify.
 
 ### Les forces de Shopify
 
-Le **e-commerce natif** est ce que Shopify fait de mieux. Gestion des produits, des variantes, des stocks, des commandes, des expéditions, des taxes, des devises multiples — tout est intégré et pensé pour la vente en ligne. Le tunnel d'achat (checkout) de Shopify est l'un des plus optimisés du marché avec un taux de conversion parmi les meilleurs.
+Le **e-commerce natif** est ce que Shopify fait de mieux. Gestion des produits, des variantes, des stocks, des commandes, des expéditions, des taxes, des devises multiples : tout est intégré et pensé pour la vente en ligne. Le tunnel d'achat (checkout) de Shopify est l'un des plus optimisés du marché avec un taux de conversion parmi les meilleurs.
 
 La **fiabilité** est exceptionnelle. Hébergement inclus, SSL inclus, mises à jour automatiques, sécurité gérée par Shopify, sauvegardes automatiques. Vous n'avez jamais à vous soucier de la technique. L'uptime garanti est de 99.99%.
 
-L'**écosystème d'apps** est riche avec plus de 8 000 applications disponibles. Email marketing, avis clients, dropshipping, comptabilité, programme de fidélité — l'App Store Shopify couvre tous les besoins d'un e-commerce moderne.
+L'**écosystème d'apps** est riche avec plus de 8 000 applications disponibles. Email marketing, avis clients, dropshipping, comptabilité, programme de fidélité : l'App Store Shopify couvre tous les besoins d'un e-commerce moderne.
 
 Les **paiements** sont simplifiés. Shopify Payments (powered by Stripe) est intégré nativement. Pas de configuration complexe, pas de compte marchand à ouvrir. Les paiements par carte, Apple Pay, Google Pay et Shop Pay fonctionnent dès l'activation.
 
@@ -66,11 +66,11 @@ Webflow est un outil de design et de développement web qui permet de créer des
 
 ### Les forces de Webflow
 
-Le **design sans limites** est la promesse de Webflow. Contrairement à WordPress où vous êtes contraint par votre thème, ou Shopify où les templates imposent une structure, Webflow vous donne un contrôle pixel-perfect sur chaque élément. Animations complexes, layouts asymétriques, effets de scroll — si vous pouvez le designer dans Figma, vous pouvez le construire dans Webflow.
+Le **design sans limites** est la promesse de Webflow. Contrairement à WordPress où vous êtes contraint par votre thème, ou Shopify où les templates imposent une structure, Webflow vous donne un contrôle pixel-perfect sur chaque élément. Animations complexes, layouts asymétriques, effets de scroll : si vous pouvez le designer dans Figma, vous pouvez le construire dans Webflow.
 
 Le **code généré** est propre. Webflow produit du HTML/CSS sémantique et performant. Pas de plugins qui alourdissent, pas de code superflu. Les sites Webflow sont généralement plus rapides que les sites WordPress à fonctionnalités équivalentes.
 
-Les **animations natives** sont un point fort majeur. Webflow intègre un système d'animations et d'interactions visuelles directement dans l'éditeur. Parallaxe, reveal au scroll, micro-interactions au hover — tout se configure visuellement sans écrire de JavaScript.
+Les **animations natives** sont un point fort majeur. Webflow intègre un système d'animations et d'interactions visuelles directement dans l'éditeur. Parallaxe, reveal au scroll, micro-interactions au hover : tout se configure visuellement sans écrire de JavaScript.
 
 L'**hébergement inclus** sur le CDN AWS de Webflow garantit des performances excellentes et une disponibilité maximale. SSL, sauvegardes et mises à jour sont gérés automatiquement.
 

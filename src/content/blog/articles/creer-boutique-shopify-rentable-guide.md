@@ -12,7 +12,7 @@ Avant de dépenser un centime, validez que des gens cherchent activement ce que 
 
 Utilisez un outil de recherche de mots-clés pour estimer le volume de recherche mensuel. Si "bracelet en pierre naturelle" est cherché 12 000 fois par mois en France, il y a une demande. Si votre produit niche n'a que 50 recherches par mois, le marché est peut-être trop petit pour être rentable via le SEO seul.
 
-Analysez la concurrence. Tapez vos mots-clés sur Google et étudiez les 10 premiers résultats. Si les premières positions sont occupées par Amazon, Cdiscount et des marques établies, le combat SEO sera difficile. Si vous trouvez des boutiques indépendantes dans le top 10, c'est un signe positif — le marché est accessible.
+Analysez la concurrence. Tapez vos mots-clés sur Google et étudiez les 10 premiers résultats. Si les premières positions sont occupées par Amazon, Cdiscount et des marques établies, le combat SEO sera difficile. Si vous trouvez des boutiques indépendantes dans le top 10, c'est un signe positif, le marché est accessible.
 
 ### Définir votre positionnement
 
@@ -46,7 +46,7 @@ Ne passez pas trois mois à peaufiner le design. Un site "assez bien" en ligne q
 
 Activez Shopify Payments dès le départ. C'est la solution de paiement intégrée (powered by Stripe) qui vous évite les frais de transaction supplémentaires que Shopify facture si vous utilisez un processeur tiers.
 
-Avec Shopify Payments, vos clients peuvent payer par carte bancaire, Apple Pay, Google Pay et Shop Pay. Les taux de commission sont de 1.4% + 0.25€ par transaction sur le plan Basic — c'est compétitif par rapport aux solutions tierces.
+Avec Shopify Payments, vos clients peuvent payer par carte bancaire, Apple Pay, Google Pay et Shop Pay. Les taux de commission sont de 1.4% + 0.25€ par transaction sur le plan Basic, c'est compétitif par rapport aux solutions tierces.
 
 Ajoutez PayPal comme option de paiement secondaire. Certains clients préfèrent payer via PayPal par habitude ou pour la protection acheteur. Ne leur enlevez pas cette option.
 
@@ -56,7 +56,7 @@ Les frais de livraison sont la première cause d'abandon de panier en e-commerce
 
 La livraison gratuite à partir d'un certain montant est la stratégie la plus efficace. Analysez votre panier moyen cible et fixez le seuil juste au-dessus. Si votre panier moyen est de 35€, offrez la livraison à partir de 45€. Cela pousse les clients à ajouter un produit pour atteindre le seuil.
 
-Configurez des zones de livraison dans Shopify : France métropolitaine, DOM-TOM, Europe, international. Chaque zone peut avoir ses propres tarifs. Soyez transparent sur les délais — "livraison en 3-5 jours ouvrés" est plus rassurant que rien du tout.
+Configurez des zones de livraison dans Shopify : France métropolitaine, DOM-TOM, Europe, international. Chaque zone peut avoir ses propres tarifs. Soyez transparent sur les délais. "Livraison en 3-5 jours ouvrés" est plus rassurant que rien du tout.
 
 ## Créer des fiches produits qui convertissent
 
@@ -76,11 +76,11 @@ Utilisez un fond blanc ou neutre pour les photos principales et des mises en sc�
 
 Structurez chaque description en trois parties. D'abord l'accroche émotionnelle en une phrase qui connecte avec le besoin ou le désir du client. Ensuite les bénéfices clés sous forme de 3 à 5 bullet points qui expliquent ce que le produit fait pour le client, pas ce que le produit est. Enfin les caractéristiques techniques comme les matériaux, les dimensions, les instructions d'entretien pour les acheteurs qui veulent les détails.
 
-Chaque description doit être unique. Ne copiez jamais les descriptions de vos fournisseurs — c'est du contenu dupliqué qui pénalise votre SEO et qui ne différencie pas votre boutique.
+Chaque description doit être unique. Ne copiez jamais les descriptions de vos fournisseurs, c'est du contenu dupliqué qui pénalise votre SEO et qui ne différencie pas votre boutique.
 
 ### Le prix et la preuve sociale
 
-Affichez clairement le prix, les frais de livraison et les éventuelles promotions. Pas de surprise au checkout — c'est la première cause d'abandon de panier après les frais de livraison cachés.
+Affichez clairement le prix, les frais de livraison et les éventuelles promotions. Pas de surprise au checkout, c'est la première cause d'abandon de panier après les frais de livraison cachés.
 
 Intégrez les avis clients directement sur la fiche produit. Les produits avec avis convertissent 270% de plus que les produits sans avis selon les études du secteur. Utilisez une app Shopify comme Judge.me (gratuit) ou Loox (avec photos d'avis) pour collecter et afficher les avis automatiquement.
 
@@ -110,7 +110,7 @@ Chaque article devrait contenir au moins 1 500 mots, cibler une requête spécif
 
 ## Les apps essentielles (sans se ruiner)
 
-L'App Store Shopify est une jungle de 8 000 applications. Installez le strict nécessaire — chaque app ajoute du poids et un coût potentiel.
+L'App Store Shopify est une jungle de 8 000 applications. Installez le strict nécessaire, car chaque app ajoute du poids et un coût potentiel.
 
 Les apps indispensables pour démarrer sont un outil d'avis clients comme Judge.me (gratuit) pour collecter et afficher les avis automatiquement, un outil SEO comme SEO Manager ou Smart SEO pour automatiser les balises meta et le schema markup, un outil d'email marketing comme Klaviyo (gratuit jusqu'à 250 contacts) ou Shopify Email pour les séquences automatisées (panier abandonné, post-achat), et un outil d'analytics comme Google Analytics 4 ou le rapport Shopify natif pour suivre vos conversions.
 
@@ -126,7 +126,7 @@ Le SEO prend 3 à 6 mois pour donner des résultats significatifs. En attendant,
 
 Les réseaux sociaux sont votre premier levier gratuit. Instagram pour les produits visuels, TikTok pour les démonstrations produits, Pinterest pour le lifestyle et la décoration. Publiez régulièrement du contenu qui montre vos produits en situation, pas juste des photos de catalogue.
 
-La publicité payante (Facebook Ads, Google Shopping) permet d'obtenir du trafic rapidement, mais elle a un coût. Commencez avec un petit budget (5-10€/jour) pour tester différentes audiences et créatives avant d'augmenter. Ne mettez pas tout votre budget marketing en publicité — c'est un robinet que vous devrez toujours alimenter.
+La publicité payante (Facebook Ads, Google Shopping) permet d'obtenir du trafic rapidement, mais elle a un coût. Commencez avec un petit budget (5-10€/jour) pour tester différentes audiences et créatives avant d'augmenter. Ne mettez pas tout votre budget marketing en publicité, c'est un robinet que vous devrez toujours alimenter.
 
 ### L'email marketing dès le jour 1
 

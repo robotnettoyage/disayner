@@ -1,4 +1,4 @@
-Les images représentent en moyenne 50% du poids total d'une page web. Sur un site e-commerce avec des dizaines de photos produits, ce chiffre peut grimper à 70% ou plus. Un site avec des images non optimisées perd des visiteurs, des positions SEO et des conversions — et le pire, c'est que c'est l'un des problèmes les plus simples à résoudre.
+Les images représentent en moyenne 50% du poids total d'une page web. Sur un site e-commerce avec des dizaines de photos produits, ce chiffre peut grimper à 70% ou plus. Un site avec des images non optimisées perd des visiteurs, des positions SEO et des conversions, et le pire, c'est que c'est l'un des problèmes les plus simples à résoudre.
 
 Ce guide couvre tout ce que vous devez savoir pour optimiser vos images : le format WebP, les techniques de compression, le lazy loading et les bonnes pratiques pour un site ultra-rapide.
 
@@ -8,7 +8,7 @@ Le problème n'est pas d'avoir des images sur votre site. Les images sont essent
 
 Une photo sortie d'un appareil photo ou d'un smartphone pèse entre 3 et 10 Mo. Affichez-en cinq sur une page et vous avez 30 Mo à télécharger. Sur une connexion 4G moyenne à 10 Mbps, il faut 24 secondes pour télécharger 30 Mo. Votre visiteur est parti depuis longtemps.
 
-L'impact sur le SEO est direct. Google mesure les Core Web Vitals, notamment le LCP (Largest Contentful Paint) qui est souvent déterminé par l'image hero. Une image hero de 2 Mo donne un LCP de 4 secondes ou plus sur mobile — largement au-dessus du seuil de 2.5 secondes recommandé par Google. Résultat : pénalité de classement.
+L'impact sur le SEO est direct. Google mesure les Core Web Vitals, notamment le LCP (Largest Contentful Paint) qui est souvent déterminé par l'image hero. Une image hero de 2 Mo donne un LCP de 4 secondes ou plus sur mobile, largement au-dessus du seuil de 2.5 secondes recommandé par Google. Résultat : pénalité de classement.
 
 L'impact sur les conversions est tout aussi concret. Chaque seconde de chargement supplémentaire fait chuter le taux de conversion. Pour un site e-commerce, une seconde de retard peut représenter une perte de chiffre d'affaires significative sur un mois.
 
@@ -48,7 +48,7 @@ Pour les **photos** (hero, produits, portraits), une qualité WebP de 75 à 85% 
 
 Pour les **captures d'écran et illustrations** avec du texte, montez à 85-90%. Le texte est plus sensible à la compression que les photos naturelles. Des artefacts de compression sur du texte se voient facilement.
 
-Pour les **thumbnails et images de catalogue**, vous pouvez descendre à 60-70%. Ces images sont affichées en petit format — les détails sont de toute façon invisibles.
+Pour les **thumbnails et images de catalogue**, vous pouvez descendre à 60-70%. Ces images sont affichées en petit format, les détails sont de toute façon invisibles.
 
 Pour les **logos et icônes**, utilisez le SVG (vectoriel) plutôt que le WebP. Le SVG est infiniment redimensionnable sans perte de qualité et pèse généralement moins de 5 Ko.
 
@@ -112,6 +112,6 @@ Pour les outils, automatisez la compression avec un plugin WordPress ou un outil
 
 ## L'impact concret
 
-Pour illustrer l'impact de ces optimisations, voici un exemple réel. Un de nos clients e-commerce avait un site avec 30 photos produits non optimisées. Le poids total de la page catalogue était de 18 Mo. Après optimisation — conversion en WebP à 80%, redimensionnement aux tailles d'affichage réelles, lazy loading sur les images sous la ligne de flottaison — le poids est passé à 2.1 Mo. Le LCP est passé de 6.2 secondes à 1.8 seconde. Le score Lighthouse est passé de 34 à 96.
+Pour illustrer l'impact de ces optimisations, voici un exemple réel. Un de nos clients e-commerce avait un site avec 30 photos produits non optimisées. Le poids total de la page catalogue était de 18 Mo. Après optimisation (conversion en WebP à 80%, redimensionnement aux tailles d'affichage réelles, lazy loading sur les images sous la ligne de flottaison), le poids est passé à 2.1 Mo. Le LCP est passé de 6.2 secondes à 1.8 seconde. Le score Lighthouse est passé de 34 à 96.
 
-L'optimisation des images n'est pas un "nice to have". C'est la première chose à faire si votre site est lent. C'est aussi la plus simple et celle qui a le plus d'impact immédiat. Commencez aujourd'hui — le retour sur investissement est instantané.
+L'optimisation des images n'est pas un "nice to have". C'est la première chose à faire si votre site est lent. C'est aussi la plus simple et celle qui a le plus d'impact immédiat. Commencez aujourd'hui, le retour sur investissement est instantané.

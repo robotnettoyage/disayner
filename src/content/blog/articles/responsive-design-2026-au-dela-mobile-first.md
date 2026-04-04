@@ -1,10 +1,10 @@
 Le responsive design a transformé le web en 10 ans. On est passé de sites desktop avec une version "mobile" séparée à des sites qui s'adaptent fluidement à toutes les tailles d'écran. Mais en 2026, le responsive design moderne va bien au-delà du simple "ça s'empile sur mobile".
 
-Container queries, fluid typography, responsive images natives, subgrid — les outils ont évolué. Les attentes des utilisateurs aussi. Ce guide explore les nouvelles approches du responsive design et ce qui a changé par rapport au "mobile-first" classique.
+Container queries, fluid typography, responsive images natives, subgrid : les outils ont évolué. Les attentes des utilisateurs aussi. Ce guide explore les nouvelles approches du responsive design et ce qui a changé par rapport au "mobile-first" classique.
 
 ## L'état du responsive en 2026
 
-En 2026, concevoir un site "mobile-friendly" n'est plus un avantage compétitif. C'est le minimum vital. Google indexe en mobile-first depuis 2021 — la version mobile de votre site est celle que Google analyse et classe. Un site non responsive est un site qui perd des positions.
+En 2026, concevoir un site "mobile-friendly" n'est plus un avantage compétitif. C'est le minimum vital. Google indexe en mobile-first depuis 2021, et la version mobile de votre site est celle que Google analyse et classe. Un site non responsive est un site qui perd des positions.
 
 Mais "responsive" ne signifie plus simplement "les éléments s'empilent verticalement sur petit écran". Les utilisateurs naviguent sur des écrans de 320px (petits smartphones) à 3840px (moniteurs 4K). Entre les deux, il y a les tablettes, les laptops, les écrans pliables, les voitures, les montres connectées et les navigateurs en mode split-screen.
 
@@ -16,7 +16,7 @@ Les media queries classiques réagissent à la taille du viewport (l'écran). Le
 
 ### Le problème des media queries
 
-Imaginez une carte produit utilisée à deux endroits : dans une grille principale à 3 colonnes et dans une sidebar étroite. Avec les media queries, la carte se base sur la largeur de l'écran. Sur un écran de 1200px, elle s'affiche en mode "large" partout — même dans la sidebar où elle est cramée dans 300px de large. La carte ne sait pas qu'elle est dans un espace étroit.
+Imaginez une carte produit utilisée à deux endroits : dans une grille principale à 3 colonnes et dans une sidebar étroite. Avec les media queries, la carte se base sur la largeur de l'écran. Sur un écran de 1200px, elle s'affiche en mode "large" partout, même dans la sidebar où elle est cramée dans 300px de large. La carte ne sait pas qu'elle est dans un espace étroit.
 
 ### La solution container queries
 
@@ -52,7 +52,7 @@ Les images responsives ont considérablement évolué depuis les premiers jours 
 
 La balise `<picture>` ne sert pas qu'à servir différents formats (WebP vs JPEG). Elle permet aussi de servir des images complètement différentes selon la taille de l'écran, c'est ce qu'on appelle l'art direction.
 
-Un hero banner large et panoramique sur desktop peut devenir un cadrage serré en portrait sur mobile. Ce n'est pas juste un crop automatique — c'est une image pensée spécifiquement pour chaque contexte.
+Un hero banner large et panoramique sur desktop peut devenir un cadrage serré en portrait sur mobile. Ce n'est pas juste un crop automatique, c'est une image pensée spécifiquement pour chaque contexte.
 
 Définissez des sources différentes dans la balise `<picture>` avec des media queries : une image paysage pour les grands écrans, une image carrée pour les tablettes, et une image portrait pour les mobiles. Le navigateur charge uniquement l'image correspondant à son contexte.
 
@@ -72,11 +72,11 @@ Le responsive design moderne prend en compte les préférences système de l'uti
 
 Certains utilisateurs sont sensibles aux animations (troubles vestibulaires, épilepsie photosensible, ou simplement préférence personnelle). La media query `prefers-reduced-motion: reduce` permet de désactiver ou de réduire les animations pour ces utilisateurs.
 
-En pratique, ne supprimez pas les animations entièrement — réduisez-les. Les transitions de couleur et d'opacité sont généralement acceptables. Les mouvements (translate, rotate, scale animés) et les effets de parallaxe sont les plus problématiques. Encapsulez toutes vos animations dans une media query `prefers-reduced-motion: no-preference` pour qu'elles ne s'activent que pour les utilisateurs qui n'ont pas demandé de réduction.
+En pratique, ne supprimez pas les animations entièrement, réduisez-les. Les transitions de couleur et d'opacité sont généralement acceptables. Les mouvements (translate, rotate, scale animés) et les effets de parallaxe sont les plus problématiques. Encapsulez toutes vos animations dans une media query `prefers-reduced-motion: no-preference` pour qu'elles ne s'activent que pour les utilisateurs qui n'ont pas demandé de réduction.
 
 ### prefers-color-scheme
 
-Le mode sombre n'est plus une fonctionnalité bonus — c'est une attente utilisateur. Selon les données disponibles, environ 80% des utilisateurs de smartphone activent le mode sombre. Ignorer cette préférence, c'est ignorer la majorité de vos visiteurs.
+Le mode sombre n'est plus une fonctionnalité bonus, c'est une attente utilisateur. Selon les données disponibles, environ 80% des utilisateurs de smartphone activent le mode sombre. Ignorer cette préférence, c'est ignorer la majorité de vos visiteurs.
 
 La media query `prefers-color-scheme: dark` permet d'adapter votre design au mode sombre. L'approche la plus propre est d'utiliser des CSS custom properties (variables) pour toutes vos couleurs et de les redéfinir dans la media query dark. Définissez vos couleurs de base en mode clair, puis redéfinissez-les dans un bloc `@media (prefers-color-scheme: dark)`.
 
@@ -94,7 +94,7 @@ Dans un grid classique, seuls les enfants directs du conteneur grid participent 
 
 ### Subgrid résout l'alignement
 
-Avec `grid-template-rows: subgrid` sur un enfant du grid, les éléments à l'intérieur de cet enfant s'alignent sur les lignes du grid parent. Tous les titres de cartes s'alignent horizontalement, toutes les descriptions commencent au même niveau, tous les boutons sont alignés en bas — peu importe la longueur du contenu.
+Avec `grid-template-rows: subgrid` sur un enfant du grid, les éléments à l'intérieur de cet enfant s'alignent sur les lignes du grid parent. Tous les titres de cartes s'alignent horizontalement, toutes les descriptions commencent au même niveau, tous les boutons sont alignés en bas, peu importe la longueur du contenu.
 
 Le subgrid est supporté par tous les navigateurs majeurs depuis fin 2023. C'est un outil prêt pour la production qui résout un problème d'alignement qui embête les développeurs web depuis des années.
 
@@ -122,4 +122,4 @@ Pour le layout, vérifiez que le site fonctionne de 320px à 2560px sans scroll 
 
 Pour les préférences utilisateur, vérifiez que les animations respectent `prefers-reduced-motion`, que le mode sombre est supporté si votre identité visuelle le permet, et que les contrastes sont suffisants (ratio WCAG AA minimum 4.5:1 pour le texte).
 
-Le responsive design n'est plus un sujet de "comment faire rentrer un site desktop dans un petit écran". C'est une philosophie de conception qui pense l'expérience utilisateur dans toute sa diversité — d'écrans, de capacités, de préférences et de contextes d'utilisation. Les outils CSS modernes rendent cette approche plus simple et plus puissante que jamais.
+Le responsive design n'est plus un sujet de "comment faire rentrer un site desktop dans un petit écran". C'est une philosophie de conception qui pense l'expérience utilisateur dans toute sa diversité : écrans, capacités, de préférences et de contextes d'utilisation. Les outils CSS modernes rendent cette approche plus simple et plus puissante que jamais.

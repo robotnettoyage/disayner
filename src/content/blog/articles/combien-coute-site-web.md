@@ -1,4 +1,4 @@
-"Combien coûte un site web ?" — c'est probablement la question qu'on nous pose le plus souvent. Et c'est normal : les prix affichés sur le marché vont de 0€ (templates gratuits) à 50 000€+ (agences parisiennes). Comment s'y retrouver ?
+"Combien coûte un site web ?" C'est probablement la question qu'on nous pose le plus souvent. Et c'est normal : les prix affichés sur le marché vont de 0€ (templates gratuits) à 50 000€+ (agences parisiennes). Comment s'y retrouver ?
 
 La réponse honnête, c'est que le prix d'un site web dépend de ce que vous en attendez. Un site vitrine 5 pages pour un artisan local et une plateforme e-commerce multilingue avec 500 produits ne jouent pas dans la même catégorie. Ce guide vous donne les vrais prix du marché en 2026, sans langue de bois.
 
@@ -14,7 +14,7 @@ Les sites vitrines (présentation d'activité, services, contact) sont les plus 
 
 ### Le CMS choisi
 
-WordPress, Shopify, Webflow — chaque plateforme a ses propres coûts directs et indirects. WordPress est open source (gratuit) mais nécessite un hébergement, un thème et souvent des plugins premium. Shopify a un abonnement mensuel (de 32€ à 384€/mois) mais inclut l'hébergement et la sécurité. Webflow a un plan gratuit limité et des plans payants de 14€ à 39€/mois par site.
+WordPress, Shopify, Webflow : chaque plateforme a ses propres coûts directs et indirects. WordPress est open source (gratuit) mais nécessite un hébergement, un thème et souvent des plugins premium. Shopify a un abonnement mensuel (de 32€ à 384€/mois) mais inclut l'hébergement et la sécurité. Webflow a un plan gratuit limité et des plans payants de 14€ à 39€/mois par site.
 
 Le choix du CMS influence aussi le coût de développement. Un site WordPress avec un thème premium et des plugins bien configurés sera moins cher qu'un site Webflow entièrement designé sur-mesure, qui sera lui-même moins cher qu'un développement full code (HTML/CSS/JS ou React).
 
@@ -36,7 +36,7 @@ Si vous fournissez vos textes et vos photos, le coût se limite à l'intégratio
 
 ### Les fonctionnalités spécifiques
 
-Certaines fonctionnalités augmentent significativement le budget. Un système de réservation en ligne, un configurateur de produit, un espace client, une intégration avec un CRM ou un ERP, un système multilingue — chaque fonctionnalité spécifique demande du développement supplémentaire.
+Certaines fonctionnalités augmentent significativement le budget. Un système de réservation en ligne, un configurateur de produit, un espace client, une intégration avec un CRM ou un ERP, un système multilingue : chaque fonctionnalité spécifique demande du développement supplémentaire.
 
 ## Les prix par type de prestataire
 
@@ -74,7 +74,7 @@ L'**hébergement** coûte entre 50€ et 300€ par an selon la solution choisie
 
 Le **nom de domaine** coûte entre 10€ et 50€ par an selon l'extension (.fr, .com, .io).
 
-La **maintenance** est le poste souvent sous-estimé. Mises à jour du CMS et des plugins, sauvegardes, surveillance de sécurité, corrections de bugs — comptez entre 50€ et 200€ par mois pour une maintenance professionnelle. Sans maintenance, votre site deviendra vulnérable aux failles de sécurité et aux pannes.
+La **maintenance** est le poste souvent sous-estimé. Mises à jour du CMS et des plugins, sauvegardes, surveillance de sécurité, corrections de bugs : comptez entre 50€ et 200€ par mois pour une maintenance professionnelle. Sans maintenance, votre site deviendra vulnérable aux failles de sécurité et aux pannes.
 
 Les **licences** (thème premium, plugins payants, abonnement Shopify) varient de 0€ à 400€ par an.
 
@@ -102,7 +102,7 @@ Le **devis sans périmètre clair** est un risque majeur. Si le devis ne détail
 
 Le **tout inclus sans maintenance** est un faux ami. Un prestataire qui vous livre un site et disparaît vous laisse seul face aux mises à jour, aux failles de sécurité et aux bugs. Demandez systématiquement ce qui est prévu après la mise en ligne.
 
-L'**absence de SEO** dans le devis est un signal d'alerte. Un site sans SEO est un site invisible. La structure SEO, les balises meta, le sitemap, la performance — tout cela devrait être intégré dès la conception, pas ajouté en option.
+L'**absence de SEO** dans le devis est un signal d'alerte. Un site sans SEO est un site invisible. La structure SEO, les balises meta, le sitemap, la performance : tout cela devrait être intégré dès la conception, pas ajouté en option.
 
 ## Conclusion
 
@@ -110,4 +110,4 @@ Le prix d'un site web en 2026 se résume ainsi. Pour une landing page, comptez e
 
 Le meilleur investissement n'est pas celui qui coûte le moins, c'est celui qui vous rapporte le plus. Un site à 3 000€ qui vous amène 10 clients par mois vaut infiniment plus qu'un site à 500€ qui ne génère rien.
 
-Prenez le temps de définir vos objectifs, comparez 2 à 3 devis détaillés, et choisissez un prestataire qui comprend votre métier — pas juste quelqu'un qui sait coder.
+Prenez le temps de définir vos objectifs, comparez 2 à 3 devis détaillés, et choisissez un prestataire qui comprend votre métier, pas juste quelqu'un qui sait coder.

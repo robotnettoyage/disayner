@@ -1,4 +1,4 @@
-Le SEO local est devenu un levier incontournable pour les entreprises qui dépendent d'une zone géographique. Artisan, restaurant, cabinet médical, agence immobilière — si vos clients vous cherchent dans une ville précise, ce guide est fait pour vous.
+Le SEO local est devenu un levier incontournable pour les entreprises qui dépendent d'une zone géographique. Artisan, restaurant, cabinet médical, agence immobilière : si vos clients vous cherchent dans une ville précise, ce guide est fait pour vous.
 
 Chaque jour, des milliers de recherches comme "plombier Lyon", "restaurant italien Bordeaux" ou "dentiste près de chez moi" sont tapées sur Google. Et dans 93% des cas, ces recherches mènent à une action dans les 24 heures : un appel, une visite, un achat.
 
@@ -32,7 +32,7 @@ Une fiche créée ne suffit pas. Pour maximiser votre visibilité, optimisez cha
 
 La **catégorie principale** est le champ le plus important. Choisissez la catégorie la plus précise possible. "Miroiterie" est meilleur que "Entreprise de construction". Ajoutez ensuite 3 à 5 catégories secondaires pertinentes.
 
-La **description** (750 caractères max) doit naturellement inclure vos services principaux et votre zone géographique. Pas de keyword stuffing — écrivez pour les humains.
+La **description** (750 caractères max) doit naturellement inclure vos services principaux et votre zone géographique. Pas de keyword stuffing : écrivez pour les humains.
 
 Les **photos** ont un impact direct sur le taux de clic. Les fiches avec plus de 10 photos reçoivent 35% de clics en plus. Publiez des photos de votre local, de votre équipe, de vos réalisations, et mettez-les à jour régulièrement.
 

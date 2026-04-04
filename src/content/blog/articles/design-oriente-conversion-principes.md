@@ -1,10 +1,10 @@
 Un site peut être visuellement magnifique et ne générer aucune conversion. À l'inverse, des sites au design modeste mais stratégiquement pensé génèrent des milliers de leads chaque mois. La différence tient à un concept : le design orienté conversion.
 
-Le design orienté conversion (ou CRO design — Conversion Rate Optimization) place chaque élément visuel, chaque choix typographique et chaque pixel au service d'un objectif business mesurable. Ce n'est pas l'ennemi de l'esthétique — c'est l'esthétique avec un but.
+Le design orienté conversion (ou CRO design — Conversion Rate Optimization) place chaque élément visuel, chaque choix typographique et chaque pixel au service d'un objectif business mesurable. Ce n'est pas l'ennemi de l'esthétique, c'est l'esthétique avec un but.
 
 ## Principe 1 : La hiérarchie visuelle guide le regard
 
-L'œil humain ne lit pas une page web comme il lit un livre. Il scanne. En 3 à 5 secondes, un visiteur décide s'il reste ou s'il part. La hiérarchie visuelle détermine ce qu'il voit en premier, en deuxième, en troisième — et donc s'il comprend votre proposition de valeur assez vite pour rester.
+L'œil humain ne lit pas une page web comme il lit un livre. Il scanne. En 3 à 5 secondes, un visiteur décide s'il reste ou s'il part. La hiérarchie visuelle détermine ce qu'il voit en premier, en deuxième, en troisième, et donc s'il comprend votre proposition de valeur assez vite pour rester.
 
 ### Le pattern en F et en Z
 
@@ -20,7 +20,7 @@ La taille est le signal le plus puissant. Un titre en 48px attire le regard avan
 
 La couleur guide l'attention vers les éléments importants. Sur une page en noir et blanc, un bouton bleu attire immédiatement le regard. C'est le principe de l'accent de couleur : une couleur utilisée avec parcimonie a plus d'impact qu'une palette de dix couleurs.
 
-L'espace blanc (ou whitespace) n'est pas du gaspillage — c'est un outil de design. Un élément entouré d'espace vide paraît plus important qu'un élément noyé dans un bloc dense. Les sites premium utilisent massivement l'espace blanc pour créer une sensation de calme et de clarté qui guide naturellement le regard vers les éléments essentiels.
+L'espace blanc (ou whitespace) n'est pas du gaspillage, c'est un outil de design. Un élément entouré d'espace vide paraît plus important qu'un élément noyé dans un bloc dense. Les sites premium utilisent massivement l'espace blanc pour créer une sensation de calme et de clarté qui guide naturellement le regard vers les éléments essentiels.
 
 ## Principe 2 : Un CTA visible et sans ambiguïté
 
@@ -30,7 +30,7 @@ Le Call-to-Action est l'élément le plus important de votre page. C'est le pont
 
 Le CTA doit être visible sans scroller. Votre visiteur ne devrait jamais avoir à chercher comment passer à l'action. Le bouton principal doit être dans la zone visible initiale (above the fold) sur desktop et sur mobile.
 
-Le texte du CTA doit dire exactement ce qui va se passer au clic. "Envoyer" est vague. "Demander un devis gratuit" est clair. "Réserver mon appel découverte" est encore mieux — c'est spécifique, il y a un bénéfice (c'est gratuit), et il y a une action concrète (un appel).
+Le texte du CTA doit dire exactement ce qui va se passer au clic. "Envoyer" est vague. "Demander un devis gratuit" est clair. "Réserver mon appel découverte" est encore mieux, c'est spécifique, il y a un bénéfice (c'est gratuit), et il y a une action concrète (un appel).
 
 Le CTA doit contraster avec le reste de la page. Si votre page est en nuances de gris et bleu, un CTA orange se détachera naturellement. La règle simple : la couleur du CTA ne doit être utilisée nulle part ailleurs sur la page.
 
@@ -38,7 +38,7 @@ Un seul CTA principal par section. Deux boutons qui se battent pour l'attention 
 
 ### Le CTA répété intelligemment
 
-Sur les pages longues (landing pages, pages de service), répétez votre CTA principal à intervalles réguliers. Pas le même bouton copié-collé — adaptez le texte au contexte de la section. Après la section "bénéfices", le CTA peut dire "Profitez de ces avantages". Après la section "témoignages", il peut dire "Rejoignez nos clients satisfaits". Même action, wording adapté, friction réduite.
+Sur les pages longues (landing pages, pages de service), répétez votre CTA principal à intervalles réguliers. Pas le même bouton copié-collé, adaptez le texte au contexte de la section. Après la section "bénéfices", le CTA peut dire "Profitez de ces avantages". Après la section "témoignages", il peut dire "Rejoignez nos clients satisfaits". Même action, wording adapté, friction réduite.
 
 ## Principe 3 : La preuve sociale au bon endroit
 
@@ -92,7 +92,7 @@ Un système de design est un ensemble de règles visuelles appliquées uniformé
 
 La cohérence s'applique aussi au ton éditorial. Si votre homepage tutoie le visiteur, ne passez pas au vouvoiement sur la page contact. Si vos titres sont en minuscules, ne basculez pas en majuscules sur certaines sections.
 
-## Principe 6 : Le design mobile n'est pas une adaptation — c'est la priorité
+## Principe 6 : Le design mobile n'est pas une adaptation, c'est la priorité
 
 Plus de 60% du trafic web est mobile. Pourtant, la majorité des sites sont encore conçus sur un écran 27 pouces puis "adaptés" au mobile après coup. Le résultat : des textes trop petits, des boutons trop rapprochés, des images qui débordent et un parcours utilisateur frustrant.
 
@@ -102,7 +102,7 @@ Testez systématiquement chaque page sur un vrai smartphone, pas seulement dans 
 
 ## Principe 7 : Le design guide, le contenu convainc
 
-Le plus beau design du monde ne compensera jamais un contenu médiocre. Le design crée le cadre — c'est le contenu qui fait le travail de persuasion.
+Le plus beau design du monde ne compensera jamais un contenu médiocre. Le design crée le cadre, c'est le contenu qui fait le travail de persuasion.
 
 ### L'accroche (above the fold)
 

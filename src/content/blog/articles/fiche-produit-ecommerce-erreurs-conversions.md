@@ -1,4 +1,4 @@
-Votre boutique en ligne reçoit du trafic mais les ventes ne suivent pas. Le problème vient probablement de vos fiches produits. Ce sont elles qui transforment un visiteur curieux en acheteur convaincu — ou qui le font partir chez le concurrent en un clic.
+Votre boutique en ligne reçoit du trafic mais les ventes ne suivent pas. Le problème vient probablement de vos fiches produits. Ce sont elles qui transforment un visiteur curieux en acheteur convaincu, ou qui le font partir chez le concurrent en un clic.
 
 Après avoir optimisé les fiches produits de dizaines de boutiques e-commerce, nous avons identifié les mêmes erreurs qui reviennent systématiquement. Voici les 10 plus coûteuses et comment les corriger.
 
@@ -10,21 +10,21 @@ Les symptômes sont faciles à reconnaître : photos floues ou pixelisées, écl
 
 La solution passe par un minimum de 4 à 6 photos par produit. Incluez une vue principale sur fond blanc ou neutre, des vues sous différents angles, un zoom sur les détails et textures, une photo en situation réelle (le produit porté, utilisé ou installé), une photo qui donne l'échelle et le packaging si il est soigné.
 
-Vous n'avez pas besoin d'un photographe professionnel pour chaque produit. Un smartphone récent avec un bon éclairage naturel (près d'une fenêtre) et un fond blanc suffit pour les photos sur fond neutre. Investissez dans un mini studio photo à 50€ (lightbox + fond blanc) — le retour sur investissement est immédiat.
+Vous n'avez pas besoin d'un photographe professionnel pour chaque produit. Un smartphone récent avec un bon éclairage naturel (près d'une fenêtre) et un fond blanc suffit pour les photos sur fond neutre. Investissez dans un mini studio photo à 50€ (lightbox + fond blanc), le retour sur investissement est immédiat.
 
 ## Erreur 2 : Copier les descriptions du fournisseur
 
 Si vous vendez les mêmes produits que d'autres boutiques et que vous utilisez les descriptions fournies par le fabricant, vous avez un double problème. Le premier est le SEO puisque Google détecte le contenu dupliqué et pénalise les pages qui copient du contenu existant. Le second est la conversion car une description technique copiée ne crée aucune émotion ni connexion avec votre client.
 
-Réécrivez chaque description en adoptant le point de vue du client, pas celui du fabricant. Le fabricant dit "matière : 100% coton biologique certifié GOTS, grammage 180g/m²". Votre description devrait dire "un toucher doux et épais que vous aurez envie de porter tous les jours — en coton bio certifié qui respecte votre peau et la planète."
+Réécrivez chaque description en adoptant le point de vue du client, pas celui du fabricant. Le fabricant dit "matière : 100% coton biologique certifié GOTS, grammage 180g/m²". Votre description devrait dire "un toucher doux et épais que vous aurez envie de porter tous les jours, en coton bio certifié qui respecte votre peau et la planète."
 
 Structurez chaque description de la même manière. Commencez par une accroche émotionnelle d'une phrase qui se connecte au désir ou au problème du client. Poursuivez avec 3 à 5 bénéfices clés sous forme de bullet points expliquant ce que le produit apporte au client. Terminez avec les caractéristiques techniques (matériaux, dimensions, poids, entretien) pour ceux qui veulent les détails factuels.
 
 ## Erreur 3 : Pas d'avis clients
 
-Les chiffres sont sans appel : les produits avec avis convertissent significativement mieux que les produits sans avis. Et ce n'est pas seulement une question de nombre — c'est une question de confiance. Un visiteur qui hésite entre votre boutique et une autre choisira celle qui a des avis vérifiés.
+Les chiffres sont sans appel : les produits avec avis convertissent significativement mieux que les produits sans avis. Et ce n'est pas seulement une question de nombre, c'est une question de confiance. Un visiteur qui hésite entre votre boutique et une autre choisira celle qui a des avis vérifiés.
 
-Ne vous cachez pas derrière l'excuse "je suis nouveau, je n'ai pas encore d'avis". Envoyez un email automatique 7 jours après la livraison pour demander un avis. Offrez un petit incentive (5% de réduction sur la prochaine commande) pour encourager les retours. Et surtout, ne filtrez pas les avis négatifs — un profil 100% cinq étoiles paraît suspect. Quelques avis à 4 étoiles renforcent la crédibilité.
+Ne vous cachez pas derrière l'excuse "je suis nouveau, je n'ai pas encore d'avis". Envoyez un email automatique 7 jours après la livraison pour demander un avis. Offrez un petit incentive (5% de réduction sur la prochaine commande) pour encourager les retours. Et surtout, ne filtrez pas les avis négatifs, car un profil 100% cinq étoiles paraît suspect. Quelques avis à 4 étoiles renforcent la crédibilité.
 
 Les avis avec photos sont encore plus puissants. Les clients qui voient d'autres clients utiliser le produit dans la vraie vie sont rassurés d'une manière qu'aucune photo professionnelle ne peut reproduire. Des outils comme Judge.me ou Loox permettent de collecter des avis avec photos automatiquement.
 
@@ -90,6 +90,6 @@ Ces éléments de réassurance ne sont pas du contenu bonus. Ils sont aussi impo
 
 Prenez vos 10 fiches produits les plus visitées (consultez Google Analytics ou les rapports Shopify) et évaluez-les sur chacun des 10 critères de cet article. Donnez un score de 0 à 10 pour chaque critère et identifiez vos faiblesses principales.
 
-Commencez par corriger les erreurs sur vos produits les plus vus — c'est là que l'impact sera le plus immédiat. Un gain de 0.5% de taux de conversion sur votre produit phare peut représenter des dizaines de ventes supplémentaires par mois.
+Commencez par corriger les erreurs sur vos produits les plus vus, c'est là que l'impact sera le plus immédiat. Un gain de 0.5% de taux de conversion sur votre produit phare peut représenter des dizaines de ventes supplémentaires par mois.
 
 Le travail d'optimisation des fiches produits n'est jamais terminé. Testez, mesurez, ajustez. Les boutiques e-commerce les plus performantes itèrent en permanence sur leurs pages produits, parce que chaque amélioration, même minime, se traduit directement en chiffre d'affaires.
