@@ -1,0 +1,395 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BgOrbs from '../../components/BgOrbs.astro';
+
+const faqItems = [
+  { q: "Où placer le fichier robots.txt ?", a: "Le fichier doit être placé à la racine de votre site web, accessible à l'adresse votresite.com/robots.txt. Sur WordPress, vous pouvez utiliser un plugin SEO comme Yoast pour le gérer.", open: true },
+  { q: "Faut-il bloquer les crawlers IA (GPTBot, Google-Extended) ?", a: "Ça dépend de votre stratégie. Les bloquer empêche ChatGPT et Gemini d'utiliser votre contenu pour entraîner leurs modèles. Mais ça peut aussi réduire votre visibilité dans les réponses IA. Notre recommandation par défaut les bloque." },
+  { q: "Le robots.txt empêche-t-il l'indexation ?", a: "Non. Le robots.txt contrôle le crawl, pas l'indexation. Pour empêcher l'indexation d'une page, utilisez la balise meta robots avec \"noindex\". Le robots.txt empêche les crawlers d'accéder à certaines pages, mais Google peut quand même les indexer si elles sont liées depuis d'autres sites." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({ "@type": "Question", "name": item.q, "acceptedAnswer": { "@type": "Answer", "text": item.a } }))
+};
+const webAppSchema = {
+  "@context": "https://schema.org", "@type": "WebApplication",
+  "name": "Générateur de robots.txt — DISAYNER",
+  "description": "Générez un fichier robots.txt optimisé pour votre site. Configurez les règles pour Google, Bing et les crawlers IA.",
+  "url": "https://disayner.com/outils/generateur-robots-txt",
+  "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "provider": { "@type": "ProfessionalService", "name": "DISAYNER", "url": "https://disayner.com" }
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://disayner.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Outils SEO", "item": "https://disayner.com/outils" },
+    { "@type": "ListItem", "position": 3, "name": "Générateur robots.txt", "item": "https://disayner.com/outils/generateur-robots-txt" },
+  ]
+};
+---
+
+<Layout
+  title="Générateur de robots.txt gratuit — Créez votre fichier en 1 clic | DISAYNER"
+  description="Générez un fichier robots.txt optimisé pour votre site. Configurez les règles pour Google, Bing et les crawlers IA. Gratuit et instantané."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <Navbar />
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="rb-hero" aria-label="Générateur de robots.txt">
+      <BgOrbs orbs={[
+        { type: 'filled', x: '85%', y: '25%', size: '220px', dur: '14s' },
+        { type: 'ring',   x: '8%',  y: '70%', size: '160px', dur: '18s' },
+      ]} />
+      <div class="rb-hero-inner">
+        <nav class="rb-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a><span aria-hidden="true">/</span>
+          <a href="/outils">Outils SEO</a><span aria-hidden="true">/</span>
+          <span aria-current="page">Générateur robots.txt</span>
+        </nav>
+        <p class="rb-eyebrow">Outil gratuit</p>
+        <h1 class="rb-hero-title">Générateur de <em class="font-serif">robots.txt</em></h1>
+        <p class="rb-hero-sub">Configurez les règles d'accès pour les moteurs de recherche et générez un fichier robots.txt prêt à copier.</p>
+        <div class="rb-badges" role="list" aria-label="Garanties">
+          <span class="rb-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>100% côté client</span>
+          <span class="rb-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="rb-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Gratuit &amp; sans inscription</span>
+          <span class="rb-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="rb-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Crawlers IA inclus</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL -->
+    <section class="rb-section rb-tool-section" aria-label="Générateur">
+      <div class="rb-container">
+        <div class="rb-tool-layout">
+
+          <!-- Config panel -->
+          <div class="rb-config-panel">
+            <div class="rb-setting-row">
+              <label>Preset rapide</label>
+              <div class="rb-preset-buttons" id="rbPresets">
+                <button type="button" class="rb-preset-btn active" data-preset="standard">Standard (recommandé)</button>
+                <button type="button" class="rb-preset-btn" data-preset="open">Tout autoriser</button>
+                <button type="button" class="rb-preset-btn" data-preset="closed">Tout bloquer</button>
+              </div>
+            </div>
+
+            <div class="rb-setting-row">
+              <label>Règles par crawler</label>
+              <div class="rb-crawlers" id="rbCrawlers">
+                <div class="rb-crawler-rule"><span class="rb-crawler-name">Googlebot</span><select data-bot="Googlebot"><option value="allow" selected>Autoriser</option><option value="block">Bloquer</option></select></div>
+                <div class="rb-crawler-rule"><span class="rb-crawler-name">Bingbot</span><select data-bot="Bingbot"><option value="allow" selected>Autoriser</option><option value="block">Bloquer</option></select></div>
+                <div class="rb-crawler-rule"><span class="rb-crawler-name">GPTBot (ChatGPT)</span><select data-bot="GPTBot"><option value="allow">Autoriser</option><option value="block" selected>Bloquer</option></select></div>
+                <div class="rb-crawler-rule"><span class="rb-crawler-name">Google-Extended (Gemini)</span><select data-bot="Google-Extended"><option value="allow">Autoriser</option><option value="block" selected>Bloquer</option></select></div>
+                <div class="rb-crawler-rule"><span class="rb-crawler-name">CCBot (Common Crawl)</span><select data-bot="CCBot"><option value="allow">Autoriser</option><option value="block" selected>Bloquer</option></select></div>
+                <div class="rb-crawler-rule"><span class="rb-crawler-name">Bytespider (TikTok)</span><select data-bot="Bytespider"><option value="allow">Autoriser</option><option value="block" selected>Bloquer</option></select></div>
+              </div>
+            </div>
+
+            <div class="rb-setting-row">
+              <label>Chemins à bloquer (Disallow)</label>
+              <div id="rbDisallowPaths">
+                <div class="rb-path-row"><input type="text" value="/admin/" placeholder="/chemin-a-bloquer/" /><button type="button" class="rb-remove-path">&times;</button></div>
+                <div class="rb-path-row"><input type="text" value="/wp-admin/" placeholder="/chemin-a-bloquer/" /><button type="button" class="rb-remove-path">&times;</button></div>
+              </div>
+              <button type="button" class="rb-add-path" id="rbAddDisallow">+ Ajouter un chemin</button>
+            </div>
+
+            <div class="rb-setting-row">
+              <label for="rbSitemap">URL du sitemap</label>
+              <input type="url" id="rbSitemap" placeholder="https://monsite.com/sitemap.xml" />
+            </div>
+
+            <div class="rb-setting-row">
+              <label for="rbCrawlDelay">Crawl-delay (optionnel)</label>
+              <select id="rbCrawlDelay"><option value="0">Aucun (recommandé)</option><option value="1">1 seconde</option><option value="5">5 secondes</option><option value="10">10 secondes</option></select>
+              <p class="rb-setting-hint">Googlebot ignore le crawl-delay. Utile pour Bingbot et d'autres crawlers sur les petits serveurs.</p>
+            </div>
+          </div>
+
+          <!-- Preview panel -->
+          <div class="rb-preview-panel">
+            <div class="rb-preview-card">
+              <div class="rb-preview-header"><span>robots.txt</span><button type="button" class="rb-copy-btn" id="rbCopyBtn">Copier</button></div>
+              <pre class="rb-preview-code" id="rbOutput"></pre>
+              <button type="button" class="rb-btn-compress" id="rbDownloadBtn">Télécharger robots.txt<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="rb-section rb-faq" aria-label="Questions fréquentes">
+      <div class="rb-container rb-faq-inner">
+        <div class="rb-section-header section-header-anim">
+          <p class="rb-eyebrow">FAQ</p>
+          <h2>Questions fréquentes sur le <em class="font-serif">robots.txt</em>.</h2>
+        </div>
+        <div class="rb-faq-list" role="list">
+          {faqItems.map((item, i) => (
+            <details class="rb-faq-item rb-fade-in" open={item.open} style={`transition-delay:${i * 0.04}s`} role="listitem">
+              <summary class="rb-faq-question"><span>{item.q}</span><span class="rb-faq-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+              <div class="rb-faq-answer"><p>{item.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="rb-cta-section" aria-label="Accompagnement SEO">
+      <div class="rb-cta-dotgrid" aria-hidden="true"></div>
+      <div class="rb-cta-shape rb-cta-shape-1" aria-hidden="true"></div>
+      <div class="rb-cta-shape rb-cta-shape-2" aria-hidden="true"></div>
+      <div class="rb-cta-inner">
+        <p class="rb-cta-tag">Optimisation complète</p>
+        <h2 class="rb-cta-title">Besoin d'optimiser <em class="font-serif">tout votre site</em>&nbsp;?</h2>
+        <p class="rb-cta-sub">Nos prestations SEO incluent la configuration technique complète de votre site.</p>
+        <div class="rb-cta-actions">
+          <a href="/seo" class="rb-btn-white">Découvrir nos prestations SEO <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/contact" class="rb-btn-ghost">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .rb-container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+  .rb-section { padding: 100px 0; position: relative; overflow: hidden; }
+  .rb-eyebrow { display: block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 1rem; }
+  .rb-section-header { max-width: 680px; margin: 0 auto 4rem; text-align: center; }
+  .rb-section-header h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 1rem; }
+  .rb-section-header h2 em { font-style: italic; color: var(--color-accent); }
+  .rb-fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .rb-fade-in.visible { opacity: 1; transform: none; }
+
+  .rb-hero { position: relative; display: flex; align-items: center; justify-content: center; padding: 9rem 2rem 4rem; overflow: hidden; background: var(--color-background); text-align: center; }
+  .rb-hero-inner { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+  .rb-breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; }
+  .rb-breadcrumb a { color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s ease; }
+  .rb-breadcrumb a:hover { color: var(--color-accent); }
+  .rb-breadcrumb span[aria-current] { color: var(--color-text-primary); font-weight: 600; }
+  .rb-hero-title { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.04em; line-height: 1.08; }
+  .rb-hero-title em { font-style: italic; color: var(--color-accent); font-weight: 400; font-size: 1.05em; }
+  .rb-hero-sub { font-size: clamp(1rem, 1.8vw, 1.125rem); color: var(--color-text-secondary); line-height: 1.7; max-width: 600px; }
+  .rb-badges { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--color-border); }
+  .rb-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8125rem; font-weight: 500; color: var(--color-text-secondary); }
+  .rb-badge svg { color: var(--color-accent); }
+  .rb-badge-dot { color: var(--color-border); font-size: 1.25rem; line-height: 1; }
+
+  /* Tool layout */
+  .rb-tool-section { padding-top: 2rem; background: var(--color-background); }
+  .rb-tool-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; max-width: 1100px; margin: 0 auto; }
+
+  .rb-config-panel { display: flex; flex-direction: column; gap: 0; }
+  .rb-setting-row { margin-bottom: 24px; }
+  .rb-setting-row label { display: block; font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px; }
+  .rb-setting-hint { font-size: 12px; color: var(--color-text-secondary); margin-top: 6px; }
+  .rb-setting-row input[type="url"], .rb-setting-row input[type="text"] { width: 100%; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 10px; font-size: 14px; font-family: inherit; color: var(--color-text-primary); background: white; transition: border-color 0.2s; }
+  .rb-setting-row input:focus { outline: none; border-color: var(--color-accent); }
+  .rb-setting-row select { width: 100%; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 10px; font-size: 14px; font-family: inherit; color: var(--color-text-primary); background: white; cursor: pointer; }
+
+  .rb-preset-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+  .rb-preset-btn { padding: 8px 14px; font-size: 13px; font-weight: 500; font-family: inherit; border: 1px solid var(--color-border); border-radius: 10px; background: white; color: var(--color-text-secondary); cursor: pointer; transition: all 0.3s ease; }
+  .rb-preset-btn:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .rb-preset-btn.active { background: var(--color-accent); color: white; border-color: var(--color-accent); }
+
+  .rb-crawlers { display: flex; flex-direction: column; gap: 8px; }
+  .rb-crawler-rule { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 10px; background: white; }
+  .rb-crawler-name { font-size: 13px; font-weight: 600; color: var(--color-text-primary); }
+  .rb-crawler-rule select { width: auto; padding: 6px 10px; font-size: 12px; border-radius: 8px; }
+
+  .rb-path-row { display: flex; gap: 8px; margin-bottom: 8px; }
+  .rb-path-row input { flex: 1; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 13px; font-family: inherit; }
+  .rb-path-row input:focus { outline: none; border-color: var(--color-accent); }
+  .rb-remove-path { width: 32px; height: 36px; border: 1px solid var(--color-border); border-radius: 8px; background: white; color: var(--color-text-secondary); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .rb-remove-path:hover { background: #FEF2F2; color: #EF4444; border-color: #EF4444; }
+  .rb-add-path { background: none; border: none; color: var(--color-accent); font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer; padding: 4px 0; }
+
+  /* Preview */
+  .rb-preview-panel { position: sticky; top: 100px; }
+  .rb-preview-card { background: white; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; }
+  .rb-preview-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+  .rb-preview-header span { font-size: 13px; font-weight: 700; color: var(--color-text-primary); }
+  .rb-copy-btn { padding: 6px 14px; font-size: 12px; font-weight: 600; font-family: inherit; border: 1px solid var(--color-border); border-radius: 8px; background: white; color: var(--color-accent); cursor: pointer; transition: all 0.2s; }
+  .rb-copy-btn:hover { background: var(--color-accent); color: white; border-color: var(--color-accent); }
+  .rb-preview-code { padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6; color: var(--color-text-primary); white-space: pre-wrap; word-break: break-all; max-height: 400px; overflow-y: auto; margin: 0; }
+  .rb-btn-compress { display: flex; align-items: center; justify-content: center; gap: 10px; width: calc(100% - 32px); margin: 0 16px 16px; padding: 14px; background: linear-gradient(135deg, #1D4ED8, #2563EB); color: white; border: none; border-radius: 14px; font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.3s ease; }
+  .rb-btn-compress:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.3); }
+
+  /* FAQ */
+  .rb-faq { background: var(--color-background); }
+  .rb-faq-inner { max-width: 780px; margin: 0 auto; }
+  .rb-faq-list { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; background: white; }
+  .rb-faq-item { border-bottom: 1px solid var(--color-border); }
+  .rb-faq-item:last-child { border-bottom: none; }
+  .rb-faq-question { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; cursor: pointer; font-size: 1rem; font-weight: 600; color: var(--color-text-primary); list-style: none; transition: background 0.2s ease; user-select: none; }
+  .rb-faq-question::-webkit-details-marker { display: none; }
+  .rb-faq-question:hover { background: rgba(37,99,235,0.03); }
+  .rb-faq-icon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease, background 0.2s ease; }
+  details[open] .rb-faq-icon { transform: rotate(45deg); background: var(--color-accent); color: white; }
+  .rb-faq-answer { padding: 0 1.5rem 1.25rem; }
+  .rb-faq-answer p { font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.75; }
+
+  /* CTA */
+  .rb-cta-section { position: relative; background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%); padding: 7rem 2rem; min-height: 52vh; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
+  .rb-cta-dotgrid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; z-index: 0; }
+  .rb-cta-shape { position: absolute; border-radius: 50%; pointer-events: none; }
+  .rb-cta-shape-1 { width: 500px; height: 500px; background: rgba(255,255,255,0.05); top: -150px; right: -100px; animation: rb-float 12s ease-in-out infinite; }
+  .rb-cta-shape-2 { width: 300px; height: 300px; background: rgba(255,255,255,0.04); bottom: -80px; left: -60px; animation: rb-float 15s ease-in-out infinite reverse; }
+  @keyframes rb-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
+  .rb-cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+  .rb-cta-tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .rb-cta-title { font-size: clamp(2.25rem, 5.5vw, 4rem); font-weight: 700; color: white; letter-spacing: -0.03em; line-height: 1.1; }
+  .rb-cta-title em { font-style: italic; font-family: var(--font-serif); font-weight: 400; }
+  .rb-cta-sub { font-size: 1.0625rem; color: rgba(255,255,255,0.75); line-height: 1.65; }
+  .rb-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+  .rb-btn-white { display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: var(--color-accent); padding: 1rem 2rem; border-radius: 100px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .rb-btn-white:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+  .rb-btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: rgba(255,255,255,0.9); padding: 1rem 2rem; border-radius: 100px; font-weight: 600; font-size: 1rem; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.3); transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
+  .rb-btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  @media (max-width: 900px) { .rb-section { padding: 64px 0; } .rb-hero { padding: 8rem 1.5rem 3rem; } .rb-tool-layout { grid-template-columns: 1fr; } .rb-preview-panel { position: static; } }
+  @media (max-width: 640px) { .rb-container { padding: 0 1.25rem; } .rb-cta-actions { flex-direction: column; align-items: center; } }
+  @media (prefers-reduced-motion: reduce) { .rb-fade-in { opacity: 1; transform: none; transition: none; } .rb-cta-shape-1, .rb-cta-shape-2 { animation: none; } }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const output = document.getElementById('rbOutput');
+  const copyBtn = document.getElementById('rbCopyBtn');
+  const downloadBtn = document.getElementById('rbDownloadBtn');
+  const presetsEl = document.getElementById('rbPresets');
+  const crawlersEl = document.getElementById('rbCrawlers');
+  const disallowContainer = document.getElementById('rbDisallowPaths');
+  const addDisallowBtn = document.getElementById('rbAddDisallow');
+  const sitemapInput = document.getElementById('rbSitemap') as HTMLInputElement;
+  const crawlDelaySelect = document.getElementById('rbCrawlDelay') as HTMLSelectElement;
+
+  function generate() {
+    let lines: string[] = ['# Robots.txt generated by DISAYNER', '# https://disayner.com/outils/generateur-robots-txt', ''];
+
+    // Collect disallow paths
+    const disallowPaths: string[] = [];
+    disallowContainer?.querySelectorAll('input').forEach(inp => {
+      const v = (inp as HTMLInputElement).value.trim();
+      if (v) disallowPaths.push(v);
+    });
+
+    // Default user-agent rules
+    lines.push('User-agent: *');
+    lines.push('Allow: /');
+    disallowPaths.forEach(p => lines.push(`Disallow: ${p}`));
+
+    const crawlDelay = parseInt(crawlDelaySelect?.value || '0');
+    if (crawlDelay > 0) lines.push(`Crawl-delay: ${crawlDelay}`);
+    lines.push('');
+
+    // Per-crawler rules
+    crawlersEl?.querySelectorAll('select').forEach(sel => {
+      const bot = (sel as HTMLSelectElement).dataset.bot;
+      const val = (sel as HTMLSelectElement).value;
+      if (bot && val === 'block') {
+        lines.push(`User-agent: ${bot}`);
+        lines.push('Disallow: /');
+        lines.push('');
+      }
+    });
+
+    // Sitemap
+    const sitemap = sitemapInput?.value.trim();
+    if (sitemap) lines.push(`Sitemap: ${sitemap}`);
+
+    if (output) output.textContent = lines.join('\n');
+  }
+
+  // Generate on any input change
+  const configPanel = document.querySelector('.rb-config-panel');
+  configPanel?.addEventListener('input', generate);
+  configPanel?.addEventListener('change', generate);
+
+  // Presets
+  presetsEl?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('.rb-preset-btn') as HTMLElement | null;
+    if (!btn) return;
+    presetsEl.querySelectorAll('.rb-preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const preset = btn.dataset.preset;
+
+    const selects = crawlersEl?.querySelectorAll('select') || [];
+    if (preset === 'standard') {
+      selects.forEach(sel => {
+        const s = sel as HTMLSelectElement;
+        const bot = s.dataset.bot;
+        s.value = (bot === 'GPTBot' || bot === 'Google-Extended' || bot === 'CCBot' || bot === 'Bytespider') ? 'block' : 'allow';
+      });
+    } else if (preset === 'open') {
+      selects.forEach(sel => { (sel as HTMLSelectElement).value = 'allow'; });
+    } else if (preset === 'closed') {
+      selects.forEach(sel => { (sel as HTMLSelectElement).value = 'block'; });
+    }
+    generate();
+  });
+
+  // Add/remove disallow paths
+  addDisallowBtn?.addEventListener('click', () => {
+    const row = document.createElement('div');
+    row.className = 'rb-path-row';
+    row.innerHTML = '<input type="text" placeholder="/chemin-a-bloquer/" /><button type="button" class="rb-remove-path">&times;</button>';
+    disallowContainer?.appendChild(row);
+    row.querySelector('.rb-remove-path')?.addEventListener('click', () => { row.remove(); generate(); });
+    row.querySelector('input')?.addEventListener('input', generate);
+  });
+
+  disallowContainer?.querySelectorAll('.rb-remove-path').forEach(btn => {
+    btn.addEventListener('click', () => { btn.closest('.rb-path-row')?.remove(); generate(); });
+  });
+
+  // Copy
+  copyBtn?.addEventListener('click', async () => {
+    const text = output?.textContent || '';
+    await navigator.clipboard.writeText(text);
+    copyBtn.textContent = 'Copié !';
+    setTimeout(() => { copyBtn.textContent = 'Copier'; }, 2000);
+  });
+
+  // Download
+  downloadBtn?.addEventListener('click', () => {
+    const text = output?.textContent || '';
+    const blob = new Blob([text], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'robots.txt';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  // Initial generation
+  generate();
+
+  // Fade-in
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.rb-fade-in').forEach(el => observer.observe(el));
+});
+</script>

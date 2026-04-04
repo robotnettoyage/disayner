@@ -1,0 +1,400 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BgOrbs from '../../components/BgOrbs.astro';
+
+const faqItems = [
+  { q: "Pourquoi la structure Hn est-elle importante pour le SEO ?", a: "Les balises H1-H6 aident Google à comprendre la hiérarchie et les sujets de votre page. Une structure logique améliore l'indexation et peut faire apparaître vos titres dans les featured snippets.", open: true },
+  { q: "Combien de H1 par page ?", a: "Un seul H1 par page. C'est le titre principal qui résume le sujet. Les H2 sont les sous-sections, les H3 les sous-sous-sections, etc. Ne sautez pas de niveau (pas de H1 → H3 sans H2)." },
+  { q: "Un H2 vide affecte-t-il le SEO ?", a: "Oui. Un heading vide est une erreur technique que Google détecte. Chaque balise Hn doit contenir du texte descriptif. Si un heading est purement décoratif, utilisez un <p> ou un <span> avec du CSS à la place." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({ "@type": "Question", "name": item.q, "acceptedAnswer": { "@type": "Answer", "text": item.a } }))
+};
+const webAppSchema = {
+  "@context": "https://schema.org", "@type": "WebApplication",
+  "name": "Vérificateur de structure Hn — DISAYNER",
+  "description": "Analysez la hiérarchie de vos balises de titre H1-H6. Détectez les erreurs de structure SEO et visualisez l'arborescence de vos headings.",
+  "url": "https://disayner.com/outils/verificateur-structure-hn",
+  "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "provider": { "@type": "ProfessionalService", "name": "DISAYNER", "url": "https://disayner.com" }
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://disayner.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Outils SEO", "item": "https://disayner.com/outils" },
+    { "@type": "ListItem", "position": 3, "name": "Vérificateur structure Hn", "item": "https://disayner.com/outils/verificateur-structure-hn" },
+  ]
+};
+---
+
+<Layout
+  title="Vérificateur de structure Hn gratuit — Analysez vos balises H1-H6 | DISAYNER"
+  description="Analysez la hiérarchie de vos balises de titre H1-H6. Détectez les erreurs de structure SEO et visualisez l'arborescence de vos headings."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <Navbar />
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="hn-hero" aria-label="Vérificateur de structure Hn">
+      <BgOrbs orbs={[
+        { type: 'filled', x: '85%', y: '25%', size: '220px', dur: '14s' },
+        { type: 'ring',   x: '8%',  y: '70%', size: '160px', dur: '18s' },
+      ]} />
+      <div class="hn-hero-inner">
+        <nav class="hn-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a><span aria-hidden="true">/</span>
+          <a href="/outils">Outils SEO</a><span aria-hidden="true">/</span>
+          <span aria-current="page">Vérificateur structure Hn</span>
+        </nav>
+        <p class="hn-eyebrow">Outil gratuit</p>
+        <h1 class="hn-hero-title">Vérificateur de structure <em class="font-serif">Hn</em></h1>
+        <p class="hn-hero-sub">Collez votre code HTML et visualisez instantanément la hiérarchie de vos balises H1 à H6. Détectez les erreurs de structure qui pénalisent votre SEO.</p>
+        <div class="hn-badges" role="list" aria-label="Garanties">
+          <span class="hn-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>100% côté client</span>
+          <span class="hn-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="hn-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Aucun envoi de données</span>
+          <span class="hn-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="hn-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Gratuit &amp; sans inscription</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL -->
+    <section class="hn-section hn-tool-section" aria-label="Outil d'analyse">
+      <div class="hn-container">
+        <div class="hn-app" id="hnApp">
+          <div class="hn-input-area" id="hnInputArea">
+            <label for="hnHtmlInput">Collez le code source HTML de votre page</label>
+            <textarea id="hnHtmlInput" rows="10" placeholder="<!DOCTYPE html>&#10;<html>&#10;<head>...</head>&#10;<body>&#10;  <h1>Mon titre principal</h1>&#10;  <h2>Sous-section</h2>&#10;  <h3>Sous-sous-section</h3>&#10;  ...&#10;</body>"></textarea>
+            <button type="button" class="hn-btn-compress" id="hnAnalyzeBtn">
+              Analyser la structure
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h8"/><path d="M6 20h8"/><path d="M6 4h8"/></svg>
+            </button>
+          </div>
+
+          <div class="hn-results" id="hnResults" style="display:none">
+            <!-- Score -->
+            <div class="hn-score-card">
+              <div class="hn-score-circle"><span class="hn-score-number" id="hnScore">0</span><span class="hn-score-label">/100</span></div>
+              <p class="hn-score-text" id="hnScoreText">—</p>
+            </div>
+
+            <!-- Summary counts -->
+            <div class="hn-counts" id="hnCounts"></div>
+
+            <!-- Issues -->
+            <div class="hn-issues" id="hnIssues"></div>
+
+            <!-- Tree -->
+            <div class="hn-tree-card">
+              <h3>Arborescence des titres</h3>
+              <div class="hn-tree" id="hnTree"></div>
+            </div>
+
+            <div class="hn-actions">
+              <button type="button" class="hn-btn-reset" id="hnResetBtn">Nouvelle analyse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="hn-section hn-faq" aria-label="Questions fréquentes">
+      <div class="hn-container hn-faq-inner">
+        <div class="hn-section-header section-header-anim">
+          <p class="hn-eyebrow">FAQ</p>
+          <h2>Questions fréquentes sur la <em class="font-serif">structure Hn</em>.</h2>
+        </div>
+        <div class="hn-faq-list" role="list">
+          {faqItems.map((item, i) => (
+            <details class="hn-faq-item hn-fade-in" open={item.open} style={`transition-delay:${i * 0.04}s`} role="listitem">
+              <summary class="hn-faq-question"><span>{item.q}</span><span class="hn-faq-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+              <div class="hn-faq-answer"><p>{item.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="hn-cta-section" aria-label="Accompagnement SEO">
+      <div class="hn-cta-dotgrid" aria-hidden="true"></div>
+      <div class="hn-cta-shape hn-cta-shape-1" aria-hidden="true"></div>
+      <div class="hn-cta-shape hn-cta-shape-2" aria-hidden="true"></div>
+      <div class="hn-cta-inner">
+        <p class="hn-cta-tag">Optimisation complète</p>
+        <h2 class="hn-cta-title">Besoin d'optimiser <em class="font-serif">tout votre site</em>&nbsp;?</h2>
+        <p class="hn-cta-sub">Nos prestations SEO incluent l'audit complet de votre structure, vos balises et votre référencement.</p>
+        <div class="hn-cta-actions">
+          <a href="/seo" class="hn-btn-white">Découvrir nos prestations SEO <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/contact" class="hn-btn-ghost">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .hn-container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+  .hn-section { padding: 100px 0; position: relative; overflow: hidden; }
+  .hn-eyebrow { display: block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 1rem; }
+  .hn-section-header { max-width: 680px; margin: 0 auto 4rem; text-align: center; }
+  .hn-section-header h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 1rem; }
+  .hn-section-header h2 em { font-style: italic; color: var(--color-accent); }
+  .hn-fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .hn-fade-in.visible { opacity: 1; transform: none; }
+
+  .hn-hero { position: relative; display: flex; align-items: center; justify-content: center; padding: 9rem 2rem 4rem; overflow: hidden; background: var(--color-background); text-align: center; }
+  .hn-hero-inner { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+  .hn-breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; }
+  .hn-breadcrumb a { color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s ease; }
+  .hn-breadcrumb a:hover { color: var(--color-accent); }
+  .hn-breadcrumb span[aria-current] { color: var(--color-text-primary); font-weight: 600; }
+  .hn-hero-title { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.04em; line-height: 1.08; }
+  .hn-hero-title em { font-style: italic; color: var(--color-accent); font-weight: 400; font-size: 1.05em; }
+  .hn-hero-sub { font-size: clamp(1rem, 1.8vw, 1.125rem); color: var(--color-text-secondary); line-height: 1.7; max-width: 600px; }
+  .hn-badges { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--color-border); }
+  .hn-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8125rem; font-weight: 500; color: var(--color-text-secondary); }
+  .hn-badge svg { color: var(--color-accent); }
+  .hn-badge-dot { color: var(--color-border); font-size: 1.25rem; line-height: 1; }
+
+  /* Tool */
+  .hn-tool-section { padding-top: 2rem; background: var(--color-background); }
+  .hn-app { max-width: 800px; margin: 0 auto; }
+  .hn-input-area label { display: block; font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px; }
+  .hn-input-area textarea { width: 100%; padding: 16px; border: 2px solid var(--color-border); border-radius: 16px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.6; color: var(--color-text-primary); background: white; resize: vertical; transition: border-color 0.3s ease; }
+  .hn-input-area textarea:focus { outline: none; border-color: var(--color-accent); }
+  .hn-btn-compress { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: linear-gradient(135deg, #1D4ED8, #2563EB); color: white; border: none; border-radius: 14px; font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.3s ease; margin-top: 16px; }
+  .hn-btn-compress:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.3); }
+
+  /* Score */
+  .hn-score-card { display: flex; align-items: center; gap: 20px; padding: 24px; background: linear-gradient(135deg, var(--color-surface), var(--color-accent-soft)); border-radius: 16px; margin-bottom: 20px; }
+  .hn-score-circle { display: flex; align-items: baseline; gap: 2px; }
+  .hn-score-number { font-size: 3rem; font-weight: 800; color: var(--color-accent); line-height: 1; }
+  .hn-score-label { font-size: 1.25rem; font-weight: 600; color: var(--color-text-secondary); }
+  .hn-score-text { font-size: 1rem; font-weight: 600; color: var(--color-text-primary); }
+
+  /* Counts */
+  .hn-counts { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .hn-count-badge { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 10px; font-size: 13px; font-weight: 600; border: 1px solid var(--color-border); background: white; }
+  .hn-count-tag { display: inline-flex; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; color: white; }
+  .hn-count-tag.h1 { background: #2563EB; }
+  .hn-count-tag.h2 { background: #16a34a; }
+  .hn-count-tag.h3 { background: #d97706; }
+  .hn-count-tag.h4 { background: #7c3aed; }
+  .hn-count-tag.h5 { background: #e11d48; }
+  .hn-count-tag.h6 { background: #6b7280; }
+
+  /* Issues */
+  .hn-issues { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .hn-issue { display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
+  .hn-issue.good { background: rgba(34,197,94,0.08); color: #15803d; }
+  .hn-issue.warn { background: rgba(245,158,11,0.08); color: #b45309; }
+  .hn-issue.bad { background: rgba(239,68,68,0.08); color: #b91c1c; }
+  .hn-issue-icon { flex-shrink: 0; font-size: 16px; }
+
+  /* Tree */
+  .hn-tree-card { background: white; border: 1px solid var(--color-border); border-radius: 16px; padding: 20px; margin-bottom: 20px; }
+  .hn-tree-card h3 { font-size: 0.9375rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 16px; }
+  .hn-tree { font-size: 14px; line-height: 1.8; }
+  .hn-tree-item { display: flex; align-items: center; gap: 8px; }
+  .hn-tree-indent { color: var(--color-border); white-space: pre; font-family: monospace; user-select: none; }
+  .hn-tree-tag { display: inline-flex; padding: 1px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; color: white; flex-shrink: 0; }
+  .hn-tree-tag.h1 { background: #2563EB; }
+  .hn-tree-tag.h2 { background: #16a34a; }
+  .hn-tree-tag.h3 { background: #d97706; }
+  .hn-tree-tag.h4 { background: #7c3aed; }
+  .hn-tree-tag.h5 { background: #e11d48; }
+  .hn-tree-tag.h6 { background: #6b7280; }
+  .hn-tree-text { color: var(--color-text-primary); }
+  .hn-tree-text.empty { color: var(--color-text-secondary); font-style: italic; }
+  .hn-tree-text.error { background: rgba(239,68,68,0.06); padding: 0 4px; border-radius: 3px; }
+
+  .hn-actions { display: flex; gap: 12px; justify-content: center; margin-top: 20px; }
+  .hn-btn-reset { padding: 14px 24px; background: transparent; color: var(--color-text-secondary); border: 1px solid var(--color-border); border-radius: 14px; font-size: 15px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.3s ease; }
+  .hn-btn-reset:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+  /* FAQ */
+  .hn-faq { background: var(--color-background); }
+  .hn-faq-inner { max-width: 780px; margin: 0 auto; }
+  .hn-faq-list { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; background: white; }
+  .hn-faq-item { border-bottom: 1px solid var(--color-border); }
+  .hn-faq-item:last-child { border-bottom: none; }
+  .hn-faq-question { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; cursor: pointer; font-size: 1rem; font-weight: 600; color: var(--color-text-primary); list-style: none; transition: background 0.2s ease; user-select: none; }
+  .hn-faq-question::-webkit-details-marker { display: none; }
+  .hn-faq-question:hover { background: rgba(37,99,235,0.03); }
+  .hn-faq-icon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease, background 0.2s ease; }
+  details[open] .hn-faq-icon { transform: rotate(45deg); background: var(--color-accent); color: white; }
+  .hn-faq-answer { padding: 0 1.5rem 1.25rem; }
+  .hn-faq-answer p { font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.75; }
+
+  /* CTA */
+  .hn-cta-section { position: relative; background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%); padding: 7rem 2rem; min-height: 52vh; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
+  .hn-cta-dotgrid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; z-index: 0; }
+  .hn-cta-shape { position: absolute; border-radius: 50%; pointer-events: none; }
+  .hn-cta-shape-1 { width: 500px; height: 500px; background: rgba(255,255,255,0.05); top: -150px; right: -100px; animation: hn-float 12s ease-in-out infinite; }
+  .hn-cta-shape-2 { width: 300px; height: 300px; background: rgba(255,255,255,0.04); bottom: -80px; left: -60px; animation: hn-float 15s ease-in-out infinite reverse; }
+  @keyframes hn-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
+  .hn-cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+  .hn-cta-tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .hn-cta-title { font-size: clamp(2.25rem, 5.5vw, 4rem); font-weight: 700; color: white; letter-spacing: -0.03em; line-height: 1.1; }
+  .hn-cta-title em { font-style: italic; font-family: var(--font-serif); font-weight: 400; }
+  .hn-cta-sub { font-size: 1.0625rem; color: rgba(255,255,255,0.75); line-height: 1.65; }
+  .hn-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+  .hn-btn-white { display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: var(--color-accent); padding: 1rem 2rem; border-radius: 100px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .hn-btn-white:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+  .hn-btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: rgba(255,255,255,0.9); padding: 1rem 2rem; border-radius: 100px; font-weight: 600; font-size: 1rem; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.3); transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
+  .hn-btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  @media (max-width: 900px) { .hn-section { padding: 64px 0; } .hn-hero { padding: 8rem 1.5rem 3rem; } }
+  @media (max-width: 640px) { .hn-container { padding: 0 1.25rem; } .hn-score-card { flex-direction: column; text-align: center; } .hn-cta-actions { flex-direction: column; align-items: center; } }
+  @media (prefers-reduced-motion: reduce) { .hn-fade-in { opacity: 1; transform: none; transition: none; } .hn-cta-shape-1, .hn-cta-shape-2 { animation: none; } }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const analyzeBtn = document.getElementById('hnAnalyzeBtn');
+  const resetBtn = document.getElementById('hnResetBtn');
+  const htmlInput = document.getElementById('hnHtmlInput') as HTMLTextAreaElement;
+  const inputArea = document.getElementById('hnInputArea');
+  const results = document.getElementById('hnResults');
+
+  analyzeBtn?.addEventListener('click', () => {
+    const html = htmlInput?.value?.trim();
+    if (!html) return;
+    analyze(html);
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    if (inputArea) inputArea.style.display = 'block';
+    if (results) results.style.display = 'none';
+    if (htmlInput) htmlInput.value = '';
+  });
+
+  function analyze(html: string) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // Extract all headings in document order
+    const headings: { level: number; text: string }[] = [];
+    doc.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(el => {
+      const level = parseInt(el.tagName[1]);
+      headings.push({ level, text: el.textContent?.trim() || '' });
+    });
+
+    // Counts
+    const counts: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
+    headings.forEach(h => counts[h.level]++);
+    const total = headings.length;
+
+    // Issues
+    const issues: { status: 'good'|'warn'|'bad'; text: string }[] = [];
+    let score = 0;
+
+    // H1 checks
+    if (counts[1] === 1) { issues.push({ status: 'good', text: 'Un seul H1 détecté — Parfait' }); score += 25; }
+    else if (counts[1] === 0) { issues.push({ status: 'bad', text: 'Aucun H1 détecté — Chaque page doit avoir un H1 unique' }); }
+    else { issues.push({ status: 'bad', text: `${counts[1]} H1 détectés — Il ne devrait y en avoir qu'un seul` }); score += 5; }
+
+    // H1 unique check
+    if (counts[1] === 1) score += 25;
+
+    // Skipped levels
+    let hasSkip = false;
+    for (let i = 1; i < headings.length; i++) {
+      const prev = headings[i - 1].level;
+      const curr = headings[i].level;
+      if (curr > prev + 1) {
+        issues.push({ status: 'bad', text: `Niveau sauté : H${prev} → H${curr} (pas de H${prev + 1} entre les deux)` });
+        hasSkip = true;
+      }
+    }
+    if (!hasSkip && total > 0) { issues.push({ status: 'good', text: 'Aucun niveau sauté — Structure hiérarchique correcte' }); score += 25; }
+
+    // Empty headings
+    const empties = headings.filter(h => !h.text);
+    if (empties.length > 0) { issues.push({ status: 'warn', text: `${empties.length} heading(s) vide(s) détecté(s)` }); }
+    else if (total > 0) { issues.push({ status: 'good', text: 'Aucun heading vide' }); score += 25; }
+
+    // Long headings
+    const longOnes = headings.filter(h => h.text.length > 70);
+    if (longOnes.length > 0) { issues.push({ status: 'warn', text: `${longOnes.length} heading(s) très long(s) (> 70 caractères)` }); }
+
+    if (total === 0) { issues.push({ status: 'bad', text: 'Aucun heading détecté dans le HTML' }); score = 0; }
+
+    score = Math.min(100, Math.max(0, score));
+
+    // Render
+    if (inputArea) inputArea.style.display = 'none';
+    if (results) results.style.display = 'block';
+
+    // Score
+    const scoreEl = document.getElementById('hnScore') as HTMLElement;
+    const scoreText = document.getElementById('hnScoreText') as HTMLElement;
+    scoreEl.textContent = String(score);
+    scoreEl.style.color = score >= 80 ? '#16a34a' : score >= 50 ? '#d97706' : '#dc2626';
+    if (score >= 90) scoreText.textContent = 'Excellent ! Structure parfaite.';
+    else if (score >= 70) scoreText.textContent = 'Bonne structure. Quelques points à corriger.';
+    else if (score >= 50) scoreText.textContent = 'Structure correcte mais des erreurs à corriger.';
+    else scoreText.textContent = 'Structure problématique. Corrections nécessaires.';
+
+    // Counts
+    const countsEl = document.getElementById('hnCounts') as HTMLElement;
+    countsEl.innerHTML = [1,2,3,4,5,6].map(n =>
+      `<div class="hn-count-badge"><span class="hn-count-tag h${n}">H${n}</span> ${counts[n]}</div>`
+    ).join('') + `<div class="hn-count-badge" style="font-weight:700">Total : ${total}</div>`;
+
+    // Issues
+    const issuesEl = document.getElementById('hnIssues') as HTMLElement;
+    issuesEl.innerHTML = issues.map(i => {
+      const icon = i.status === 'good' ? '✓' : i.status === 'warn' ? '!' : '✕';
+      return `<div class="hn-issue ${i.status}"><span class="hn-issue-icon">${icon}</span> ${i.text}</div>`;
+    }).join('');
+
+    // Tree
+    const treeEl = document.getElementById('hnTree') as HTMLElement;
+    if (headings.length === 0) {
+      treeEl.innerHTML = '<p style="color:var(--color-text-secondary);font-style:italic">Aucun heading trouvé.</p>';
+      return;
+    }
+
+    let treeHtml = '';
+    headings.forEach(h => {
+      const indent = '│   '.repeat(Math.max(0, h.level - 1));
+      const connector = h.level === 1 ? '' : '├── ';
+      const textClass = !h.text ? 'empty' : (h.text.length > 70 ? 'error' : '');
+      const displayText = h.text || '(vide)';
+
+      treeHtml += `<div class="hn-tree-item">
+        <span class="hn-tree-indent">${indent}${connector}</span>
+        <span class="hn-tree-tag h${h.level}">H${h.level}</span>
+        <span class="hn-tree-text ${textClass}">${displayText.length > 80 ? displayText.slice(0, 80) + '...' : displayText}</span>
+      </div>`;
+    });
+
+    treeEl.innerHTML = treeHtml;
+  }
+
+  // Fade-in
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.hn-fade-in').forEach(el => observer.observe(el));
+});
+</script>

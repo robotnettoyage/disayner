@@ -15,39 +15,44 @@ const tools = [
     available: true,
   },
   {
+    slug: 'analyseur-meta-tags',
     title: 'Analyseur de meta tags',
-    desc: "Vérifiez vos balises title, description et Open Graph en un clic. Prévisualisez le rendu Google.",
-    iconPath: `<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>`,
-    tags: ['SEO', 'Balises', 'Gratuit'],
-    available: false,
+    desc: "Collez votre code HTML et analysez vos balises meta : title, description, OG, canonical. Score et recommandations instantanés.",
+    iconPath: `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>`,
+    tags: ['SEO', 'Analyse', 'Gratuit'],
+    available: true,
   },
   {
-    title: 'Vérificateur de liens cassés',
-    desc: "Scannez votre site pour détecter les liens morts (404) qui nuisent à votre référencement.",
-    iconPath: `<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>`,
-    tags: ['SEO', 'Technique', 'Gratuit'],
-    available: false,
-  },
-  {
-    title: 'Testeur de vitesse de page',
-    desc: "Mesurez les Core Web Vitals de votre site et obtenez des recommandations d'optimisation.",
-    iconPath: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
-    tags: ['Performance', 'Core Web Vitals', 'Gratuit'],
-    available: false,
-  },
-  {
+    slug: 'generateur-robots-txt',
     title: 'Générateur de robots.txt',
-    desc: "Créez un fichier robots.txt optimisé pour le SEO en quelques clics. Copiez-collez le résultat.",
-    iconPath: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>`,
-    tags: ['SEO', 'Technique', 'Gratuit'],
-    available: false,
+    desc: "Générez un fichier robots.txt optimisé en quelques clics. Configurez les règles pour Googlebot, Bingbot et les crawlers IA.",
+    iconPath: `<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>`,
+    tags: ['SEO technique', 'Génération', 'Gratuit'],
+    available: true,
   },
   {
+    slug: 'compteur-mots-seo',
     title: 'Compteur de mots SEO',
-    desc: "Analysez la densité de mots-clés et la longueur de vos contenus pour le référencement.",
+    desc: "Analysez votre contenu : nombre de mots, caractères, temps de lecture, densité de mots-clés et score de lisibilité.",
     iconPath: `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
-    tags: ['Contenu', 'SEO', 'Gratuit'],
-    available: false,
+    tags: ['Contenu', 'Analyse', 'Gratuit'],
+    available: true,
+  },
+  {
+    slug: 'generateur-meta-tags',
+    title: 'Générateur de meta tags',
+    desc: "Créez vos balises meta, Open Graph et Twitter Card avec un aperçu en temps réel de l'affichage Google et réseaux sociaux.",
+    iconPath: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
+    tags: ['SEO', 'Génération', 'Gratuit'],
+    available: true,
+  },
+  {
+    slug: 'verificateur-structure-hn',
+    title: 'Vérificateur structure Hn',
+    desc: "Analysez la hiérarchie de vos balises H1-H6. Détectez les erreurs de structure et visualisez l'arborescence de vos titres.",
+    iconPath: `<path d="M6 12h8"/><path d="M6 20h8"/><path d="M6 4h8"/><path d="M3 12h.01"/><path d="M3 20h.01"/><path d="M3 4h.01"/>`,
+    tags: ['SEO', 'Structure', 'Gratuit'],
+    available: true,
   },
 ];
 ---
@@ -120,31 +125,17 @@ const tools = [
 
         <div class="ot-tools-grid">
           {tools.map((tool, i) => (
-            tool.available ? (
-              <a href={`/outils/${tool.slug}`} class="ot-tool-card ot-fade-in" style={`transition-delay:${i * 0.08}s`} aria-label={`Outil : ${tool.title}`}>
-                <div class="ot-tool-icon" aria-hidden="true">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={tool.iconPath} />
-                </div>
-                <h3 class="ot-tool-title">{tool.title}</h3>
-                <p class="ot-tool-desc">{tool.desc}</p>
-                <div class="ot-tool-tags">
-                  {tool.tags.map(tag => <span class="ot-tag">{tag}</span>)}
-                </div>
-                <span class="ot-tool-cta">Utiliser l'outil &rarr;</span>
-              </a>
-            ) : (
-              <article class="ot-tool-card ot-tool-card--soon ot-fade-in" style={`transition-delay:${i * 0.08}s`} aria-label={`${tool.title} — Bientôt disponible`}>
-                <div class="ot-tool-icon" aria-hidden="true">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={tool.iconPath} />
-                </div>
-                <h3 class="ot-tool-title">{tool.title}</h3>
-                <p class="ot-tool-desc">{tool.desc}</p>
-                <div class="ot-tool-tags">
-                  {tool.tags.map(tag => <span class="ot-tag">{tag}</span>)}
-                </div>
-                <span class="ot-soon-badge">Bientôt disponible</span>
-              </article>
-            )
+            <a href={`/outils/${tool.slug}`} class="ot-tool-card ot-fade-in" style={`transition-delay:${i * 0.08}s`} aria-label={`Outil : ${tool.title}`}>
+              <div class="ot-tool-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={tool.iconPath} />
+              </div>
+              <h3 class="ot-tool-title">{tool.title}</h3>
+              <p class="ot-tool-desc">{tool.desc}</p>
+              <div class="ot-tool-tags">
+                {tool.tags.map(tag => <span class="ot-tag">{tag}</span>)}
+              </div>
+              <span class="ot-tool-cta">Utiliser l'outil &rarr;</span>
+            </a>
           ))}
         </div>
       </div>
@@ -389,29 +380,6 @@ const tools = [
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--color-accent);
-    margin-top: auto;
-  }
-
-  /* Coming soon cards */
-  .ot-tool-card--soon {
-    opacity: 0.55;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .ot-tool-card--soon::before { display: none; }
-
-  .ot-soon-badge {
-    display: inline-flex;
-    font-size: 0.625rem;
-    font-weight: 700;
-    padding: 0.2rem 0.55rem;
-    background: rgba(107,107,103,0.08);
-    color: var(--color-text-secondary);
-    border: 1px solid rgba(107,107,103,0.15);
-    border-radius: 100px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
     margin-top: auto;
   }
 

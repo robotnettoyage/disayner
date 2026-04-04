@@ -1,0 +1,414 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BgOrbs from '../../components/BgOrbs.astro';
+
+const faqItems = [
+  { q: "Quelle longueur idéale pour le title tag ?", a: "Entre 30 et 60 caractères. Google tronque les titres au-delà de ~60 caractères sur desktop. Placez votre mot-clé principal au début du titre.", open: true },
+  { q: "Quelle longueur idéale pour la meta description ?", a: "Entre 120 et 160 caractères. Elle n'impacte pas directement le classement, mais une bonne description augmente le taux de clic (CTR) dans les résultats Google." },
+  { q: "La taille idéale pour l'image Open Graph ?", a: "1200x630 pixels pour un rendu optimal sur Facebook, LinkedIn et Twitter. L'image doit être hébergée en HTTPS et peser moins de 5 Mo." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({ "@type": "Question", "name": item.q, "acceptedAnswer": { "@type": "Answer", "text": item.a } }))
+};
+const webAppSchema = {
+  "@context": "https://schema.org", "@type": "WebApplication",
+  "name": "Générateur de meta tags — DISAYNER",
+  "description": "Générez vos balises meta title, description, Open Graph et Twitter Card. Aperçu en temps réel de l'affichage Google et réseaux sociaux.",
+  "url": "https://disayner.com/outils/generateur-meta-tags",
+  "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "provider": { "@type": "ProfessionalService", "name": "DISAYNER", "url": "https://disayner.com" }
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://disayner.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Outils SEO", "item": "https://disayner.com/outils" },
+    { "@type": "ListItem", "position": 3, "name": "Générateur de meta tags", "item": "https://disayner.com/outils/generateur-meta-tags" },
+  ]
+};
+---
+
+<Layout
+  title="Générateur de meta tags gratuit — Créez vos balises SEO & OG | DISAYNER"
+  description="Générez vos balises meta title, description, Open Graph et Twitter Card. Aperçu en temps réel de l'affichage Google et réseaux sociaux."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <Navbar />
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="mg-hero" aria-label="Générateur de meta tags">
+      <BgOrbs orbs={[
+        { type: 'filled', x: '85%', y: '25%', size: '220px', dur: '14s' },
+        { type: 'ring',   x: '8%',  y: '70%', size: '160px', dur: '18s' },
+      ]} />
+      <div class="mg-hero-inner">
+        <nav class="mg-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a><span aria-hidden="true">/</span>
+          <a href="/outils">Outils SEO</a><span aria-hidden="true">/</span>
+          <span aria-current="page">Générateur de meta tags</span>
+        </nav>
+        <p class="mg-eyebrow">Outil gratuit</p>
+        <h1 class="mg-hero-title">Générateur de <em class="font-serif">meta tags</em></h1>
+        <p class="mg-hero-sub">Remplissez les champs et obtenez le code HTML de vos balises meta, Open Graph et Twitter Card — avec un aperçu live de l'affichage Google et réseaux sociaux.</p>
+        <div class="mg-badges" role="list" aria-label="Garanties">
+          <span class="mg-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Aperçu en temps réel</span>
+          <span class="mg-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="mg-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Gratuit &amp; sans inscription</span>
+          <span class="mg-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="mg-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Code HTML prêt à copier</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL -->
+    <section class="mg-section mg-tool-section" aria-label="Générateur">
+      <div class="mg-container">
+        <div class="mg-tool-layout">
+
+          <!-- Config panel -->
+          <div class="mg-config-panel">
+            <h3 class="mg-panel-title">Balises essentielles</h3>
+            <div class="mg-field">
+              <label for="mgTitle">Title tag *</label>
+              <input type="text" id="mgTitle" placeholder="Mon super titre de page" maxlength="70" />
+              <div class="mg-char-counter"><span id="mgTitleCount">0</span>/60 caractères</div>
+            </div>
+            <div class="mg-field">
+              <label for="mgDesc">Meta description *</label>
+              <textarea id="mgDesc" rows="3" placeholder="Description concise et engageante de votre page..." maxlength="170"></textarea>
+              <div class="mg-char-counter"><span id="mgDescCount">0</span>/160 caractères</div>
+            </div>
+            <div class="mg-field">
+              <label for="mgUrl">URL de la page</label>
+              <input type="url" id="mgUrl" placeholder="https://monsite.com/ma-page" />
+            </div>
+            <div class="mg-field">
+              <label for="mgCanonical">URL canonical (si différente)</label>
+              <input type="url" id="mgCanonical" placeholder="https://monsite.com/ma-page" />
+            </div>
+            <div class="mg-field">
+              <label for="mgRobots">Robots</label>
+              <select id="mgRobots"><option value="index, follow">index, follow (par défaut)</option><option value="noindex, follow">noindex, follow</option><option value="index, nofollow">index, nofollow</option><option value="noindex, nofollow">noindex, nofollow</option></select>
+            </div>
+
+            <h3 class="mg-panel-title" style="margin-top:28px;">Open Graph (réseaux sociaux)</h3>
+            <div class="mg-field">
+              <label for="mgOgTitle">OG Title (si différent)</label>
+              <input type="text" id="mgOgTitle" placeholder="Titre pour les réseaux sociaux" />
+            </div>
+            <div class="mg-field">
+              <label for="mgOgDesc">OG Description</label>
+              <textarea id="mgOgDesc" rows="2" placeholder="Description pour le partage social"></textarea>
+            </div>
+            <div class="mg-field">
+              <label for="mgOgImage">OG Image URL</label>
+              <input type="url" id="mgOgImage" placeholder="https://monsite.com/image-partage.jpg" />
+              <p class="mg-hint">Taille recommandée : 1200x630px</p>
+            </div>
+            <div class="mg-field">
+              <label for="mgOgType">OG Type</label>
+              <select id="mgOgType"><option value="website">website</option><option value="article">article</option><option value="product">product</option></select>
+            </div>
+            <div class="mg-field">
+              <label for="mgTwitterCard">Twitter Card</label>
+              <select id="mgTwitterCard"><option value="summary_large_image">summary_large_image (recommandé)</option><option value="summary">summary</option></select>
+            </div>
+            <div class="mg-field">
+              <label for="mgLang">Langue</label>
+              <select id="mgLang"><option value="fr">Français (fr)</option><option value="en">English (en)</option><option value="es">Español (es)</option><option value="de">Deutsch (de)</option></select>
+            </div>
+          </div>
+
+          <!-- Preview panel -->
+          <div class="mg-preview-panel">
+            <!-- Google preview -->
+            <div class="mg-preview-block">
+              <p class="mg-preview-label">Aperçu Google</p>
+              <div class="mg-google-preview">
+                <div class="mg-google-title" id="mgPreviewGTitle">Mon super titre de page</div>
+                <div class="mg-google-url" id="mgPreviewGUrl">https://monsite.com &rsaquo; ma-page</div>
+                <div class="mg-google-desc" id="mgPreviewGDesc">Description concise et engageante de votre page...</div>
+              </div>
+            </div>
+
+            <!-- Social preview -->
+            <div class="mg-preview-block">
+              <p class="mg-preview-label">Aperçu réseaux sociaux</p>
+              <div class="mg-social-preview">
+                <div class="mg-social-image" id="mgPreviewSocialImg"></div>
+                <div class="mg-social-content">
+                  <div class="mg-social-url" id="mgPreviewSUrl">monsite.com</div>
+                  <div class="mg-social-title" id="mgPreviewSTitle">Mon super titre</div>
+                  <div class="mg-social-desc" id="mgPreviewSDesc">Description pour les réseaux...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Generated code -->
+            <div class="mg-preview-block">
+              <div class="mg-code-header">
+                <span>Code HTML à copier</span>
+                <button type="button" class="mg-copy-btn" id="mgCopyBtn">Copier</button>
+              </div>
+              <pre class="mg-code-output" id="mgOutput"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mg-section mg-faq" aria-label="Questions fréquentes">
+      <div class="mg-container mg-faq-inner">
+        <div class="mg-section-header section-header-anim">
+          <p class="mg-eyebrow">FAQ</p>
+          <h2>Questions fréquentes sur les <em class="font-serif">meta tags</em>.</h2>
+        </div>
+        <div class="mg-faq-list" role="list">
+          {faqItems.map((item, i) => (
+            <details class="mg-faq-item mg-fade-in" open={item.open} style={`transition-delay:${i * 0.04}s`} role="listitem">
+              <summary class="mg-faq-question"><span>{item.q}</span><span class="mg-faq-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+              <div class="mg-faq-answer"><p>{item.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mg-cta-section" aria-label="Accompagnement SEO">
+      <div class="mg-cta-dotgrid" aria-hidden="true"></div>
+      <div class="mg-cta-shape mg-cta-shape-1" aria-hidden="true"></div>
+      <div class="mg-cta-shape mg-cta-shape-2" aria-hidden="true"></div>
+      <div class="mg-cta-inner">
+        <p class="mg-cta-tag">Optimisation complète</p>
+        <h2 class="mg-cta-title">Besoin d'optimiser <em class="font-serif">tout votre site</em>&nbsp;?</h2>
+        <p class="mg-cta-sub">Nos prestations SEO incluent l'optimisation de toutes vos balises, votre performance et votre référencement.</p>
+        <div class="mg-cta-actions">
+          <a href="/seo" class="mg-btn-white">Découvrir nos prestations SEO <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/contact" class="mg-btn-ghost">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .mg-container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+  .mg-section { padding: 100px 0; position: relative; overflow: hidden; }
+  .mg-eyebrow { display: block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 1rem; }
+  .mg-section-header { max-width: 680px; margin: 0 auto 4rem; text-align: center; }
+  .mg-section-header h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 1rem; }
+  .mg-section-header h2 em { font-style: italic; color: var(--color-accent); }
+  .mg-fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .mg-fade-in.visible { opacity: 1; transform: none; }
+
+  .mg-hero { position: relative; display: flex; align-items: center; justify-content: center; padding: 9rem 2rem 4rem; overflow: hidden; background: var(--color-background); text-align: center; }
+  .mg-hero-inner { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+  .mg-breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; }
+  .mg-breadcrumb a { color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s ease; }
+  .mg-breadcrumb a:hover { color: var(--color-accent); }
+  .mg-breadcrumb span[aria-current] { color: var(--color-text-primary); font-weight: 600; }
+  .mg-hero-title { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.04em; line-height: 1.08; }
+  .mg-hero-title em { font-style: italic; color: var(--color-accent); font-weight: 400; font-size: 1.05em; }
+  .mg-hero-sub { font-size: clamp(1rem, 1.8vw, 1.125rem); color: var(--color-text-secondary); line-height: 1.7; max-width: 600px; }
+  .mg-badges { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--color-border); }
+  .mg-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8125rem; font-weight: 500; color: var(--color-text-secondary); }
+  .mg-badge svg { color: var(--color-accent); }
+  .mg-badge-dot { color: var(--color-border); font-size: 1.25rem; line-height: 1; }
+
+  /* Tool */
+  .mg-tool-section { padding-top: 2rem; background: var(--color-background); }
+  .mg-tool-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; max-width: 1100px; margin: 0 auto; align-items: start; }
+  .mg-panel-title { font-size: 0.9375rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 16px; }
+  .mg-field { margin-bottom: 16px; }
+  .mg-field label { display: block; font-size: 13px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 6px; }
+  .mg-field input, .mg-field textarea, .mg-field select { width: 100%; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 10px; font-size: 14px; font-family: inherit; color: var(--color-text-primary); background: white; transition: border-color 0.2s; }
+  .mg-field input:focus, .mg-field textarea:focus { outline: none; border-color: var(--color-accent); }
+  .mg-field select { cursor: pointer; }
+  .mg-hint { font-size: 11px; color: var(--color-text-secondary); margin-top: 4px; }
+  .mg-char-counter { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; text-align: right; }
+  .mg-char-counter.good span { color: #16a34a; }
+  .mg-char-counter.warn span { color: #d97706; }
+  .mg-char-counter.bad span { color: #dc2626; }
+
+  /* Preview */
+  .mg-preview-panel { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 16px; }
+  .mg-preview-block { background: white; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; }
+  .mg-preview-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-secondary); padding: 10px 16px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+
+  /* Google preview */
+  .mg-google-preview { padding: 16px; }
+  .mg-google-title { font-size: 18px; color: #1a0dab; line-height: 1.3; margin-bottom: 4px; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mg-google-title:hover { text-decoration: underline; }
+  .mg-google-url { font-size: 13px; color: #006621; margin-bottom: 4px; }
+  .mg-google-desc { font-size: 13px; color: #545454; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* Social preview */
+  .mg-social-preview { overflow: hidden; }
+  .mg-social-image { width: 100%; height: 160px; background: linear-gradient(135deg, var(--color-surface), var(--color-accent-soft)); display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); font-size: 12px; background-size: cover; background-position: center; }
+  .mg-social-content { padding: 12px 16px; }
+  .mg-social-url { font-size: 11px; color: #65676b; text-transform: uppercase; margin-bottom: 4px; }
+  .mg-social-title { font-size: 15px; font-weight: 600; color: #1c1e21; line-height: 1.3; margin-bottom: 2px; }
+  .mg-social-desc { font-size: 13px; color: #65676b; line-height: 1.4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* Code output */
+  .mg-code-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+  .mg-code-header span { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-secondary); }
+  .mg-copy-btn { padding: 5px 12px; font-size: 12px; font-weight: 600; font-family: inherit; border: 1px solid var(--color-border); border-radius: 8px; background: white; color: var(--color-accent); cursor: pointer; transition: all 0.2s; }
+  .mg-copy-btn:hover { background: var(--color-accent); color: white; border-color: var(--color-accent); }
+  .mg-code-output { padding: 14px 16px; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.6; color: var(--color-text-primary); white-space: pre-wrap; word-break: break-all; max-height: 300px; overflow-y: auto; margin: 0; }
+
+  /* FAQ */
+  .mg-faq { background: var(--color-background); }
+  .mg-faq-inner { max-width: 780px; margin: 0 auto; }
+  .mg-faq-list { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; background: white; }
+  .mg-faq-item { border-bottom: 1px solid var(--color-border); }
+  .mg-faq-item:last-child { border-bottom: none; }
+  .mg-faq-question { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; cursor: pointer; font-size: 1rem; font-weight: 600; color: var(--color-text-primary); list-style: none; transition: background 0.2s ease; user-select: none; }
+  .mg-faq-question::-webkit-details-marker { display: none; }
+  .mg-faq-question:hover { background: rgba(37,99,235,0.03); }
+  .mg-faq-icon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease, background 0.2s ease; }
+  details[open] .mg-faq-icon { transform: rotate(45deg); background: var(--color-accent); color: white; }
+  .mg-faq-answer { padding: 0 1.5rem 1.25rem; }
+  .mg-faq-answer p { font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.75; }
+
+  /* CTA */
+  .mg-cta-section { position: relative; background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%); padding: 7rem 2rem; min-height: 52vh; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
+  .mg-cta-dotgrid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; z-index: 0; }
+  .mg-cta-shape { position: absolute; border-radius: 50%; pointer-events: none; }
+  .mg-cta-shape-1 { width: 500px; height: 500px; background: rgba(255,255,255,0.05); top: -150px; right: -100px; animation: mg-float 12s ease-in-out infinite; }
+  .mg-cta-shape-2 { width: 300px; height: 300px; background: rgba(255,255,255,0.04); bottom: -80px; left: -60px; animation: mg-float 15s ease-in-out infinite reverse; }
+  @keyframes mg-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
+  .mg-cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+  .mg-cta-tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .mg-cta-title { font-size: clamp(2.25rem, 5.5vw, 4rem); font-weight: 700; color: white; letter-spacing: -0.03em; line-height: 1.1; }
+  .mg-cta-title em { font-style: italic; font-family: var(--font-serif); font-weight: 400; }
+  .mg-cta-sub { font-size: 1.0625rem; color: rgba(255,255,255,0.75); line-height: 1.65; }
+  .mg-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+  .mg-btn-white { display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: var(--color-accent); padding: 1rem 2rem; border-radius: 100px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .mg-btn-white:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+  .mg-btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: rgba(255,255,255,0.9); padding: 1rem 2rem; border-radius: 100px; font-weight: 600; font-size: 1rem; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.3); transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
+  .mg-btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  @media (max-width: 900px) { .mg-section { padding: 64px 0; } .mg-hero { padding: 8rem 1.5rem 3rem; } .mg-tool-layout { grid-template-columns: 1fr; } .mg-preview-panel { position: static; } }
+  @media (max-width: 640px) { .mg-container { padding: 0 1.25rem; } .mg-cta-actions { flex-direction: column; align-items: center; } }
+  @media (prefers-reduced-motion: reduce) { .mg-fade-in { opacity: 1; transform: none; transition: none; } .mg-cta-shape-1, .mg-cta-shape-2 { animation: none; } }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const fields = {
+    title: document.getElementById('mgTitle') as HTMLInputElement,
+    desc: document.getElementById('mgDesc') as HTMLTextAreaElement,
+    url: document.getElementById('mgUrl') as HTMLInputElement,
+    canonical: document.getElementById('mgCanonical') as HTMLInputElement,
+    robots: document.getElementById('mgRobots') as HTMLSelectElement,
+    ogTitle: document.getElementById('mgOgTitle') as HTMLInputElement,
+    ogDesc: document.getElementById('mgOgDesc') as HTMLTextAreaElement,
+    ogImage: document.getElementById('mgOgImage') as HTMLInputElement,
+    ogType: document.getElementById('mgOgType') as HTMLSelectElement,
+    twitterCard: document.getElementById('mgTwitterCard') as HTMLSelectElement,
+    lang: document.getElementById('mgLang') as HTMLSelectElement,
+  };
+
+  const titleCounter = document.getElementById('mgTitleCount');
+  const descCounter = document.getElementById('mgDescCount');
+  const output = document.getElementById('mgOutput');
+  const copyBtn = document.getElementById('mgCopyBtn');
+
+  function esc(s: string) { return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  function update() {
+    const t = fields.title.value;
+    const d = fields.desc.value;
+    const url = fields.url.value;
+    const canonical = fields.canonical.value || url;
+    const ogT = fields.ogTitle.value || t;
+    const ogD = fields.ogDesc.value || d;
+    const ogImg = fields.ogImage.value;
+
+    // Char counters
+    if (titleCounter) {
+      titleCounter.textContent = String(t.length);
+      const p = titleCounter.parentElement!;
+      p.className = 'mg-char-counter' + (t.length === 0 ? '' : t.length >= 30 && t.length <= 60 ? ' good' : t.length <= 70 ? ' warn' : ' bad');
+    }
+    if (descCounter) {
+      descCounter.textContent = String(d.length);
+      const p = descCounter.parentElement!;
+      p.className = 'mg-char-counter' + (d.length === 0 ? '' : d.length >= 120 && d.length <= 160 ? ' good' : d.length <= 170 ? ' warn' : ' bad');
+    }
+
+    // Google preview
+    (document.getElementById('mgPreviewGTitle') as HTMLElement).textContent = t || 'Titre de votre page';
+    (document.getElementById('mgPreviewGUrl') as HTMLElement).textContent = url ? url.replace(/^https?:\/\//, '').replace(/\/$/, '').replace(/\//g, ' › ') : 'monsite.com › ma-page';
+    (document.getElementById('mgPreviewGDesc') as HTMLElement).textContent = d || 'Votre meta description apparaîtra ici...';
+
+    // Social preview
+    (document.getElementById('mgPreviewSTitle') as HTMLElement).textContent = ogT || 'Titre pour les réseaux';
+    (document.getElementById('mgPreviewSDesc') as HTMLElement).textContent = ogD || 'Description pour le partage social...';
+    const sUrl = document.getElementById('mgPreviewSUrl') as HTMLElement;
+    try { sUrl.textContent = url ? new URL(url).hostname : 'monsite.com'; } catch { sUrl.textContent = 'monsite.com'; }
+    const imgEl = document.getElementById('mgPreviewSocialImg') as HTMLElement;
+    if (ogImg) { imgEl.style.backgroundImage = `url(${ogImg})`; imgEl.textContent = ''; }
+    else { imgEl.style.backgroundImage = ''; imgEl.textContent = '1200 × 630'; }
+
+    // Generate code
+    let code = '<!-- SEO Meta Tags — Generated by DISAYNER -->\n';
+    if (t) code += `<title>${esc(t)}</title>\n`;
+    if (d) code += `<meta name="description" content="${esc(d)}">\n`;
+    code += `<meta name="robots" content="${fields.robots.value}">\n`;
+    if (canonical) code += `<link rel="canonical" href="${esc(canonical)}">\n`;
+
+    code += '\n<!-- Open Graph -->\n';
+    if (ogT) code += `<meta property="og:title" content="${esc(ogT)}">\n`;
+    if (ogD) code += `<meta property="og:description" content="${esc(ogD)}">\n`;
+    if (ogImg) code += `<meta property="og:image" content="${esc(ogImg)}">\n`;
+    if (url) code += `<meta property="og:url" content="${esc(url)}">\n`;
+    code += `<meta property="og:type" content="${fields.ogType.value}">\n`;
+    code += `<meta property="og:locale" content="${fields.lang.value === 'fr' ? 'fr_FR' : fields.lang.value}">\n`;
+
+    code += '\n<!-- Twitter Card -->\n';
+    code += `<meta name="twitter:card" content="${fields.twitterCard.value}">\n`;
+    if (ogT) code += `<meta name="twitter:title" content="${esc(ogT)}">\n`;
+    if (ogD) code += `<meta name="twitter:description" content="${esc(ogD)}">\n`;
+    if (ogImg) code += `<meta name="twitter:image" content="${esc(ogImg)}">\n`;
+
+    if (output) output.textContent = code;
+  }
+
+  // Listen on all inputs
+  document.querySelector('.mg-config-panel')?.addEventListener('input', update);
+  document.querySelector('.mg-config-panel')?.addEventListener('change', update);
+
+  // Copy
+  copyBtn?.addEventListener('click', async () => {
+    await navigator.clipboard.writeText(output?.textContent || '');
+    copyBtn.textContent = 'Copié !';
+    setTimeout(() => { copyBtn.textContent = 'Copier'; }, 2000);
+  });
+
+  update();
+
+  // Fade-in
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.mg-fade-in').forEach(el => observer.observe(el));
+});
+</script>

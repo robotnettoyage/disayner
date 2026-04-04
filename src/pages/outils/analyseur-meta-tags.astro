@@ -1,0 +1,466 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BgOrbs from '../../components/BgOrbs.astro';
+
+const faqItems = [
+  { q: "Comment récupérer le code source d'une page ?", a: "Sur la page que vous voulez analyser, faites clic droit → \"Afficher le code source de la page\" (ou Ctrl+U / Cmd+U). Sélectionnez tout (Ctrl+A), copiez (Ctrl+C) et collez dans le champ ci-dessus.", open: true },
+  { q: "Pourquoi l'outil ne charge pas directement une URL ?", a: "Pour protéger votre vie privée et fonctionner sans serveur, l'outil analyse le HTML que vous collez directement. Aucune donnée n'est envoyée ni stockée." },
+  { q: "Quel score viser ?", a: "Un score de 80+ est bon. 90+ est excellent. L'important est d'avoir les balises essentielles (title, description, canonical, OG) correctement configurées." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  }))
+};
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Analyseur de meta tags — DISAYNER",
+  "description": "Analysez les balises meta de n'importe quelle page web : title, description, Open Graph, canonical, robots. Score SEO et recommandations instantanées.",
+  "url": "https://disayner.com/outils/analyseur-meta-tags",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "provider": { "@type": "ProfessionalService", "name": "DISAYNER", "url": "https://disayner.com" }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://disayner.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Outils SEO", "item": "https://disayner.com/outils" },
+    { "@type": "ListItem", "position": 3, "name": "Analyseur de meta tags", "item": "https://disayner.com/outils/analyseur-meta-tags" },
+  ]
+};
+---
+
+<Layout
+  title="Analyseur de meta tags gratuit — Vérifiez vos balises SEO | DISAYNER"
+  description="Analysez les balises meta de n'importe quelle page web : title, description, Open Graph, canonical, robots. Score SEO et recommandations instantanées."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="am-hero" aria-label="Analyseur de meta tags">
+      <BgOrbs orbs={[
+        { type: 'filled', x: '85%', y: '25%', size: '220px', dur: '14s' },
+        { type: 'ring',   x: '8%',  y: '70%', size: '160px', dur: '18s' },
+      ]} />
+      <div class="am-hero-inner">
+        <nav class="am-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a><span aria-hidden="true">/</span>
+          <a href="/outils">Outils SEO</a><span aria-hidden="true">/</span>
+          <span aria-current="page">Analyseur de meta tags</span>
+        </nav>
+        <p class="am-eyebrow">Outil gratuit</p>
+        <h1 class="am-hero-title">Analyseur de <em class="font-serif">meta tags</em></h1>
+        <p class="am-hero-sub">Collez le code source HTML de votre page et obtenez une analyse complète de vos balises meta avec un score SEO et des recommandations.</p>
+        <div class="am-badges" role="list" aria-label="Garanties">
+          <span class="am-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>100% côté client</span>
+          <span class="am-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="am-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Aucun envoi de données</span>
+          <span class="am-badge-dot" aria-hidden="true">&middot;</span>
+          <span class="am-badge" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Gratuit &amp; sans inscription</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL -->
+    <section class="am-section am-tool-section" aria-label="Outil d'analyse">
+      <div class="am-container">
+        <div class="am-app" id="amApp">
+          <div class="am-input-area" id="amInputArea">
+            <label for="amHtmlInput">Collez le code source HTML de votre page</label>
+            <textarea id="amHtmlInput" rows="10" placeholder="<!DOCTYPE html>&#10;<html>&#10;<head>&#10;  <title>Votre page...</title>&#10;  <meta name='description' content='...'>&#10;  ...&#10;</head>"></textarea>
+            <p class="am-setting-hint">Astuce : faites clic droit &rarr; &laquo; Afficher le code source &raquo; sur n'importe quelle page pour copier le HTML.</p>
+            <button type="button" class="am-btn-compress" id="amAnalyzeBtn">
+              Analyser les balises
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </button>
+          </div>
+
+          <div class="am-results" id="amResults" style="display:none">
+            <div class="am-score-card" id="amScoreCard">
+              <div class="am-score-circle"><span class="am-score-number" id="amScore">0</span><span class="am-score-label">/100</span></div>
+              <p class="am-score-text" id="amScoreText">En attente d'analyse</p>
+            </div>
+
+            <div class="am-checks" id="amChecks"></div>
+
+            <div class="am-recommendations" id="amRecommendations" style="display:none">
+              <h3>Recommandations</h3>
+              <ul id="amRecoList"></ul>
+            </div>
+
+            <div class="am-actions">
+              <button type="button" class="am-btn-reset" id="amResetBtn">Nouvelle analyse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="am-section am-howto" aria-label="Comment ça marche">
+      <div class="am-container">
+        <div class="am-section-header section-header-anim">
+          <p class="am-eyebrow">Comment ça marche</p>
+          <h2>3 étapes, <em class="font-serif">zéro friction</em>.</h2>
+        </div>
+        <div class="am-steps-grid">
+          <div class="am-step am-fade-in"><span class="am-step-num">01</span><h3 class="am-step-title">Copiez le code source</h3><p class="am-step-desc">Faites Ctrl+U sur n'importe quelle page, sélectionnez tout et copiez.</p></div>
+          <div class="am-step am-fade-in" style="transition-delay:0.1s"><span class="am-step-num">02</span><h3 class="am-step-title">Collez et analysez</h3><p class="am-step-desc">Collez le code HTML dans le champ et cliquez sur Analyser.</p></div>
+          <div class="am-step am-fade-in" style="transition-delay:0.2s"><span class="am-step-num">03</span><h3 class="am-step-title">Consultez le rapport</h3><p class="am-step-desc">Score global, détail par catégorie et recommandations priorisées.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="am-section am-faq" aria-label="Questions fréquentes">
+      <div class="am-container am-faq-inner">
+        <div class="am-section-header section-header-anim">
+          <p class="am-eyebrow">FAQ</p>
+          <h2>Questions fréquentes sur l'<em class="font-serif">analyseur meta</em>.</h2>
+        </div>
+        <div class="am-faq-list" role="list">
+          {faqItems.map((item, i) => (
+            <details class="am-faq-item am-fade-in" open={item.open} style={`transition-delay:${i * 0.04}s`} role="listitem">
+              <summary class="am-faq-question">
+                <span>{item.q}</span>
+                <span class="am-faq-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              </summary>
+              <div class="am-faq-answer"><p>{item.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="am-cta-section" aria-label="Accompagnement SEO">
+      <div class="am-cta-dotgrid" aria-hidden="true"></div>
+      <div class="am-cta-shape am-cta-shape-1" aria-hidden="true"></div>
+      <div class="am-cta-shape am-cta-shape-2" aria-hidden="true"></div>
+      <div class="am-cta-inner">
+        <p class="am-cta-tag">Optimisation complète</p>
+        <h2 class="am-cta-title">Besoin d'optimiser <em class="font-serif">tout votre site</em>&nbsp;?</h2>
+        <p class="am-cta-sub">Nos prestations SEO incluent l'audit complet de vos balises, votre performance et votre référencement.</p>
+        <div class="am-cta-actions">
+          <a href="/seo" class="am-btn-white">Découvrir nos prestations SEO <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/contact" class="am-btn-ghost">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* ─── Layout ─────────────────────────────────────────────────────────── */
+  .am-container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+  .am-section { padding: 100px 0; position: relative; overflow: hidden; }
+  .am-eyebrow { display: block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 1rem; }
+  .am-section-header { max-width: 680px; margin: 0 auto 4rem; text-align: center; }
+  .am-section-header h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 1rem; }
+  .am-section-header h2 em { font-style: italic; color: var(--color-accent); }
+  .am-fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .am-fade-in.visible { opacity: 1; transform: none; }
+
+  /* ─── Hero ───────────────────────────────────────────────────────────── */
+  .am-hero { position: relative; display: flex; align-items: center; justify-content: center; padding: 9rem 2rem 4rem; overflow: hidden; background: var(--color-background); text-align: center; }
+  .am-hero-inner { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+  .am-breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; }
+  .am-breadcrumb a { color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s ease; }
+  .am-breadcrumb a:hover { color: var(--color-accent); }
+  .am-breadcrumb span[aria-current] { color: var(--color-text-primary); font-weight: 600; }
+  .am-hero-title { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.04em; line-height: 1.08; }
+  .am-hero-title em { font-style: italic; color: var(--color-accent); font-weight: 400; font-size: 1.05em; }
+  .am-hero-sub { font-size: clamp(1rem, 1.8vw, 1.125rem); color: var(--color-text-secondary); line-height: 1.7; max-width: 600px; }
+  .am-badges { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--color-border); }
+  .am-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8125rem; font-weight: 500; color: var(--color-text-secondary); }
+  .am-badge svg { color: var(--color-accent); }
+  .am-badge-dot { color: var(--color-border); font-size: 1.25rem; line-height: 1; }
+
+  /* ─── Tool ───────────────────────────────────────────────────────────── */
+  .am-tool-section { padding-top: 2rem; background: var(--color-background); }
+  .am-app { max-width: 800px; margin: 0 auto; }
+  .am-input-area label { display: block; font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px; }
+  .am-input-area textarea { width: 100%; padding: 16px; border: 2px solid var(--color-border); border-radius: 16px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.6; color: var(--color-text-primary); background: white; resize: vertical; transition: border-color 0.3s ease; }
+  .am-input-area textarea:focus { outline: none; border-color: var(--color-accent); }
+  .am-setting-hint { font-size: 12px; color: var(--color-text-secondary); margin-top: 6px; }
+  .am-btn-compress { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: linear-gradient(135deg, #1D4ED8, #2563EB); color: white; border: none; border-radius: 14px; font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.3s ease; margin-top: 16px; }
+  .am-btn-compress:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.3); }
+
+  /* Results */
+  .am-score-card { display: flex; align-items: center; gap: 20px; padding: 24px; background: linear-gradient(135deg, var(--color-surface), var(--color-accent-soft)); border-radius: 16px; margin-bottom: 24px; }
+  .am-score-circle { display: flex; align-items: baseline; gap: 2px; }
+  .am-score-number { font-size: 3rem; font-weight: 800; color: var(--color-accent); line-height: 1; }
+  .am-score-label { font-size: 1.25rem; font-weight: 600; color: var(--color-text-secondary); }
+  .am-score-text { font-size: 1rem; font-weight: 600; color: var(--color-text-primary); }
+
+  .am-checks { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  .am-check-group { background: white; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; }
+  .am-check-group-title { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-secondary); padding: 14px 20px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+  .am-check-row { display: flex; align-items: flex-start; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--color-border); }
+  .am-check-row:last-child { border-bottom: none; }
+  .am-check-icon { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-top: 1px; }
+  .am-check-icon.good { background: rgba(34,197,94,0.12); color: #16a34a; }
+  .am-check-icon.warn { background: rgba(245,158,11,0.12); color: #d97706; }
+  .am-check-icon.bad { background: rgba(239,68,68,0.12); color: #dc2626; }
+  .am-check-content { flex: 1; min-width: 0; }
+  .am-check-label { font-size: 14px; font-weight: 600; color: var(--color-text-primary); }
+  .am-check-value { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; word-break: break-all; }
+
+  .am-recommendations { background: white; border: 1px solid var(--color-border); border-radius: 16px; padding: 20px; margin-bottom: 24px; }
+  .am-recommendations h3 { font-size: 1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 12px; }
+  .am-recommendations ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .am-recommendations li { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--color-text-secondary); line-height: 1.5; }
+  .am-recommendations li::before { content: '→'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+
+  .am-actions { display: flex; gap: 12px; justify-content: center; margin-top: 24px; }
+  .am-btn-reset { padding: 14px 24px; background: transparent; color: var(--color-text-secondary); border: 1px solid var(--color-border); border-radius: 14px; font-size: 15px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.3s ease; }
+  .am-btn-reset:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+  /* ─── Steps ──────────────────────────────────────────────────────────── */
+  .am-howto { background: var(--color-surface); border-top: 1px solid var(--color-border); }
+  .am-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 960px; margin: 0 auto; }
+  .am-step { display: flex; flex-direction: column; gap: 0.75rem; text-align: center; }
+  .am-step-num { font-size: 2rem; font-weight: 800; color: var(--color-accent); line-height: 1; }
+  .am-step-title { font-size: 1.125rem; font-weight: 700; color: var(--color-text-primary); }
+  .am-step-desc { font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.6; }
+
+  /* ─── FAQ ─────────────────────────────────────────────────────────────── */
+  .am-faq { background: var(--color-background); }
+  .am-faq-inner { max-width: 780px; margin: 0 auto; }
+  .am-faq-list { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; background: white; }
+  .am-faq-item { border-bottom: 1px solid var(--color-border); }
+  .am-faq-item:last-child { border-bottom: none; }
+  .am-faq-question { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; cursor: pointer; font-size: 1rem; font-weight: 600; color: var(--color-text-primary); list-style: none; transition: background 0.2s ease; user-select: none; }
+  .am-faq-question::-webkit-details-marker { display: none; }
+  .am-faq-question:hover { background: rgba(37,99,235,0.03); }
+  .am-faq-icon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease, background 0.2s ease; }
+  details[open] .am-faq-icon { transform: rotate(45deg); background: var(--color-accent); color: white; }
+  .am-faq-answer { padding: 0 1.5rem 1.25rem; }
+  .am-faq-answer p { font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.75; }
+
+  /* ─── CTA ─────────────────────────────────────────────────────────────── */
+  .am-cta-section { position: relative; background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #3B82F6 100%); padding: 7rem 2rem; min-height: 52vh; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
+  .am-cta-dotgrid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; z-index: 0; }
+  .am-cta-shape { position: absolute; border-radius: 50%; pointer-events: none; }
+  .am-cta-shape-1 { width: 500px; height: 500px; background: rgba(255,255,255,0.05); top: -150px; right: -100px; animation: am-float 12s ease-in-out infinite; }
+  .am-cta-shape-2 { width: 300px; height: 300px; background: rgba(255,255,255,0.04); bottom: -80px; left: -60px; animation: am-float 15s ease-in-out infinite reverse; }
+  @keyframes am-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
+  .am-cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+  .am-cta-tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .am-cta-title { font-size: clamp(2.25rem, 5.5vw, 4rem); font-weight: 700; color: white; letter-spacing: -0.03em; line-height: 1.1; }
+  .am-cta-title em { font-style: italic; font-family: var(--font-serif); font-weight: 400; }
+  .am-cta-sub { font-size: 1.0625rem; color: rgba(255,255,255,0.75); line-height: 1.65; }
+  .am-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+  .am-btn-white { display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: var(--color-accent); padding: 1rem 2rem; border-radius: 100px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .am-btn-white:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+  .am-btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: rgba(255,255,255,0.9); padding: 1rem 2rem; border-radius: 100px; font-weight: 600; font-size: 1rem; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.3); transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
+  .am-btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  /* ─── Responsive ─────────────────────────────────────────────────────── */
+  @media (max-width: 900px) { .am-section { padding: 64px 0; } .am-hero { padding: 8rem 1.5rem 3rem; } .am-steps-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  @media (max-width: 640px) { .am-container { padding: 0 1.25rem; } .am-cta-actions { flex-direction: column; align-items: center; } .am-score-card { flex-direction: column; text-align: center; } }
+  @media (prefers-reduced-motion: reduce) { .am-fade-in { opacity: 1; transform: none; transition: none; } .am-cta-shape-1, .am-cta-shape-2 { animation: none; } }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const analyzeBtn = document.getElementById('amAnalyzeBtn');
+  const resetBtn = document.getElementById('amResetBtn');
+  const htmlInput = document.getElementById('amHtmlInput') as HTMLTextAreaElement;
+  const inputArea = document.getElementById('amInputArea');
+  const results = document.getElementById('amResults');
+
+  analyzeBtn?.addEventListener('click', () => {
+    const html = htmlInput?.value?.trim();
+    if (!html) return;
+    analyze(html);
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    if (inputArea) inputArea.style.display = 'block';
+    if (results) results.style.display = 'none';
+    if (htmlInput) htmlInput.value = '';
+  });
+
+  function analyze(html: string) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    const title = doc.querySelector('title')?.textContent?.trim() || null;
+    const metaDesc = doc.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || null;
+    const canonical = doc.querySelector('link[rel="canonical"]')?.getAttribute('href') || null;
+    const robots = doc.querySelector('meta[name="robots"]')?.getAttribute('content') || null;
+    const viewport = doc.querySelector('meta[name="viewport"]')?.getAttribute('content') || null;
+    const charset = doc.querySelector('meta[charset]')?.getAttribute('charset') || (doc.querySelector('meta[http-equiv="Content-Type"]')?.getAttribute('content')?.match(/charset=([^;]+)/)?.[1]) || null;
+    const lang = doc.querySelector('html')?.getAttribute('lang') || null;
+    const ogTitle = doc.querySelector('meta[property="og:title"]')?.getAttribute('content') || null;
+    const ogDesc = doc.querySelector('meta[property="og:description"]')?.getAttribute('content') || null;
+    const ogImage = doc.querySelector('meta[property="og:image"]')?.getAttribute('content') || null;
+    const ogType = doc.querySelector('meta[property="og:type"]')?.getAttribute('content') || null;
+    const ogUrl = doc.querySelector('meta[property="og:url"]')?.getAttribute('content') || null;
+    const twitterCard = doc.querySelector('meta[name="twitter:card"]')?.getAttribute('content') || null;
+    const twitterTitle = doc.querySelector('meta[name="twitter:title"]')?.getAttribute('content') || null;
+    const twitterDesc = doc.querySelector('meta[name="twitter:description"]')?.getAttribute('content') || null;
+    const twitterImage = doc.querySelector('meta[name="twitter:image"]')?.getAttribute('content') || null;
+    const h1Count = doc.querySelectorAll('h1').length;
+    const favicon = doc.querySelector('link[rel="icon"]')?.getAttribute('href') || doc.querySelector('link[rel="shortcut icon"]')?.getAttribute('href') || null;
+
+    // Scoring
+    let score = 0;
+    const checks: { group: string; items: { status: 'good'|'warn'|'bad'; label: string; value: string }[] }[] = [];
+    const recos: string[] = [];
+
+    // Essentials
+    const essentials: typeof checks[0]['items'] = [];
+    if (title) {
+      const len = title.length;
+      if (len >= 30 && len <= 60) { essentials.push({ status: 'good', label: 'Title tag', value: `"${title}" (${len} car.) — Longueur idéale` }); score += 15; }
+      else if (len > 0 && len < 30) { essentials.push({ status: 'warn', label: 'Title tag', value: `"${title}" (${len} car.) — Trop court (30-60 recommandé)` }); score += 8; recos.push('Allongez votre title tag à 30-60 caractères pour un meilleur affichage Google.'); }
+      else if (len > 60) { essentials.push({ status: 'warn', label: 'Title tag', value: `"${title}" (${len} car.) — Trop long (sera tronqué)` }); score += 8; recos.push('Raccourcissez votre title à 60 caractères max pour éviter la troncature.'); }
+    } else { essentials.push({ status: 'bad', label: 'Title tag', value: 'Absent — Indispensable pour le SEO' }); recos.push('Ajoutez une balise <title> unique et descriptive.'); }
+
+    if (metaDesc) {
+      const len = metaDesc.length;
+      if (len >= 120 && len <= 160) { essentials.push({ status: 'good', label: 'Meta description', value: `"${metaDesc.slice(0, 80)}..." (${len} car.) — Longueur idéale` }); score += 15; }
+      else if (len > 0 && len < 120) { essentials.push({ status: 'warn', label: 'Meta description', value: `(${len} car.) — Trop courte (120-160 recommandé)` }); score += 8; recos.push('Allongez votre meta description à 120-160 caractères.'); }
+      else { essentials.push({ status: 'warn', label: 'Meta description', value: `(${len} car.) — Trop longue (sera tronquée)` }); score += 8; recos.push('Raccourcissez votre meta description à 160 caractères max.'); }
+    } else { essentials.push({ status: 'bad', label: 'Meta description', value: 'Absente — Google affichera un extrait aléatoire' }); recos.push('Ajoutez une meta description engageante de 120-160 caractères.'); }
+
+    if (canonical) { essentials.push({ status: 'good', label: 'Canonical', value: canonical }); score += 10; }
+    else { essentials.push({ status: 'bad', label: 'Canonical', value: 'Absente — Risque de contenu dupliqué' }); recos.push('Ajoutez une balise canonical pour éviter le contenu dupliqué.'); }
+
+    if (viewport) { essentials.push({ status: 'good', label: 'Viewport', value: 'Présent' }); score += 5; }
+    else { essentials.push({ status: 'bad', label: 'Viewport', value: 'Absent — Page non adaptée au mobile' }); recos.push('Ajoutez <meta name="viewport" content="width=device-width, initial-scale=1">.'); }
+
+    if (charset) { essentials.push({ status: 'good', label: 'Charset', value: charset.toUpperCase() }); score += 5; }
+    else { essentials.push({ status: 'warn', label: 'Charset', value: 'Non spécifié' }); recos.push('Ajoutez <meta charset="UTF-8"> pour un encodage correct.'); }
+
+    if (lang) { essentials.push({ status: 'good', label: 'Langue (lang)', value: lang }); score += 5; }
+    else { essentials.push({ status: 'warn', label: 'Langue (lang)', value: 'Non spécifiée sur <html>' }); recos.push('Ajoutez l\'attribut lang sur la balise <html> (ex: lang="fr").'); }
+
+    if (robots) { essentials.push({ status: 'good', label: 'Meta robots', value: robots }); score += 5; }
+    else { essentials.push({ status: 'warn', label: 'Meta robots', value: 'Absente (index, follow par défaut)' }); score += 3; }
+
+    checks.push({ group: 'Balises essentielles', items: essentials });
+
+    // Open Graph
+    const og: typeof checks[0]['items'] = [];
+    let ogScore = 0;
+    if (ogTitle) { og.push({ status: 'good', label: 'og:title', value: ogTitle }); ogScore += 5; }
+    else { og.push({ status: 'bad', label: 'og:title', value: 'Absent' }); }
+    if (ogDesc) { og.push({ status: 'good', label: 'og:description', value: ogDesc.length > 80 ? ogDesc.slice(0, 80) + '...' : ogDesc }); ogScore += 5; }
+    else { og.push({ status: 'bad', label: 'og:description', value: 'Absent' }); }
+    if (ogImage) { og.push({ status: 'good', label: 'og:image', value: ogImage }); ogScore += 5; }
+    else { og.push({ status: 'bad', label: 'og:image', value: 'Absent — Pas de visuel au partage social' }); }
+    if (ogType) og.push({ status: 'good', label: 'og:type', value: ogType });
+    else og.push({ status: 'warn', label: 'og:type', value: 'Absent' });
+    if (ogUrl) og.push({ status: 'good', label: 'og:url', value: ogUrl });
+    else og.push({ status: 'warn', label: 'og:url', value: 'Absent' });
+    score += ogScore;
+    if (ogScore < 15) recos.push('Complétez vos balises Open Graph (og:title, og:description, og:image) pour un meilleur partage social.');
+    checks.push({ group: 'Open Graph', items: og });
+
+    // Twitter
+    const tw: typeof checks[0]['items'] = [];
+    let twScore = 0;
+    if (twitterCard) { tw.push({ status: 'good', label: 'twitter:card', value: twitterCard }); twScore += 4; }
+    else { tw.push({ status: 'warn', label: 'twitter:card', value: 'Absent' }); }
+    if (twitterTitle) { tw.push({ status: 'good', label: 'twitter:title', value: twitterTitle }); twScore += 2; }
+    else { tw.push({ status: 'warn', label: 'twitter:title', value: 'Absent (utilisera og:title)' }); twScore += 1; }
+    if (twitterDesc) { tw.push({ status: 'good', label: 'twitter:description', value: twitterDesc.length > 80 ? twitterDesc.slice(0, 80) + '...' : twitterDesc }); twScore += 2; }
+    else { tw.push({ status: 'warn', label: 'twitter:description', value: 'Absent (utilisera og:description)' }); twScore += 1; }
+    if (twitterImage) { tw.push({ status: 'good', label: 'twitter:image', value: twitterImage }); twScore += 2; }
+    else { tw.push({ status: 'warn', label: 'twitter:image', value: 'Absent (utilisera og:image)' }); twScore += 1; }
+    score += twScore;
+    if (twScore < 6) recos.push('Ajoutez les balises Twitter Card pour contrôler l\'affichage de vos partages sur X/Twitter.');
+    checks.push({ group: 'Twitter Card', items: tw });
+
+    // Other checks
+    const other: typeof checks[0]['items'] = [];
+    if (h1Count === 1) { other.push({ status: 'good', label: 'Balise H1', value: '1 H1 détecté — Parfait' }); score += 10; }
+    else if (h1Count === 0) { other.push({ status: 'bad', label: 'Balise H1', value: 'Aucun H1 détecté' }); recos.push('Ajoutez un H1 unique décrivant le sujet principal de la page.'); }
+    else { other.push({ status: 'bad', label: 'Balise H1', value: `${h1Count} H1 détectés — Il ne devrait y en avoir qu'un seul` }); recos.push('Gardez un seul H1 par page.'); score += 3; }
+
+    if (favicon) { other.push({ status: 'good', label: 'Favicon', value: 'Présent' }); score += 5; }
+    else { other.push({ status: 'warn', label: 'Favicon', value: 'Absent' }); recos.push('Ajoutez un favicon pour renforcer votre identité visuelle.'); }
+
+    checks.push({ group: 'Autres vérifications', items: other });
+
+    score = Math.min(100, Math.max(0, score));
+
+    // Render
+    if (inputArea) inputArea.style.display = 'none';
+    if (results) results.style.display = 'block';
+
+    const scoreEl = document.getElementById('amScore');
+    const scoreTextEl = document.getElementById('amScoreText');
+    if (scoreEl) scoreEl.textContent = String(score);
+    if (scoreTextEl) {
+      if (score >= 90) scoreTextEl.textContent = 'Excellent ! Vos balises sont bien optimisées.';
+      else if (score >= 70) scoreTextEl.textContent = 'Bon score. Quelques améliorations possibles.';
+      else if (score >= 50) scoreTextEl.textContent = 'Score moyen. Des optimisations importantes manquent.';
+      else scoreTextEl.textContent = 'Score faible. Plusieurs balises essentielles sont absentes.';
+    }
+    if (scoreEl) {
+      scoreEl.style.color = score >= 80 ? '#16a34a' : score >= 50 ? '#d97706' : '#dc2626';
+    }
+
+    const checksEl = document.getElementById('amChecks');
+    if (checksEl) {
+      checksEl.innerHTML = checks.map(g => `
+        <div class="am-check-group">
+          <div class="am-check-group-title">${g.group}</div>
+          ${g.items.map(item => `
+            <div class="am-check-row">
+              <div class="am-check-icon ${item.status}">${item.status === 'good' ? '✓' : item.status === 'warn' ? '!' : '✕'}</div>
+              <div class="am-check-content">
+                <div class="am-check-label">${item.label}</div>
+                <div class="am-check-value">${item.value}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    const recoPanel = document.getElementById('amRecommendations');
+    const recoList = document.getElementById('amRecoList');
+    if (recos.length > 0 && recoPanel && recoList) {
+      recoPanel.style.display = 'block';
+      recoList.innerHTML = recos.map(r => `<li>${r}</li>`).join('');
+    } else if (recoPanel) {
+      recoPanel.style.display = 'none';
+    }
+  }
+
+  // Fade-in observer
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.am-fade-in').forEach(el => observer.observe(el));
+});
+</script>
