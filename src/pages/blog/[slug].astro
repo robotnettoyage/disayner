@@ -153,6 +153,22 @@ const breadcrumbSchema = {
     </header>
 
     <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- HERO IMAGE                                                         -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    {article.ogImage && (
+      <div class="article-hero-img">
+        <img
+          src={article.ogImage}
+          alt={article.title}
+          width="1200"
+          height="675"
+          loading="eager"
+          class="article-hero-photo"
+        />
+      </div>
+    )}
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
     <!-- ARTICLE CONTENT + TOC                                              -->
     <!-- ═══════════════════════════════════════════════════════════════════ -->
     <div class="article-layout">
@@ -389,6 +405,21 @@ const breadcrumbSchema = {
   }
 
   /* ── Article layout (TOC + content) ── */
+  .article-hero-img {
+    padding: 1.5rem 2rem 0;
+    background: var(--color-background);
+  }
+
+  .article-hero-photo {
+    display: block;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 16px;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+  }
+
   .article-layout {
     padding: 3rem 2rem 4rem;
     background: var(--color-background);

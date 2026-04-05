@@ -76,6 +76,7 @@ export const articles: BlogArticle[] = [
     tags: ["Prix", "Budget", "Freelance", "Agence", "Comparatif"],
     featured: true,
     contentFile: "combien-coute-site-web",
+    ogImage: "/images/blog/combien-coute-site-web.webp",
   },
   {
     slug: "wordpress-shopify-webflow-quel-cms-choisir",
@@ -90,6 +91,7 @@ export const articles: BlogArticle[] = [
     tags: ["WordPress", "Shopify", "Webflow", "CMS", "Comparatif"],
     featured: true,
     contentFile: "wordpress-shopify-webflow-quel-cms-choisir",
+    ogImage: "/images/blog/wordpress-shopify-webflow.webp",
   },
 
   // SILO 2: SEO & Référencement
@@ -106,6 +108,7 @@ export const articles: BlogArticle[] = [
     tags: ["SEO local", "Google Business Profile", "Google Maps", "PME"],
     featured: false,
     contentFile: "seo-local-premiere-page-google",
+    ogImage: "/images/blog/seo-local-premiere-page.webp",
   },
   {
     slug: "geo-optimiser-site-moteurs-recherche-ia",
@@ -120,6 +123,7 @@ export const articles: BlogArticle[] = [
     tags: ["GEO", "IA", "ChatGPT", "Perplexity", "SoRank"],
     featured: true,
     contentFile: "geo-optimiser-site-moteurs-recherche-ia",
+    ogImage: "/images/blog/geo-moteurs-recherche-ia.webp",
   },
 
   // SILO 3: E-commerce
@@ -136,6 +140,7 @@ export const articles: BlogArticle[] = [
     tags: ["Shopify", "E-commerce", "Boutique en ligne", "Dropshipping"],
     featured: false,
     contentFile: "creer-boutique-shopify-rentable-guide",
+    ogImage: "/images/blog/boutique-shopify-rentable.webp",
   },
   {
     slug: "fiche-produit-ecommerce-erreurs-conversions",
@@ -150,6 +155,7 @@ export const articles: BlogArticle[] = [
     tags: ["Fiche produit", "Conversion", "CRO", "E-commerce"],
     featured: false,
     contentFile: "fiche-produit-ecommerce-erreurs-conversions",
+    ogImage: "/images/blog/fiches-produits-erreurs.webp",
   },
 
   // SILO 4: Performance & Vitesse
@@ -166,6 +172,7 @@ export const articles: BlogArticle[] = [
     tags: ["Core Web Vitals", "Lighthouse", "Performance", "LCP", "CLS"],
     featured: false,
     contentFile: "core-web-vitals-guide-lighthouse-95",
+    ogImage: "/images/blog/core-web-vitals-lighthouse.webp",
   },
   {
     slug: "optimisation-images-web-webp-compression",
@@ -180,6 +187,7 @@ export const articles: BlogArticle[] = [
     tags: ["Images", "WebP", "Compression", "Lazy loading", "Performance"],
     featured: false,
     contentFile: "optimisation-images-web-webp-compression",
+    ogImage: "/images/blog/optimisation-images-webp.webp",
   },
 
   // SILO 5: Design & UX/UI
@@ -196,6 +204,7 @@ export const articles: BlogArticle[] = [
     tags: ["Design", "Conversion", "CRO", "UX", "CTA"],
     featured: false,
     contentFile: "design-oriente-conversion-principes",
+    ogImage: "/images/blog/design-oriente-conversion.webp",
   },
   {
     slug: "responsive-design-2026-au-dela-mobile-first",
@@ -210,6 +219,7 @@ export const articles: BlogArticle[] = [
     tags: ["Responsive", "Mobile-first", "CSS", "Container queries", "UX"],
     featured: false,
     contentFile: "responsive-design-2026-au-dela-mobile-first",
+    ogImage: "/images/blog/responsive-design-2026.webp",
   },
 ];
 

@@ -96,6 +96,18 @@ const breadcrumbSchema = {
             {articles.map((article) => (
               <article class="cat-card" role="listitem">
                 <a href={`/blog/${article.slug}`} class="cat-card-link" style={`--card-accent:${category.color};`}>
+                  {article.ogImage && (
+                    <div class="cat-card-thumb">
+                      <img
+                        src={article.ogImage}
+                        alt={article.title}
+                        width="600"
+                        height="338"
+                        loading="lazy"
+                        class="cat-card-img"
+                      />
+                    </div>
+                  )}
                   <div class="cat-card-header">
                     <span
                       class="cat-badge"
@@ -280,7 +292,6 @@ const breadcrumbSchema = {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 28px;
     text-decoration: none;
     color: inherit;
     border-left: 3px solid transparent;
@@ -291,11 +302,33 @@ const breadcrumbSchema = {
     border-left-color: var(--card-accent);
   }
 
+  .cat-card-thumb {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: linear-gradient(135deg, #F5F5F0, #EFF6FF);
+    flex-shrink: 0;
+  }
+
+  .cat-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .cat-card:hover .cat-card-img {
+    transform: scale(1.04);
+  }
+
   .cat-card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 14px;
+    padding-top: 24px;
+    padding-left: 28px;
+    padding-right: 28px;
   }
 
   .cat-badge {
@@ -320,6 +353,7 @@ const breadcrumbSchema = {
     letter-spacing: -0.02em;
     line-height: 1.35;
     margin-bottom: 10px;
+    padding: 0 28px;
   }
 
   .cat-card-excerpt {
@@ -327,6 +361,7 @@ const breadcrumbSchema = {
     color: var(--color-text-secondary);
     line-height: 1.65;
     margin-bottom: 20px;
+    padding: 0 28px;
     flex: 1;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -339,6 +374,7 @@ const breadcrumbSchema = {
     align-items: center;
     justify-content: space-between;
     margin-top: auto;
+    padding: 0 28px 24px;
   }
 
   .cat-card-reading {
