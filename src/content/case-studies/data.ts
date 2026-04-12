@@ -172,8 +172,8 @@ export const caseStudies: CaseStudy[] = [
     ],
     testimonial: {
       quote:
-        "Célio a su capter l'essence de notre marque et la traduire en un design épuré et moderne. Le SEO a immédiatement commencé à porter ses fruits : notre trafic a doublé en 3 mois.",
-      author: "Marc V.",
+        "Un grand merci à Celio pour le superbe travail réalisé sur le site vitrine de ma société. Je suis vraiment très content du rendu final, aussi bien sur l'aspect visuel que sur la qualité du travail dans son ensemble. Celio a été à l'écoute du début à la fin, toujours disponible, sérieux et impliqué. J'ai aussi beaucoup apprécié son honnêteté et son professionnalisme : il n'hésite pas à dire quand quelque chose ne va pas, dans le but d'obtenir le meilleur résultat possible. Il sait également écouter nos envies et s'adapter à nos demandes. Quand on lui demande si c'est possible, il met tout en œuvre pour que ça le soit. Je recommande Celio les yeux fermés.",
+      author: "Yannis Torre",
       role: "Fondateur, Miroiterie VITOR",
     },
     gallery: [
