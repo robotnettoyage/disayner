@@ -76,7 +76,7 @@ const pageSchema = {
     {featured && (
       <section class="blog-featured-section" aria-label="Article mis en avant">
         <div class="blog-featured-inner">
-          <a href={`/blog/${featured.slug}`} class="blog-featured-card">
+          <a href={`/blog/${featured.category}/${featured.slug}`} class="blog-featured-card">
             <div class="blog-featured-content">
               <span
                 class="blog-badge"
@@ -141,7 +141,7 @@ const pageSchema = {
                 data-category={article.category}
                 role="listitem"
               >
-                <a href={`/blog/${article.slug}`} class="blog-card-link" style={`--card-accent:${color};`}>
+                <a href={`/blog/${article.category}/${article.slug}`} class="blog-card-link" style={`--card-accent:${color};`}>
                   {article.ogImage && (
                     <div class="blog-card-thumb">
                       <img
@@ -198,7 +198,7 @@ const pageSchema = {
           {blogCategories.map((cat) => {
             const count = getArticlesByCategory(cat.slug).length;
             return (
-              <a href={`/blog/categorie/${cat.slug}`} class="blog-cat-card" style={`--cat-color:${cat.color};`}>
+              <a href={`/blog/${cat.slug}`} class="blog-cat-card" style={`--cat-color:${cat.color};`}>
                 <div class="blog-cat-icon">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={cat.color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={cat.icon} />
                 </div>

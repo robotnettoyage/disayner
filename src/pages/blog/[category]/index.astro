@@ -30,7 +30,7 @@ const pageSchema = {
   "@type": "CollectionPage",
   "name": `${category.name} — Blog DISAYNER`,
   "description": category.description,
-  "url": `https://disayner.com/blog/categorie/${category.slug}`,
+  "url": `https://disayner.com/blog/${category.slug}`,
   "isPartOf": { "@type": "WebSite", "url": "https://disayner.com", "name": "DISAYNER" },
 };
 
@@ -40,7 +40,7 @@ const breadcrumbSchema = {
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://disayner.com" },
     { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://disayner.com/blog" },
-    { "@type": "ListItem", "position": 3, "name": category.name, "item": `https://disayner.com/blog/categorie/${category.slug}` },
+    { "@type": "ListItem", "position": 3, "name": category.name, "item": `https://disayner.com/blog/${category.slug}` },
   ],
 };
 ---
@@ -95,7 +95,7 @@ const breadcrumbSchema = {
           <div class="cat-grid" role="list">
             {articles.map((article) => (
               <article class="cat-card" role="listitem">
-                <a href={`/blog/${article.slug}`} class="cat-card-link" style={`--card-accent:${category.color};`}>
+                <a href={`/blog/${category.slug}/${article.slug}`} class="cat-card-link" style={`--card-accent:${category.color};`}>
                   {article.ogImage && (
                     <div class="cat-card-thumb">
                       <img
