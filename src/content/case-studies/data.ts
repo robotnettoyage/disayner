@@ -407,17 +407,17 @@ export const caseStudies: CaseStudy[] = [
       <p>Le défi principal : traduire en images et en mots un métier profondément humain, subtil et difficile à catégoriser. Le site devait éviter le jargon "coaching corporate" tout en restant crédible auprès de dirigeants, cadres de santé, directeurs d'établissements scolaires et collectivités. Un exercice d'équilibre entre élégance, accessibilité et profondeur.</p>
     `,
     solution: `
-      <p><strong>Direction artistique sur-mesure :</strong> Nous avons co-construit avec la cliente une identité visuelle unique qui traduit visuellement sa philosophie : le lien, le soin, la transformation douce. La palette de couleurs associe un bleu profond (#024BAD) symbolisant la confiance et l'ancrage, à un jaune lumineux (#FFDE5B) évoquant l'élan et la clarté. La typographie combine Cormorant Garamond (élégante, incarnée, pour les titres) et Manrope (moderne, lisible, pour le corps de texte).</p>
-      <p><strong>Architecture de contenu pensée pour la confiance :</strong> 10 pages structurées autour du parcours de décision du visiteur, de la découverte de l'approche (accueil, à propos) à la compréhension des services (accompagnements avec 9 sous-sections détaillées) jusqu'à la preuve sociale (témoignages, exemples concrets) et la prise de contact. Chaque page est rédigée dans un ton juste : ni trop corporate, ni trop informel, à l'image de la cliente.</p>
-      <p><strong>Page accompagnements immersive :</strong> La page centrale du site présente 9 types d'accompagnement (individuels, collectifs, projets éducatifs, co-développement, entretiens annuels, formations, projets maritimes, transitions, enjeux de territoire) avec une navigation par ancres permettant au visiteur de trouver exactement ce qui correspond à sa situation.</p>
+      <p><strong>Direction artistique sur-mesure :</strong> Nous avons traduit l'identité visuelle existante de Marie-Hélène en un site web cohérent et professionnel. La direction artistique du site respecte et prolonge l'univers graphique que la cliente porte depuis 15 ans, en l'adaptant aux codes du web pour créer une expérience en ligne à la hauteur de son positionnement.</p>
+      <p><strong>Architecture de contenu pensée pour la confiance :</strong> L'architecture du site a été construite à partir d'une stratégie déjà établie et de pages entièrement rédigées en amont de la collaboration par Marie-Hélène et nous-même. 10 pages structurées autour du parcours de décision du visiteur, de la découverte de l'approche (accueil, à propos) à la compréhension des services (accompagnements avec 10 sous-sections détaillées) jusqu'à la preuve sociale (témoignages, exemples concrets) et la prise de contact.</p>
+      <p><strong>Page accompagnements immersive :</strong> La page centrale du site présente 10 types d'accompagnement (individuels, collectifs, projets éducatifs, co-développement, entretiens annuels, formations, projets maritimes, transitions, enjeux de territoire) avec une navigation par ancres permettant au visiteur de trouver exactement ce qui correspond à sa situation.</p>
       <p><strong>Éléments de réassurance :</strong> Intégration d'un extrait audio d'une interview sur RCF, section témoignages avec des citations marquantes en défilé, section "Pour qui" qui permet à chaque profil cible de se reconnaître immédiatement (dirigeant, cadre de santé, directeur d'établissement, facilitateur, PME/collectivités).</p>
       <p><strong>Développement WordPress + Elementor :</strong> Site développé sur WordPress avec Elementor pour permettre à la cliente de mettre à jour ses contenus en autonomie. Design responsive testé sur tous les appareils, performances optimisées et formulaire de contact simple et accessible.</p>
     `,
     deliverables: [
-      "Conception de l'identité visuelle complète (palette, typographie, ton)",
-      "Direction artistique et charte graphique",
-      "10 pages conçues et rédigées",
-      "Page accompagnements avec 9 sous-sections et navigation par ancres",
+      "Conception de l'identité visuelle du site (palette, typographie, ton)",
+      "Direction artistique et charte graphique du site web",
+      "Conception et intégration de 10 pages",
+      "Page accompagnements avec 10 sous-sections et navigation par ancres",
       "Page exemples d'accompagnements concrets",
       "Page témoignages avec citations clients",
       "Page FAQ",
@@ -429,7 +429,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     results: [
       { metric: "10",   label: "Pages créées" },
-      { metric: "9",    label: "Types d'accompagnement présentés" },
+      { metric: "10",   label: "Types d'accompagnement présentés" },
       { metric: "15+",  label: "Années d'expertise mises en valeur" },
       { metric: "100%", label: "Responsive mobile" },
     ],
