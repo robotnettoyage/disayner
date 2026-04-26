@@ -795,7 +795,6 @@ const pageSchema = {
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
 
   // ── Hero entrance
   gsap.from(".blog-hero-inner > *", {
@@ -818,21 +817,20 @@ const pageSchema = {
     scrollTrigger: {
       trigger: ".blog-featured-section",
       start: "top 85%",
+      once: true,
     },
   });
 
-  // ── Cards stagger on scroll
-  gsap.from(".blog-card", {
-    y: 50,
-    opacity: 0,
-    duration: 0.7,
-    stagger: 0.1,
-    ease: "power3.out",
-    clearProps: "transform",
-    scrollTrigger: {
-      trigger: ".blog-grid",
-      start: "top 82%",
-    },
+  // ── Cards reveal as they enter viewport (batch)
+  ScrollTrigger.batch(".blog-card", {
+    start: "top 85%",
+    once: true,
+    onEnter: (batch) =>
+      gsap.fromTo(
+        batch,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: "power3.out", clearProps: "transform" }
+      ),
   });
 
   // ── Categories stagger
@@ -846,6 +844,7 @@ const pageSchema = {
     scrollTrigger: {
       trigger: ".blog-categories-grid",
       start: "top 80%",
+      once: true,
     },
   });
 
@@ -860,6 +859,7 @@ const pageSchema = {
     scrollTrigger: {
       trigger: ".blog-cta-section",
       start: "top 70%",
+      once: true,
     },
   });
 

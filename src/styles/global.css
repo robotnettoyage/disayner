@@ -140,14 +140,16 @@ body::before {
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 0%;
+  width: 100%;
   height: 1px;
   background: currentColor;
-  transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hover-underline:hover::after {
-  width: 100%;
+  transform: scaleX(1);
 }
 
 /* ─── 10. Scrollbar ──────────────────────────────────────────────────────── */
@@ -188,6 +190,7 @@ body::before {
   font-weight: 800;
   color: rgba(0, 0, 0, 0.025);
   transform: rotate(var(--rot));
+  will-change: transform;
   white-space: nowrap;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -223,6 +226,7 @@ body::before {
   border-radius: 50%;
   background: #2563EB;
   opacity: 0;
+  will-change: transform, opacity;
   animation: dotPulseIn 4s ease-in-out infinite;
   animation-delay: var(--delay, 0s);
 }
@@ -268,6 +272,7 @@ body::before {
   height: var(--size);
   border-radius: 50%;
   transform: translate(-50%, -50%);
+  will-change: transform;
   animation: orbFloat var(--dur, 8s) ease-in-out infinite;
   animation-delay: var(--delay, 0s);
 }

@@ -1452,7 +1452,6 @@ const serviceSchema = {
   // Metric countup (99.9% only)
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
 
   document.querySelectorAll<HTMLElement>('.mw-metric-num[data-value]').forEach((el) => {
     const target = parseFloat(el.dataset.value ?? '0');

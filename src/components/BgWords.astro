@@ -29,21 +29,22 @@ const { words, variant = 'dark' } = Astro.props;
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!prefersReduced) {
-    (gsap.utils.toArray('.bg-word') as HTMLElement[]).forEach((word) => {
-      const section = word.closest('section');
-      if (!section) return;
-      gsap.to(word, {
-        y: -60,
+    // One ScrollTrigger per .bg-words container instead of per word
+    (gsap.utils.toArray('.bg-words') as HTMLElement[]).forEach((container) => {
+      const section = container.closest('section') ?? container.parentElement;
+      const words = container.querySelectorAll('.bg-word');
+      if (!section || !words.length) return;
+      gsap.to(words, {
+        y: -50,
         ease: "none",
         scrollTrigger: {
           trigger: section,
           start: "top bottom",
           end: "bottom top",
-          scrub: 1,
+          scrub: 1.5,
         },
       });
     });

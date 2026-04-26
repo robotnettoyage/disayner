@@ -428,20 +428,16 @@ const projects = [
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
 
   // Cards
-  document.querySelectorAll(".project-card").forEach((card) => {
-    gsap.from(card, {
-      y: 60,
-      opacity: 0,
-      duration: 0.9,
-      ease: "power3.out",
-      clearProps: "transform",
-      scrollTrigger: {
-        trigger: card,
-        start: "top 80%",
-      },
-    });
+  ScrollTrigger.batch(".project-card", {
+    start: "top 80%",
+    once: true,
+    onEnter: (batch) =>
+      gsap.fromTo(
+        batch,
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, stagger: 0.1, ease: "power3.out", clearProps: "transform" }
+      ),
   });
 </script>

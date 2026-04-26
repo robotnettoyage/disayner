@@ -243,7 +243,6 @@ import BgOrbs from './BgOrbs.astro';
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -256,6 +255,7 @@ import BgOrbs from './BgOrbs.astro';
       scrollTrigger: {
         trigger: ".cta-section",
         start: "top 60%",
+        once: true,
       },
     });
   } else {

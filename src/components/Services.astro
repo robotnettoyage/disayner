@@ -42,7 +42,7 @@ import BgWords from './BgWords.astro';
           <div class="screens-stack" aria-hidden="true" style="position:relative; flex:1; min-height:220px; margin:20px 0;">
 
             <!-- Screen 3 (BACK) — Landing page -->
-            <div class="screen screen-back" style="position:absolute; width:80%; left:58%; bottom:35px; transform:translateX(-50%) scale(0.85); opacity:0.6; z-index:1; background:white; border-radius:10px; border:1px solid rgba(0,0,0,0.08); box-shadow:0 4px 15px rgba(0,0,0,0.05); overflow:hidden; transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
+            <div class="screen screen-back" style="position:absolute; width:80%; left:58%; bottom:35px; transform:translateX(-50%) scale(0.85); opacity:0.6; z-index:1; background:white; border-radius:10px; border:1px solid rgba(0,0,0,0.08); box-shadow:0 4px 15px rgba(0,0,0,0.05); overflow:hidden; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94),opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94),box-shadow 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
               <div style="height:24px; background:#F5F5F0; border-bottom:1px solid #EEEEEA; display:flex; align-items:center; padding:0 8px; gap:4px;">
                 <span style="width:7px;height:7px;border-radius:50%;background:#FF5F57;display:block;"></span>
                 <span style="width:7px;height:7px;border-radius:50%;background:#FEBC2E;display:block;"></span>
@@ -56,7 +56,7 @@ import BgWords from './BgWords.astro';
             </div>
 
             <!-- Screen 2 (MIDDLE) — E-commerce -->
-            <div class="screen screen-mid" style="position:absolute; width:80%; left:54%; bottom:18px; transform:translateX(-50%) scale(0.92); opacity:0.8; z-index:2; background:white; border-radius:10px; border:1px solid rgba(0,0,0,0.08); box-shadow:0 4px 15px rgba(0,0,0,0.05); overflow:hidden; transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
+            <div class="screen screen-mid" style="position:absolute; width:80%; left:54%; bottom:18px; transform:translateX(-50%) scale(0.92); opacity:0.8; z-index:2; background:white; border-radius:10px; border:1px solid rgba(0,0,0,0.08); box-shadow:0 4px 15px rgba(0,0,0,0.05); overflow:hidden; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94),opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94),box-shadow 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
               <div style="height:24px; background:#F5F5F0; border-bottom:1px solid #EEEEEA; display:flex; align-items:center; padding:0 8px; gap:4px;">
                 <span style="width:7px;height:7px;border-radius:50%;background:#FF5F57;display:block;"></span>
                 <span style="width:7px;height:7px;border-radius:50%;background:#FEBC2E;display:block;"></span>
@@ -74,7 +74,7 @@ import BgWords from './BgWords.astro';
             </div>
 
             <!-- Screen 1 (FRONT) — Showcase site -->
-            <div class="screen screen-front" style="position:absolute; width:80%; left:50%; bottom:0; transform:translateX(-50%); z-index:3; background:white; border-radius:10px; border:1px solid rgba(0,0,0,0.08); box-shadow:0 6px 20px rgba(0,0,0,0.07); overflow:hidden; transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
+            <div class="screen screen-front" style="position:absolute; width:80%; left:50%; bottom:0; transform:translateX(-50%); z-index:3; background:white; border-radius:10px; border:1px solid rgba(0,0,0,0.08); box-shadow:0 6px 20px rgba(0,0,0,0.07); overflow:hidden; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94),opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94),box-shadow 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
               <div style="height:28px; background:#F5F5F0; border-bottom:1px solid #EEEEEA; display:flex; align-items:center; padding:0 10px; gap:5px;">
                 <span style="width:8px;height:8px;border-radius:50%;background:#FF5F57;display:block;"></span>
                 <span style="width:8px;height:8px;border-radius:50%;background:#FEBC2E;display:block;"></span>
@@ -104,9 +104,9 @@ import BgWords from './BgWords.astro';
             </div>
 
             <!-- Floating labels (visible on hover) -->
-            <span class="screen-label" style="position:absolute;bottom:-8px;left:12%;font-size:10px;font-weight:600;color:#2563EB;background:#EFF6FF;padding:3px 10px;border-radius:5px;opacity:0;transform:translateY(4px);transition:all 0.4s ease;pointer-events:none;z-index:10;">Site vitrine</span>
-            <span class="screen-label" style="position:absolute;bottom:16px;right:2%;font-size:10px;font-weight:600;color:#2563EB;background:#EFF6FF;padding:3px 10px;border-radius:5px;opacity:0;transform:translateY(4px);transition:all 0.4s ease 0.1s;pointer-events:none;z-index:10;">E-commerce</span>
-            <span class="screen-label" style="position:absolute;top:8px;right:0%;font-size:10px;font-weight:600;color:#2563EB;background:#EFF6FF;padding:3px 10px;border-radius:5px;opacity:0;transform:translateY(4px);transition:all 0.4s ease 0.2s;pointer-events:none;z-index:10;">Landing page</span>
+            <span class="screen-label" style="position:absolute;bottom:-8px;left:12%;font-size:10px;font-weight:600;color:#2563EB;background:#EFF6FF;padding:3px 10px;border-radius:5px;opacity:0;transform:translateY(4px);transition:transform 0.4s ease,opacity 0.4s ease;pointer-events:none;z-index:10;">Site vitrine</span>
+            <span class="screen-label" style="position:absolute;bottom:16px;right:2%;font-size:10px;font-weight:600;color:#2563EB;background:#EFF6FF;padding:3px 10px;border-radius:5px;opacity:0;transform:translateY(4px);transition:transform 0.4s ease 0.1s,opacity 0.4s ease 0.1s;pointer-events:none;z-index:10;">E-commerce</span>
+            <span class="screen-label" style="position:absolute;top:8px;right:0%;font-size:10px;font-weight:600;color:#2563EB;background:#EFF6FF;padding:3px 10px;border-radius:5px;opacity:0;transform:translateY(4px);transition:transform 0.4s ease 0.2s,opacity 0.4s ease 0.2s;pointer-events:none;z-index:10;">Landing page</span>
           </div>
 
           <div class="card-tags">
@@ -477,7 +477,7 @@ import BgWords from './BgWords.astro';
     border-radius: 100px;
     text-decoration: none;
     border: none;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
 
   .cta-btn-primary:hover {
@@ -498,7 +498,7 @@ import BgWords from './BgWords.astro';
     border-radius: 100px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
 
   .cta-btn-outline:hover {
@@ -709,7 +709,6 @@ import BgWords from './BgWords.astro';
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -719,7 +718,7 @@ import BgWords from './BgWords.astro';
       { y: 40, opacity: 0 },
       {
         y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
-        scrollTrigger: { trigger: ".services-grid", start: "top 80%" },
+        scrollTrigger: { trigger: ".services-grid", start: "top 80%", once: true },
       }
     );
 
@@ -729,7 +728,7 @@ import BgWords from './BgWords.astro';
       {
         y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
         stagger: 0.15, delay: 0.2,
-        scrollTrigger: { trigger: ".services-grid", start: "top 80%" },
+        scrollTrigger: { trigger: ".services-grid", start: "top 80%", once: true },
       }
     );
   }

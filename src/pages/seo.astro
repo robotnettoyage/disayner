@@ -1762,7 +1762,6 @@ const serviceSchema = {
   // Stat counters (S2)
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
 
   document.querySelectorAll<HTMLElement>('.sp-stat-num').forEach((el) => {
     const target = parseFloat(el.dataset.value ?? '0');

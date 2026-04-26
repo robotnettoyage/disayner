@@ -516,7 +516,6 @@ const breadcrumbSchema = {
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
 
   // ── Header entrance
   gsap.from(".cat-header-inner > *", {
@@ -529,18 +528,16 @@ const breadcrumbSchema = {
     clearProps: "transform",
   });
 
-  // ── Cards stagger on scroll
-  gsap.from(".cat-card", {
-    y: 50,
-    opacity: 0,
-    duration: 0.7,
-    stagger: 0.1,
-    ease: "power3.out",
-    clearProps: "transform",
-    scrollTrigger: {
-      trigger: ".cat-grid",
-      start: "top 82%",
-    },
+  // ── Cards reveal as they enter viewport (batch)
+  ScrollTrigger.batch(".cat-card", {
+    start: "top 85%",
+    once: true,
+    onEnter: (batch) =>
+      gsap.fromTo(
+        batch,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: "power3.out", clearProps: "transform" }
+      ),
   });
 
   // ── CTA entrance
@@ -554,6 +551,7 @@ const breadcrumbSchema = {
     scrollTrigger: {
       trigger: ".cat-cta-section",
       start: "top 70%",
+      once: true,
     },
   });
 </script>

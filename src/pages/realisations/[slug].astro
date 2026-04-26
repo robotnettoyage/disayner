@@ -1416,7 +1416,6 @@ const breadcrumbSchema = {
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
 
   // ── Hero entrance
   gsap.fromTo(".cs-detail-hero-content > *",
@@ -1448,7 +1447,7 @@ const breadcrumbSchema = {
     if (!targets.length) return;
     gsap.fromTo(targets,
       { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: "power2.out", clearProps: "transform,opacity", scrollTrigger: { trigger: el, start: "top 82%" } }
+      { y: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: "power2.out", clearProps: "transform,opacity", scrollTrigger: { trigger: el, start: "top 82%", once: true } }
     );
   });
 
@@ -1462,7 +1461,7 @@ const breadcrumbSchema = {
       stagger: 0.08,
       ease: "power2.out",
       clearProps: "transform,opacity",
-      scrollTrigger: { trigger: ".cs-cta-section", start: "top 70%" },
+      scrollTrigger: { trigger: ".cs-cta-section", start: "top 70%", once: true },
     }
   );
 
