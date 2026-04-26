@@ -1,18 +1,194 @@
-# Old blog category URLs → new structure
-/blog/categorie/creation-site  /blog/creation-site  301
-/blog/categorie/seo            /blog/seo            301
-/blog/categorie/ecommerce      /blog/ecommerce      301
-/blog/categorie/performance    /blog/performance    301
-/blog/categorie/design-ux      /blog/design-ux      301
+# ============================================
+# DISAYNER — Migration WordPress → Cloudflare Pages
+# 301 permanent redirects for SEO preservation
+# ============================================
 
-# Old flat blog article URLs → nested under category silos
-/blog/combien-coute-site-web                  /blog/creation-site/combien-coute-site-web                  301
-/blog/wordpress-shopify-webflow-quel-cms-choisir  /blog/creation-site/wordpress-shopify-webflow-quel-cms-choisir  301
-/blog/seo-local-premiere-page-google          /blog/seo/seo-local-premiere-page-google                    301
-/blog/geo-optimiser-site-moteurs-recherche-ia /blog/seo/geo-optimiser-site-moteurs-recherche-ia           301
-/blog/creer-boutique-shopify-rentable-guide   /blog/ecommerce/creer-boutique-shopify-rentable-guide       301
-/blog/fiche-produit-ecommerce-erreurs-conversions  /blog/ecommerce/fiche-produit-ecommerce-erreurs-conversions  301
-/blog/core-web-vitals-guide-lighthouse-95     /blog/performance/core-web-vitals-guide-lighthouse-95       301
+# ----- PAGES PRINCIPALES -----
+/services /creation-site 301
+/creation-site /creation-site 301
+/refonte-site /creation-site 301
+/referencement-seo /seo 301
+/maintenance-site-web /maintenance 301
+/a-propos / 301
+/contact /contact 301
+/formulaire /contact 301
+/rdv-celio /contact 301
+/compresseur-webp /outils/compresseur-webp 301
+/politique-de-confidentialite /confidentialite 301
+/mentions-legales /mentions-legales 301
+
+# ----- PACKS & ABONNEMENTS -----
+/contact-pack-essentiel /contact 301
+/contact-pack-pro /contact 301
+/contact-pack-performance /contact 301
+/abonnement-pack-essentiel /maintenance 301
+/abonnement-pack-pro /maintenance 301
+/abonnement-pack-performance /maintenance 301
+
+# ----- AFFILIATION -----
+/conditions-daffilation / 301
+/affiliation / 301
+
+# ----- AUTHOR -----
+/author/elec-clicgmail-com / 301
+
+# ----- CATÉGORIES -----
+/categorie /blog 301
+/categorie/cms-outils /blog/creation-site 301
+/categorie/creation-site /blog/creation-site 301
+/categorie/conversion-tunnel-vente /blog/design-ux 301
+/categorie/design-ux-ui /blog/design-ux 301
+/categorie/guides-pratiques /blog 301
+/categorie/tendances-web /blog/design-ux 301
+/categorie/performance-maintenance /blog/performance 301
+/categorie/seo /blog/seo 301
+/categorie/strategie-digitale /blog 301
+
+# ----- NEW BLOG FLAT URL → NEW SILO STRUCTURE -----
+/blog/combien-coute-site-web /blog/creation-site/combien-coute-site-web 301
+/blog/wordpress-shopify-webflow-quel-cms-choisir /blog/creation-site/wordpress-shopify-webflow-quel-cms-choisir 301
+/blog/seo-local-premiere-page-google /blog/seo/seo-local-premiere-page-google 301
+/blog/geo-optimiser-site-moteurs-recherche-ia /blog/seo/geo-optimiser-site-moteurs-recherche-ia 301
+/blog/creer-boutique-shopify-rentable-guide /blog/ecommerce/creer-boutique-shopify-rentable-guide 301
+/blog/fiche-produit-ecommerce-erreurs-conversions /blog/ecommerce/fiche-produit-ecommerce-erreurs-conversions 301
+/blog/core-web-vitals-guide-lighthouse-95 /blog/performance/core-web-vitals-guide-lighthouse-95 301
 /blog/optimisation-images-web-webp-compression /blog/performance/optimisation-images-web-webp-compression 301
-/blog/design-oriente-conversion-principes     /blog/design-ux/design-oriente-conversion-principes         301
+/blog/design-oriente-conversion-principes /blog/design-ux/design-oriente-conversion-principes 301
 /blog/responsive-design-2026-au-dela-mobile-first /blog/design-ux/responsive-design-2026-au-dela-mobile-first 301
+/blog/categorie/creation-site /blog/creation-site 301
+/blog/categorie/seo /blog/seo 301
+/blog/categorie/ecommerce /blog/ecommerce 301
+/blog/categorie/performance /blog/performance 301
+/blog/categorie/design-ux /blog/design-ux 301
+
+# ============================================
+# OLD WORDPRESS BLOG ARTICLES → NEW PAGES
+# ============================================
+
+# ----- ARTICLES → CRÉATION DE SITES -----
+/combien-coute-la-creation-dun-site-web-en-2025 /blog/creation-site/combien-coute-site-web 301
+/cout-creation-site-web-professionnel /blog/creation-site/combien-coute-site-web 301
+/wordpress-webflow-ou-shopify-que-choisir-en-2025 /blog/creation-site/wordpress-shopify-webflow-quel-cms-choisir 301
+/wordpress-webflow-ou-shopify-que-choisir /blog/creation-site/wordpress-shopify-webflow-quel-cms-choisir 301
+/les-etapes-essentielles-pour-creer-un-site-professionnel-en-2025 /blog/creation-site 301
+/les-etapes-essentielles-pour-creer-un-site-professionnel-en-2025-2 /blog/creation-site 301
+/creer-site-web-debutant /blog/creation-site 301
+/creer-son-site-seul-ou-passer-par-un-pro /blog/creation-site 301
+/pourquoi-eviter-les-templates-tout-faits /blog/creation-site 301
+/site-web-sur-mesure-vs-template /blog/creation-site 301
+/comment-bien-preparer-son-brief-avant-de-creer-un-site /blog/creation-site 301
+/cahier-des-charges-site-web-exemple /blog/creation-site 301
+/top-5-erreurs-a-eviter-pour-son-site-web /blog/creation-site 301
+/erreurs-a-eviter-lors-d-une-refonte-de-site /blog/creation-site 301
+/delai-creation-site-web /blog/creation-site 301
+/devis-site-internet-freelance /blog/creation-site 301
+/site-vitrine-ou-e-commerce-lequel-choisir-pour-demarrer /blog/creation-site 301
+/site-vitrine-vs-site-e-commerce /blog/creation-site 301
+/site-one-page-vs-multi-pages /blog/creation-site 301
+/pages-indispensables-site-professionnel /blog/creation-site 301
+/choisir-nom-de-domaine /blog/creation-site 301
+/difference-hebergement-cms /blog/creation-site 301
+/hebergement-comment-choisir-le-bon-plan-pour-vos-besoins /blog/creation-site 301
+/installer-wordpress-manuellement /blog/creation-site 301
+/outils-no-code /blog/creation-site 301
+/comment-creer-un-site-sans-code-avec-webflow /blog/creation-site 301
+/shopify-les-bases-pour-lancer-une-boutique-en-ligne /blog/ecommerce/creer-boutique-shopify-rentable-guide 301
+/les-plugins-essentiels-pour-wordpress-sans-alourdir-le-site /blog/creation-site 301
+/comparatif-elementor-vs-divi-quel-builder-choisir-en-2025 /blog/creation-site 301
+/integrer-blog-creation-site /blog/creation-site 301
+/ajouter-google-analytics-site /blog/creation-site 301
+/ecrire-page-a-propos-confiance /blog/creation-site 301
+/checklist-lancement-site-web /blog/creation-site 301
+/notre-processus-developpement-web /blog/creation-site 301
+/migrer-un-site /blog/creation-site 301
+/gerer-les-redirections-wordpress /blog/creation-site 301
+/creer-un-site-multilingue /blog/creation-site 301
+/site-multilingue-pieges-a-eviter /blog/creation-site 301
+/structurer-une-page-daccueil-efficace-en-2025 /blog/creation-site 301
+/ce-quattendent-vos-visiteurs-dun-site-web-en-2025 /blog/creation-site 301
+/creation-site-web-pour-artisans /creation-site 301
+/creation-site-web-pour-independants /creation-site 301
+/creation-site-web-pour-tpe-pme /creation-site 301
+
+# ----- ARTICLES → SEO -----
+/seo-2025-les-bases-a-connaitre-pour-optimiser-votre-visibilite-en-ligne /blog/seo 301
+/comment-structurer-vos-pages-pour-le-referencement-en-2025 /blog/seo 301
+/quest-ce-que-le-seo-technique-et-pourquoi-cest-important /blog/seo 301
+/les-erreurs-seo-les-plus-frequentes-sur-wordpress /blog/seo 301
+/faut-il-encore-miser-sur-les-mots-cles-en-seo-en-2025 /blog/seo 301
+/pourquoi-un-site-rapide-ameliore-votre-referencement-en-2025 /blog/performance/core-web-vitals-guide-lighthouse-95 301
+/comment-ameliorer-son-seo-local-avec-google-business-en-2025 /blog/seo/seo-local-premiere-page-google 301
+/seo-local-google-maps /blog/seo/seo-local-premiere-page-google 301
+/blogging-et-seo-comment-choisir-ses-sujets-en-2025 /blog/seo 301
+/seo-vs-sea-que-choisir-pour-etre-visible-en-2025 /blog/seo 301
+/balises-title-et-meta-description-guide-express-pour-optimiser-votre-seo /blog/seo 301
+/google-search-console-comment-lutiliser-pour-son-seo /blog/seo 301
+
+# ----- ARTICLES → E-COMMERCE -----
+/inspirer-confiance-site-ecommerce /blog/ecommerce/fiche-produit-ecommerce-erreurs-conversions 301
+/5-exemples-de-pages-produits-au-design-inspirant /blog/ecommerce/fiche-produit-ecommerce-erreurs-conversions 301
+/tendances-ecommerce-2025 /blog/ecommerce 301
+
+# ----- ARTICLES → PERFORMANCE -----
+/pourquoi-la-vitesse-de-chargement-est-cruciale-pour-votre-site /blog/performance/core-web-vitals-guide-lighthouse-95 301
+/comment-tester-et-ameliorer-les-performances-de-votre-site /blog/performance/core-web-vitals-guide-lighthouse-95 301
+/top-plugins-pour-booster-la-vitesse-sur-wordpress /blog/performance/core-web-vitals-guide-lighthouse-95 301
+/comment-faire-un-audit-technique-rapide /blog/performance/core-web-vitals-guide-lighthouse-95 301
+/gerer-images-web-format-poids-seo /blog/performance/optimisation-images-web-webp-compression 301
+/faut-il-faire-des-mises-a-jour-regulieres /blog/performance 301
+/les-risques-dun-site-non-maintenu /blog/performance 301
+/pourquoi-deleguer-la-maintenance-de-son-site-web /maintenance 301
+/comment-securiser-son-site-contre-les-cyberattaques /blog/performance 301
+/gerer-un-site-wordpress-sans-ralentir-votre-business /blog/performance 301
+
+# ----- ARTICLES → DESIGN & UX -----
+/webdesign-2025-styles-a-adopter /blog/design-ux 301
+/typographie-web-2025 /blog/design-ux 301
+/minimalisme-vs-maximalisme-conversion /blog/design-ux 301
+/dark-mode-bonne-idee-ou-non /blog/design-ux 301
+/animations-ui-legeres-site-web /blog/design-ux 301
+/palettes-couleurs-site-professionnel /blog/design-ux 301
+/plus-beaux-sites-webflow /blog/design-ux 301
+/micro-effets-site-vitrine /blog/design-ux 301
+/micro-interactions-petits-details-grand-impact /blog/design-ux 301
+/micro-interactions-ux /blog/design-ux 301
+/mobile-first-2025 /blog/design-ux/responsive-design-2026-au-dela-mobile-first 301
+/design-mobile-first-indispensable /blog/design-ux/responsive-design-2026-au-dela-mobile-first 301
+/responsive-design-les-regles-a-ne-jamais-ignorer /blog/design-ux/responsive-design-2026-au-dela-mobile-first 301
+/comment-utiliser-la-psychologie-des-couleurs-sur-votre-site /blog/design-ux 301
+/psychologie-des-couleurs-web /blog/design-ux 301
+/hierarchie-visuelle-web /blog/design-ux/design-oriente-conversion-principes 301
+/le-role-de-la-hierarchie-visuelle-dans-la-conversion /blog/design-ux/design-oriente-conversion-principes 301
+/design-oriente-conversion /blog/design-ux/design-oriente-conversion-principes 301
+/ux-writing /blog/design-ux 301
+/ux-writing-lart-decrire-pour-guider-vos-utilisateurs /blog/design-ux 301
+/pourquoi-un-bon-design-ne-suffit-pas-sans-bonne-ux /blog/design-ux/design-oriente-conversion-principes 301
+/ux-pour-site-vitrine /blog/design-ux/design-oriente-conversion-principes 301
+/quels-elements-placer-dans-le-header-dun-site /blog/design-ux 301
+/comment-creer-une-navigation-fluide-pour-vos-visiteurs /blog/design-ux 301
+/importance-arborescence-conception /blog/design-ux 301
+/blog-site-professionnel-avantages-limites /blog/design-ux 301
+
+# ----- ARTICLES → CONVERSION / CRO -----
+/comment-transformer-vos-visiteurs-en-clients /blog/design-ux/design-oriente-conversion-principes 301
+/transformer-visiteurs-en-prospects /blog/design-ux/design-oriente-conversion-principes 301
+/pourquoi-votre-site-ne-convertit-pas-et-comment-y-remedier /blog/design-ux/design-oriente-conversion-principes 301
+/les-5-elements-essentiels-dune-landing-page-efficace /blog/design-ux/design-oriente-conversion-principes 301
+/formulaires-les-optimisations-qui-augmentent-vos-leads /blog/design-ux/design-oriente-conversion-principes 301
+/limportance-des-appels-a-laction-bien-places /blog/design-ux/design-oriente-conversion-principes 301
+/page-daccueil-structure-type-pour-convertir /blog/design-ux/design-oriente-conversion-principes 301
+/cro-quest-ce-que-cest-et-pourquoi-lutiliser /blog/design-ux/design-oriente-conversion-principes 301
+/analyse-de-heatmaps-comprendre-le-comportement-utilisateur /blog/design-ux/design-oriente-conversion-principes 301
+/optimiser-votre-tunnel-de-reservation-ou-prise-de-contact /blog/design-ux/design-oriente-conversion-principes 301
+
+# ----- ARTICLES → STRATÉGIE DIGITALE (pas de silo direct) -----
+/pourquoi-un-bon-site-web-ne-suffit-pas-sans-strategie-digitale /blog 301
+/comment-attirer-ses-premiers-clients-en-ligne /blog 301
+/reseaux-sociaux-vs-site-web-ou-concentrer-vos-efforts /blog 301
+/branding-digital-limpact-dun-site-bien-pense /blog 301
+/les-etapes-dun-bon-lancement-digital-en-2025 /blog 301
+/pourquoi-votre-presence-en-ligne-doit-etre-coherente /blog 301
+/site-seo-emailing-la-strategie-gagnante /blog 301
+/les-meilleurs-leviers-dacquisition-pour-un-independant /blog 301
+/comment-mesurer-le-retour-sur-investissement-dun-site /blog 301
+/automatiser-une-partie-de-votre-marketing-avec-des-outils-simples /blog 301
