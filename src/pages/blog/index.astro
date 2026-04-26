@@ -805,6 +805,7 @@ const pageSchema = {
     stagger: 0.12,
     ease: "power3.out",
     delay: 0.15,
+    clearProps: "transform",
   });
 
   // ── Featured card entrance
@@ -813,6 +814,7 @@ const pageSchema = {
     opacity: 0,
     duration: 0.6,
     ease: "power3.out",
+    clearProps: "transform",
     scrollTrigger: {
       trigger: ".blog-featured-section",
       start: "top 85%",
@@ -826,6 +828,7 @@ const pageSchema = {
     duration: 0.7,
     stagger: 0.1,
     ease: "power3.out",
+    clearProps: "transform",
     scrollTrigger: {
       trigger: ".blog-grid",
       start: "top 82%",
@@ -839,6 +842,7 @@ const pageSchema = {
     duration: 0.5,
     stagger: 0.08,
     ease: "power2.out",
+    clearProps: "transform",
     scrollTrigger: {
       trigger: ".blog-categories-grid",
       start: "top 80%",

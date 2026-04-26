@@ -1,0 +1,252 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const updatedDate = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Layout
+  title="Politique de confidentialité | DISAYNER"
+  description="Politique de confidentialité de DISAYNER — collecte, utilisation et protection de vos données personnelles dans le respect du RGPD."
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+    <section class="legal-hero" aria-label="Politique de confidentialité">
+      <div class="legal-inner">
+        <p class="legal-eyebrow">RGPD &amp; vie privée</p>
+        <h1 class="legal-title">Politique de <em class="font-serif">confidentialité</em></h1>
+        <p class="legal-updated">Dernière mise à jour : {updatedDate}</p>
+      </div>
+    </section>
+
+    <section class="legal-section">
+      <div class="legal-container">
+
+        <article class="legal-block">
+          <h2>Responsable du traitement</h2>
+          <p>Le responsable du traitement des données collectées sur ce site est :</p>
+          <ul>
+            <li><strong>Célio Fabiano (DISAYNER)</strong></li>
+            <li>Micro-entrepreneur — SIREN 934 924 564</li>
+            <li>Haute-Savoie, France</li>
+            <li>Email : <a href="mailto:contact@disayner.com">contact@disayner.com</a></li>
+          </ul>
+        </article>
+
+        <article class="legal-block">
+          <h2>Données collectées</h2>
+          <p>Nous collectons uniquement les données que vous nous transmettez volontairement via notre formulaire de contact :</p>
+          <ul>
+            <li><strong>Nom et prénom</strong></li>
+            <li><strong>Adresse email</strong></li>
+            <li><strong>Numéro de téléphone</strong> (optionnel)</li>
+            <li><strong>Nom de l'entreprise</strong> (optionnel)</li>
+            <li><strong>URL du site web</strong> (optionnel)</li>
+            <li><strong>Message libre</strong> décrivant votre projet</li>
+          </ul>
+          <p>Aucune donnée n'est collectée à votre insu sur le site.</p>
+        </article>
+
+        <article class="legal-block">
+          <h2>Finalités du traitement</h2>
+          <p>Vos données sont traitées exclusivement pour :</p>
+          <ul>
+            <li>Répondre à vos demandes de contact, devis ou information</li>
+            <li>Vous recontacter dans le cadre d'un projet potentiel</li>
+            <li>Constituer un dossier client si une collaboration est engagée</li>
+          </ul>
+          <p>Aucune donnée n'est utilisée à des fins commerciales, publicitaires ou cédée à des tiers.</p>
+        </article>
+
+        <article class="legal-block">
+          <h2>Base légale</h2>
+          <p>Le traitement de vos données repose sur votre <strong>consentement</strong>, matérialisé par l'envoi volontaire du formulaire de contact (article 6.1.a du RGPD).</p>
+        </article>
+
+        <article class="legal-block">
+          <h2>Durée de conservation</h2>
+          <p>Vos données sont conservées <strong>3 ans maximum</strong> à compter de notre dernier échange. Au-delà, elles sont automatiquement supprimées, sauf si une relation commerciale est en cours (auquel cas les obligations légales comptables s'appliquent).</p>
+        </article>
+
+        <article class="legal-block">
+          <h2>Vos droits</h2>
+          <p>Conformément au RGPD et à la loi Informatique et Libertés, vous disposez des droits suivants :</p>
+          <ul>
+            <li><strong>Droit d'accès</strong> : obtenir une copie des données vous concernant</li>
+            <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
+            <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
+            <li><strong>Droit d'opposition</strong> : vous opposer au traitement</li>
+            <li><strong>Droit à la portabilité</strong> : récupérer vos données dans un format réutilisable</li>
+            <li><strong>Droit de réclamation</strong> auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>)</li>
+          </ul>
+          <p>Pour exercer vos droits, contactez-nous à <a href="mailto:contact@disayner.com">contact@disayner.com</a>. Une réponse vous sera apportée sous 30 jours maximum.</p>
+        </article>
+
+        <article class="legal-block">
+          <h2>Cookies</h2>
+          <p>Le site utilise uniquement des <strong>cookies techniques</strong> nécessaires à son bon fonctionnement (préférences de navigation, sécurité). Ces cookies n'exigent pas votre consentement préalable.</p>
+          <p>Si Google Analytics est utilisé, l'anonymisation des adresses IP est activée et aucun cookie de suivi tiers n'est déposé sans votre consentement explicite.</p>
+        </article>
+
+        <article class="legal-block">
+          <h2>Sous-traitants et hébergement</h2>
+          <p>Nous faisons appel à des prestataires techniques pour le bon fonctionnement du site :</p>
+          <ul>
+            <li><strong>Hébergement :</strong> Cloudflare, Inc. (USA) — données protégées par le Data Privacy Framework</li>
+            <li><strong>Formulaire de contact :</strong> Formspree (<a href="https://formspree.io" target="_blank" rel="noopener noreferrer">formspree.io</a>) — données hébergées aux USA avec garanties RGPD contractuelles</li>
+            <li><strong>Prise de rendez-vous :</strong> Cal.com — hébergé en Europe</li>
+          </ul>
+          <p>Tous nos sous-traitants présentent des garanties suffisantes quant à la protection de vos données.</p>
+        </article>
+
+        <article class="legal-block">
+          <h2>Sécurité</h2>
+          <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, altération ou perte (chiffrement HTTPS, accès restreint aux données, sauvegardes régulières).</p>
+        </article>
+
+        <article class="legal-block">
+          <h2>Modifications</h2>
+          <p>La présente politique de confidentialité peut être mise à jour à tout moment pour refléter des évolutions légales ou techniques. La date de dernière mise à jour figure en haut de cette page.</p>
+        </article>
+
+        <article class="legal-block">
+          <h2>Contact</h2>
+          <p>Pour toute question relative à la protection de vos données personnelles, contactez-nous à <a href="mailto:contact@disayner.com">contact@disayner.com</a>.</p>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .legal-hero {
+    padding: 9rem 2rem 3rem;
+    background: var(--color-background);
+    text-align: center;
+  }
+
+  .legal-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .legal-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .legal-title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+  }
+
+  .legal-title em {
+    font-style: italic;
+    color: var(--color-accent);
+    font-weight: 400;
+  }
+
+  .legal-updated {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  .legal-section {
+    padding: 4rem 2rem 6rem;
+    background: var(--color-background);
+  }
+
+  .legal-container {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .legal-block {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+
+  .legal-block h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+  }
+
+  .legal-block p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-block p:last-child { margin-bottom: 0; }
+
+  .legal-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .legal-block li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .legal-block li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+
+  .legal-block strong { color: var(--color-text-primary); font-weight: 600; }
+
+  .legal-block a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .legal-block a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .legal-hero { padding: 8rem 1.25rem 2rem; }
+    .legal-section { padding: 2rem 1.25rem 4rem; }
+    .legal-block { padding: 1.5rem; }
+  }
+</style>

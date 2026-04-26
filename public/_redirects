@@ -1,0 +1,18 @@
+# Old blog category URLs → new structure
+/blog/categorie/creation-site  /blog/creation-site  301
+/blog/categorie/seo            /blog/seo            301
+/blog/categorie/ecommerce      /blog/ecommerce      301
+/blog/categorie/performance    /blog/performance    301
+/blog/categorie/design-ux      /blog/design-ux      301
+
+# Old flat blog article URLs → nested under category silos
+/blog/combien-coute-site-web                  /blog/creation-site/combien-coute-site-web                  301
+/blog/wordpress-shopify-webflow-quel-cms-choisir  /blog/creation-site/wordpress-shopify-webflow-quel-cms-choisir  301
+/blog/seo-local-premiere-page-google          /blog/seo/seo-local-premiere-page-google                    301
+/blog/geo-optimiser-site-moteurs-recherche-ia /blog/seo/geo-optimiser-site-moteurs-recherche-ia           301
+/blog/creer-boutique-shopify-rentable-guide   /blog/ecommerce/creer-boutique-shopify-rentable-guide       301
+/blog/fiche-produit-ecommerce-erreurs-conversions  /blog/ecommerce/fiche-produit-ecommerce-erreurs-conversions  301
+/blog/core-web-vitals-guide-lighthouse-95     /blog/performance/core-web-vitals-guide-lighthouse-95       301
+/blog/optimisation-images-web-webp-compression /blog/performance/optimisation-images-web-webp-compression 301
+/blog/design-oriente-conversion-principes     /blog/design-ux/design-oriente-conversion-principes         301
+/blog/responsive-design-2026-au-dela-mobile-first /blog/design-ux/responsive-design-2026-au-dela-mobile-first 301
