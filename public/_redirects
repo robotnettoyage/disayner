@@ -5,17 +5,14 @@
 
 # ----- PAGES PRINCIPALES -----
 /services /creation-site 301
-/creation-site /creation-site 301
 /refonte-site /creation-site 301
 /referencement-seo /seo 301
 /maintenance-site-web /maintenance 301
 /a-propos / 301
-/contact /contact 301
 /formulaire /contact 301
 /rdv-celio /contact 301
 /compresseur-webp /outils/compresseur-webp 301
 /politique-de-confidentialite /confidentialite 301
-/mentions-legales /mentions-legales 301
 
 # ----- PACKS & ABONNEMENTS -----
 /contact-pack-essentiel /contact 301
