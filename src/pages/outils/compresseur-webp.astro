@@ -78,6 +78,18 @@ const benefits = [
 
   <Navbar />
 
+  <!-- Full-page drag overlay (active when user drags files anywhere on the page) -->
+  <div class="wc-page-overlay" id="wcPageOverlay" aria-hidden="true">
+    <div class="wc-page-overlay-inner">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <p>Déposez vos images ici</p>
+    </div>
+  </div>
+
   <main id="main-content">
 
     <!-- ═══════════════════════════════════════════════════════════════════ -->
@@ -139,16 +151,40 @@ const benefits = [
           <!-- STATE 1: Drop Zone -->
           <div class="wc-dropzone" id="wcDropzone">
             <div class="wc-dropzone-content">
-              <svg class="wc-drop-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="wc-drop-icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                 <polyline points="17 8 12 3 7 8"/>
                 <line x1="12" y1="3" x2="12" y2="15"/>
               </svg>
-              <h3>Glissez vos images ici</h3>
-              <p>ou <button type="button" class="wc-browse-btn" id="wcBrowseBtn">parcourez vos fichiers</button></p>
+              <h3 id="wcDropTitle">Glissez vos images ici</h3>
+              <p id="wcDropSubtitle">ou <button type="button" class="wc-browse-btn" id="wcBrowseBtn">parcourez vos fichiers</button></p>
               <p class="wc-drop-info">PNG, JPG, JPEG, GIF, BMP, TIFF — Max 50 Mo par fichier — Jusqu'à 20 images</p>
+              <p class="wc-drop-privacy">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Vos images ne quittent jamais votre navigateur
+              </p>
             </div>
             <input type="file" id="wcFileInput" multiple accept="image/png,image/jpeg,image/gif,image/bmp,image/tiff,image/webp" hidden />
+          </div>
+
+          <!-- Hidden input for "+ Ajouter" (append mode) -->
+          <input type="file" id="wcFileInputAdd" multiple accept="image/png,image/jpeg,image/gif,image/bmp,image/tiff,image/webp" hidden />
+
+          <!-- Toast container -->
+          <div class="wc-toast-container" id="wcToastContainer" aria-live="polite" aria-atomic="true"></div>
+
+          <!-- Progress overlay (during compression) -->
+          <div class="wc-progress" id="wcProgress" style="display:none" role="status" aria-live="polite">
+            <div class="wc-progress-card">
+              <div class="wc-progress-spinner">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+              </div>
+              <div class="wc-progress-content">
+                <p class="wc-progress-title" id="wcProgressTitle">Compression en cours...</p>
+                <p class="wc-progress-subtitle" id="wcProgressSubtitle">0 / 0</p>
+                <div class="wc-progress-bar"><div class="wc-progress-fill" id="wcProgressFill" style="width:0%"></div></div>
+              </div>
+            </div>
           </div>
 
           <!-- STATE 2: Settings + Preview -->
@@ -177,8 +213,14 @@ const benefits = [
           <!-- Image list -->
           <div class="wc-image-list" id="wcImageList" style="display:none">
             <div class="wc-list-header">
-              <span class="wc-list-count" id="wcListCount">0 images</span>
-              <button type="button" class="wc-btn-clear-all" id="wcClearAll">Tout supprimer</button>
+              <span class="wc-list-count" id="wcListCount">0 images &middot; 0 Mo</span>
+              <div class="wc-list-actions">
+                <button type="button" class="wc-btn-add" id="wcAddMore">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                  Ajouter
+                </button>
+                <button type="button" class="wc-btn-clear-all" id="wcClearAll">Tout supprimer</button>
+              </div>
             </div>
             <div class="wc-image-table">
               <div class="wc-table-head">
@@ -205,7 +247,11 @@ const benefits = [
             <div class="wc-results-summary">
               <div class="wc-result-stat">
                 <span class="wc-stat-number" id="wcTotalSaved">0%</span>
-                <span class="wc-stat-label">Réduction moyenne</span>
+                <span class="wc-stat-label">Réduction</span>
+              </div>
+              <div class="wc-result-stat">
+                <span class="wc-stat-number" id="wcMbSaved">0 Mo</span>
+                <span class="wc-stat-label">Économisés</span>
               </div>
               <div class="wc-result-stat">
                 <span class="wc-stat-number" id="wcTotalBefore">0 Mo</span>
@@ -233,10 +279,10 @@ const benefits = [
               </div>
             </div>
 
-            <div class="wc-actions">
-              <button type="button" class="wc-btn-compress" id="wcDownloadAllBtn">
+            <div class="wc-actions wc-actions-results">
+              <button type="button" class="wc-btn-compress wc-btn-compress--lg" id="wcDownloadAllBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Télécharger tout (.zip)
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               </button>
               <button type="button" class="wc-btn-reset" id="wcNewBatchBtn">Compresser d'autres images</button>
             </div>
@@ -504,7 +550,11 @@ const benefits = [
   .wc-dropzone {
     border: 2px dashed var(--color-border);
     border-radius: 20px;
-    padding: 60px 40px;
+    padding: 48px 40px;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
@@ -517,11 +567,13 @@ const benefits = [
     background: var(--color-accent-soft);
   }
 
+  .wc-dropzone-content { width: 100%; }
+
   .wc-dropzone h3 {
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: var(--color-text-primary);
-    margin: 16px 0 8px;
+    margin: 18px 0 8px;
   }
 
   .wc-dropzone p {
@@ -543,7 +595,158 @@ const benefits = [
   .wc-drop-info {
     font-size: 12px !important;
     color: #B0B0A8 !important;
-    margin-top: 12px;
+    margin-top: 16px;
+  }
+
+  .wc-drop-privacy {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px !important;
+    color: var(--color-accent) !important;
+    margin-top: 18px !important;
+    font-weight: 500;
+    padding: 6px 12px;
+    background: var(--color-accent-soft);
+    border-radius: 100px;
+  }
+
+  /* Toast */
+  .wc-toast-container {
+    position: fixed;
+    top: 90px;
+    right: 16px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: calc(100vw - 32px);
+    pointer-events: none;
+  }
+
+  .wc-toast {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid #d97706;
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 10px 32px rgba(0,0,0,0.08);
+    font-size: 13px;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+    max-width: 360px;
+    pointer-events: auto;
+    animation: wc-toast-in 0.3s ease;
+  }
+
+  .wc-toast--error { border-left-color: #ef4444; }
+  .wc-toast.wc-toast--leaving { animation: wc-toast-out 0.25s ease forwards; }
+
+  .wc-toast-icon { flex-shrink: 0; color: #d97706; margin-top: 1px; }
+  .wc-toast--error .wc-toast-icon { color: #ef4444; }
+
+  .wc-toast-close { background: none; border: none; cursor: pointer; color: var(--color-text-secondary); padding: 0; margin-left: 4px; flex-shrink: 0; }
+  .wc-toast-close:hover { color: var(--color-text-primary); }
+
+  @keyframes wc-toast-in {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes wc-toast-out {
+    to { opacity: 0; transform: translateX(20px); }
+  }
+
+  /* Progress overlay */
+  .wc-progress {
+    margin-bottom: 24px;
+  }
+
+  .wc-progress-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--color-accent-soft);
+    border: 1px solid rgba(37,99,235,0.15);
+    border-radius: 16px;
+  }
+
+  .wc-progress-spinner {
+    flex-shrink: 0;
+    color: var(--color-accent);
+    display: flex;
+  }
+  .wc-progress-spinner svg { animation: spin 1s linear infinite; }
+
+  .wc-progress-content { flex: 1; min-width: 0; }
+
+  .wc-progress-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .wc-progress-subtitle {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin: 0 0 8px;
+  }
+
+  .wc-progress-bar {
+    height: 6px;
+    background: rgba(37,99,235,0.15);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .wc-progress-fill {
+    height: 100%;
+    background: var(--color-accent);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+
+  /* Full-page drag overlay */
+  .wc-page-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(37, 99, 235, 0.08);
+    backdrop-filter: blur(2px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    pointer-events: none;
+  }
+  .wc-page-overlay.active { display: flex; }
+
+  .wc-page-overlay-inner {
+    width: 100%;
+    height: 100%;
+    border: 3px dashed var(--color-accent);
+    border-radius: 24px;
+    background: rgba(37, 99, 235, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--color-accent);
+  }
+
+  .wc-page-overlay-inner p {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
   }
 
   /* Settings */
@@ -596,8 +799,25 @@ const benefits = [
   /* Image list */
   .wc-image-list { margin-bottom: 24px; }
 
-  .wc-list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .wc-list-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
   .wc-list-count { font-size: 13px; font-weight: 600; color: var(--color-text-secondary); }
+  .wc-list-actions { display: flex; align-items: center; gap: 12px; }
+  .wc-btn-add {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--color-accent);
+    background: var(--color-accent-soft);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .wc-btn-add:hover { background: var(--color-accent); color: white; border-color: var(--color-accent); }
   .wc-btn-clear-all { font-size: 12px; color: #EF4444; background: none; border: none; cursor: pointer; font-family: inherit; font-weight: 500; }
   .wc-btn-clear-all:hover { text-decoration: underline; }
 
@@ -726,7 +946,7 @@ const benefits = [
   /* Results summary */
   .wc-results-summary {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1px;
     background: var(--color-border);
     border-radius: 16px;
@@ -736,7 +956,7 @@ const benefits = [
 
   .wc-result-stat {
     text-align: center;
-    padding: 28px 20px;
+    padding: 28px 16px;
     background: white;
   }
 
@@ -744,8 +964,44 @@ const benefits = [
     background: linear-gradient(135deg, var(--color-accent-soft), white);
   }
 
-  .wc-stat-number { display: block; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: var(--color-accent); line-height: 1; }
+  .wc-result-stat:nth-child(2) {
+    background: linear-gradient(135deg, rgba(34,197,94,0.08), white);
+  }
+  .wc-result-stat:nth-child(2) .wc-stat-number { color: #16a34a; }
+
+  .wc-stat-number { display: block; font-size: clamp(1.6rem, 3.5vw, 2.25rem); font-weight: 800; color: var(--color-accent); line-height: 1; }
   .wc-stat-label { font-size: 12px; color: var(--color-text-secondary); margin-top: 8px; font-weight: 500; }
+
+  /* Dominant primary CTA after compression */
+  .wc-actions-results {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+    max-width: 480px;
+    margin: 32px auto 0;
+  }
+
+  .wc-btn-compress--lg {
+    padding: 18px 32px;
+    font-size: 17px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(37,99,235,0.25);
+    width: 100%;
+    justify-content: center;
+  }
+  .wc-btn-compress--lg:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(37,99,235,0.35);
+  }
+  .wc-actions-results .wc-btn-reset {
+    align-self: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    border: none;
+    color: var(--color-text-secondary);
+    background: transparent;
+  }
+  .wc-actions-results .wc-btn-reset:hover { color: var(--color-accent); background: transparent; border-color: transparent; }
 
   .wc-results-list { margin-bottom: 0; }
 
@@ -994,8 +1250,9 @@ const benefits = [
 
   @media (max-width: 640px) {
     .wc-container { padding: 0 1.25rem; }
-    .wc-dropzone { padding: 40px 20px; }
-    .wc-results-summary { grid-template-columns: 1fr; }
+    .wc-dropzone { padding: 36px 20px; min-height: 200px; }
+    .wc-dropzone h3 { font-size: 1.15rem; }
+    .wc-results-summary { grid-template-columns: repeat(2, 1fr); }
     .wc-benefits-grid { grid-template-columns: 1fr; }
     .wc-col-format { display: none; }
     .wc-table-head, .wc-table-row { grid-template-columns: 1fr 70px 36px; padding: 10px 12px; }
@@ -1006,6 +1263,8 @@ const benefits = [
     .wc-actions { flex-direction: column; align-items: stretch; }
     .wc-btn-compress, .wc-btn-reset { width: 100%; justify-content: center; }
     .wc-cta-actions { flex-direction: column; align-items: center; }
+    .wc-toast-container { top: 80px; right: 12px; left: 12px; max-width: none; }
+    .wc-toast { max-width: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1019,6 +1278,7 @@ const benefits = [
     // ── DOM references ──────────────────────────────────────────────────
     const dropzone = document.getElementById('wcDropzone');
     const fileInput = document.getElementById('wcFileInput') as HTMLInputElement;
+    const fileInputAdd = document.getElementById('wcFileInputAdd') as HTMLInputElement;
     const browseBtn = document.getElementById('wcBrowseBtn');
     const settingsPanel = document.getElementById('wcSettings');
     const imageList = document.getElementById('wcImageList');
@@ -1032,10 +1292,27 @@ const benefits = [
     const downloadAllBtn = document.getElementById('wcDownloadAllBtn');
     const newBatchBtn = document.getElementById('wcNewBatchBtn');
     const clearAllBtn = document.getElementById('wcClearAll');
+    const addMoreBtn = document.getElementById('wcAddMore');
     const imageTableBody = document.getElementById('wcImageTableBody');
     const resultsTableBody = document.getElementById('wcResultsTableBody');
+    const dropTitle = document.getElementById('wcDropTitle');
+    const dropSubtitle = document.getElementById('wcDropSubtitle');
+    const toastContainer = document.getElementById('wcToastContainer');
+    const progressEl = document.getElementById('wcProgress');
+    const progressTitle = document.getElementById('wcProgressTitle');
+    const progressSubtitle = document.getElementById('wcProgressSubtitle');
+    const progressFill = document.getElementById('wcProgressFill');
+    const pageOverlay = document.getElementById('wcPageOverlay');
 
     if (!dropzone || !fileInput) return;
+
+    // ── Touch / mobile detection (Fix 8) ────────────────────────────────
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+      || ('ontouchstart' in window && navigator.maxTouchPoints > 0);
+    if (isTouchDevice && dropTitle && dropSubtitle) {
+      dropTitle.textContent = 'Touchez pour parcourir vos images';
+      dropSubtitle.style.display = 'none';
+    }
 
     // ── State ───────────────────────────────────────────────────────────
     let files: File[] = [];
@@ -1051,11 +1328,29 @@ const benefits = [
     }
 
     function showState(state: 'drop' | 'settings' | 'results') {
-      dropzone!.style.display = state === 'drop' ? 'block' : 'none';
+      dropzone!.style.display = state === 'drop' ? 'flex' : 'none';
       settingsPanel!.style.display = state === 'settings' ? 'block' : 'none';
       imageList!.style.display = state === 'settings' ? 'block' : 'none';
       actionsPanel!.style.display = state === 'settings' ? 'flex' : 'none';
       resultsPanel!.style.display = state === 'results' ? 'block' : 'none';
+    }
+
+    // ── Toast (Fix 2) ───────────────────────────────────────────────────
+    function showToast(message: string, type: 'warning' | 'error' = 'warning', duration = 6000) {
+      if (!toastContainer) return;
+      const toast = document.createElement('div');
+      toast.className = `wc-toast wc-toast--${type}`;
+      const iconWarning = '<svg class="wc-toast-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+      const iconError = '<svg class="wc-toast-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+      toast.innerHTML = `${type === 'error' ? iconError : iconWarning}<span>${message}</span><button type="button" class="wc-toast-close" aria-label="Fermer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`;
+      toastContainer.appendChild(toast);
+
+      const dismiss = () => {
+        toast.classList.add('wc-toast--leaving');
+        setTimeout(() => toast.remove(), 250);
+      };
+      toast.querySelector('.wc-toast-close')?.addEventListener('click', dismiss);
+      setTimeout(dismiss, duration);
     }
 
     // ── Drag & drop ─────────────────────────────────────────────────────
@@ -1083,6 +1378,13 @@ const benefits = [
       fileInput!.value = '';
     });
 
+    // "+ Ajouter" button — append to existing list (Fix 3)
+    addMoreBtn?.addEventListener('click', () => fileInputAdd?.click());
+    fileInputAdd?.addEventListener('change', () => {
+      handleFiles(fileInputAdd!.files);
+      fileInputAdd!.value = '';
+    });
+
     // ── Quality slider ──────────────────────────────────────────────────
     qualitySlider?.addEventListener('input', () => {
       quality = parseInt(qualitySlider.value);
@@ -1105,12 +1407,38 @@ const benefits = [
     function handleFiles(fileList: FileList | null | undefined) {
       if (!fileList || fileList.length === 0) return;
 
-      const newFiles = Array.from(fileList).filter(f => validTypes.includes(f.type) && f.size <= maxFileSize);
-      if (newFiles.length === 0) return;
+      const incoming = Array.from(fileList);
+      let rejectedFormat = 0;
+      let rejectedSize = 0;
+      const accepted: File[] = [];
 
-      files = [...files, ...newFiles].slice(0, 20);
-      showState('settings');
-      renderFileList();
+      incoming.forEach(f => {
+        if (!validTypes.includes(f.type)) rejectedFormat++;
+        else if (f.size > maxFileSize) rejectedSize++;
+        else accepted.push(f);
+      });
+
+      const remainingSlots = 20 - files.length;
+      const truncated = Math.max(0, accepted.length - remainingSlots);
+      const toAdd = accepted.slice(0, remainingSlots);
+
+      if (toAdd.length > 0) {
+        files = [...files, ...toAdd];
+        showState('settings');
+        renderFileList();
+      }
+
+      // Show toasts for rejections (Fix 2)
+      const messages: string[] = [];
+      if (rejectedFormat > 0) messages.push(`${rejectedFormat} fichier${rejectedFormat > 1 ? 's' : ''} ignoré${rejectedFormat > 1 ? 's' : ''} : format non supporté (PNG, JPG, GIF, BMP, TIFF, WebP uniquement)`);
+      if (rejectedSize > 0) messages.push(`${rejectedSize} fichier${rejectedSize > 1 ? 's' : ''} ignoré${rejectedSize > 1 ? 's' : ''} : taille supérieure à 50 Mo`);
+      if (truncated > 0) messages.push(`${truncated} image${truncated > 1 ? 's' : ''} ignorée${truncated > 1 ? 's' : ''} (limite : 20 images max)`);
+      messages.forEach(m => showToast(m, 'warning'));
+
+      if (toAdd.length === 0 && messages.length === 0 && incoming.length > 0) {
+        // All inputs were duplicates of nothing — should not happen, but fall back
+        showToast('Aucun fichier valide n\'a pu être ajouté.', 'error');
+      }
     }
 
     function getFileExt(name: string): string {
@@ -1127,7 +1455,8 @@ const benefits = [
     function renderFileList() {
       if (!imageTableBody) return;
       const countEl = document.getElementById('wcListCount');
-      if (countEl) countEl.textContent = `${files.length} image${files.length > 1 ? 's' : ''}`;
+      const totalWeight = files.reduce((s, f) => s + f.size, 0);
+      if (countEl) countEl.textContent = `${files.length} image${files.length > 1 ? 's' : ''} · ${formatSize(totalWeight)}`;
 
       imageTableBody.innerHTML = files.map((f, i) => `
         <div class="wc-table-row">
@@ -1201,29 +1530,52 @@ const benefits = [
       });
     }
 
-    // ── Compress all ────────────────────────────────────────────────────
+    // ── Compress all (Fix 1: progress indicator) ────────────────────────
     compressBtn?.addEventListener('click', async () => {
-      if (!compressBtn) return;
+      if (!compressBtn || files.length === 0) return;
       (compressBtn as HTMLButtonElement).disabled = true;
-      compressBtn.innerHTML = `
-        Compression en cours...
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
-      `;
+
+      // Show progress overlay, hide static button copy
+      if (progressEl) progressEl.style.display = 'block';
+      if (progressFill) progressFill.style.width = '0%';
 
       compressionResults = [];
+      let errors = 0;
+      const total = files.length;
 
-      for (const file of files) {
+      // Yield to UI between each image so the browser can paint progress
+      const yieldToUI = () => new Promise<void>(resolve => requestAnimationFrame(() => setTimeout(resolve, 0)));
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        if (progressTitle) progressTitle.textContent = `Compression : ${file.name}`;
+        if (progressSubtitle) progressSubtitle.textContent = `${i + 1} / ${total}`;
+        if (progressFill) progressFill.style.width = `${(i / total) * 100}%`;
+        await yieldToUI();
+
         try {
           const result = await compressToWebP(file, quality, maxWidth);
           compressionResults.push(result);
         } catch (err) {
           console.error(err);
+          errors++;
         }
+      }
+
+      if (progressFill) progressFill.style.width = '100%';
+      if (progressSubtitle) progressSubtitle.textContent = `${total} / ${total}`;
+      if (progressTitle) progressTitle.textContent = 'Finalisation...';
+      await yieldToUI();
+
+      // Hide progress overlay
+      if (progressEl) progressEl.style.display = 'none';
+
+      if (errors > 0) {
+        showToast(`${errors} image${errors > 1 ? 's' : ''} n'${errors > 1 ? 'ont' : 'a'} pas pu être compressée${errors > 1 ? 's' : ''}.`, 'error');
       }
 
       if (compressionResults.length === 0) {
         (compressBtn as HTMLButtonElement).disabled = false;
-        compressBtn.innerHTML = `Compresser en WebP <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
         return;
       }
 
@@ -1236,13 +1588,16 @@ const benefits = [
 
       const totalBefore = compressionResults.reduce((s, r) => s + r.originalSize, 0);
       const totalAfter = compressionResults.reduce((s, r) => s + r.newSize, 0);
+      const totalSaved = Math.max(0, totalBefore - totalAfter);
       const avgSavings = totalBefore > 0 ? Math.round((1 - totalAfter / totalBefore) * 100) : 0;
 
       const elSaved = document.getElementById('wcTotalSaved');
+      const elMbSaved = document.getElementById('wcMbSaved');
       const elBefore = document.getElementById('wcTotalBefore');
       const elAfter = document.getElementById('wcTotalAfter');
 
-      if (elSaved) elSaved.textContent = avgSavings + '%';
+      if (elSaved) elSaved.textContent = (avgSavings > 0 ? '-' : '') + Math.abs(avgSavings) + '%';
+      if (elMbSaved) elMbSaved.textContent = formatSize(totalSaved);
       if (elBefore) elBefore.textContent = formatSize(totalBefore);
       if (elAfter) elAfter.textContent = formatSize(totalAfter);
 
@@ -1348,6 +1703,46 @@ const benefits = [
     resetBtn?.addEventListener('click', resetTool);
     newBatchBtn?.addEventListener('click', resetTool);
     clearAllBtn?.addEventListener('click', resetTool);
+
+    // ── Full-page drag overlay (Fix 7) ──────────────────────────────────
+    let pageDragCounter = 0;
+
+    function isFileDrag(e: DragEvent): boolean {
+      return Array.from(e.dataTransfer?.types || []).includes('Files');
+    }
+
+    document.addEventListener('dragenter', (e) => {
+      const ev = e as DragEvent;
+      if (!isFileDrag(ev)) return;
+      pageDragCounter++;
+      if (pageOverlay) pageOverlay.classList.add('active');
+    });
+
+    document.addEventListener('dragover', (e) => {
+      if (isFileDrag(e as DragEvent)) e.preventDefault();
+    });
+
+    document.addEventListener('dragleave', (e) => {
+      const ev = e as DragEvent;
+      if (!isFileDrag(ev)) return;
+      pageDragCounter--;
+      if (pageDragCounter <= 0) {
+        pageDragCounter = 0;
+        if (pageOverlay) pageOverlay.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('drop', (e) => {
+      const ev = e as DragEvent;
+      if (!isFileDrag(ev)) return;
+      e.preventDefault();
+      pageDragCounter = 0;
+      if (pageOverlay) pageOverlay.classList.remove('active');
+      // If drop happens outside the dropzone, still capture the files
+      if (ev.target && !(ev.target as HTMLElement).closest('#wcDropzone')) {
+        handleFiles(ev.dataTransfer?.files);
+      }
+    });
 
     // ── Fade-in observer ────────────────────────────────────────────────
     const observer = new IntersectionObserver(
