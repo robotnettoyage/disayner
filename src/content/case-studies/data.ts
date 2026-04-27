@@ -568,6 +568,66 @@ export const caseStudies: CaseStudy[] = [
     order: 8,
     featured: false,
   },
+
+  // ── 9. BOLIEU ─────────────────────────────────────────────────────────────────
+  {
+    slug: "bolieu",
+    clientName: "BOLIEU",
+    clientWebsite: "https://bo-lieu.com",
+    categories: ["maintenance"],
+    categoryLabel: "Maintenance",
+    tags: ["WordPress", "Sécurité", "Maintenance", "SEO"],
+    thumbnail: "/images/case-studies/bolieu/thumbnail.webp",
+    shortDescription: "Intervention de sécurité en urgence sur un site WordPress piraté : suppression de backdoors, nettoyage de 400 articles malveillants, mise à jour de 28 extensions et sécurisation complète en 48h.",
+    projectType: "Intervention sécurité + Maintenance",
+    year: "2025",
+    duration: "48h (urgence) + 2 semaines (finitions)",
+    location: "Chambéry & Annemasse, Haute-Savoie / Savoie",
+    context: `
+      <p>BOLIEU est une agence immobilière implantée à Chambéry et Annemasse. Un matin, l'équipe découvre que son site WordPress a été compromis : des centaines d'articles de spam ont été publiés automatiquement, un compte administrateur inconnu est apparu dans le back-office, et le site commence à être signalé par Google comme potentiellement dangereux.</p>
+      <p>La situation était critique. Chaque heure qui passait aggravait le problème : les articles malveillants se multipliaient, le référencement du site se dégradait, et la réputation en ligne de l'agence était menacée. Les clients potentiels qui cherchaient "agence immobilière Chambéry" tombaient sur un site signalé comme compromis par Google, ce qui détruisait la confiance immédiatement.</p>
+      <p>L'agence avait besoin d'une intervention d'urgence : identifier la faille, neutraliser l'attaquant, nettoyer l'intégralité du site et le sécuriser pour empêcher toute récidive. Le tout sans perdre les contenus légitimes ni casser le fonctionnement du site.</p>
+    `,
+    solution: `
+      <p><strong>Identification et neutralisation de l'attaquant :</strong> En analysant les logs du serveur et les comptes WordPress, nous avons identifié un compte administrateur frauduleux créé par l'attaquant. Ce compte a été immédiatement supprimé et les identifiants de tous les comptes légitimes ont été réinitialisés avec des mots de passe sécurisés et l'authentification à deux facteurs activée.</p>
+      <p><strong>Suppression des backdoors :</strong> Un audit complet du code a révélé plusieurs fichiers backdoor injectés dans le thème et les plugins, permettant à l'attaquant de revenir même après la suppression de son compte. Chaque fichier compromis a été identifié, mis en quarantaine puis supprimé. Les fichiers core de WordPress ont été comparés aux originaux pour détecter toute modification.</p>
+      <p><strong>Nettoyage de 400 articles malveillants :</strong> L'attaquant avait publié automatiquement plus de 400 articles de spam (pharma, casino, liens toxiques) qui polluaient l'index Google du site. Chaque article a été supprimé, les URLs correspondantes ont été soumises en suppression dans Google Search Console, et un nettoyage de la base de données a été effectué pour éliminer les résidus.</p>
+      <p><strong>Mise à jour de 28 extensions :</strong> 28 plugins WordPress étaient obsolètes, dont plusieurs avec des failles de sécurité connues (CVE publiées). Chaque extension a été mise à jour vers sa dernière version, testée pour vérifier la compatibilité, et les plugins abandonnés par leurs développeurs ont été remplacés par des alternatives maintenues activement.</p>
+      <p><strong>Sécurisation complète :</strong> Installation et configuration d'un plugin de sécurité avec firewall applicatif (WAF), limitation des tentatives de connexion, masquage de la page de login, désactivation de l'éditeur de fichiers dans le back-office, configuration des headers de sécurité (CSP, X-Frame-Options, HSTS), et mise en place de sauvegardes automatiques quotidiennes.</p>
+      <p><strong>Demande de réexamen Google :</strong> Après le nettoyage complet, une demande de réexamen a été soumise à Google pour retirer l'avertissement "site potentiellement dangereux" des résultats de recherche. Le site a été réhabilité en quelques jours.</p>
+    `,
+    deliverables: [
+      "Identification et suppression du compte attaquant",
+      "Détection et mise en quarantaine des backdoors",
+      "Suppression de 400+ articles de spam malveillants",
+      "Mise à jour de 28 extensions WordPress",
+      "Remplacement des plugins abandonnés",
+      "Installation et configuration firewall (WAF)",
+      "Réinitialisation de tous les accès + 2FA",
+      "Configuration headers de sécurité (CSP, HSTS)",
+      "Nettoyage base de données",
+      "Sauvegardes automatiques quotidiennes",
+      "Demande de réexamen Google Search Console",
+      "Rapport d'intervention détaillé",
+    ],
+    results: [
+      { metric: "48h", label: "Intervention d'urgence" },
+      { metric: "400+", label: "Articles malveillants supprimés" },
+      { metric: "28", label: "Extensions mises à jour" },
+      { metric: "100%", label: "Site sécurisé et réhabilité" },
+    ],
+    testimonial: {
+      quote: "Merci pour le taf Celio.",
+      author: "BOLIEU",
+      role: "Agence immobilière, Chambéry & Annemasse",
+    },
+    gallery: [],
+    heroImage: "/images/case-studies/bolieu/hero.webp",
+    metaTitle: "BOLIEU : intervention sécurité WordPress site piraté | DISAYNER",
+    metaDescription: "Étude de cas : intervention d'urgence sur le site WordPress piraté de BOLIEU, agence immobilière. Suppression backdoors, 400 articles malveillants, 28 extensions mises à jour en 48h.",
+    order: 9,
+    featured: false,
+  },
 ];
 
 // ─── Helper functions ─────────────────────────────────────────────────────────
