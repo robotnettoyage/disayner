@@ -795,6 +795,7 @@ const pageSchema = {
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
 
   // ── Hero entrance
   gsap.from(".blog-hero-inner > *", {

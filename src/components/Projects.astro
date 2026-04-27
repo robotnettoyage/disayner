@@ -428,6 +428,7 @@ const projects = [
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
 
   // Cards
   ScrollTrigger.batch(".project-card", {

@@ -506,6 +506,7 @@ const tools = [
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
 
   const navbar  = document.getElementById("navbar")!;
   const burger  = document.querySelector(".burger") as HTMLButtonElement;

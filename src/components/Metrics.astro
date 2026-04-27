@@ -181,6 +181,7 @@ const metrics = [
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
 
   // Counter animation
   const counters = document.querySelectorAll<HTMLElement>(".metric-number");

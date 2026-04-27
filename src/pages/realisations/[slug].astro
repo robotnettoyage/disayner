@@ -1416,6 +1416,7 @@ const breadcrumbSchema = {
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
 
   // ── Hero entrance
   gsap.fromTo(".cs-detail-hero-content > *",
